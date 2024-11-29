@@ -1,4 +1,4 @@
-package com.example.gynx_app
+package com.piory.gynx
 
 import io.flutter.embedding.android.FlutterActivity
 
