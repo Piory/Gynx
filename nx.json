@@ -18,6 +18,10 @@
           "configName": "tsconfig.lib.json"
         }
       }
+    },
+    {
+      "plugin": "@nxrocks/nx-melos"
     }
-  ]
+  ],
+  "targetDefaults": {}
 }
