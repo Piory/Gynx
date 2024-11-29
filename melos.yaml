@@ -23,10 +23,13 @@ command:
     dependencies:
       riverpod: 2.6.1
       flutter_riverpod: 2.6.1
+      riverpod_annotation: 2.6.1
     dev_dependencies:
       pedantic_mono: any
       lint: 2.3.0
       flutter_lints: 5.0.0
+      build_runner: 2.4.13
+      riverpod_generator: 2.6.3
   ide:
     intellij: true
 scripts:
