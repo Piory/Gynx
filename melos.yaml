@@ -22,12 +22,16 @@ command:
       sdk: ">=3.3.0 <4.0.0"
     dependencies:
       collection: 1.18.0
+      firebase_core: 3.8.0
+      firebase_auth: 5.3.3
+      firebase_crashlytics: 4.1.5
+      firebase_analytics: 11.3.5
       riverpod: 2.6.1
       flutter_riverpod: 2.6.1
       riverpod_annotation: 2.6.1
       google_fonts: 6.2.1
     dev_dependencies:
-      test: 1.25.9
+      test: 1.25.7
       pedantic_mono: any
       lint: 2.3.0
       lints: 5.0.0
