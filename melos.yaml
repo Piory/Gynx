@@ -18,6 +18,17 @@ command:
     # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
     # makes the CI much more stable.
     runPubGetInParallel: false
-
+    environment:
+      sdk: ">=3.3.0 <4.0.0"
+    dependencies:
+      riverpod: 2.6.1
+      flutter_riverpod: 2.6.1
+    dev_dependencies:
+      pedantic_mono: any
+      lint: 2.3.0
+      flutter_lints: 5.0.0
+  ide:
+    intellij: true
 scripts:
-  # Put your melos scripts here
+  analyze: melos exec --fail-fast -- "dart analyze ."
+  analyze-fix: melos exec --fail-fast -- "dart fix --apply"

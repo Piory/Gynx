@@ -1,4 +1,3 @@
-library gynx_components;
 
 /// A Calculator.
 class Calculator {
