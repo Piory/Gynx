@@ -18,3 +18,4 @@ dev_dependencies:
   lints: 5.0.0
   test: 1.25.7
   pedantic_mono: any
+  mockito: 5.4.4
