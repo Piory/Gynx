@@ -3,7 +3,7 @@
 name: gynx
 
 packages:
-  - packages/**
+  - apps/**
   - packages/**
 
 command:
