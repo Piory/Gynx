@@ -26,8 +26,10 @@ command:
       flutter_riverpod: 2.6.1
       riverpod_annotation: 2.6.1
     dev_dependencies:
+      test: 1.25.9
       pedantic_mono: any
       lint: 2.3.0
+      lints: 5.0.0
       flutter_lints: 5.0.0
       build_runner: 2.4.13
       riverpod_generator: 2.6.3
