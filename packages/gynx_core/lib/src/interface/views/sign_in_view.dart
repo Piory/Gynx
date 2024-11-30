@@ -21,19 +21,55 @@ class _SignInViewState extends CleanViewState<SignInView, AuthController> {
   @override
   Widget get view => Scaffold(
         key: globalKey,
-        floatingActionButton: ControlledWidgetBuilder<AuthController>(
-          builder: (context, controller) {
-            return FloatingActionButton(
-              onPressed: () => controller.signIn('email', 'password'),
-              child: const Icon(Icons.add),
-            );
-          },
-        ),
         appBar: AppBar(
           title: const Text('Sign In'),
         ),
-        body: const Center(
-          child: Text('Sign In'),
+        body: ControlledWidgetBuilder<AuthController>(
+          builder: (context, controller) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 64),
+                  const Text('Sign In'),
+                  const SizedBox(height: 16),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Email'),
+                  ),
+                  const SizedBox(height: 8),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Password'),
+                  ),
+                  const SizedBox(height: 8),
+                  const InkWell(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Text('Forgot your password?'),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => controller.signIn('email', 'password'),
+                      child: const Text('Sign In'),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () => {},
+                      child: const Text('Sign Up'),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       );
 }
