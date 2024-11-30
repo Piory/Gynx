@@ -3,12 +3,11 @@ import 'dart:ui';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:gynx_core/src/application/usecase/interactors/sign_in_interactor.dart';
 import 'package:gynx_core/src/application/usecase/params/sign_in_param.dart';
-import 'package:gynx_core/src/domain/repositories/auth_reposirory.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class SignInPresenter extends Presenter {
-  SignInPresenter(AuthRepository authRepository)
-      : _signInInteractor = SignInInteractor(authRepository),
-        super();
+  SignInPresenter(this._signInInteractor);
 
   final SignInInteractor _signInInteractor;
 

@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:gynx_core/src/application/usecase/params/sign_in_param.dart';
 import 'package:gynx_core/src/domain/repositories/auth_reposirory.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class SignInInteractor extends CompletableUseCase<SignInParam> {
   SignInInteractor(this._authRepository);
 
@@ -18,7 +20,7 @@ class SignInInteractor extends CompletableUseCase<SignInParam> {
         password: params.password,
       );
       logger.finest('Sign in successful interactor');
-      streamController.close();
+      unawaited(streamController.close());
     } on Exception catch (e) {
       logger.severe('Sign in failed', e);
       streamController.addError(e);

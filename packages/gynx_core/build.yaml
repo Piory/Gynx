@@ -1,0 +1,19 @@
+targets:
+  $default:
+    builders:
+      source_gen|combining_builder:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/src/generated/{{}}.g.dart'
+      freezed:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/src/generated/{{}}.freezed.dart'
+#      injectable_generator:injectable_builder:
+#        options:
+#          build_extensions:
+#            '^lib/{{}}.dart': 'lib/src/generated/{{}}.config.dart'
+#      injectable_generator:injectable_config_builder:
+#        options:
+#          build_extensions:
+#            '^lib/{{}}.dart': 'lib/src/generated/{{}}.config.dart'

@@ -27,11 +27,14 @@ command:
       firebase_auth: 5.3.3
       firebase_crashlytics: 4.1.5
       firebase_analytics: 11.3.5
+      freezed_annotation: 2.4.4
       riverpod: 2.6.1
       flutter_riverpod: 2.6.1
       riverpod_annotation: 2.6.1
       google_fonts: 6.2.1
       flutter_clean_architecture: 6.0.1
+      get_it: 8.0.2
+      injectable: 2.5.0
     dev_dependencies:
       test: 1.25.7
       mockito: 5.4.4
@@ -41,7 +44,9 @@ command:
       flutter_lints: 5.0.0
       build_runner: 2.4.13
       riverpod_generator: 2.6.3
+      injectable_generator: 2.6.2
   ide:
     intellij: true
 scripts:
+  gen: melos exec --ignore='gynx_app' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
   fix: melos exec --fail-fast -- "dart fix --apply ."

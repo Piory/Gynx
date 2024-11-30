@@ -1,5 +1,7 @@
 import 'package:gynx_core/src/domain/repositories/auth_reposirory.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl();
 

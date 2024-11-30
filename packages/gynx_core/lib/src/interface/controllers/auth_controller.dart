@@ -1,11 +1,10 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:gynx_core/src/interface/presenters/sign_in_presenter.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class AuthController extends Controller {
-  AuthController({
-    required SignInPresenter signInPresenter,
-  })  : _signInPresenter = signInPresenter,
-        super();
+  AuthController(this._signInPresenter);
 
   final SignInPresenter _signInPresenter;
 
