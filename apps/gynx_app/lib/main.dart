@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = const ColorScheme.highContrastDark(
+    final colorScheme = const ColorScheme.dark(
       primary: ColorPalette.primary,
     ).copyWith(
       // 背景色
@@ -52,19 +52,18 @@ class MyApp extends StatelessWidget {
         textTheme: textTheme,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
+            borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(16),
           ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(
-              color: Colors.transparent,
-            ),
+          outlineBorder: BorderSide(
+            color: colorScheme.outline,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(
-              color: Colors.transparent,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: colorScheme.outline,
+              width: 1.5,
             ),
+            borderRadius: BorderRadius.circular(16),
           ),
           filled: true,
           labelStyle: textTheme.bodyMedium!.copyWith(
@@ -75,8 +74,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: colorScheme.primary,
-          foregroundColor: colorScheme.onPrimary,
+          foregroundColor: Colors.white,
+          shape: const CircleBorder(),
+          elevation: 0,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -87,6 +87,7 @@ class MyApp extends StatelessWidget {
             textStyle: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
             ),
+            shadowColor: Colors.transparent,
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
@@ -98,6 +99,7 @@ class MyApp extends StatelessWidget {
             textStyle: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
             ),
+            shadowColor: Colors.transparent,
           ),
         ),
       ),
