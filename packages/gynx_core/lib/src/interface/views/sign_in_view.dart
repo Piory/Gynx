@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_core/src/interface/controllers/auth_controller.dart';
+import 'package:gynx_l10n/gynx_l10n.dart';
 
 class SignInView extends CleanView {
   const SignInView({
@@ -19,57 +20,63 @@ class _SignInViewState extends CleanViewState<SignInView, AuthController> {
         );
 
   @override
-  Widget get view => Scaffold(
-        key: globalKey,
-        appBar: AppBar(
-          title: const Text('Sign In'),
-        ),
-        body: ControlledWidgetBuilder<AuthController>(
-          builder: (context, controller) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 64),
-                  const Text('Sign In'),
-                  const SizedBox(height: 16),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Email'),
+  Widget get view {
+    final l10n = L10n.of(context);
+    return Scaffold(
+      key: globalKey,
+      body: ControlledWidgetBuilder<AuthController>(
+        builder: (context, controller) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: l10n.email,
                   ),
-                  const SizedBox(height: 8),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Password'),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: l10n.password,
                   ),
-                  const SizedBox(height: 8),
-                  const InkWell(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Text('Forgot your password?'),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
+                ),
+                const SizedBox(height: 8),
+                TextButton(
+                  child: SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => controller.signIn('email', 'password'),
-                      child: const Text('Sign In'),
-                    ),
+                    child: Text(l10n.forgotYourPassword),
                   ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(
-                      onPressed: () => {},
-                      child: const Text('Sign Up'),
-                    ),
+                  onPressed: () => {},
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => controller.signIn('email', 'password'),
+                    child: Text(l10n.signIn),
                   ),
-                ],
-              ),
-            );
-          },
-        ),
-      );
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                    ),
+                    child: Text(l10n.signUp),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

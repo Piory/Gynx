@@ -1,0 +1,11 @@
+{
+  "@@locale": "ja",
+  "title": "Gynx",
+  "required": "必須",
+  "signIn": "ログイン",
+  "signUp": "登録",
+  "signOut": "ログアウト",
+  "email": "メールアドレス",
+  "password": "パスワード",
+  "forgotYourPassword": "パスワードをお忘れですか？"
+}

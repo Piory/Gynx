@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "title": "Gynx",
+  "required": "Required",
+  "signIn": "SignIn",
+  "signUp": "SignUp",
+  "signOut": "SignOut",
+  "email": "Email",
+  "password": "Password",
+  "forgotYourPassword": "Forgot your password?"
+}

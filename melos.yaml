@@ -35,6 +35,7 @@ command:
       flutter_clean_architecture: 6.0.1
       get_it: 8.0.2
       injectable: 2.5.0
+      intl: 0.19.0
     dev_dependencies:
       test: 1.25.7
       mockito: 5.4.4
@@ -49,4 +50,5 @@ command:
     intellij: true
 scripts:
   gen: melos exec --ignore='gynx_app' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
+  gen-l10n: melos exec --scope='gynx_l10n' -- flutter gen-l10n
   fix: melos exec --fail-fast -- "dart fix --apply ."

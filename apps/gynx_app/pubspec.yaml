@@ -12,6 +12,8 @@ dependencies:
   google_fonts: 6.2.1
   gynx_core:
     path: ../../packages/gynx_core
+  gynx_l10n:
+    path: ../../packages/gynx_l10n
 
 dev_dependencies:
   change_app_package_name: ^1.4.0
