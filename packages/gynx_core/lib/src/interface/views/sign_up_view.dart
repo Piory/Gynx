@@ -5,17 +5,17 @@ import 'package:gynx_core/src/infrastructure/router/go_router.dart';
 import 'package:gynx_core/src/interface/controllers/auth_controller.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
-class SignInView extends CleanView {
-  const SignInView({
+class SignUpView extends CleanView {
+  const SignUpView({
     super.key,
   });
 
   @override
-  State<StatefulWidget> createState() => _SignInViewState();
+  State<StatefulWidget> createState() => _SignUpViewState();
 }
 
-class _SignInViewState extends CleanViewState<SignInView, AuthController> {
-  _SignInViewState()
+class _SignUpViewState extends CleanViewState<SignUpView, AuthController> {
+  _SignUpViewState()
       : super(
           GetIt.I.get<AuthController>(),
         );
@@ -61,18 +61,18 @@ class _SignInViewState extends CleanViewState<SignInView, AuthController> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () => controller.signIn('email', 'password'),
-                    child: Text(l10n.signIn),
+                    child: Text(l10n.signUp),
                   ),
                 ),
                 const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => const SignUpRoute().push<bool>(context),
+                    onPressed: () => const SignInRoute().push<bool>(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorScheme.surfaceContainerHighest,
                     ),
-                    child: Text(l10n.signUp),
+                    child: Text(l10n.signIn),
                   ),
                 ),
               ],

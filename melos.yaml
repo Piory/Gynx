@@ -36,11 +36,14 @@ command:
       flutter_form_builder: 9.5.0
       form_builder_validators: 11.0.0
       get_it: 8.0.2
+      go_router: 14.6.1
       injectable: 2.5.0
       intl: 0.19.0
     dev_dependencies:
       test: 1.25.7
       mockito: 5.4.4
+      freezed: 2.5.7
+      go_router_builder: 2.7.1
       pedantic_mono: any
       lint: 2.3.0
       lints: 5.0.0
@@ -51,6 +54,6 @@ command:
   ide:
     intellij: true
 scripts:
-  gen: melos exec --ignore='gynx_app' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
+  gen: melos exec --ignore='gynx_app' --ignore='gynx_l10n' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
   gen-l10n: melos exec --scope='gynx_l10n' -- flutter gen-l10n
   fix: melos exec --fail-fast -- "dart fix --apply ."

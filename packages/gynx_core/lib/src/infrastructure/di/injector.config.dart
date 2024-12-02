@@ -37,7 +37,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i913.SignInInteractor(gh<_i601.AuthRepository>()));
     gh.singleton<_i1012.SignInPresenter>(
         () => _i1012.SignInPresenter(gh<_i913.SignInInteractor>()));
-    gh.singleton<_i278.AuthController>(
+    gh.factory<_i278.AuthController>(
         () => _i278.AuthController(gh<_i1012.SignInPresenter>()));
     return this;
   }
