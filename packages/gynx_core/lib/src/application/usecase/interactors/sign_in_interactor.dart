@@ -15,7 +15,7 @@ class SignInInteractor extends CompletableUseCase<SignInParam> {
   Future<Stream<void>> buildUseCaseStream(SignInParam? params) async {
     final streamController = StreamController<void>();
     try {
-      await _authRepository.signIn(
+      await _authRepository.signInWithPassword(
         email: params!.email,
         password: params.password,
       );

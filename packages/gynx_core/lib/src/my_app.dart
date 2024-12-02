@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_core/src/infrastructure/router/go_router.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final class ColorPalette {
+  // Purple
   static const primary = Color(0xFF9C5DFF);
   static const surface = Color(0xFF1A1221);
   static const onSurface = Color(0xFFAD94C7);
   static const surfaceContainerHighest = Color(0xFF362447);
+// Green
+// static const primary = Color(0xFF348E47);
+// static const surface = Color(0xFF090909);
+// static const onSurface = Color(0xFF689E64);
+// static const surfaceContainerHighest = Color(0xFF112C12);
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +22,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
+      print('Auth state changed: $data');
+      if (data.session == null) {
+        try {
+          await Supabase.instance.client.auth.signInAnonymously();
+        } on Exception catch (e) {
+          print('Failed to sign in anonymously: $e');
+        }
+      }
+    });
     final colorScheme = const ColorScheme.dark(
       primary: ColorPalette.primary,
     ).copyWith(
@@ -55,6 +72,13 @@ class MyApp extends StatelessWidget {
           ),
           outlineBorder: BorderSide(
             color: colorScheme.outline,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: colorScheme.outline.withOpacity(0.3),
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(16),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(

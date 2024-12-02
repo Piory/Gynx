@@ -4,7 +4,9 @@ abstract interface class AuthRepository {
     required String password,
   });
 
-  Future<void> signIn({
+  Future<void> signInWithAnonymous();
+
+  Future<void> signInWithPassword({
     required String email,
     required String password,
   });
