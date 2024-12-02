@@ -39,6 +39,7 @@ command:
       go_router: 14.6.1
       injectable: 2.5.0
       intl: 0.19.0
+      supabase_flutter: 2.8.1
     dev_dependencies:
       test: 1.25.7
       mockito: 5.4.4

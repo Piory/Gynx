@@ -23,6 +23,7 @@ dependencies:
   gynx_l10n:
     path: ../../packages/gynx_l10n
   injectable: 2.5.0
+  supabase_flutter: 2.8.1
   # path: ^1.8.0
 
 dev_dependencies:
