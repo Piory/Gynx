@@ -7,5 +7,7 @@
   "signOut": "SignOut",
   "email": "Email",
   "password": "Password",
-  "forgotYourPassword": "Forgot your password?"
+  "forgotYourPassword": "Forgot your password?",
+  "dontHaveAnAccount": "Don't have an account?",
+  "alreadyHaveAnAccount": "Already have an account?"
 }

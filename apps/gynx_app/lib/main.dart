@@ -7,10 +7,10 @@ void main() async {
   await dotenv.load(
     fileName: 'assets/.env',
   );
-  configureDependencies();
   await supabaseInitializer(
     url: dotenv.get('SUPABASE_URL'),
     anonKey: dotenv.get('SUPABASE_ANON_KEY'),
   );
+  configureDependencies();
   runApp(const MyApp());
 }

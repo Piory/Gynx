@@ -29,4 +29,10 @@ class L10nEn extends L10n {
 
   @override
   String get forgotYourPassword => 'Forgot your password?';
+
+  @override
+  String get dontHaveAnAccount => 'Don\'t have an account?';
+
+  @override
+  String get alreadyHaveAnAccount => 'Already have an account?';
 }

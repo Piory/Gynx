@@ -142,6 +142,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Forgot your password?'**
   String get forgotYourPassword;
+
+  /// No description provided for @dontHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAnAccount;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAnAccount;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

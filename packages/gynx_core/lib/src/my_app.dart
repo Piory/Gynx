@@ -23,13 +23,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
-      print('Auth state changed: $data');
       if (data.session == null) {
-        try {
-          await Supabase.instance.client.auth.signInAnonymously();
-        } on Exception catch (e) {
-          print('Failed to sign in anonymously: $e');
-        }
+        await Supabase.instance.client.auth.signInAnonymously();
       }
     });
     final colorScheme = const ColorScheme.dark(
@@ -109,7 +104,7 @@ class MyApp extends StatelessWidget {
             textStyle: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
             ),
-            shadowColor: Colors.transparent,
+            overlayColor: Colors.transparent,
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
@@ -122,6 +117,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             shadowColor: Colors.transparent,
+            overlayColor: Colors.transparent,
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            overlayColor: Colors.transparent,
           ),
         ),
       ),

@@ -29,4 +29,10 @@ class L10nJa extends L10n {
 
   @override
   String get forgotYourPassword => 'パスワードをお忘れですか？';
+
+  @override
+  String get dontHaveAnAccount => 'アカウントをお持ちでないですか？';
+
+  @override
+  String get alreadyHaveAnAccount => 'すでにアカウントをお持ちですか？';
 }

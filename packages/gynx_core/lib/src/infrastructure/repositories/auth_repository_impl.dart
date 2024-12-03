@@ -2,22 +2,23 @@ import 'package:gynx_core/src/domain/repositories/auth_reposirory.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-final auth = Supabase.instance.client.auth;
-
 @Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  const AuthRepositoryImpl();
+  const AuthRepositoryImpl(this._client);
+
+  final SupabaseClient _client;
 
   @override
   Future<void> signUp({
     required String email,
     required String password,
   }) {
-    return auth.signUp(email: email, password: password);
+    return _client.auth.signUp(email: email, password: password);
   }
 
   @override
   Future<void> signInWithAnonymous() async {
+    final auth = _client.auth;
     await auth.signInAnonymously();
   }
 
@@ -26,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    await auth.signInWithPassword(
+    await _client.auth.signInWithPassword(
       email: email,
       password: password,
     );
@@ -34,6 +35,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> signOut() {
-    return auth.signOut();
+    return _client.auth.signOut();
   }
 }

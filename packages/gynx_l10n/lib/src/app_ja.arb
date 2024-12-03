@@ -7,5 +7,7 @@
   "signOut": "ログアウト",
   "email": "メールアドレス",
   "password": "パスワード",
-  "forgotYourPassword": "パスワードをお忘れですか？"
+  "forgotYourPassword": "パスワードをお忘れですか？",
+  "dontHaveAnAccount": "アカウントをお持ちでないですか？",
+  "alreadyHaveAnAccount": "すでにアカウントをお持ちですか？"
 }

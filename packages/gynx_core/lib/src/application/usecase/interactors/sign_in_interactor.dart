@@ -19,10 +19,8 @@ class SignInInteractor extends CompletableUseCase<SignInParam> {
         email: params!.email,
         password: params.password,
       );
-      logger.finest('Sign in successful interactor');
       unawaited(streamController.close());
     } on Exception catch (e) {
-      logger.severe('Sign in failed', e);
       streamController.addError(e);
     }
     return streamController.stream;

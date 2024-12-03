@@ -13,10 +13,8 @@ class SignInPresenter extends Presenter {
 
   late VoidCallback signInOnComplete;
   late void Function(dynamic) signInOnError;
-  late VoidCallback signInOnNext;
 
   void signIn(String email, String password) {
-    print('Sign in presenter');
     _signInInteractor.execute(
       _SignInObserver(this),
       SignInParam(
@@ -28,31 +26,27 @@ class SignInPresenter extends Presenter {
 
   @override
   void dispose() {
-    print('Sign in presenter dispose');
     _signInInteractor.dispose();
   }
 }
 
-class _SignInObserver implements Observer<bool> {
+class _SignInObserver implements Observer<void> {
   _SignInObserver(this._presenter);
 
   final SignInPresenter _presenter;
 
   @override
-  void onNext(bool? response) {
-    print('Sign in next observer');
-    _presenter.signInOnNext();
+  void onNext(_) {
+    throw UnimplementedError();
   }
 
   @override
   void onComplete() {
-    print('Sign in success observer');
     _presenter.signInOnComplete();
   }
 
   @override
   void onError(dynamic e) {
-    print('Sign in error observer: $e');
     _presenter.signInOnError(e);
   }
 }

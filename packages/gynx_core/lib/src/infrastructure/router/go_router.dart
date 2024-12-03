@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gynx_core/src/interface/views/sign_in_view.dart';
-import 'package:gynx_core/src/interface/views/sign_up_view.dart';
+import 'package:gynx_core/src/interface/pages/sign_in/sign_in_view.dart';
+import 'package:gynx_core/src/interface/pages/sign_up/sign_up_view.dart';
 
 part '../../generated/src/infrastructure/router/go_router.g.dart';
 
