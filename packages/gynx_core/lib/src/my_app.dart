@@ -60,6 +60,33 @@ class MyApp extends StatelessWidget {
         splashFactory: NoSplash.splashFactory,
         highlightColor: Colors.transparent,
         textTheme: textTheme,
+        navigationBarTheme: NavigationBarThemeData(
+          height: 56,
+          backgroundColor: colorScheme.surface,
+          indicatorColor: colorScheme.primary,
+          labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return textTheme.bodySmall!.copyWith(
+                fontSize: 12,
+                color: colorScheme.primary,
+              );
+            }
+            return textTheme.bodySmall!.copyWith(
+              fontSize: 12,
+              color: colorScheme.primary,
+            );
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return const IconThemeData(
+                color: Colors.white,
+              );
+            }
+            return IconThemeData(
+              color: colorScheme.primary,
+            );
+          }),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -105,6 +132,8 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             overlayColor: Colors.transparent,
+            shadowColor: colorScheme.primary,
+            elevation: 4,
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
