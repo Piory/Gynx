@@ -26,6 +26,7 @@ dependencies:
     path: ../../packages/gynx_l10n
   injectable: 2.5.0
   json_annotation: 4.9.0
+  modal_bottom_sheet: 3.0.0
   supabase_flutter: 2.8.1
   # path: ^1.8.0
 

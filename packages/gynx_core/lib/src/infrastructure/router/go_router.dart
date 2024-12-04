@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gynx_core/src/infrastructure/router/material_with_modals_page.dart';
 import 'package:gynx_core/src/interface/pages/sign_in/sign_in_view.dart';
 import 'package:gynx_core/src/interface/pages/sign_up/sign_up_view.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 part '../../generated/src/infrastructure/router/go_router.g.dart';
 part 'branchs/home_branch.dart';
@@ -35,13 +37,16 @@ class MainShellRouteData extends StatefulShellRouteData {
   const MainShellRouteData();
 
   @override
-  Widget builder(
+  Page<void> pageBuilder(
     BuildContext context,
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    return AppNavigationBar(
-      navigationShell: navigationShell,
+    return MaterialWithModalsPage(
+      key: state.pageKey,
+      child: AppNavigationBar(
+        navigationShell: navigationShell,
+      ),
     );
   }
 }
