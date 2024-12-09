@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gynx_core/gynx_core.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await dotenv.load(
     fileName: 'assets/.env',
   );
@@ -12,5 +14,9 @@ void main() async {
     anonKey: dotenv.get('SUPABASE_ANON_KEY'),
   );
   configureDependencies();
-  runApp(const MyApp());
+  runApp(
+    const MyApp(
+      initialize: FlutterNativeSplash.remove,
+    ),
+  );
 }

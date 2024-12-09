@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_core/src/infrastructure/router/go_router.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -18,7 +19,12 @@ final class ColorPalette {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+    required this.initialize,
+  });
+
+  final VoidCallback initialize;
 
   @override
   Widget build(BuildContext context) {
@@ -44,114 +50,122 @@ class MyApp extends StatelessWidget {
     final textTheme = GoogleFonts.notoSansJpTextTheme(
       ThemeData.dark().textTheme,
     );
-    return MaterialApp.router(
-      title: 'Gynx',
-      localizationsDelegates: const [
-        ...L10n.localizationsDelegates,
-        // FormBuilderLocalizations.delegate,
-      ],
-      supportedLocales: L10n.supportedLocales,
-      routerDelegate: goRouter.routerDelegate,
-      routeInformationParser: goRouter.routeInformationParser,
-      routeInformationProvider: goRouter.routeInformationProvider,
-      theme: ThemeData(
-        colorScheme: colorScheme,
-        splashColor: Colors.transparent,
-        splashFactory: NoSplash.splashFactory,
-        highlightColor: Colors.transparent,
-        textTheme: textTheme,
-        navigationBarTheme: NavigationBarThemeData(
-          height: 56,
-          backgroundColor: colorScheme.surface,
-          indicatorColor: colorScheme.primary,
-          labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
-            if (states.contains(WidgetState.selected)) {
+    initialize();
+    return AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+      ),
+      child: MaterialApp.router(
+        title: 'Gynx',
+        localizationsDelegates: const [
+          ...L10n.localizationsDelegates,
+          // FormBuilderLocalizations.delegate,
+        ],
+        supportedLocales: L10n.supportedLocales,
+        routerDelegate: goRouter.routerDelegate,
+        routeInformationParser: goRouter.routeInformationParser,
+        routeInformationProvider: goRouter.routeInformationProvider,
+        theme: ThemeData(
+          colorScheme: colorScheme,
+          splashColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
+          highlightColor: Colors.transparent,
+          textTheme: textTheme,
+          navigationBarTheme: NavigationBarThemeData(
+            height: 56,
+            backgroundColor: colorScheme.surface,
+            indicatorColor: colorScheme.primary,
+            labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return textTheme.bodySmall!.copyWith(
+                  fontSize: 12,
+                  color: colorScheme.primary,
+                );
+              }
               return textTheme.bodySmall!.copyWith(
                 fontSize: 12,
                 color: colorScheme.primary,
               );
-            }
-            return textTheme.bodySmall!.copyWith(
-              fontSize: 12,
-              color: colorScheme.primary,
-            );
-          }),
-          iconTheme: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.selected)) {
-              return const IconThemeData(
-                color: Colors.white,
+            }),
+            iconTheme: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return const IconThemeData(
+                  color: Colors.white,
+                );
+              }
+              return IconThemeData(
+                color: colorScheme.primary,
               );
-            }
-            return IconThemeData(
-              color: colorScheme.primary,
-            );
-          }),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(16),
+            }),
           ),
-          outlineBorder: BorderSide(
-            color: colorScheme.outline,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: colorScheme.outline.withOpacity(0.3),
-              width: 1.5,
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(16),
             ),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
+            outlineBorder: BorderSide(
               color: colorScheme.outline,
-              width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(16),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: colorScheme.outline.withOpacity(0.3),
+                width: 1.5,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: colorScheme.outline,
+                width: 1.5,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            filled: true,
+            labelStyle: textTheme.bodyMedium!.copyWith(
+              color: colorScheme.onSurface,
+            ),
+            floatingLabelStyle: textTheme.bodyMedium!.copyWith(
+              color: colorScheme.primary,
+            ),
           ),
-          filled: true,
-          labelStyle: textTheme.bodyMedium!.copyWith(
-            color: colorScheme.onSurface,
-          ),
-          floatingLabelStyle: textTheme.bodyMedium!.copyWith(
-            color: colorScheme.primary,
-          ),
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          foregroundColor: Colors.white,
-          shape: CircleBorder(),
-          elevation: 0,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            textStyle: textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            overlayColor: Colors.transparent,
-            shadowColor: colorScheme.primary,
-            elevation: 4,
+            shape: CircleBorder(),
+            elevation: 0,
           ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              textStyle: textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              overlayColor: Colors.transparent,
+              // shadowColor: colorScheme.primary,
+              // elevation: 4,
             ),
-            textStyle: textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            shadowColor: Colors.transparent,
-            overlayColor: Colors.transparent,
           ),
-        ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            overlayColor: Colors.transparent,
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: colorScheme.surface,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              textStyle: textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              overlayColor: Colors.transparent,
+              elevation: 0,
+            ),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              overlayColor: Colors.transparent,
+            ),
           ),
         ),
       ),

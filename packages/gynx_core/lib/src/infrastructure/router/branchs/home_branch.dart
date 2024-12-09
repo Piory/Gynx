@@ -9,8 +9,8 @@ const homeStatefulShellBranch = TypedStatefulShellBranch<HomeShellBranch>(
     TypedGoRoute<HomePageRoute>(
       path: '/home',
       routes: [
-        TypedGoRoute<HomeSample1PageRoute>(path: '/sample1'),
-        TypedGoRoute<HomeSample2PageRoute>(path: '/sample2'),
+        TypedGoRoute<HomeSample1PageRoute>(path: 'sample1'),
+        TypedGoRoute<HomeSample2PageRoute>(path: 'sample2'),
       ],
     ),
   ],
@@ -21,24 +21,39 @@ class HomePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Home Page'),
-          ElevatedButton(
-            onPressed: () async => showCupertinoModalBottomSheet(
-              context: context,
-              useRootNavigator: true,
-              builder: (context) => const Scaffold(
-                body: Center(
-                  child: Text('Modal'),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Home Page'),
+            OutlinedButton(
+              onPressed: () => const HomeSample1PageRoute().push<void>(context),
+              child: const Text('Sample1'),
+            ),
+            ElevatedButton(
+              onPressed: () => const SignInRoute().push<void>(context),
+              child: const Text('SignIn'),
+            ),
+            ElevatedButton(
+              onPressed: () => const SignUpRoute().push<void>(context),
+              child: const Text('SignUp'),
+            ),
+            ElevatedButton(
+              onPressed: () async =>
+                  CupertinoScaffold.showCupertinoModalBottomSheet(
+                context: context,
+                useRootNavigator: true,
+                builder: (context) => const Scaffold(
+                  body: Center(
+                    child: Text('Modal'),
+                  ),
                 ),
               ),
+              child: const Text('Open Modal'),
             ),
-            child: const Text('Open Modal'),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -49,8 +64,32 @@ class HomeSample1PageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Center(
-      child: Text('Home Sample1 Page'),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Home Sample1 Page'),
+            OutlinedButton(
+              onPressed: () => const HomeSample2PageRoute().push<void>(context),
+              child: const Text('Sample2'),
+            ),
+            ElevatedButton(
+              onPressed: () async =>
+                  CupertinoScaffold.showCupertinoModalBottomSheet(
+                context: context,
+                useRootNavigator: true,
+                builder: (context) => const Scaffold(
+                  body: Center(
+                    child: Text('Modal'),
+                  ),
+                ),
+              ),
+              child: const Text('Open Modal'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -60,8 +99,32 @@ class HomeSample2PageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Center(
-      child: Text('Home Sample2 Page'),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Home Sample2 Page'),
+            OutlinedButton(
+              onPressed: () => const HomeSample1PageRoute().push<void>(context),
+              child: const Text('Sample1'),
+            ),
+            ElevatedButton(
+              onPressed: () async =>
+                  CupertinoScaffold.showCupertinoModalBottomSheet(
+                context: context,
+                useRootNavigator: true,
+                builder: (context) => const Scaffold(
+                  body: Center(
+                    child: Text('Modal'),
+                  ),
+                ),
+              ),
+              child: const Text('Open Modal'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

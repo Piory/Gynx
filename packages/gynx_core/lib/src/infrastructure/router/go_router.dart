@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gynx_core/src/infrastructure/router/material_with_modals_page.dart';
+import 'package:gynx_core/src/infrastructure/router/pages/bar_modal_bottom_sheet_page.dart';
+import 'package:gynx_core/src/infrastructure/router/pages/cupertino_modal_bottom_sheet_page.dart';
 import 'package:gynx_core/src/interface/pages/sign_in/sign_in_view.dart';
 import 'package:gynx_core/src/interface/pages/sign_up/sign_up_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -37,14 +40,13 @@ class MainShellRouteData extends StatefulShellRouteData {
   const MainShellRouteData();
 
   @override
-  Page<void> pageBuilder(
+  Widget builder(
     BuildContext context,
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    return MaterialWithModalsPage(
-      key: state.pageKey,
-      child: AppNavigationBar(
+    return CupertinoScaffold(
+      body: AppNavigationBar(
         navigationShell: navigationShell,
       ),
     );
@@ -94,44 +96,28 @@ class AppNavigationBar extends StatelessWidget {
   }
 }
 
-// @TypedStatefulShellBranch(
-//   routes: [
-//     TypedGoRoute<RootRoute>(path: '/'),
-//   ],
-// )
-// class HomeShellRoute extends StatefulShellBranch {
-//   const HomeShellRoute();
-//
-//   @override
-//   Widget builder(BuildContext context, GoRouterState state) {
-//     return const MainShellRouteData();
-//   }
-// }
-
-@TypedGoRoute<RootRoute>(
-  path: '/test',
-  routes: [
-    TypedGoRoute<SignInRoute>(path: '/sign-in'),
-    TypedGoRoute<SignUpRoute>(path: '/sign-up'),
-  ],
-)
-class RootRoute extends GoRouteData {
-  const RootRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const SignInView();
-}
-
+@TypedGoRoute<SignInRoute>(path: '/sign-in')
 class SignInRoute extends GoRouteData {
   const SignInRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SignInView();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return BarModalBottomSheetPage(
+      key: state.pageKey,
+      builder: (context) => const SignInView(),
+    );
+  }
 }
 
+@TypedGoRoute<SignUpRoute>(path: '/sign-up')
 class SignUpRoute extends GoRouteData {
   const SignUpRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SignUpView();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CupertinoModalBottomSheetPage(
+      key: state.pageKey,
+      builder: (context) => const SignUpView(),
+    );
+  }
 }
