@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:gynx_core/gynx_core.dart';
+import 'package:gynx_app/src/infrastructure/di/injector.dart';
+import 'package:gynx_app/src/infrastructure/supabase/supabase_initializer.dart';
+import 'package:gynx_app/src/my_app.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +17,6 @@ void main() async {
   );
   configureDependencies();
   runApp(
-    const MyApp(
-      initialize: FlutterNativeSplash.remove,
-    ),
+    const MyApp(),
   );
 }

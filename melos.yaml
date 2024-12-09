@@ -65,6 +65,6 @@ command:
   ide:
     intellij: true
 scripts:
-  gen: melos exec --ignore='gynx_app' --ignore='gynx_l10n' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
+  gen: melos exec --ignore='gynx_l10n' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
   gen-l10n: melos exec --scope='gynx_l10n' -- flutter gen-l10n
   fix: melos exec --fail-fast -- "dart fix --apply ."
