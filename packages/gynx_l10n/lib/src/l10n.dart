@@ -107,6 +107,54 @@ abstract class L10n {
   /// **'Required'**
   String get required;
 
+  /// No description provided for @signInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to make the most of Gynx!'**
+  String get signInTitle;
+
+  /// No description provided for @signInDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'To continue, please log in using one of the services below.'**
+  String get signInDescription;
+
+  /// No description provided for @continueWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @continueWithX.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with X'**
+  String get continueWithX;
+
+  /// No description provided for @continueWithTwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Twitch'**
+  String get continueWithTwitch;
+
+  /// No description provided for @continueWithDiscord.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Discord'**
+  String get continueWithDiscord;
+
+  /// No description provided for @continueIsApproveTermsOfServiceAndPrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.'**
+  String get continueIsApproveTermsOfServiceAndPrivacyPolicy;
+
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:

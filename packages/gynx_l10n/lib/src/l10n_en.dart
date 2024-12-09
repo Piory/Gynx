@@ -13,6 +13,30 @@ class L10nEn extends L10n {
   String get required => 'Required';
 
   @override
+  String get signInTitle => 'Sign in to make the most of Gynx!';
+
+  @override
+  String get signInDescription => 'To continue, please log in using one of the services below.';
+
+  @override
+  String get continueWithApple => 'Continue with Apple';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get continueWithX => 'Continue with X';
+
+  @override
+  String get continueWithTwitch => 'Continue with Twitch';
+
+  @override
+  String get continueWithDiscord => 'Continue with Discord';
+
+  @override
+  String get continueIsApproveTermsOfServiceAndPrivacyPolicy => 'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.';
+
+  @override
   String get signIn => 'SignIn';
 
   @override
