@@ -42,4 +42,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-assets/.env
+asserts/.env
+.env
+lib/src/generated/src/constants/env.g.dart

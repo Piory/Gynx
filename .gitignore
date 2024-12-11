@@ -199,3 +199,5 @@ Thumbs.db
 .nx/workspace-data
 
 memo.txt
+
+.env.local
