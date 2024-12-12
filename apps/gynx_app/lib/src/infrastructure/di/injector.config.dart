@@ -25,6 +25,8 @@ import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.da
     as _i19;
 import 'package:gynx_app/src/infrastructure/repositories/user_repository_impl.dart'
     as _i830;
+import 'package:gynx_app/src/infrastructure/router/page_router_impl.dart'
+    as _i141;
 import 'package:gynx_app/src/infrastructure/supabase/supabase_module.dart'
     as _i345;
 import 'package:gynx_app/src/interface/pages/profile/profile_controller.dart'
@@ -35,6 +37,7 @@ import 'package:gynx_app/src/interface/pages/sign_in/sign_in_controller.dart'
     as _i821;
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart'
     as _i886;
+import 'package:gynx_app/src/interface/router/page_router.dart' as _i237;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
@@ -53,6 +56,7 @@ extension GetItInjectableX on _i174.GetIt {
     final supabaseModule = _$SupabaseModule();
     gh.factory<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
     gh.factory<_i454.SupabaseClient>(() => supabaseModule.client);
+    gh.singleton<_i237.PageRouter>(() => _i141.PageRouterImpl());
     gh.singleton<_i886.UserRepository>(
         () => _i830.UserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i200.AuthRepository>(() => _i19.AuthRepositoryImpl(

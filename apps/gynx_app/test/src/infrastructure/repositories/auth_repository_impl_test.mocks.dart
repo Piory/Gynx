@@ -1385,6 +1385,74 @@ class MockGoTrueClient extends _i1.Mock implements _i2.GoTrueClient {
       ) as Object);
 }
 
+/// A class which mocks [User].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUser extends _i1.Mock implements _i2.User {
+  @override
+  String get id => (super.noSuchMethod(
+        Invocation.getter(#id),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#id),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#id),
+        ),
+      ) as String);
+
+  @override
+  Map<String, dynamic> get appMetadata => (super.noSuchMethod(
+        Invocation.getter(#appMetadata),
+        returnValue: <String, dynamic>{},
+        returnValueForMissingStub: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+
+  @override
+  String get aud => (super.noSuchMethod(
+        Invocation.getter(#aud),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#aud),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#aud),
+        ),
+      ) as String);
+
+  @override
+  String get createdAt => (super.noSuchMethod(
+        Invocation.getter(#createdAt),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#createdAt),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#createdAt),
+        ),
+      ) as String);
+
+  @override
+  bool get isAnonymous => (super.noSuchMethod(
+        Invocation.getter(#isAnonymous),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  Map<String, dynamic> toJson() => (super.noSuchMethod(
+        Invocation.method(
+          #toJson,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+        returnValueForMissingStub: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+}
+
 /// A class which mocks [AuthResponse].
 ///
 /// See the documentation for Mockito's code generation for more information.

@@ -13,6 +13,13 @@ class AuthRepositoryImpl implements AuthRepository {
   final GoogleSignIn _googleSignIn;
 
   @override
+  bool isSignedIn() {
+    final auth = _client.auth;
+    final currentUser = auth.currentUser;
+    return currentUser != null;
+  }
+
+  @override
   Future<void> signInWithAnonymous() async {
     final auth = _client.auth;
     await auth.signInAnonymously();
@@ -87,7 +94,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() {
-    return _client.auth.signOut();
+  Future<void> signOut() async {
+    await _client.auth.signOut();
+    if (await _googleSignIn.isSignedIn()) {
+      await _googleSignIn.signOut();
+    }
   }
 }

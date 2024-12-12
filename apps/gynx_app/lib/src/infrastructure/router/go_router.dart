@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart';
 import 'package:gynx_app/src/interface/pages/profile/profile_view.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part '../../generated/src/infrastructure/router/go_router.g.dart';
 part 'branchs/home_branch.dart';
@@ -72,6 +75,11 @@ class AppNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetIt.I<SupabaseClient>().auth.onAuthStateChange.listen((data) {
+      if (data.session == null && context.mounted) {
+        const RootRoute().pushReplacement(context);
+      }
+    });
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
@@ -108,6 +116,11 @@ class AppNavigationBar extends StatelessWidget {
 @TypedGoRoute<RootRoute>(path: '/')
 class RootRoute extends GoRouteData {
   const RootRoute();
+
+  @override
+  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    return GetIt.I<AuthRepository>().isSignedIn() ? '/home' : null;
+  }
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {

@@ -45,6 +45,16 @@ class _FakeLogger_0 extends _i1.SmartFake implements _i2.Logger {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   @override
+  bool isSignedIn() => (super.noSuchMethod(
+        Invocation.method(
+          #isSignedIn,
+          [],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
   _i4.Future<void> signInWithAnonymous() => (super.noSuchMethod(
         Invocation.method(
           #signInWithAnonymous,

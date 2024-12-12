@@ -4,14 +4,24 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide User;
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:test/test.dart';
 
 import 'auth_repository_impl_test.mocks.dart';
 
+class MockGoTrueClientWithCurrentUserMock extends MockGoTrueClient {
+  MockGoTrueClientWithCurrentUserMock(this._mockCurrentUser);
+
+  final User? _mockCurrentUser;
+
+  @override
+  User? get currentUser => _mockCurrentUser;
+}
+
 @GenerateNiceMocks([
   MockSpec<SupabaseClient>(),
   MockSpec<GoTrueClient>(),
+  MockSpec<User>(),
   MockSpec<AuthResponse>(),
   MockSpec<GoogleSignIn>(),
   MockSpec<GoogleSignInAccount>(),
@@ -21,15 +31,12 @@ void main() {
   final mockSupabaseClient = MockSupabaseClient();
   final mockGoTrueClient = MockGoTrueClient();
   final mockGoogleSignIn = MockGoogleSignIn();
-  final authRepository =
-      AuthRepositoryImpl(mockSupabaseClient, mockGoogleSignIn);
-
-  setUp(() {
-    when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
-  });
+  final authRepository = AuthRepositoryImpl(
+    mockSupabaseClient,
+    mockGoogleSignIn,
+  );
 
   tearDown(() {
-    verify(mockSupabaseClient.auth);
     verifyNoMoreInteractions(mockSupabaseClient);
     verifyNoMoreInteractions(mockGoTrueClient);
     verifyNoMoreInteractions(mockGoogleSignIn);
@@ -38,13 +45,36 @@ void main() {
     reset(mockGoogleSignIn);
   });
 
+  group('#isSignedIn', () {
+    group('正常系', () {
+      test('GoTrueClient#currentUser が null でない場合、true が返ること', () {
+        final mockGoTrueClient =
+            MockGoTrueClientWithCurrentUserMock(MockUser());
+        when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
+        expect(authRepository.isSignedIn(), isTrue);
+        verify(mockSupabaseClient.auth);
+      });
+
+      test('GoTrueClient#currentUser が null の場合、false が返ること', () {
+        final mockGoTrueClient = MockGoTrueClientWithCurrentUserMock(null);
+        when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
+        expect(authRepository.isSignedIn(), isFalse);
+        verify(mockSupabaseClient.auth);
+      });
+    });
+  });
+
   group('#signInWithAnonymous', () {
     group('正常系', () {
       test('GoTrueClient#signInAnonymously が呼ばれること', () async {
+        when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
         when(mockGoTrueClient.signInAnonymously())
             .thenAnswer((_) async => MockAuthResponse());
         await authRepository.signInWithAnonymous();
-        verify(mockGoTrueClient.signInAnonymously());
+        verifyInOrder([
+          mockSupabaseClient.auth,
+          mockGoTrueClient.signInAnonymously(),
+        ]);
       });
     });
   });
@@ -62,6 +92,7 @@ void main() {
               .thenAnswer((_) async => googleSignInAuthentication);
           when(googleSignInAuthentication.idToken).thenReturn(idToken);
           when(googleSignInAuthentication.accessToken).thenReturn(accessToken);
+          when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
           when(mockGoogleSignIn.signIn()).thenAnswer((_) async {
             return googleSignInAccount;
           });
@@ -73,17 +104,18 @@ void main() {
             ),
           ).thenAnswer((_) async => MockAuthResponse());
           await authRepository.signInWithGoogle();
-          verify(mockGoogleSignIn.signIn());
-          verify(googleSignInAccount.authentication);
-          verify(googleSignInAuthentication.idToken);
-          verify(googleSignInAuthentication.accessToken);
-          verify(
+          verifyInOrder([
+            mockGoogleSignIn.signIn(),
+            googleSignInAccount.authentication,
+            googleSignInAuthentication.idToken,
+            googleSignInAuthentication.accessToken,
+            mockSupabaseClient.auth,
             mockGoTrueClient.signInWithIdToken(
               provider: OAuthProvider.google,
               idToken: idToken,
               accessToken: accessToken,
             ),
-          );
+          ]);
         },
       );
     });
@@ -96,6 +128,7 @@ void main() {
         test(
           'GoTrueClient#linkIdentity に OAuthProvider.apple が渡されて呼ばれること',
           () async {
+            when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
             final b = faker.randomGenerator.boolean();
             when(
               mockGoTrueClient.linkIdentity(
@@ -104,12 +137,13 @@ void main() {
               ),
             ).thenAnswer((_) async => b);
             await authRepository.linkWithApple();
-            verify(
+            verifyInOrder([
+              mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
                 OAuthProvider.apple,
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
-            );
+            ]);
           },
         );
       });
@@ -124,6 +158,7 @@ void main() {
         test(
           'GoTrueClient#linkIdentity に OAuthProvider.google が渡されて呼ばれること',
           () async {
+            when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
             final b = faker.randomGenerator.boolean();
             when(
               mockGoTrueClient.linkIdentity(
@@ -132,12 +167,13 @@ void main() {
               ),
             ).thenAnswer((_) async => b);
             await authRepository.linkWithGoogle();
-            verify(
+            verifyInOrder([
+              mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
                 OAuthProvider.google,
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
-            );
+            ]);
           },
         );
       });
@@ -152,6 +188,7 @@ void main() {
         test(
           'GoTrueClient#linkIdentity に OAuthProvider.twitter が渡されて呼ばれること',
           () async {
+            when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
             final b = faker.randomGenerator.boolean();
             when(
               mockGoTrueClient.linkIdentity(
@@ -160,12 +197,13 @@ void main() {
               ),
             ).thenAnswer((_) async => b);
             await authRepository.linkWithX();
-            verify(
+            verifyInOrder([
+              mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
                 OAuthProvider.twitter,
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
-            );
+            ]);
           },
         );
       });
@@ -180,6 +218,7 @@ void main() {
         test(
           'GoTrueClient#linkIdentity に OAuthProvider.twitch が渡されて呼ばれること',
           () async {
+            when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
             final b = faker.randomGenerator.boolean();
             when(
               mockGoTrueClient.linkIdentity(
@@ -194,6 +233,13 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             );
+            verifyInOrder([
+              mockSupabaseClient.auth,
+              mockGoTrueClient.linkIdentity(
+                OAuthProvider.twitch,
+                redirectTo: 'http://localhost:3000/auth/callback',
+              ),
+            ]);
           },
         );
       });
@@ -208,6 +254,7 @@ void main() {
         test(
           'GoTrueClient#linkIdentity に OAuthProvider.apple が渡されて呼ばれること',
           () async {
+            when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
             final b = faker.randomGenerator.boolean();
             when(
               mockGoTrueClient.linkIdentity(
@@ -216,12 +263,13 @@ void main() {
               ),
             ).thenAnswer((_) async => b);
             await authRepository.linkWithDiscord();
-            verify(
+            verifyInOrder([
+              mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
                 OAuthProvider.discord,
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
-            );
+            ]);
           },
         );
       });
@@ -231,11 +279,39 @@ void main() {
 
   group('#signOut', () {
     group('正常系', () {
-      test('GoTrueClient#signOut が呼ばれること', () async {
-        when(mockGoTrueClient.signOut()).thenAnswer((_) async => {});
-        await authRepository.signOut();
-        verify(mockGoTrueClient.signOut());
-      });
+      test(
+        'GoogleSignIn#isSignedIn で true が返ってきたら、GoTrueClient#signOut と GoogleSignIn#signOut が呼ばれること',
+        () async {
+          when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
+          when(mockGoTrueClient.signOut()).thenAnswer((_) async => {});
+          when(mockGoogleSignIn.isSignedIn()).thenAnswer((_) async => true);
+          when(mockGoogleSignIn.signOut())
+              .thenAnswer((_) async => MockGoogleSignInAccount());
+          await authRepository.signOut();
+          verifyInOrder([
+            mockSupabaseClient.auth,
+            mockGoTrueClient.signOut(),
+            mockGoogleSignIn.isSignedIn(),
+            mockGoogleSignIn.signOut(),
+          ]);
+        },
+      );
+
+      test(
+        'GoogleSignIn#isSignedIn で false が返ってきたら、GoTrueClient#signOut のみが呼ばれること',
+        () async {
+          when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
+          when(mockGoTrueClient.signOut()).thenAnswer((_) async => {});
+          when(mockGoogleSignIn.isSignedIn()).thenAnswer((_) async => false);
+          await authRepository.signOut();
+          verifyInOrder([
+            mockSupabaseClient.auth,
+            mockGoTrueClient.signOut(),
+            mockGoogleSignIn.isSignedIn(),
+          ]);
+          verifyNever(mockGoogleSignIn.signOut());
+        },
+      );
     });
   });
 }

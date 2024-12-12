@@ -26,6 +26,16 @@ import 'package:mockito/mockito.dart' as _i1;
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i2.AuthRepository {
   @override
+  bool isSignedIn() => (super.noSuchMethod(
+        Invocation.method(
+          #isSignedIn,
+          [],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
   _i3.Future<void> signInWithAnonymous() => (super.noSuchMethod(
         Invocation.method(
           #signInWithAnonymous,

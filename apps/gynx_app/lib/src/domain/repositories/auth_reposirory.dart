@@ -1,4 +1,6 @@
 abstract interface class AuthRepository {
+  bool isSignedIn();
+
   Future<void> signInWithAnonymous();
 
   Future<void> signInWithApple();

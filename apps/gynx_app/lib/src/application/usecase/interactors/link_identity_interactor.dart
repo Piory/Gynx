@@ -20,8 +20,7 @@ class LinkIdentityInteractor extends CompletableUseCase<LinkIdentityParam> {
         case OAuthProviderType.apple:
           await _authRepository.linkWithApple();
         case OAuthProviderType.google:
-          // await _authRepository.linkWithGoogle();
-          await _authRepository.signInWithGoogle();
+          await _authRepository.linkWithGoogle();
         case OAuthProviderType.x:
           await _authRepository.linkWithX();
         case OAuthProviderType.twitch:

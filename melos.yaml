@@ -72,5 +72,7 @@ scripts:
   gen: melos exec --ignore='gynx_l10n' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
   gen-l10n: melos exec --scope='gynx_l10n' -- flutter gen-l10n
   fix: melos exec --fail-fast -- "dart fix --apply ."
+  format: melos format --ignore='gynx_l10n'
+  test: melos exec --fail-fast -- "flutter test"
   supabase-start: supabase start
   supabase-stop: supabase stop

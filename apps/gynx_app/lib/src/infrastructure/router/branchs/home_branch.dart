@@ -20,11 +20,6 @@ class HomePageRoute extends GoRouteData {
   const HomePageRoute();
 
   @override
-  FutureOr<bool> onExit(BuildContext context, GoRouterState state) {
-    return true;
-  }
-
-  @override
   Widget build(BuildContext context, GoRouterState state) {
     return Scaffold(
       body: Center(
