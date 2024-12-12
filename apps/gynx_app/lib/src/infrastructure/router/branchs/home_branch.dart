@@ -21,37 +21,7 @@ class HomePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Home Page'),
-            OutlinedButton(
-              onPressed: () => const HomeSample1PageRoute().push<void>(context),
-              child: const Text('Sample1'),
-            ),
-            ElevatedButton(
-              onPressed: () => const RootRoute().push<void>(context),
-              child: const Text('SignIn'),
-            ),
-            ElevatedButton(
-              onPressed: () async =>
-                  CupertinoScaffold.showCupertinoModalBottomSheet(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => const Scaffold(
-                  body: Center(
-                    child: Text('Modal'),
-                  ),
-                ),
-              ),
-              child: const Text('Open Modal'),
-            ),
-          ],
-        ),
-      ),
-    );
+    return const HomeView();
   }
 }
 

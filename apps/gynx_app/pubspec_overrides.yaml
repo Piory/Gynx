@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: gynx_l10n
+# melos_managed_dependency_overrides: gynx_l10n,gynx_components
 dependency_overrides:
+  gynx_components:
+    path: ../../packages/gynx_components
   gynx_l10n:
     path: ../../packages/gynx_l10n

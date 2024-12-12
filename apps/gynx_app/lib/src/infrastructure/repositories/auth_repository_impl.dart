@@ -33,7 +33,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> signInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
-    final googleAuth = await googleUser!.authentication;
+    if (googleUser == null) {
+      return;
+    }
+    final googleAuth = await googleUser.authentication;
     final idToken = googleAuth.idToken;
     if (idToken == null) {
       throw Exception('Google sign in failed. idToken is null');

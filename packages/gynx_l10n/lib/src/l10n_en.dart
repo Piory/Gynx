@@ -13,6 +13,18 @@ class L10nEn extends L10n {
   String get required => 'Required';
 
   @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get doContinue => 'Continue';
+
+  @override
   String get or => 'or';
 
   @override
@@ -43,7 +55,13 @@ class L10nEn extends L10n {
   String get continueAsGuest => 'Continue as guest';
 
   @override
-  String get continueAsGuestWarning => 'By continuing as a guest, some features may be limited.';
+  String get continueAsGuestWarning => 'Guest users have limited access to features, but these restrictions will be lifted after linking your account.';
+
+  @override
+  String get guestSignInAlertTitle => 'Important Notes for Guest Users';
+
+  @override
+  String get guestSignInAlertMessage => 'Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?';
 
   @override
   String get continueIsApproveTermsOfServiceAndPrivacyPolicy => 'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.';

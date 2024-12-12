@@ -1,15 +1,22 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 final class ColorPalette {
   // Purple
   static const primary = Color(0xFF9C5DFF);
-  static const surface = Color(0xFF1A1221);
-  static const onSurface = Color(0xFFAD94C7);
+  static const primaryContainer = Color(0xFF0A001E);
+  static const secondary = Color(0xFFE934A6);
+  static const secondaryContainer = Color(0xFF200014);
+  static const surface = Color(0xFF000000);
+  static const onSurface = Color(0xFFFFFFFF);
+  static const onSurfaceVariant = Color(0xFFAD94C7);
   static const surfaceContainerHighest = Color(0xFF362447);
 // Green
 // static const primary = Color(0xFF348E47);
@@ -27,17 +34,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = const ColorScheme.dark(
       primary: ColorPalette.primary,
+      primaryContainer: ColorPalette.primaryContainer,
+      secondary: ColorPalette.secondary,
+      secondaryContainer: ColorPalette.secondaryContainer,
     ).copyWith(
       // 背景色
       surface: ColorPalette.surface,
       // AppBar のテキスト色
       onSurface: ColorPalette.onSurface,
+      onSurfaceVariant: ColorPalette.onSurfaceVariant,
       // ElevatedButton のボタンの背景色
       surfaceContainerLow: ColorPalette.primary,
       // TextField の背景色
       surfaceContainerHighest: ColorPalette.surfaceContainerHighest,
       // TextField, OutlinedButton の枠線の色
-      outline: ColorPalette.primary.withOpacity(0.6),
+      outline: ColorPalette.primary.withOpacity(0.9),
     );
     final textTheme = GoogleFonts.notoSansJpTextTheme(
       ThemeData.dark().textTheme,
@@ -144,8 +155,11 @@ class MyApp extends StatelessWidget {
           ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
-              backgroundColor: colorScheme.surface,
+              backgroundColor: Colors.transparent,
               shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: colorScheme.outline,
+                ),
                 borderRadius: BorderRadius.circular(16),
               ),
               textStyle: textTheme.bodyMedium!.copyWith(
@@ -158,6 +172,24 @@ class MyApp extends StatelessWidget {
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
               overlayColor: Colors.transparent,
+            ),
+          ),
+        ),
+        builder: FlutterSmartDialog.init(
+          loadingBuilder: (_) => const SizedBox(
+            width: 64,
+            height: 64,
+          ).blurred(
+            blur: 10,
+            blurColor: const Color(0xFF606060),
+            borderRadius: BorderRadius.circular(16),
+            overlay: Padding(
+              padding: const EdgeInsets.all(16),
+              child: LoadingAnimationWidget.flickr(
+                leftDotColor: colorScheme.primary,
+                rightDotColor: colorScheme.secondary,
+                size: 28,
+              ),
             ),
           ),
         ),

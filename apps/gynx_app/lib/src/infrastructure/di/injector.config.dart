@@ -20,6 +20,9 @@ import 'package:gynx_app/src/application/usecase/interactors/sign_out_interactor
     as _i69;
 import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart' as _i200;
 import 'package:gynx_app/src/domain/repositories/user_reposirory.dart' as _i886;
+import 'package:gynx_app/src/infrastructure/dialogs/alert_impl.dart' as _i1056;
+import 'package:gynx_app/src/infrastructure/dialogs/loading_dialog_impl.dart'
+    as _i64;
 import 'package:gynx_app/src/infrastructure/google/google_module.dart' as _i15;
 import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.dart'
     as _i19;
@@ -29,6 +32,8 @@ import 'package:gynx_app/src/infrastructure/router/page_router_impl.dart'
     as _i141;
 import 'package:gynx_app/src/infrastructure/supabase/supabase_module.dart'
     as _i345;
+import 'package:gynx_app/src/interface/dialogs/alert.dart' as _i617;
+import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart' as _i602;
 import 'package:gynx_app/src/interface/pages/profile/profile_controller.dart'
     as _i28;
 import 'package:gynx_app/src/interface/pages/profile/profile_presenter.dart'
@@ -54,8 +59,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final googleModule = _$GoogleModule();
     final supabaseModule = _$SupabaseModule();
-    gh.factory<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
-    gh.factory<_i454.SupabaseClient>(() => supabaseModule.client);
+    gh.singleton<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
+    gh.singleton<_i454.SupabaseClient>(() => supabaseModule.client);
+    gh.singleton<_i602.LoadingDialog>(() => _i64.DialogImpl());
+    gh.singleton<_i617.Alert>(() => _i1056.AlertImpl());
     gh.singleton<_i237.PageRouter>(() => _i141.PageRouterImpl());
     gh.singleton<_i886.UserRepository>(
         () => _i830.UserRepositoryImpl(gh<_i454.SupabaseClient>()));
@@ -65,12 +72,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i69.SignOutInteractor>(
         () => _i69.SignOutInteractor(gh<_i200.AuthRepository>()));
-    gh.singleton<_i612.LinkIdentityInteractor>(
-        () => _i612.LinkIdentityInteractor(gh<_i200.AuthRepository>()));
     gh.singleton<_i711.SignInWithAnonymousInteractor>(
         () => _i711.SignInWithAnonymousInteractor(gh<_i200.AuthRepository>()));
     gh.singleton<_i912.SignInWithOAuthInteractor>(
         () => _i912.SignInWithOAuthInteractor(gh<_i200.AuthRepository>()));
+    gh.singleton<_i612.LinkIdentityInteractor>(
+        () => _i612.LinkIdentityInteractor(gh<_i200.AuthRepository>()));
     gh.singleton<_i415.ProfilePresenter>(
         () => _i415.ProfilePresenter(gh<_i69.SignOutInteractor>()));
     gh.singleton<_i886.SignInPresenter>(() => _i886.SignInPresenter(
@@ -79,8 +86,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i28.ProfileController>(
         () => _i28.ProfileController(gh<_i415.ProfilePresenter>()));
-    gh.factory<_i821.SignInController>(
-        () => _i821.SignInController(gh<_i886.SignInPresenter>()));
+    gh.factory<_i821.SignInController>(() => _i821.SignInController(
+          gh<_i886.SignInPresenter>(),
+          gh<_i602.LoadingDialog>(),
+          gh<_i617.Alert>(),
+        ));
     return this;
   }
 }

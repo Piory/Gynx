@@ -53,6 +53,7 @@ void main() {
   Future<void> pumpWidget(WidgetTester tester) {
     return tester.pumpWidget(
       const MaterialApp(
+        locale: Locale('ja'),
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
         home: SignInView(),
@@ -60,57 +61,69 @@ void main() {
     );
   }
 
-  group('正常系', () {
-    testWidgets(
-      '「${l10nJa.continueAsGuest}」をタップすると SignInController#signInWithAnonymous が呼ばれること',
-      (tester) async {
-        await pumpWidget(tester);
-        verifyNever(mockSignInController.signInWithAnonymous());
-        await tester.tap(find.byType(OutlinedButton));
-        verify(mockSignInController.signInWithAnonymous());
-      },
-    );
+  group('「${l10nJa.continueAsGuest}」をタップ', () {
+    group('正常系', () {
+      testWidgets(
+        'SignInController#signInWithAnonymous が呼ばれること',
+        (tester) async {
+          await pumpWidget(tester);
+          verifyNever(mockSignInController.signInWithAnonymous(any));
+          await tester.tap(
+            find.widgetWithText(OutlinedButton, l10nJa.continueAsGuest),
+          );
+          verify(mockSignInController.signInWithAnonymous(any));
+        },
+      );
+    });
+  });
 
-    testWidgets(
-      'GoogleOAuthButton ボタンをタップすると SignInController#signInWithGoogle が呼ばれること',
-      (tester) async {
-        await pumpWidget(tester);
-        verifyNever(mockSignInController.signInWithGoogle());
-        await tester.tap(find.byType(GoogleOAuthButton));
-        verify(mockSignInController.signInWithGoogle());
-      },
-    );
+  group('「${l10nJa.continueWithGoogle}」をタップ', () {
+    group('正常系', () {
+      testWidgets(
+        'GoogleOAuthButton ボタンをタップすると SignInController#signInWithGoogle が呼ばれること',
+        (tester) async {
+          await pumpWidget(tester);
+          verifyNever(mockSignInController.signInWithGoogle());
+          await tester.tap(find.byType(GoogleOAuthButton));
+          verify(mockSignInController.signInWithGoogle());
+        },
+      );
+    });
+  });
 
-    testWidgets(
-      'data.session に値が存在する場合、PageRouter#pushReplacement が呼ばれないこと',
-      (tester) async {
-        final mockAuthState = MockAuthState();
-        when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
-          return Stream.value(mockAuthState);
-        });
-        when(mockAuthState.session).thenReturn(null);
-        await pumpWidget(tester);
-        verify(mockAuthState.session);
-        verifyNoMoreInteractions(mockAuthState);
-      },
-    );
+  group('リダイレクト', () {
+    group('正常系', () {
+      testWidgets(
+        'data.session に値が存在しない（未ログイン状態）場合、PageRouter#pushReplacement が呼ばれないこと',
+        (tester) async {
+          final mockAuthState = MockAuthState();
+          when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
+            return Stream.value(mockAuthState);
+          });
+          when(mockAuthState.session).thenReturn(null);
+          await pumpWidget(tester);
+          verify(mockAuthState.session);
+          verifyNoMoreInteractions(mockAuthState);
+        },
+      );
 
-    testWidgets(
-      'data.session に値が存在する場合、PageRouter#pushReplacement が呼ばれること',
-      (tester) async {
-        final mockAuthState = MockAuthState();
-        final mockSession = MockSession();
-        when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
-          return Stream.value(mockAuthState);
-        });
-        when(mockAuthState.session).thenReturn(mockSession);
-        await pumpWidget(tester);
-        verifyInOrder([
-          mockAuthState.session,
-          mockPageRouter.pushReplacement(any, PageType.home),
-        ]);
-        verifyNoMoreInteractions(mockAuthState);
-      },
-    );
+      testWidgets(
+        'data.session に値が存在する（ログイン状態）場合、PageRouter#pushReplacement が呼ばれること',
+        (tester) async {
+          final mockAuthState = MockAuthState();
+          final mockSession = MockSession();
+          when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
+            return Stream.value(mockAuthState);
+          });
+          when(mockAuthState.session).thenReturn(mockSession);
+          await pumpWidget(tester);
+          verifyInOrder([
+            mockAuthState.session,
+            mockPageRouter.pushReplacement(any, PageType.home),
+          ]);
+          verifyNoMoreInteractions(mockAuthState);
+        },
+      );
+    });
   });
 }

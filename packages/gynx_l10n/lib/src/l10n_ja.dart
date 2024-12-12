@@ -13,6 +13,18 @@ class L10nJa extends L10n {
   String get required => '必須';
 
   @override
+  String get confirm => '確認';
+
+  @override
+  String get cancel => 'キャンセル';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get doContinue => '続ける';
+
+  @override
   String get or => 'または';
 
   @override
@@ -40,10 +52,16 @@ class L10nJa extends L10n {
   String get continueWithDiscord => 'Discord で続ける';
 
   @override
-  String get continueAsGuest => 'ゲストユーザーとして続ける';
+  String get continueAsGuest => 'ゲストユーザーで続ける';
 
   @override
-  String get continueAsGuestWarning => 'ゲストユーザーとして続行すると、アプリの一部の機能が制限されます';
+  String get continueAsGuestWarning => 'ゲストユーザーは機能が制限されますが、アカウント連携後に制限は解除されます';
+
+  @override
+  String get guestSignInAlertTitle => 'ゲストユーザーの注意事項';
+
+  @override
+  String get guestSignInAlertMessage => '・一部機能が制限されます。プロフィール > 設定ページからアカウント連携をすることで、制限を解除できます。\n・一度ログアウトすると再度ログインは行えません。\n・ゲストユーザーの状態で、90日以上使用していない状態のアカウントは削除されます。\n\nゲストユーザーで続行しますか？';
 
   @override
   String get continueIsApproveTermsOfServiceAndPrivacyPolicy => '続行することで、Gynx の利用規約およびプライバシーポリシーに同意するものとします。';

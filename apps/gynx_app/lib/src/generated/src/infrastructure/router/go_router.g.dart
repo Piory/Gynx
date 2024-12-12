@@ -8,7 +8,7 @@ part of '../../../../infrastructure/router/go_router.dart';
 
 List<RouteBase> get $appRoutes => [
       $mainShellRouteData,
-      $rootRoute,
+      $rootPageRoute,
     ];
 
 RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
@@ -119,13 +119,13 @@ extension $ProfilePageRouteExtension on ProfilePageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $rootRoute => GoRouteData.$route(
+RouteBase get $rootPageRoute => GoRouteData.$route(
       path: '/',
-      factory: $RootRouteExtension._fromState,
+      factory: $RootPageRouteExtension._fromState,
     );
 
-extension $RootRouteExtension on RootRoute {
-  static RootRoute _fromState(GoRouterState state) => const RootRoute();
+extension $RootPageRouteExtension on RootPageRoute {
+  static RootPageRoute _fromState(GoRouterState state) => const RootPageRoute();
 
   String get location => GoRouteData.$location(
         '/',

@@ -91,11 +91,11 @@ void main() {
           final completer = Completer<void>();
           var signInOnCompleteCallCount = 0;
           presenter
-            ..authOnComplete = (() {
+            ..signInOnComplete = (() {
               signInOnCompleteCallCount++;
               completer.complete();
             })
-            ..authOnError = ((_) => fail('unexpected call'))
+            ..signInOnError = ((_) => fail('unexpected call'))
             ..signInWithAnonymous();
           await completer.future;
           expect(signInOnCompleteCallCount, 1);
@@ -116,8 +116,8 @@ void main() {
           });
           runZonedGuarded(
             () => presenter
-              ..authOnComplete = (() => fail('unexpected call'))
-              ..authOnError = ((_) => fail('unexpected call'))
+              ..signInOnComplete = (() => fail('unexpected call'))
+              ..signInOnError = ((_) => fail('unexpected call'))
               ..signInWithAnonymous(),
             (e, _) {
               expect(e, isA<UnimplementedError>());
@@ -140,8 +140,8 @@ void main() {
           final completer = Completer<void>();
           var signInOnErrorCallCount = 0;
           presenter
-            ..authOnComplete = (() => fail('unexpected call'))
-            ..authOnError = (e) {
+            ..signInOnComplete = (() => fail('unexpected call'))
+            ..signInOnError = (e) {
               expect(e, error);
               signInOnErrorCallCount++;
               completer.complete();
@@ -174,11 +174,11 @@ void main() {
             final completer = Completer<void>();
             var signInOnCompleteCallCount = 0;
             presenter
-              ..authOnComplete = (() {
+              ..signInOnComplete = (() {
                 signInOnCompleteCallCount++;
                 completer.complete();
               })
-              ..authOnError = ((_) => fail('unexpected call'))
+              ..signInOnError = ((_) => fail('unexpected call'))
               ..signInWithOAuth(oauthProviderType);
             await completer.future;
             expect(signInOnCompleteCallCount, 1);
@@ -202,8 +202,8 @@ void main() {
             });
             runZonedGuarded(
               () => presenter
-                ..authOnComplete = (() => fail('unexpected call'))
-                ..authOnError = ((_) => fail('unexpected call'))
+                ..signInOnComplete = (() => fail('unexpected call'))
+                ..signInOnError = ((_) => fail('unexpected call'))
                 ..signInWithOAuth(oauthProviderType),
               (e, _) {
                 expect(e, isA<UnimplementedError>());
@@ -234,8 +234,8 @@ void main() {
           final completer = Completer<void>();
           var signInOnErrorCallCount = 0;
           presenter
-            ..authOnComplete = (() => fail('unexpected call'))
-            ..authOnError = (e) {
+            ..signInOnComplete = (() => fail('unexpected call'))
+            ..signInOnError = (e) {
               expect(e, error);
               signInOnErrorCallCount++;
               completer.complete();

@@ -107,6 +107,30 @@ abstract class L10n {
   /// **'Required'**
   String get required;
 
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @doContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get doContinue;
+
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
@@ -170,8 +194,20 @@ abstract class L10n {
   /// No description provided for @continueAsGuestWarning.
   ///
   /// In en, this message translates to:
-  /// **'By continuing as a guest, some features may be limited.'**
+  /// **'Guest users have limited access to features, but these restrictions will be lifted after linking your account.'**
   String get continueAsGuestWarning;
+
+  /// No description provided for @guestSignInAlertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Important Notes for Guest Users'**
+  String get guestSignInAlertTitle;
+
+  /// No description provided for @guestSignInAlertMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?'**
+  String get guestSignInAlertMessage;
 
   /// No description provided for @continueIsApproveTermsOfServiceAndPrivacyPolicy.
   ///

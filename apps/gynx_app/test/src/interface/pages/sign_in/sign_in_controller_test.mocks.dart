@@ -16,6 +16,8 @@ import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_
 import 'package:gynx_app/src/application/usecase/params/sign_in_with_oauth_param.dart'
     as _i7;
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart' as _i11;
+import 'package:gynx_app/src/interface/dialogs/alert.dart' as _i13;
+import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart' as _i12;
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart'
     as _i8;
 import 'package:logging/logging.dart' as _i2;
@@ -164,34 +166,35 @@ class MockSignInWithOAuthInteractor extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockSignInPresenter extends _i1.Mock implements _i8.SignInPresenter {
   @override
-  _i9.VoidCallback get authOnComplete => (super.noSuchMethod(
-        Invocation.getter(#authOnComplete),
+  _i9.VoidCallback get signInOnComplete => (super.noSuchMethod(
+        Invocation.getter(#signInOnComplete),
         returnValue: () {},
         returnValueForMissingStub: () {},
       ) as _i9.VoidCallback);
 
   @override
-  set authOnComplete(_i9.VoidCallback? _authOnComplete) => super.noSuchMethod(
+  set signInOnComplete(_i9.VoidCallback? _signInOnComplete) =>
+      super.noSuchMethod(
         Invocation.setter(
-          #authOnComplete,
-          _authOnComplete,
+          #signInOnComplete,
+          _signInOnComplete,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i10.ValueSetter<dynamic> get authOnError => (super.noSuchMethod(
-        Invocation.getter(#authOnError),
+  _i10.ValueSetter<dynamic> get signInOnError => (super.noSuchMethod(
+        Invocation.getter(#signInOnError),
         returnValue: (dynamic value) {},
         returnValueForMissingStub: (dynamic value) {},
       ) as _i10.ValueSetter<dynamic>);
 
   @override
-  set authOnError(_i10.ValueSetter<dynamic>? _authOnError) =>
+  set signInOnError(_i10.ValueSetter<dynamic>? _signInOnError) =>
       super.noSuchMethod(
         Invocation.setter(
-          #authOnError,
-          _authOnError,
+          #signInOnError,
+          _signInOnError,
         ),
         returnValueForMissingStub: null,
       );
@@ -223,4 +226,76 @@ class MockSignInPresenter extends _i1.Mock implements _i8.SignInPresenter {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [LoadingDialog].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoadingDialog extends _i1.Mock implements _i12.LoadingDialog {
+  @override
+  _i4.Future<void> show() => (super.noSuchMethod(
+        Invocation.method(
+          #show,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> hide() => (super.noSuchMethod(
+        Invocation.method(
+          #hide,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [Alert].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAlert extends _i1.Mock implements _i13.Alert {
+  @override
+  _i4.Future<void> showInfo({
+    required String? title,
+    required String? text,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showInfo,
+          [],
+          {
+            #title: title,
+            #text: text,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<_i13.AlertResultType> showAlert({
+    required String? title,
+    required String? text,
+    required String? leftButtonText,
+    required String? rightButtonText,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showAlert,
+          [],
+          {
+            #title: title,
+            #text: text,
+            #leftButtonText: leftButtonText,
+            #rightButtonText: rightButtonText,
+          },
+        ),
+        returnValue:
+            _i4.Future<_i13.AlertResultType>.value(_i13.AlertResultType.left),
+        returnValueForMissingStub:
+            _i4.Future<_i13.AlertResultType>.value(_i13.AlertResultType.left),
+      ) as _i4.Future<_i13.AlertResultType>);
 }

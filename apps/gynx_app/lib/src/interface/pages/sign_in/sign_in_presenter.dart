@@ -16,8 +16,8 @@ class SignInPresenter extends Presenter {
   final SignInWithAnonymousInteractor _signInWithAnonymousInteractor;
   final SignInWithOAuthInteractor _signInWithOAuthInteractor;
 
-  late VoidCallback authOnComplete;
-  late ValueSetter<dynamic> authOnError;
+  late VoidCallback signInOnComplete;
+  late ValueSetter<dynamic> signInOnError;
 
   void signInWithAnonymous() {
     _signInWithAnonymousInteractor.execute(
@@ -54,11 +54,11 @@ class _SignInObserver implements Observer<void> {
 
   @override
   void onComplete() {
-    _presenter.authOnComplete();
+    _presenter.signInOnComplete();
   }
 
   @override
   void onError(dynamic e) {
-    _presenter.authOnError(e);
+    _presenter.signInOnError(e);
   }
 }

@@ -1,4 +1,4 @@
-final class PaddingSize {
+final class SpaceSize {
   static const double s0 = 0;
   static const double s4 = 8;
   static const double s8 = 8;

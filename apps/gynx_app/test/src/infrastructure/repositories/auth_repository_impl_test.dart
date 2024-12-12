@@ -82,6 +82,17 @@ void main() {
   group('#signInWithGoogle', () {
     group('正常系', () {
       test(
+        'GoogleSignIn#signIn で結果が取得できなかった場合は、それ以降なにも呼ばれないこと',
+        () async {
+          when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
+          await authRepository.signInWithGoogle();
+          verify(mockGoogleSignIn.signIn());
+          verifyZeroInteractions(mockSupabaseClient);
+          verifyZeroInteractions(mockGoTrueClient);
+        },
+      );
+
+      test(
         'GoogleSignIn#signIn の結果で取得できた、idToken, accessToken が GoTrueClient#signInWithIdToken に渡されていること',
         () async {
           final idToken = faker.guid.guid();
