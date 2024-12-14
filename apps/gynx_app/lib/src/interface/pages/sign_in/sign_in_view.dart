@@ -82,10 +82,8 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Expanded(
-                              child: Divider(
-                                color: colorOnSurfaceVariant,
-                              ),
+                            const Expanded(
+                              child: Divider(),
                             ),
                             const Gap(SpaceSize.s8),
                             Text(
@@ -95,10 +93,8 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
                               ),
                             ),
                             const Gap(SpaceSize.s8),
-                            Expanded(
-                              child: Divider(
-                                color: colorOnSurfaceVariant,
-                              ),
+                            const Expanded(
+                              child: Divider(),
                             ),
                           ],
                         ),

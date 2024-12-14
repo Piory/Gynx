@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gynx_app/src/generated/assets/assets.gen.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/components/oauth_button.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class AppleOAuthButton extends StatelessWidget {
   const AppleOAuthButton({
@@ -25,9 +25,10 @@ class AppleOAuthButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Assets.logos.apple.image(
-        width: 40,
-        height: 40,
+      child: const Icon(
+        BoxIcons.bxl_apple,
+        color: Colors.black,
+        size: 24,
       ),
     );
   }

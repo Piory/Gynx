@@ -3,6 +3,7 @@ targets:
     builders:
       envied_generator|envied:
         options:
+          path: .env
           override: true
       source_gen|combining_builder:
         options:

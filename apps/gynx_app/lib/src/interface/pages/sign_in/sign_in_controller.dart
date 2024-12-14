@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/interface/dialogs/alert.dart';
 import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart';
@@ -50,6 +51,13 @@ class SignInController extends Controller {
     _signInPresenter
       ..signInOnComplete = _loading.hide
       ..signInOnError = (e) {
+        unawaited(
+          SmartDialog.showNotify(
+            msg: '通信エラー',
+            notifyType: NotifyType.error,
+          ),
+        );
+        logger.severe('Error: $e');
         _loading.hide();
       };
   }

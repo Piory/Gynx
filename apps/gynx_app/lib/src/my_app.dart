@@ -2,10 +2,13 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gynx_app/src/constants/space_size.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 final class ColorPalette {
@@ -18,11 +21,13 @@ final class ColorPalette {
   static const onSurface = Color(0xFFFFFFFF);
   static const onSurfaceVariant = Color(0xFFAD94C7);
   static const surfaceContainerHighest = Color(0xFF362447);
+
 // Green
 // static const primary = Color(0xFF348E47);
 // static const surface = Color(0xFF090909);
 // static const onSurface = Color(0xFF689E64);
 // static const surfaceContainerHighest = Color(0xFF112C12);
+  static const error = Color(0xFFEA3333);
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +42,7 @@ class MyApp extends StatelessWidget {
       primaryContainer: ColorPalette.primaryContainer,
       secondary: ColorPalette.secondary,
       secondaryContainer: ColorPalette.secondaryContainer,
+      error: ColorPalette.error,
     ).copyWith(
       // 背景色
       surface: ColorPalette.surface,
@@ -54,142 +60,185 @@ class MyApp extends StatelessWidget {
       ThemeData.dark().textTheme,
     );
     FlutterNativeSplash.remove();
-    return AnnotatedRegion(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarDividerColor: Colors.transparent,
-      ),
-      child: MaterialApp.router(
-        title: 'Gynx',
-        localizationsDelegates: const [
-          ...L10n.localizationsDelegates,
-          // FormBuilderLocalizations.delegate,
-        ],
-        supportedLocales: L10n.supportedLocales,
-        routerDelegate: goRouter.routerDelegate,
-        routeInformationParser: goRouter.routeInformationParser,
-        routeInformationProvider: goRouter.routeInformationProvider,
-        theme: ThemeData(
-          colorScheme: colorScheme,
-          splashColor: Colors.transparent,
-          splashFactory: NoSplash.splashFactory,
-          highlightColor: Colors.transparent,
-          textTheme: textTheme,
-          // dividerColor: colorScheme.primary.withOpacity(0.6),
-          navigationBarTheme: NavigationBarThemeData(
-            height: 56,
-            backgroundColor: colorScheme.surface,
-            indicatorColor: colorScheme.primary,
-            labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
-              if (states.contains(WidgetState.selected)) {
+    return ProviderScope(
+      child: AnnotatedRegion(
+        value: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarDividerColor: Colors.transparent,
+        ),
+        child: MaterialApp.router(
+          title: 'Gynx',
+          localizationsDelegates: const [
+            ...L10n.localizationsDelegates,
+            // FormBuilderLocalizations.delegate,
+          ],
+          supportedLocales: L10n.supportedLocales,
+          routerDelegate: goRouter.routerDelegate,
+          routeInformationParser: goRouter.routeInformationParser,
+          routeInformationProvider: goRouter.routeInformationProvider,
+          theme: ThemeData(
+            colorScheme: colorScheme,
+            splashColor: Colors.transparent,
+            splashFactory: NoSplash.splashFactory,
+            highlightColor: Colors.transparent,
+            textTheme: textTheme,
+            iconTheme: IconThemeData(
+              color: colorScheme.primary,
+            ),
+            dividerTheme: DividerThemeData(
+              color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+            ),
+            navigationBarTheme: NavigationBarThemeData(
+              height: 56,
+              backgroundColor: colorScheme.surface,
+              indicatorColor: colorScheme.primary,
+              labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return textTheme.bodySmall!.copyWith(
+                    fontSize: 12,
+                    color: colorScheme.primary,
+                  );
+                }
                 return textTheme.bodySmall!.copyWith(
                   fontSize: 12,
                   color: colorScheme.primary,
                 );
-              }
-              return textTheme.bodySmall!.copyWith(
-                fontSize: 12,
-                color: colorScheme.primary,
-              );
-            }),
-            iconTheme: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.selected)) {
-                return const IconThemeData(
-                  color: Colors.white,
+              }),
+              iconTheme: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return const IconThemeData(
+                    color: Colors.white,
+                  );
+                }
+                return IconThemeData(
+                  color: colorScheme.primary,
                 );
-              }
-              return IconThemeData(
-                color: colorScheme.primary,
-              );
-            }),
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(16),
+              }),
             ),
-            outlineBorder: BorderSide(
-              color: colorScheme.outline,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: colorScheme.outline.withOpacity(0.3),
-                width: 1.5,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: colorScheme.outline,
-                width: 1.5,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            filled: true,
-            labelStyle: textTheme.bodyMedium!.copyWith(
-              color: colorScheme.onSurface,
-            ),
-            floatingLabelStyle: textTheme.bodyMedium!.copyWith(
-              color: colorScheme.primary,
-            ),
-          ),
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            foregroundColor: Colors.white,
-            shape: CircleBorder(),
-            elevation: 0,
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
+            inputDecorationTheme: InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(16),
               ),
-              textStyle: textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+              outlineBorder: BorderSide(
+                color: colorScheme.outline,
               ),
-              overlayColor: Colors.transparent,
-              // shadowColor: colorScheme.primary,
-              // elevation: 4,
-            ),
-          ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: colorScheme.outline,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: colorScheme.outline.withOpacity(0.3),
+                  width: 1.5,
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),
-              textStyle: textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: colorScheme.outline,
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(16),
               ),
-              overlayColor: Colors.transparent,
+              filled: true,
+              labelStyle: textTheme.bodyMedium!.copyWith(
+                color: colorScheme.onSurface,
+              ),
+              floatingLabelStyle: textTheme.bodyMedium!.copyWith(
+                color: colorScheme.primary,
+              ),
+            ),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              foregroundColor: Colors.white,
+              shape: CircleBorder(),
               elevation: 0,
             ),
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              overlayColor: Colors.transparent,
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                textStyle: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                overlayColor: Colors.transparent,
+                // shadowColor: colorScheme.primary,
+                // elevation: 4,
+              ),
+            ),
+            outlinedButtonTheme: OutlinedButtonThemeData(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: colorScheme.outline,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                textStyle: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                overlayColor: Colors.transparent,
+                elevation: 0,
+              ),
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                overlayColor: Colors.transparent,
+              ),
             ),
           ),
-        ),
-        builder: FlutterSmartDialog.init(
-          loadingBuilder: (_) => const SizedBox(
-            width: 64,
-            height: 64,
-          ).blurred(
-            blur: 10,
-            blurColor: const Color(0xFF606060),
-            borderRadius: BorderRadius.circular(16),
-            overlay: Padding(
-              padding: const EdgeInsets.all(16),
-              child: LoadingAnimationWidget.flickr(
-                leftDotColor: colorScheme.primary,
-                rightDotColor: colorScheme.secondary,
-                size: 28,
+          builder: FlutterSmartDialog.init(
+            loadingBuilder: (_) => const SizedBox(
+              width: 64,
+              height: 64,
+            ).blurred(
+              blur: 10,
+              blurColor: const Color(0xFF606060),
+              borderRadius: BorderRadius.circular(16),
+              overlay: Padding(
+                padding: const EdgeInsets.all(SpaceSize.s16),
+                child: LoadingAnimationWidget.flickr(
+                  leftDotColor: colorScheme.primary,
+                  rightDotColor: colorScheme.secondary,
+                  size: 28,
+                ),
               ),
+            ),
+            notifyStyle: FlutterSmartNotifyStyle(
+              errorBuilder: (message) {
+                return const SizedBox(
+                  width: 128,
+                  height: 128,
+                ).blurred(
+                  blur: 10,
+                  blurColor: const Color(0xFF606060),
+                  borderRadius: BorderRadius.circular(16),
+                  overlay: Padding(
+                    padding: const EdgeInsets.all(SpaceSize.s16),
+                    child: Column(
+                      children: [
+                        Icon(
+                          EvaIcons.alert_circle_outline,
+                          color: colorScheme.error,
+                          size: 32,
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              message,
+                              style: textTheme.bodyMedium!.copyWith(
+                                color: colorScheme.error,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ),

@@ -32,12 +32,8 @@ class OAuthButton extends StatelessWidget {
           children: [
             text,
             Positioned(
-              left: 14,
-              child: SizedBox(
-                width: 40,
-                height: 40,
-                child: child,
-              ),
+              left: 20,
+              child: child,
             ),
           ],
         ),

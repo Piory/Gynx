@@ -7,12 +7,12 @@ part of '../../../../infrastructure/router/go_router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $mainShellRouteData,
+      $dashboardShellRouteData,
       $rootPageRoute,
     ];
 
-RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
-      factory: $MainShellRouteDataExtension._fromState,
+RouteBase get $dashboardShellRouteData => StatefulShellRouteData.$route(
+      factory: $DashboardShellRouteDataExtension._fromState,
       branches: [
         StatefulShellBranchData.$branch(
           routes: [
@@ -43,9 +43,9 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
       ],
     );
 
-extension $MainShellRouteDataExtension on MainShellRouteData {
-  static MainShellRouteData _fromState(GoRouterState state) =>
-      const MainShellRouteData();
+extension $DashboardShellRouteDataExtension on DashboardShellRouteData {
+  static DashboardShellRouteData _fromState(GoRouterState state) =>
+      const DashboardShellRouteData();
 }
 
 extension $HomePageRouteExtension on HomePageRoute {
