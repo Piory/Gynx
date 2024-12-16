@@ -150,6 +150,7 @@ class GlassNavigationBar extends StatelessWidget {
                               if (i == currentIndex) {
                                 controller.scrollToTop();
                               } else {
+                                _lastScrollDirection = ScrollDirection.idle;
                                 onIndexSelected(i);
                               }
                             },
