@@ -16,8 +16,9 @@ import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_
 import 'package:gynx_app/src/application/usecase/params/sign_in_with_oauth_param.dart'
     as _i7;
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart' as _i11;
-import 'package:gynx_app/src/interface/dialogs/alert.dart' as _i13;
+import 'package:gynx_app/src/interface/dialogs/alert.dart' as _i14;
 import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart' as _i12;
+import 'package:gynx_app/src/interface/dialogs/notify.dart' as _i13;
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart'
     as _i8;
 import 'package:logging/logging.dart' as _i2;
@@ -233,30 +234,43 @@ class MockSignInPresenter extends _i1.Mock implements _i8.SignInPresenter {
 /// See the documentation for Mockito's code generation for more information.
 class MockLoadingDialog extends _i1.Mock implements _i12.LoadingDialog {
   @override
-  _i4.Future<void> show() => (super.noSuchMethod(
+  void show() => super.noSuchMethod(
         Invocation.method(
           #show,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> hide() => (super.noSuchMethod(
+  void hide() => super.noSuchMethod(
         Invocation.method(
           #hide,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [Notify].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNotify extends _i1.Mock implements _i13.Notify {
+  @override
+  void showError({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #showError,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [Alert].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAlert extends _i1.Mock implements _i13.Alert {
+class MockAlert extends _i1.Mock implements _i14.Alert {
   @override
   _i4.Future<void> showInfo({
     required String? title,
@@ -276,7 +290,7 @@ class MockAlert extends _i1.Mock implements _i13.Alert {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<_i13.AlertResultType> showAlert({
+  _i4.Future<_i14.AlertResultType> showAlert({
     required String? title,
     required String? text,
     required String? leftButtonText,
@@ -294,8 +308,8 @@ class MockAlert extends _i1.Mock implements _i13.Alert {
           },
         ),
         returnValue:
-            _i4.Future<_i13.AlertResultType>.value(_i13.AlertResultType.left),
+            _i4.Future<_i14.AlertResultType>.value(_i14.AlertResultType.left),
         returnValueForMissingStub:
-            _i4.Future<_i13.AlertResultType>.value(_i13.AlertResultType.left),
-      ) as _i4.Future<_i13.AlertResultType>);
+            _i4.Future<_i14.AlertResultType>.value(_i14.AlertResultType.left),
+      ) as _i4.Future<_i14.AlertResultType>);
 }

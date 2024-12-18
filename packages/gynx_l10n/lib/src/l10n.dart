@@ -113,6 +113,42 @@ abstract class L10n {
   /// **'Confirm'**
   String get confirm;
 
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get post;
+
+  /// No description provided for @posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get posts;
+
+  /// No description provided for @favorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get favorite;
+
+  /// No description provided for @favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
@@ -262,6 +298,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
+
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'{follow} Follow'**
+  String follow(int follow);
+
+  /// No description provided for @follower.
+  ///
+  /// In en, this message translates to:
+  /// **'{follower} Follower'**
+  String follower(int follower);
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

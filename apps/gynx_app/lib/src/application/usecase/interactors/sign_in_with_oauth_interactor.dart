@@ -30,6 +30,7 @@ class SignInWithOAuthInteractor
       }
       unawaited(streamController.close());
     } on Exception catch (e) {
+      await _authRepository.signOut();
       streamController.addError(e);
     }
     return streamController.stream;

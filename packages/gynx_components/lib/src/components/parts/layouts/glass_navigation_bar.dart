@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gynx_components/src/extensions/ScrollControllerExtension.dart';
 
@@ -150,6 +151,7 @@ class GlassNavigationBar extends StatelessWidget {
                               if (i == currentIndex) {
                                 controller.scrollToTop();
                               } else {
+                                HapticFeedback.lightImpact();
                                 _lastScrollDirection = ScrollDirection.idle;
                                 onIndexSelected(i);
                               }

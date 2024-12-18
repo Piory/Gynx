@@ -5,11 +5,13 @@ class GlassSliverAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GlassSliverAppBar({
     super.key,
     this.title,
+    this.bottom,
     this.onStretchTrigger,
     this.actions,
   });
 
   final Widget? title;
+  final PreferredSizeWidget? bottom;
   final Future<void> Function()? onStretchTrigger;
   final List<Widget>? actions;
 
@@ -30,6 +32,7 @@ class GlassSliverAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: SizedBox.expand(),
         ),
       ),
+      bottom: bottom,
       backgroundColor: Colors.transparent,
       elevation: 0,
       actions: actions,

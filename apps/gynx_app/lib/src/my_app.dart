@@ -5,21 +5,22 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gynx_app/src/constants/space_size.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
+import 'package:gynx_components/src/constants/space_size.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+// ignore: avoid_classes_with_only_static_members
 final class ColorPalette {
   // Purple
   static const primary = Color(0xFF9C5DFF);
   static const primaryContainer = Color(0xFF0A001E);
   static const secondary = Color(0xFFE934A6);
   static const secondaryContainer = Color(0xFF200014);
-  static const surface = Color(0xFF000000);
+  static const surface = Color(0xFF1A1221);
   static const onSurface = Color(0xFFFFFFFF);
-  static const onSurfaceVariant = Color(0xFFAD94C7);
+  static const onSurfaceVariant = Color(0xFF737373);
   static const surfaceContainerHighest = Color(0xFF362447);
 
 // Green
@@ -88,6 +89,10 @@ class MyApp extends StatelessWidget {
             ),
             dividerTheme: DividerThemeData(
               color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+            ),
+            tabBarTheme: TabBarTheme(
+              dividerHeight: 1,
+              dividerColor: colorScheme.onSurfaceVariant.withOpacity(0.15),
             ),
             navigationBarTheme: NavigationBarThemeData(
               height: 56,

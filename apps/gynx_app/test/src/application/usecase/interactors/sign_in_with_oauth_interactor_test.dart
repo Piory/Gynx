@@ -17,6 +17,7 @@ void main() {
   final interactor = SignInWithOAuthInteractor(mockAuthRepository);
 
   tearDown(() {
+    verifyNoMoreInteractions(mockAuthRepository);
     reset(mockAuthRepository);
   });
 
@@ -76,7 +77,10 @@ void main() {
           onError: (dynamic e) => expect(e, exception),
           onDone: () => fail('onDone should not be called'),
         );
-        verify(mockAuthRepository.signInWithApple());
+        verifyInOrder([
+          mockAuthRepository.signInWithApple(),
+          mockAuthRepository.signOut(),
+        ]);
       },
     );
 
@@ -95,7 +99,10 @@ void main() {
           onError: (dynamic e) => expect(e, exception),
           onDone: () => fail('onDone should not be called'),
         );
-        verify(mockAuthRepository.signInWithGoogle());
+        verifyInOrder([
+          mockAuthRepository.signInWithGoogle(),
+          mockAuthRepository.signOut(),
+        ]);
       },
     );
 

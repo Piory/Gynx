@@ -14,25 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
 /// @nodoc
 mixin _$User {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auth_user_id')
-  String get authUserId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
+  String get displayName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  List<OAuthProviderType> get providers => throw _privateConstructorUsedError;
+  bool get isAnonymous => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt => throw _privateConstructorUsedError;
-
-  /// Serializes this User to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  DateTime get lastSignInAt => throw _privateConstructorUsedError;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -46,11 +36,13 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'auth_user_id') String authUserId,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
+      {String id,
+      String displayName,
+      String email,
+      List<OAuthProviderType> providers,
+      bool isAnonymous,
+      DateTime createdAt,
+      DateTime lastSignInAt});
 }
 
 /// @nodoc
@@ -69,32 +61,42 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = null,
-    Object? authUserId = null,
+    Object? displayName = null,
+    Object? email = null,
+    Object? providers = null,
+    Object? isAnonymous = null,
     Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
+    Object? lastSignInAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      authUserId: null == authUserId
-          ? _value.authUserId
-          : authUserId // ignore: cast_nullable_to_non_nullable
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      providers: null == providers
+          ? _value.providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as List<OAuthProviderType>,
+      isAnonymous: null == isAnonymous
+          ? _value.isAnonymous
+          : isAnonymous // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      lastSignInAt: null == lastSignInAt
+          ? _value.lastSignInAt
+          : lastSignInAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
@@ -107,11 +109,13 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'auth_user_id') String authUserId,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
+      {String id,
+      String displayName,
+      String email,
+      List<OAuthProviderType> providers,
+      bool isAnonymous,
+      DateTime createdAt,
+      DateTime lastSignInAt});
 }
 
 /// @nodoc
@@ -127,69 +131,83 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? authUserId = null,
+    Object? displayName = null,
+    Object? email = null,
+    Object? providers = null,
+    Object? isAnonymous = null,
     Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
+    Object? lastSignInAt = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      authUserId: null == authUserId
-          ? _value.authUserId
-          : authUserId // ignore: cast_nullable_to_non_nullable
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      providers: null == providers
+          ? _value._providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as List<OAuthProviderType>,
+      isAnonymous: null == isAnonymous
+          ? _value.isAnonymous
+          : isAnonymous // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      lastSignInAt: null == lastSignInAt
+          ? _value.lastSignInAt
+          : lastSignInAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$UserImpl extends _User {
-  const _$UserImpl(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'auth_user_id') required this.authUserId,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'updated_at') required this.updatedAt,
-      @JsonKey(name: 'deleted_at') required this.deletedAt})
-      : super._();
 
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+class _$UserImpl implements _User {
+  const _$UserImpl(
+      {required this.id,
+      required this.displayName,
+      required this.email,
+      required final List<OAuthProviderType> providers,
+      required this.isAnonymous,
+      required this.createdAt,
+      required this.lastSignInAt})
+      : _providers = providers;
 
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'auth_user_id')
-  final String authUserId;
+  final String displayName;
   @override
-  @JsonKey(name: 'created_at')
+  final String email;
+  final List<OAuthProviderType> _providers;
+  @override
+  List<OAuthProviderType> get providers {
+    if (_providers is EqualUnmodifiableListView) return _providers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_providers);
+  }
+
+  @override
+  final bool isAnonymous;
+  @override
   final DateTime createdAt;
   @override
-  @JsonKey(name: 'updated_at')
-  final DateTime updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  final DateTime? deletedAt;
+  final DateTime lastSignInAt;
 
   @override
   String toString() {
-    return 'User(id: $id, authUserId: $authUserId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'User(id: $id, displayName: $displayName, email: $email, providers: $providers, isAnonymous: $isAnonymous, createdAt: $createdAt, lastSignInAt: $lastSignInAt)';
   }
 
   @override
@@ -198,20 +216,29 @@ class _$UserImpl extends _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.authUserId, authUserId) ||
-                other.authUserId == authUserId) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.email, email) || other.email == email) &&
+            const DeepCollectionEquality()
+                .equals(other._providers, _providers) &&
+            (identical(other.isAnonymous, isAnonymous) ||
+                other.isAnonymous == isAnonymous) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt));
+            (identical(other.lastSignInAt, lastSignInAt) ||
+                other.lastSignInAt == lastSignInAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, authUserId, createdAt, updatedAt, deletedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      displayName,
+      email,
+      const DeepCollectionEquality().hash(_providers),
+      isAnonymous,
+      createdAt,
+      lastSignInAt);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -220,42 +247,32 @@ class _$UserImpl extends _User {
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _User extends User {
+abstract class _User implements User {
   const factory _User(
-          {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'auth_user_id') required final String authUserId,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
-          @JsonKey(name: 'updated_at') required final DateTime updatedAt,
-          @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
-      _$UserImpl;
-  const _User._() : super._();
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+      {required final String id,
+      required final String displayName,
+      required final String email,
+      required final List<OAuthProviderType> providers,
+      required final bool isAnonymous,
+      required final DateTime createdAt,
+      required final DateTime lastSignInAt}) = _$UserImpl;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'auth_user_id')
-  String get authUserId;
+  String get displayName;
   @override
-  @JsonKey(name: 'created_at')
+  String get email;
+  @override
+  List<OAuthProviderType> get providers;
+  @override
+  bool get isAnonymous;
+  @override
   DateTime get createdAt;
   @override
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt;
+  DateTime get lastSignInAt;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

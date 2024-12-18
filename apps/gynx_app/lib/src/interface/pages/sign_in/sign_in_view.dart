@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide Dialog;
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/constants/space_size.dart';
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/components/apple_oauth_button.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/components/google_oauth_button.dart';
@@ -101,9 +100,7 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
                         const Gap(SpaceSize.s16),
                         SizedBox(
                           width: double.infinity,
-                          child: OutlinedButton(
-                            onPressed: () =>
-                                controller.signInWithAnonymous(l10n),
+                          child: GradientOutlinedButton(
                             child: Text(
                               l10n.continueAsGuest,
                               style: textTheme.labelLarge!.copyWith(
@@ -111,6 +108,8 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
                                 color: colorScheme.primary,
                               ),
                             ),
+                            onPressed: () =>
+                                controller.signInWithAnonymous(l10n),
                           ),
                         ),
                         const Gap(SpaceSize.s4),

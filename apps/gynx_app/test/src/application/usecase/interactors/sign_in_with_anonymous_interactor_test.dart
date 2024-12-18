@@ -15,6 +15,7 @@ void main() {
   final interactor = SignInWithAnonymousInteractor(mockAuthRepository);
 
   tearDown(() {
+    verifyNoMoreInteractions(mockAuthRepository);
     reset(mockAuthRepository);
   });
 
@@ -45,7 +46,10 @@ void main() {
           onError: (dynamic e) => expect(e, exception),
           onDone: () => fail('onDone should not be called'),
         );
-        verify(mockAuthRepository.signInWithAnonymous());
+        verifyInOrder([
+          mockAuthRepository.signInWithAnonymous(),
+          mockAuthRepository.signOut(),
+        ]);
       },
     );
   });

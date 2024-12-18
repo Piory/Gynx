@@ -1,5 +1,5 @@
 abstract interface class LoadingDialog {
-  Future<void> show();
+  void show();
 
-  Future<void> hide();
+  void hide();
 }

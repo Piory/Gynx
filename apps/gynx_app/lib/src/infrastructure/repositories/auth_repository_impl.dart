@@ -1,4 +1,6 @@
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gynx_app/src/domain/entities/user.dart' as entities;
+import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,10 +15,41 @@ class AuthRepositoryImpl implements AuthRepository {
   final GoogleSignIn _googleSignIn;
 
   @override
-  bool isSignedIn() {
+  entities.User? get currentUser {
     final auth = _client.auth;
     final currentUser = auth.currentUser;
-    return currentUser != null;
+    if (currentUser == null) {
+      return null;
+    }
+    return entities.User(
+      id: currentUser.id,
+      displayName: currentUser.userMetadata!['display_name'] as String? ?? '',
+      email: currentUser.email ?? '',
+      providers: currentUser.identities!.map((identity) {
+        switch (identity.provider) {
+          case 'apple':
+            return OAuthProviderType.apple;
+          case 'google':
+            return OAuthProviderType.google;
+          case 'twitter':
+            return OAuthProviderType.x;
+          case 'twitch':
+            return OAuthProviderType.twitch;
+          case 'discord':
+            return OAuthProviderType.discord;
+          default:
+            throw Exception('Unknown provider: ${identity.provider}');
+        }
+      }).toList(),
+      isAnonymous: currentUser.isAnonymous,
+      createdAt: DateTime.parse(currentUser.createdAt),
+      lastSignInAt: DateTime.parse(currentUser.lastSignInAt!),
+    );
+  }
+
+  @override
+  bool isSignedIn() {
+    return _client.auth.currentUser != null;
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/interface/dialogs/alert.dart';
 import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart';
+import 'package:gynx_app/src/interface/dialogs/notify.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_controller.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -47,6 +48,7 @@ class SpySignInPresenter extends SignInPresenter {
   MockSpec<SignInWithOAuthInteractor>(),
   MockSpec<SignInPresenter>(),
   MockSpec<LoadingDialog>(),
+  MockSpec<Notify>(),
   MockSpec<Alert>(),
 ])
 void main() {
@@ -54,6 +56,7 @@ void main() {
   final mockSignInPresenter = MockSignInPresenter();
   final spySignInPresenter = SpySignInPresenter(mockSignInPresenter);
   final mockLoadingDialog = MockLoadingDialog();
+  final mockNotify = MockNotify();
   final mockAlert = MockAlert();
   late SignInController controller;
 
@@ -61,6 +64,7 @@ void main() {
     controller = SignInController(
       spySignInPresenter,
       mockLoadingDialog,
+      mockNotify,
       mockAlert,
     );
   });
@@ -68,8 +72,11 @@ void main() {
   tearDown(() {
     verifyNoMoreInteractions(mockSignInPresenter);
     verifyNoMoreInteractions(mockLoadingDialog);
+    verifyNoMoreInteractions(mockNotify);
+    verifyNoMoreInteractions(mockAlert);
     reset(mockSignInPresenter);
     reset(mockLoadingDialog);
+    reset(mockNotify);
     reset(mockAlert);
   });
 
@@ -152,6 +159,9 @@ void main() {
               rightButtonText: l10nJa.doContinue,
             ),
             mockSignInPresenter.signInWithAnonymous(),
+            mockNotify.showError(
+              message: 'Failed to sign in. Please try again.',
+            ),
             mockLoadingDialog.hide(),
           ]);
         },
@@ -199,6 +209,9 @@ void main() {
           verifyInOrder([
             mockLoadingDialog.show(),
             mockSignInPresenter.signInWithOAuth(OAuthProviderType.google),
+            mockNotify.showError(
+              message: 'Failed to sign in. Please try again.',
+            ),
             mockLoadingDialog.hide(),
           ]);
         },

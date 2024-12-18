@@ -3,6 +3,12 @@
   "title": "Gynx",
   "required": "必須",
   "confirm": "確認",
+  "edit": "編集",
+  "share": "共有",
+  "post": "投稿",
+  "posts": "投稿",
+  "favorite": "お気に入り",
+  "favorites": "お気に入り",
   "cancel": "キャンセル",
   "ok": "OK",
   "doContinue": "続ける",
@@ -27,5 +33,23 @@
   "password": "パスワード",
   "forgotYourPassword": "パスワードをお忘れですか？",
   "dontHaveAnAccount": "アカウントをお持ちでないですか？",
-  "alreadyHaveAnAccount": "すでにアカウントをお持ちですか？"
+  "alreadyHaveAnAccount": "すでにアカウントをお持ちですか？",
+  "follow": "{follow} フォロー",
+  "@follow": {
+    "placeholders": {
+      "follow": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "follower": "{follower} フォロワー",
+  "@follower": {
+    "placeholders": {
+      "follower": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  }
 }

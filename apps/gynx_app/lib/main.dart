@@ -16,6 +16,7 @@ void main() async {
   };
   PlatformDispatcher.instance.onError = (error, stacktrace) {
     print('PlatformDispatcher.instance.onError: $error');
+    debugPrintStack(stackTrace: stacktrace);
     return true;
   };
   runApp(

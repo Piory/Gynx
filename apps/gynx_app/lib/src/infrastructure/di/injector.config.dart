@@ -18,22 +18,31 @@ import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_
     as _i912;
 import 'package:gynx_app/src/application/usecase/interactors/sign_out_interactor.dart'
     as _i69;
+import 'package:gynx_app/src/application/usecase/interactors/suite_user_interactor.dart'
+    as _i750;
 import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart' as _i200;
-import 'package:gynx_app/src/domain/repositories/user_reposirory.dart' as _i886;
+import 'package:gynx_app/src/domain/repositories/t_user_profile_reposirory.dart'
+    as _i717;
+import 'package:gynx_app/src/domain/repositories/t_user_reposirory.dart'
+    as _i99;
 import 'package:gynx_app/src/infrastructure/dialogs/alert_impl.dart' as _i1056;
 import 'package:gynx_app/src/infrastructure/dialogs/loading_dialog_impl.dart'
     as _i64;
+import 'package:gynx_app/src/infrastructure/dialogs/notify_impl.dart' as _i136;
 import 'package:gynx_app/src/infrastructure/google/google_module.dart' as _i15;
 import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.dart'
     as _i19;
-import 'package:gynx_app/src/infrastructure/repositories/user_repository_impl.dart'
-    as _i830;
+import 'package:gynx_app/src/infrastructure/repositories/t_user_profile_repository_impl.dart'
+    as _i883;
+import 'package:gynx_app/src/infrastructure/repositories/t_user_repository_impl.dart'
+    as _i69;
 import 'package:gynx_app/src/infrastructure/router/page_router_impl.dart'
     as _i141;
 import 'package:gynx_app/src/infrastructure/supabase/supabase_module.dart'
     as _i345;
 import 'package:gynx_app/src/interface/dialogs/alert.dart' as _i617;
 import 'package:gynx_app/src/interface/dialogs/loading_dialog.dart' as _i602;
+import 'package:gynx_app/src/interface/dialogs/notify.dart' as _i1009;
 import 'package:gynx_app/src/interface/pages/profile/profile_controller.dart'
     as _i28;
 import 'package:gynx_app/src/interface/pages/profile/profile_presenter.dart'
@@ -64,11 +73,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i602.LoadingDialog>(() => _i64.DialogImpl());
     gh.singleton<_i617.Alert>(() => _i1056.AlertImpl());
     gh.singleton<_i237.PageRouter>(() => _i141.PageRouterImpl());
-    gh.singleton<_i886.UserRepository>(
-        () => _i830.UserRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i1009.Notify>(() => _i136.NotifyImpl());
+    gh.singleton<_i99.TUserRepository>(
+        () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i200.AuthRepository>(() => _i19.AuthRepositoryImpl(
           gh<_i454.SupabaseClient>(),
           gh<_i116.GoogleSignIn>(),
+        ));
+    gh.singleton<_i717.TUserProfileRepository>(
+        () => _i883.TUserProfileRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i750.SuiteUserInteractor>(() => _i750.SuiteUserInteractor(
+          gh<_i200.AuthRepository>(),
+          gh<_i99.TUserRepository>(),
+          gh<_i717.TUserProfileRepository>(),
         ));
     gh.singleton<_i69.SignOutInteractor>(
         () => _i69.SignOutInteractor(gh<_i200.AuthRepository>()));
@@ -78,19 +95,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i912.SignInWithOAuthInteractor(gh<_i200.AuthRepository>()));
     gh.singleton<_i612.LinkIdentityInteractor>(
         () => _i612.LinkIdentityInteractor(gh<_i200.AuthRepository>()));
-    gh.singleton<_i415.ProfilePresenter>(
-        () => _i415.ProfilePresenter(gh<_i69.SignOutInteractor>()));
+    gh.singleton<_i415.ProfilePresenter>(() => _i415.ProfilePresenter(
+          gh<_i750.SuiteUserInteractor>(),
+          gh<_i69.SignOutInteractor>(),
+        ));
     gh.singleton<_i886.SignInPresenter>(() => _i886.SignInPresenter(
           gh<_i711.SignInWithAnonymousInteractor>(),
           gh<_i912.SignInWithOAuthInteractor>(),
         ));
-    gh.factory<_i28.ProfileController>(
-        () => _i28.ProfileController(gh<_i415.ProfilePresenter>()));
     gh.factory<_i821.SignInController>(() => _i821.SignInController(
           gh<_i886.SignInPresenter>(),
           gh<_i602.LoadingDialog>(),
+          gh<_i1009.Notify>(),
           gh<_i617.Alert>(),
         ));
+    gh.factory<_i28.ProfileController>(
+        () => _i28.ProfileController(gh<_i415.ProfilePresenter>()));
     return this;
   }
 }

@@ -3,6 +3,12 @@
   "title": "Gynx",
   "required": "Required",
   "confirm": "Confirm",
+  "edit": "Edit",
+  "share": "Share",
+  "post": "Post",
+  "posts": "Posts",
+  "favorite": "Favorite",
+  "favorites": "Favorites",
   "cancel": "Cancel",
   "ok": "OK",
   "doContinue": "Continue",
@@ -27,5 +33,23 @@
   "password": "Password",
   "forgotYourPassword": "Forgot your password?",
   "dontHaveAnAccount": "Don't have an account?",
-  "alreadyHaveAnAccount": "Already have an account?"
+  "alreadyHaveAnAccount": "Already have an account?",
+  "follow": "{follow} Follow",
+  "@follow": {
+    "placeholders": {
+      "follow": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "follower": "{follower} Follower",
+  "@follower": {
+    "placeholders": {
+      "follower": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  }
 }

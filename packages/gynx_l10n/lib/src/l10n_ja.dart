@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart' as intl;
+
 import 'l10n.dart';
 
 // ignore_for_file: type=lint
@@ -14,6 +16,24 @@ class L10nJa extends L10n {
 
   @override
   String get confirm => '確認';
+
+  @override
+  String get edit => '編集';
+
+  @override
+  String get share => '共有';
+
+  @override
+  String get post => '投稿';
+
+  @override
+  String get posts => '投稿';
+
+  @override
+  String get favorite => 'お気に入り';
+
+  @override
+  String get favorites => 'お気に入り';
 
   @override
   String get cancel => 'キャンセル';
@@ -89,4 +109,26 @@ class L10nJa extends L10n {
 
   @override
   String get alreadyHaveAnAccount => 'すでにアカウントをお持ちですか？';
+
+  @override
+  String follow(int follow) {
+    final intl.NumberFormat followNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+      
+    );
+    final String followString = followNumberFormat.format(follow);
+
+    return '$followString フォロー';
+  }
+
+  @override
+  String follower(int follower) {
+    final intl.NumberFormat followerNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+      
+    );
+    final String followerString = followerNumberFormat.format(follower);
+
+    return '$followerString フォロワー';
+  }
 }

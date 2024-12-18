@@ -15,12 +15,13 @@ void main() {
   final interactor = SignOutInteractor(mockAuthRepository);
 
   tearDown(() {
+    verifyNoMoreInteractions(mockAuthRepository);
     reset(mockAuthRepository);
   });
 
   group('正常系', () {
     test(
-      'AuthRepository#signOut が呼ばれ、onData が呼ばれること',
+      'AuthRepository#signOut が呼ばれ、onDone が呼ばれること',
       () async {
         when(mockAuthRepository.signOut()).thenAnswer((_) async => {});
         final stream = await interactor.buildUseCaseStream(null);
@@ -47,6 +48,7 @@ void main() {
           onError: (dynamic e) => expect(e, exception),
           onDone: () => fail('onDone should not be called'),
         );
+        verify(mockAuthRepository.signOut());
       },
     );
   });
