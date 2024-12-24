@@ -1,6 +1,6 @@
 final class SpaceSize {
   static const double s0 = 0;
-  static const double s4 = 8;
+  static const double s4 = 4;
   static const double s8 = 8;
   static const double s12 = 12;
   static const double s16 = 16;

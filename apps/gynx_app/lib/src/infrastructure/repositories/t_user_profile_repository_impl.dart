@@ -11,13 +11,28 @@ class TUserProfileRepositoryImpl implements TUserProfileRepository {
   static const tableName = 't_user_profiles';
 
   @override
-  Future<void> update(TUserProfile tUserProfile) async {
-    await _client.from(tableName).update(tUserProfile.toJson());
+  Future<TUserProfile> findByPrimaryKey(String userId) async {
+    final res = await _client.from(tableName).select().eq('user_id', userId);
+    return TUserProfile.fromJson(res.single);
   }
 
   @override
-  Future<TUserProfile> findByUserId(String userId) async {
-    final res = await _client.from(tableName).select().eq('user_id', userId);
-    return TUserProfile.fromJson(res.single);
+  Future<void> updateByPrimaryKeySelective({
+    required String userId,
+    required String? username,
+    required String? avatarUrl,
+    required String? selfIntroduction,
+  }) async {
+    final updateMap = <String, dynamic>{};
+    if (username != null) {
+      updateMap['username'] = username;
+    }
+    if (avatarUrl != null) {
+      updateMap['avatar_url'] = avatarUrl;
+    }
+    if (selfIntroduction != null) {
+      updateMap['self_introduction'] = selfIntroduction;
+    }
+    await _client.from(tableName).update(updateMap).eq('user_id', userId);
   }
 }

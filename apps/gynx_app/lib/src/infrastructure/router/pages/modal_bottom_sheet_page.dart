@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CupertinoModalBottomSheetPage<T> extends Page<T> {
-  const CupertinoModalBottomSheetPage({
+class ModalBottomSheetPage<T> extends Page<T> {
+  const ModalBottomSheetPage({
     super.key,
     required this.builder,
     this.anchorPoint,

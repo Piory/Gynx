@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:gynx_app/src/interface/dialogs/notify.dart';
+import 'package:gynx_app/src/presentation/dialogs/notify.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: Notify)

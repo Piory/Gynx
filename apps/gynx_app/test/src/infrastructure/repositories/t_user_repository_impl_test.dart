@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 import '../../../data/dummy_data_generator.dart';
 
 void main() {
+  const tableName = TUserRepositoryImpl.tableName;
   final mockHttpClient = MockSupabaseHttpClient();
   final mockSupabaseClient = SupabaseClient(
     faker.internet.httpsUrl(),
@@ -20,34 +21,11 @@ void main() {
 
   tearDownAll(mockHttpClient.close);
 
-  group('#update', () {
-    group('正常系', () {
-      test('正常にデータが1件更新されること', () async {
-        await mockSupabaseClient
-            .from(TUserRepositoryImpl.tableName)
-            .insert(tUser.toJson());
-        final updatedTUser = tUser.copyWith(gynxId: 'updated_gynx_id');
-        await tUserRepository.update(updatedTUser);
-        expect(await mockSupabaseClient.from('t_users').select(), [
-          {
-            'id': updatedTUser.id,
-            'gynx_id': updatedTUser.gynxId,
-            'created_at': updatedTUser.createdAt.toIso8601String(),
-            'updated_at': updatedTUser.updatedAt.toIso8601String(),
-            'deleted_at': tUser.deletedAt?.toIso8601String(),
-          }
-        ]);
-      });
-    });
-  });
-
-  group('#findById', () {
+  group('#findByPrimaryKey', () {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
-        await mockSupabaseClient
-            .from(TUserRepositoryImpl.tableName)
-            .insert(tUser.toJson());
-        final foundTUser = await tUserRepository.findById(tUser.id);
+        await mockSupabaseClient.from(tableName).insert(tUser.toJson());
+        final foundTUser = await tUserRepository.findByPrimaryKey(tUser.id);
         expect(foundTUser, tUser);
       });
     });
@@ -56,11 +34,31 @@ void main() {
   group('#findByGynxId', () {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
-        await mockSupabaseClient
-            .from(TUserRepositoryImpl.tableName)
-            .insert(tUser.toJson());
+        await mockSupabaseClient.from(tableName).insert(tUser.toJson());
         final foundTUser = await tUserRepository.findByGynxId(tUser.gynxId);
         expect(foundTUser, tUser);
+      });
+    });
+  });
+
+  group('#updateByPrimaryKey', () {
+    group('正常系', () {
+      test('正常にデータが1件更新されること', () async {
+        await mockSupabaseClient.from(tableName).insert(tUser.toJson());
+        final newGynxId = faker.guid.guid();
+        await tUserRepository.updateByPrimaryKey(
+          id: tUser.id,
+          gynxId: newGynxId,
+        );
+        expect(await mockSupabaseClient.from(tableName).select(), [
+          {
+            'id': tUser.id,
+            'gynx_id': newGynxId,
+            'created_at': tUser.createdAt.toIso8601String(),
+            'updated_at': tUser.updatedAt.toIso8601String(),
+            'deleted_at': tUser.deletedAt?.toIso8601String(),
+          },
+        ]);
       });
     });
   });

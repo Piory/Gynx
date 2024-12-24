@@ -5,7 +5,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 class BarModalBottomSheetPage<T> extends Page<T> {
   const BarModalBottomSheetPage({
     super.key,
-    required this.builder,
+    required this.child,
     this.elevation,
     this.shape,
     this.clipBehavior,
@@ -23,7 +23,7 @@ class BarModalBottomSheetPage<T> extends Page<T> {
     this.closeProgressThreshold,
   });
 
-  final WidgetBuilder builder;
+  final Widget child;
   final double? elevation;
   final ShapeBorder? shape;
   final Clip? clipBehavior;
@@ -43,7 +43,7 @@ class BarModalBottomSheetPage<T> extends Page<T> {
   @override
   Route<T> createRoute(BuildContext context) {
     return ModalSheetRoute<T>(
-      builder: builder,
+      builder: (_) => child,
       bounce: bounce,
       closeProgressThreshold: closeProgressThreshold,
       containerBuilder: (_, __, child) => BarBottomSheet(

@@ -1,7 +1,7 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gynx_app/src/domain/entities/user.dart' as entities;
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
-import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart';
+import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

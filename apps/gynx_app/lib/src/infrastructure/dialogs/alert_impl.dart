@@ -1,5 +1,5 @@
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
-import 'package:gynx_app/src/interface/dialogs/alert.dart';
+import 'package:gynx_app/src/presentation/dialogs/alert.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: Alert)
@@ -40,6 +40,39 @@ class AlertImpl implements Alert {
       case CustomButton.neutralButton:
         return AlertResultType.right;
       case CustomButton.negativeButton:
+      case CustomButton.other:
+        throw UnsupportedError('Unsupported button type. [$result]');
+    }
+  }
+
+  @override
+  Future<ActionSheetResultType> showActionSheet({
+    String? title,
+    String? message,
+    required String positiveButtonText,
+    required String neutralButtonText,
+    required String negativeButtonText,
+  }) async {
+    final result = await FlutterPlatformAlert.showCustomAlert(
+      windowTitle: title ?? '',
+      text: message ?? '',
+      positiveButtonTitle: positiveButtonText,
+      neutralButtonTitle: neutralButtonText,
+      negativeButtonTitle: negativeButtonText,
+      options: PlatformAlertOptions(
+        ios: IosAlertOptions(
+          alertStyle: IosAlertStyle.actionSheet,
+          negativeButtonStyle: IosButtonStyle.cancel,
+        ),
+      ),
+    );
+    switch (result) {
+      case CustomButton.positiveButton:
+        return ActionSheetResultType.positive;
+      case CustomButton.neutralButton:
+        return ActionSheetResultType.neutral;
+      case CustomButton.negativeButton:
+        return ActionSheetResultType.negative;
       case CustomButton.other:
         throw UnsupportedError('Unsupported button type. [$result]');
     }

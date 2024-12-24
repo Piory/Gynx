@@ -4,21 +4,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
-import 'package:gynx_components/src/constants/space_size.dart';
+import 'package:gynx_components/gynx_components.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // ignore: avoid_classes_with_only_static_members
 final class ColorPalette {
+  static const gradientStart = Color(0xFF9C5DFF);
+  static const gradientStartContainer = Color(0xFF0A001E);
+  static const gradientEnd = Color(0xFFE934A6);
+  static const gradientEndContainer = Color(0xFF200014);
+
   // Purple
-  static const primary = Color(0xFF9C5DFF);
+  static const primary = Color(0xFFBD4CD8);
   static const primaryContainer = Color(0xFF0A001E);
   static const secondary = Color(0xFFE934A6);
   static const secondaryContainer = Color(0xFF200014);
-  static const surface = Color(0xFF1A1221);
+  static const surface = Color(0xFF160919);
   static const onSurface = Color(0xFFFFFFFF);
   static const onSurfaceVariant = Color(0xFF737373);
   static const surfaceContainerHighest = Color(0xFF362447);
@@ -55,7 +61,7 @@ class MyApp extends StatelessWidget {
       // TextField の背景色
       surfaceContainerHighest: ColorPalette.surfaceContainerHighest,
       // TextField, OutlinedButton の枠線の色
-      outline: ColorPalette.primary.withOpacity(0.9),
+      outline: ColorPalette.onSurfaceVariant,
     );
     final textTheme = GoogleFonts.notoSansJpTextTheme(
       ThemeData.dark().textTheme,
@@ -72,7 +78,7 @@ class MyApp extends StatelessWidget {
           title: 'Gynx',
           localizationsDelegates: const [
             ...L10n.localizationsDelegates,
-            // FormBuilderLocalizations.delegate,
+            ...FormBuilderLocalizations.localizationsDelegates,
           ],
           supportedLocales: L10n.supportedLocales,
           routerDelegate: goRouter.routerDelegate,
@@ -87,8 +93,26 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(
               color: colorScheme.primary,
             ),
+            dividerColor: colorScheme.onSurfaceVariant.withOpacity(0.6),
             dividerTheme: DividerThemeData(
               color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+            ),
+            appBarTheme: AppBarTheme(
+              backgroundColor: colorScheme.surface,
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+              ),
+              iconTheme: IconThemeData(
+                color: colorScheme.onSurface,
+              ),
+              titleTextStyle: textTheme.bodyLarge!.copyWith(
+                color: colorScheme.onSurface,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
             tabBarTheme: TabBarTheme(
               dividerHeight: 1,
@@ -131,8 +155,7 @@ class MyApp extends StatelessWidget {
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: colorScheme.outline.withOpacity(0.3),
-                  width: 1.5,
+                  color: colorScheme.outline.withOpacity(0.6),
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -143,17 +166,52 @@ class MyApp extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),
-              filled: true,
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: colorScheme.error,
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: colorScheme.error,
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
               labelStyle: textTheme.bodyMedium!.copyWith(
-                color: colorScheme.onSurface,
+                color: colorScheme.outline,
+                fontSize: 14,
               ),
-              floatingLabelStyle: textTheme.bodyMedium!.copyWith(
-                color: colorScheme.primary,
-              ),
+              floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+                if (states.contains(WidgetState.disabled)) {
+                  return textTheme.bodyMedium!.copyWith(
+                    color: colorScheme.onSurfaceVariant.withOpacity(0.38),
+                    fontWeight: FontWeight.bold,
+                  );
+                }
+                if (states.contains(WidgetState.error)) {
+                  return textTheme.bodyMedium!.copyWith(
+                    color: colorScheme.error,
+                    fontWeight: FontWeight.bold,
+                  );
+                }
+                if (states.contains(WidgetState.focused)) {
+                  return textTheme.bodyMedium!.copyWith(
+                    color: colorScheme.outline,
+                    fontWeight: FontWeight.bold,
+                  );
+                }
+                return textTheme.bodyMedium!.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                );
+              }),
             ),
-            floatingActionButtonTheme: const FloatingActionButtonThemeData(
-              foregroundColor: Colors.white,
-              shape: CircleBorder(),
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+              foregroundColor: colorScheme.onSurface,
+              backgroundColor: colorScheme.primary,
+              shape: const CircleBorder(),
               elevation: 0,
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(

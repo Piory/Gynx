@@ -18,7 +18,52 @@ class L10nJa extends L10n {
   String get confirm => '確認';
 
   @override
+  String get takePhoto => '写真を撮る';
+
+  @override
+  String get selectFromLibrary => 'ライブラリから選択';
+
+  @override
+  String get deleteImage => '画像を削除';
+
+  @override
   String get edit => '編集';
+
+  @override
+  String get editProfile => 'プロフィールを編集';
+
+  @override
+  String get editUsername => 'ユーザー名を編集';
+
+  @override
+  String editUsernameLength(int min, int max) {
+    return 'ユーザー名は、$min文字以上$max文字以内で入力してください。';
+  }
+
+  @override
+  String get editGynxId => 'Gynx ID を編集';
+
+  @override
+  String get editGynxIdRegexp => 'Gynx ID には、半角英数字、アンダースコア（_）のみが利用できます。';
+
+  @override
+  String get editGynxIdRegexpError => '使用できない文字が含まれています。';
+
+  @override
+  String editGynxIdLength(int min, int max) {
+    return 'Gynx ID は、$min文字以上$max文字以内で入力してください。';
+  }
+
+  @override
+  String get editSelfIntroduction => '自己紹介を編集';
+
+  @override
+  String editSelfIntroductionLength(int max) {
+    return '自己紹介は、$max文字以内で入力してください。';
+  }
+
+  @override
+  String get updateUserProfileError => 'プロフィールの更新に失敗しました。';
 
   @override
   String get share => '共有';
@@ -30,6 +75,15 @@ class L10nJa extends L10n {
   String get posts => '投稿';
 
   @override
+  String get username => 'ユーザー名';
+
+  @override
+  String get gynxId => 'Gynx ID';
+
+  @override
+  String get selfIntroduction => '自己紹介';
+
+  @override
   String get favorite => 'お気に入り';
 
   @override
@@ -37,6 +91,12 @@ class L10nJa extends L10n {
 
   @override
   String get cancel => 'キャンセル';
+
+  @override
+  String get done => '完了';
+
+  @override
+  String get save => '保存';
 
   @override
   String get ok => 'OK';
@@ -90,10 +150,13 @@ class L10nJa extends L10n {
   String get signIn => 'ログイン';
 
   @override
-  String get signUp => '登録';
+  String get signInError => 'ログインに失敗しました';
 
   @override
   String get signOut => 'ログアウト';
+
+  @override
+  String get signOutError => 'ログアウトに失敗しました';
 
   @override
   String get email => 'メールアドレス';

@@ -18,7 +18,52 @@ class L10nEn extends L10n {
   String get confirm => 'Confirm';
 
   @override
+  String get takePhoto => 'Take a photo';
+
+  @override
+  String get selectFromLibrary => 'Select from library';
+
+  @override
+  String get deleteImage => 'Delete Image';
+
+  @override
   String get edit => 'Edit';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get editUsername => 'Edit Username';
+
+  @override
+  String editUsernameLength(int min, int max) {
+    return 'Username must be between $min and $max characters.';
+  }
+
+  @override
+  String get editGynxId => 'Edit Gynx ID';
+
+  @override
+  String get editGynxIdRegexp => 'Gynx ID can only contain alphanumeric characters and underscores (_).';
+
+  @override
+  String get editGynxIdRegexpError => 'Invalid characters are included.';
+
+  @override
+  String editGynxIdLength(int min, int max) {
+    return 'Gynx ID must be between $min and $max characters.';
+  }
+
+  @override
+  String get editSelfIntroduction => 'Edit Self Introduction';
+
+  @override
+  String editSelfIntroductionLength(int max) {
+    return 'Self Introduction must be up to $max characters.';
+  }
+
+  @override
+  String get updateUserProfileError => 'Failed to update user profile.';
 
   @override
   String get share => 'Share';
@@ -30,6 +75,15 @@ class L10nEn extends L10n {
   String get posts => 'Posts';
 
   @override
+  String get username => 'Username';
+
+  @override
+  String get gynxId => 'Gynx ID';
+
+  @override
+  String get selfIntroduction => 'Self Introduction';
+
+  @override
   String get favorite => 'Favorite';
 
   @override
@@ -37,6 +91,12 @@ class L10nEn extends L10n {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get save => 'Save';
 
   @override
   String get ok => 'OK';
@@ -90,10 +150,13 @@ class L10nEn extends L10n {
   String get signIn => 'SignIn';
 
   @override
-  String get signUp => 'SignUp';
+  String get signInError => 'Sign in failed';
 
   @override
   String get signOut => 'SignOut';
+
+  @override
+  String get signOutError => 'Sign out failed';
 
   @override
   String get email => 'Email';

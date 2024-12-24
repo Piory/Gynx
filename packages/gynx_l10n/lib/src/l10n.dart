@@ -113,11 +113,89 @@ abstract class L10n {
   /// **'Confirm'**
   String get confirm;
 
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get takePhoto;
+
+  /// No description provided for @selectFromLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Select from library'**
+  String get selectFromLibrary;
+
+  /// No description provided for @deleteImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Image'**
+  String get deleteImage;
+
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
   /// **'Edit'**
   String get edit;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @editUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Username'**
+  String get editUsername;
+
+  /// No description provided for @editUsernameLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Username must be between {min} and {max} characters.'**
+  String editUsernameLength(int min, int max);
+
+  /// No description provided for @editGynxId.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Gynx ID'**
+  String get editGynxId;
+
+  /// No description provided for @editGynxIdRegexp.
+  ///
+  /// In en, this message translates to:
+  /// **'Gynx ID can only contain alphanumeric characters and underscores (_).'**
+  String get editGynxIdRegexp;
+
+  /// No description provided for @editGynxIdRegexpError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid characters are included.'**
+  String get editGynxIdRegexpError;
+
+  /// No description provided for @editGynxIdLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Gynx ID must be between {min} and {max} characters.'**
+  String editGynxIdLength(int min, int max);
+
+  /// No description provided for @editSelfIntroduction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Self Introduction'**
+  String get editSelfIntroduction;
+
+  /// No description provided for @editSelfIntroductionLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Introduction must be up to {max} characters.'**
+  String editSelfIntroductionLength(int max);
+
+  /// No description provided for @updateUserProfileError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update user profile.'**
+  String get updateUserProfileError;
 
   /// No description provided for @share.
   ///
@@ -137,6 +215,24 @@ abstract class L10n {
   /// **'Posts'**
   String get posts;
 
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @gynxId.
+  ///
+  /// In en, this message translates to:
+  /// **'Gynx ID'**
+  String get gynxId;
+
+  /// No description provided for @selfIntroduction.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Introduction'**
+  String get selfIntroduction;
+
   /// No description provided for @favorite.
   ///
   /// In en, this message translates to:
@@ -154,6 +250,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 
   /// No description provided for @ok.
   ///
@@ -257,17 +365,23 @@ abstract class L10n {
   /// **'SignIn'**
   String get signIn;
 
-  /// No description provided for @signUp.
+  /// No description provided for @signInError.
   ///
   /// In en, this message translates to:
-  /// **'SignUp'**
-  String get signUp;
+  /// **'Sign in failed'**
+  String get signInError;
 
   /// No description provided for @signOut.
   ///
   /// In en, this message translates to:
   /// **'SignOut'**
   String get signOut;
+
+  /// No description provided for @signOutError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out failed'**
+  String get signOutError;
 
   /// No description provided for @email.
   ///

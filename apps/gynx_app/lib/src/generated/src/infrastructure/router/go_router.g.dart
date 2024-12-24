@@ -9,6 +9,7 @@ part of '../../../../infrastructure/router/go_router.dart';
 List<RouteBase> get $appRoutes => [
       $dashboardShellRouteData,
       $rootPageRoute,
+      $editProfilePageRoute,
     ];
 
 RouteBase get $dashboardShellRouteData => StatefulShellRouteData.$route(
@@ -129,6 +130,29 @@ extension $RootPageRouteExtension on RootPageRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $editProfilePageRoute => GoRouteData.$route(
+      path: '/profile/edit',
+      factory: $EditProfilePageRouteExtension._fromState,
+    );
+
+extension $EditProfilePageRouteExtension on EditProfilePageRoute {
+  static EditProfilePageRoute _fromState(GoRouterState state) =>
+      const EditProfilePageRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/edit',
       );
 
   void go(BuildContext context) => context.go(location);

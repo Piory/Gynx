@@ -27,7 +27,7 @@ mixin _$TUserProfile {
   @JsonKey(name: 'avatar_url')
   String? get avatarUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'self_introduction')
-  String? get selfIntroduction => throw _privateConstructorUsedError;
+  String get selfIntroduction => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -55,7 +55,7 @@ abstract class $TUserProfileCopyWith<$Res> {
       {@JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'username') String username,
       @JsonKey(name: 'avatar_url') String? avatarUrl,
-      @JsonKey(name: 'self_introduction') String? selfIntroduction,
+      @JsonKey(name: 'self_introduction') String selfIntroduction,
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
       @JsonKey(name: 'deleted_at') DateTime? deletedAt});
@@ -79,7 +79,7 @@ class _$TUserProfileCopyWithImpl<$Res, $Val extends TUserProfile>
     Object? userId = null,
     Object? username = null,
     Object? avatarUrl = freezed,
-    Object? selfIntroduction = freezed,
+    Object? selfIntroduction = null,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
@@ -97,10 +97,10 @@ class _$TUserProfileCopyWithImpl<$Res, $Val extends TUserProfile>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      selfIntroduction: freezed == selfIntroduction
+      selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ abstract class _$$TUserProfileImplCopyWith<$Res>
       {@JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'username') String username,
       @JsonKey(name: 'avatar_url') String? avatarUrl,
-      @JsonKey(name: 'self_introduction') String? selfIntroduction,
+      @JsonKey(name: 'self_introduction') String selfIntroduction,
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
       @JsonKey(name: 'deleted_at') DateTime? deletedAt});
@@ -151,7 +151,7 @@ class __$$TUserProfileImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? username = null,
     Object? avatarUrl = freezed,
-    Object? selfIntroduction = freezed,
+    Object? selfIntroduction = null,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
@@ -169,10 +169,10 @@ class __$$TUserProfileImplCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      selfIntroduction: freezed == selfIntroduction
+      selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -216,7 +216,7 @@ class _$TUserProfileImpl extends _TUserProfile {
   final String? avatarUrl;
   @override
   @JsonKey(name: 'self_introduction')
-  final String? selfIntroduction;
+  final String selfIntroduction;
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
@@ -279,7 +279,7 @@ abstract class _TUserProfile extends TUserProfile {
           @JsonKey(name: 'username') required final String username,
           @JsonKey(name: 'avatar_url') required final String? avatarUrl,
           @JsonKey(name: 'self_introduction')
-          required final String? selfIntroduction,
+          required final String selfIntroduction,
           @JsonKey(name: 'created_at') required final DateTime createdAt,
           @JsonKey(name: 'updated_at') required final DateTime updatedAt,
           @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
@@ -300,7 +300,7 @@ abstract class _TUserProfile extends TUserProfile {
   String? get avatarUrl;
   @override
   @JsonKey(name: 'self_introduction')
-  String? get selfIntroduction;
+  String get selfIntroduction;
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;

@@ -3,13 +3,58 @@
   "title": "Gynx",
   "required": "Required",
   "confirm": "Confirm",
+  "takePhoto": "Take a photo",
+  "selectFromLibrary": "Select from library",
+  "deleteImage": "Delete Image",
   "edit": "Edit",
+  "editProfile": "Edit Profile",
+  "editUsername": "Edit Username",
+  "editUsernameLength": "Username must be between {min} and {max} characters.",
+  "@editUsernameLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "editGynxId": "Edit Gynx ID",
+  "editGynxIdRegexp": "Gynx ID can only contain alphanumeric characters and underscores (_).",
+  "editGynxIdRegexpError": "Invalid characters are included.",
+  "editGynxIdLength": "Gynx ID must be between {min} and {max} characters.",
+  "@editGynxIdLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "editSelfIntroduction": "Edit Self Introduction",
+  "editSelfIntroductionLength": "Self Introduction must be up to {max} characters.",
+  "@editSelfIntroductionLength": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "updateUserProfileError": "Failed to update user profile.",
   "share": "Share",
   "post": "Post",
   "posts": "Posts",
+  "username": "Username",
+  "gynxId": "Gynx ID",
+  "selfIntroduction": "Self Introduction",
   "favorite": "Favorite",
   "favorites": "Favorites",
   "cancel": "Cancel",
+  "done": "Done",
+  "save": "Save",
   "ok": "OK",
   "doContinue": "Continue",
   "or": "or",
@@ -27,8 +72,9 @@
   "guestSignInAlertMessage": "Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?",
   "continueIsApproveTermsOfServiceAndPrivacyPolicy": "By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.",
   "signIn": "SignIn",
-  "signUp": "SignUp",
+  "signInError": "Sign in failed",
   "signOut": "SignOut",
+  "signOutError": "Sign out failed",
   "email": "Email",
   "password": "Password",
   "forgotYourPassword": "Forgot your password?",

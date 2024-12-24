@@ -8,7 +8,8 @@ const profileStatefulShellBranch = TypedStatefulShellBranch<ProfileShellBranch>(
   routes: [
     TypedGoRoute<ProfilePageRoute>(
       path: '/profile',
-      // routes: const [],
+      // routes: [
+      // ],
     ),
   ],
 );
@@ -18,6 +19,27 @@ class ProfilePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ProfileView();
+    return const ProfilePage();
+  }
+}
+
+@TypedGoRoute<EditProfilePageRoute>(path: '/profile/edit')
+class EditProfilePageRoute extends GoRouteData {
+  const EditProfilePageRoute();
+
+  @override
+  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    return GetIt.I<AuthRepository>().isSignedIn()
+        ? null
+        : const RootPageRoute().location;
+  }
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialWithModalsPage(
+      key: state.pageKey,
+      fullscreenDialog: true,
+      child: const EditProfilePage(),
+    );
   }
 }

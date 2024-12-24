@@ -1,5 +1,5 @@
 import 'package:gynx_app/src/domain/entities/t_user.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_reposirory.dart';
+import 'package:gynx_app/src/domain/repositories/t_user_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
@@ -11,12 +11,7 @@ class TUserRepositoryImpl implements TUserRepository {
   static const tableName = 't_users';
 
   @override
-  Future<void> update(TUser tUser) async {
-    await _client.from(tableName).update(tUser.toJson());
-  }
-
-  @override
-  Future<TUser> findById(String id) async {
+  Future<TUser> findByPrimaryKey(String id) async {
     final res = await _client.from(tableName).select().eq('id', id);
     return TUser.fromJson(res.single);
   }
@@ -25,5 +20,15 @@ class TUserRepositoryImpl implements TUserRepository {
   Future<TUser> findByGynxId(String gynxId) async {
     final res = await _client.from(tableName).select().eq('gynx_id', gynxId);
     return TUser.fromJson(res.single);
+  }
+
+  @override
+  Future<void> updateByPrimaryKey({
+    required String id,
+    required String gynxId,
+  }) async {
+    await _client.from(tableName).update({
+      'gynx_id': gynxId,
+    }).eq('id', id);
   }
 }

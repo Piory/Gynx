@@ -11,7 +11,7 @@ _$TUserProfileImpl _$$TUserProfileImplFromJson(Map<String, dynamic> json) =>
       userId: json['user_id'] as String,
       username: json['username'] as String,
       avatarUrl: json['avatar_url'] as String?,
-      selfIntroduction: json['self_introduction'] as String?,
+      selfIntroduction: json['self_introduction'] as String,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt: json['deleted_at'] == null
