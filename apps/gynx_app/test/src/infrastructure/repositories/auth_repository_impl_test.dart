@@ -31,7 +31,7 @@ void main() {
   final mockSupabaseClient = MockSupabaseClient();
   final mockGoTrueClient = MockGoTrueClient();
   final mockGoogleSignIn = MockGoogleSignIn();
-  final authRepository = AuthRepositoryImpl(
+  final repository = AuthRepositoryImpl(
     mockSupabaseClient,
     mockGoogleSignIn,
   );
@@ -51,14 +51,14 @@ void main() {
         final mockGoTrueClient =
             MockGoTrueClientWithCurrentUserMock(MockUser());
         when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
-        expect(authRepository.isSignedIn(), isTrue);
+        expect(repository.isSignedIn(), isTrue);
         verify(mockSupabaseClient.auth);
       });
 
       test('GoTrueClient#currentUser が null の場合、false が返ること', () {
         final mockGoTrueClient = MockGoTrueClientWithCurrentUserMock(null);
         when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
-        expect(authRepository.isSignedIn(), isFalse);
+        expect(repository.isSignedIn(), isFalse);
         verify(mockSupabaseClient.auth);
       });
     });
@@ -70,7 +70,7 @@ void main() {
         when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
         when(mockGoTrueClient.signInAnonymously())
             .thenAnswer((_) async => MockAuthResponse());
-        await authRepository.signInWithAnonymous();
+        await repository.signInWithAnonymous();
         verifyInOrder([
           mockSupabaseClient.auth,
           mockGoTrueClient.signInAnonymously(),
@@ -85,7 +85,7 @@ void main() {
         'GoogleSignIn#signIn で結果が取得できなかった場合は、それ以降なにも呼ばれないこと',
         () async {
           when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
-          await authRepository.signInWithGoogle();
+          await repository.signInWithGoogle();
           verify(mockGoogleSignIn.signIn());
           verifyZeroInteractions(mockSupabaseClient);
           verifyZeroInteractions(mockGoTrueClient);
@@ -114,7 +114,7 @@ void main() {
               accessToken: accessToken,
             ),
           ).thenAnswer((_) async => MockAuthResponse());
-          await authRepository.signInWithGoogle();
+          await repository.signInWithGoogle();
           verifyInOrder([
             mockGoogleSignIn.signIn(),
             googleSignInAccount.authentication,
@@ -147,7 +147,7 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             ).thenAnswer((_) async => b);
-            await authRepository.linkWithApple();
+            await repository.linkWithApple();
             verifyInOrder([
               mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
@@ -177,7 +177,7 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             ).thenAnswer((_) async => b);
-            await authRepository.linkWithGoogle();
+            await repository.linkWithGoogle();
             verifyInOrder([
               mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
@@ -207,7 +207,7 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             ).thenAnswer((_) async => b);
-            await authRepository.linkWithX();
+            await repository.linkWithX();
             verifyInOrder([
               mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
@@ -237,7 +237,7 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             ).thenAnswer((_) async => b);
-            await authRepository.linkWithTwitch();
+            await repository.linkWithTwitch();
             verify(
               mockGoTrueClient.linkIdentity(
                 OAuthProvider.twitch,
@@ -273,7 +273,7 @@ void main() {
                 redirectTo: 'http://localhost:3000/auth/callback',
               ),
             ).thenAnswer((_) async => b);
-            await authRepository.linkWithDiscord();
+            await repository.linkWithDiscord();
             verifyInOrder([
               mockSupabaseClient.auth,
               mockGoTrueClient.linkIdentity(
@@ -298,7 +298,7 @@ void main() {
           when(mockGoogleSignIn.isSignedIn()).thenAnswer((_) async => true);
           when(mockGoogleSignIn.signOut())
               .thenAnswer((_) async => MockGoogleSignInAccount());
-          await authRepository.signOut();
+          await repository.signOut();
           verifyInOrder([
             mockSupabaseClient.auth,
             mockGoTrueClient.signOut(),
@@ -314,7 +314,7 @@ void main() {
           when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
           when(mockGoTrueClient.signOut()).thenAnswer((_) async => {});
           when(mockGoogleSignIn.isSignedIn()).thenAnswer((_) async => false);
-          await authRepository.signOut();
+          await repository.signOut();
           verifyInOrder([
             mockSupabaseClient.auth,
             mockGoTrueClient.signOut(),

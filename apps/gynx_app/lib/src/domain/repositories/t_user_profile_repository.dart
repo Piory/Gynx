@@ -7,7 +7,7 @@ abstract interface class TUserProfileRepository {
     required String userId,
     required String? username,
     required String? avatarUrl,
-    required bool isDeleteAvatarUrl,
+    bool isDeleteAvatarUrl = false,
     required String? selfIntroduction,
   });
 }

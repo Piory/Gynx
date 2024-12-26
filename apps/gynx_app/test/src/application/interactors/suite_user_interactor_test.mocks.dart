@@ -252,6 +252,7 @@ class MockTUserProfileRepository extends _i1.Mock
     required String? userId,
     required String? username,
     required String? avatarUrl,
+    bool? isDeleteAvatarUrl = false,
     required String? selfIntroduction,
   }) =>
       (super.noSuchMethod(
@@ -262,6 +263,7 @@ class MockTUserProfileRepository extends _i1.Mock
             #userId: userId,
             #username: username,
             #avatarUrl: avatarUrl,
+            #isDeleteAvatarUrl: isDeleteAvatarUrl,
             #selfIntroduction: selfIntroduction,
           },
         ),

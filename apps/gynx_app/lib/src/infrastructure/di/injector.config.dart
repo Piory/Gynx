@@ -54,6 +54,8 @@ import 'package:gynx_app/src/infrastructure/dialogs/loading_dialog_impl.dart'
 import 'package:gynx_app/src/infrastructure/dialogs/notify_impl.dart' as _i136;
 import 'package:gynx_app/src/infrastructure/generators/uuid_generator_impl.dart'
     as _i291;
+import 'package:gynx_app/src/infrastructure/images/image_compressor.dart'
+    as _i265;
 import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.dart'
     as _i19;
 import 'package:gynx_app/src/infrastructure/repositories/storage_repository_impl.dart'
@@ -91,14 +93,15 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final uuidModule = _$UuidModule();
     final googleModule = _$GoogleModule();
     final supabaseModule = _$SupabaseModule();
     final imagePickerModule = _$ImagePickerModule();
-    final uuidModule = _$UuidModule();
+    gh.singleton<_i706.Uuid>(() => uuidModule.uuid);
     gh.singleton<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
     gh.singleton<_i454.SupabaseClient>(() => supabaseModule.client);
     gh.singleton<_i183.ImagePicker>(() => imagePickerModule.imagePicker);
-    gh.singleton<_i706.Uuid>(() => uuidModule.uuid);
+    gh.singleton<_i265.ImageCompressor>(() => const _i265.ImageCompressor());
     gh.singleton<_i190.LoadingDialog>(() => _i64.DialogImpl());
     gh.singleton<_i703.Notify>(() => _i136.NotifyImpl());
     gh.singleton<_i626.PageNavigator>(() => _i83.PageNavigatorImpl());
@@ -107,14 +110,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i291.UuidGeneratorImpl(gh<_i706.Uuid>()));
     gh.singleton<_i429.TUserProfileRepository>(
         () => _i883.TUserProfileRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i850.StorageRepository>(() => _i165.StorageRepositoryImpl(
+          gh<_i454.SupabaseClient>(),
+          gh<_i265.ImageCompressor>(),
+        ));
     gh.singleton<_i714.AuthRepository>(() => _i19.AuthRepositoryImpl(
           gh<_i454.SupabaseClient>(),
           gh<_i116.GoogleSignIn>(),
         ));
     gh.singleton<_i990.SignOutUseCase>(
         () => _i154.SignOutInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i850.StorageRepository>(
-        () => _i165.StorageRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i723.ProfileController>(() => _i723.ProfileController(
@@ -149,6 +154,7 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i862.Alert>(),
         ));
     gh.singleton<_i69.EditProfileController>(() => _i69.EditProfileController(
+          gh<_i626.PageNavigator>(),
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
           gh<_i433.UpdateUserProfileUseCase>(),
@@ -157,10 +163,10 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
+class _$UuidModule extends _i650.UuidModule {}
+
 class _$GoogleModule extends _i337.GoogleModule {}
 
 class _$SupabaseModule extends _i412.SupabaseModule {}
 
 class _$ImagePickerModule extends _i704.ImagePickerModule {}
-
-class _$UuidModule extends _i650.UuidModule {}

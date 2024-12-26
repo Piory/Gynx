@@ -108,6 +108,36 @@ void main() {
         );
       });
 
+      test(
+        'isDeleteAvatarUrl を true にすると avatar_url に null が設定されること',
+        () async {
+          await mockSupabaseClient
+              .from(tableName)
+              .insert(tUserProfile.toJson());
+          await tUserProfileRepository.updateByPrimaryKeySelective(
+            userId: tUserProfile.userId,
+            username: null,
+            avatarUrl: 'updated_avatar_url',
+            isDeleteAvatarUrl: true,
+            selfIntroduction: null,
+          );
+          expect(
+            await mockSupabaseClient.from(tableName).select(),
+            [
+              {
+                'user_id': tUserProfile.userId,
+                'username': tUserProfile.username,
+                'avatar_url': null,
+                'self_introduction': tUserProfile.selfIntroduction,
+                'created_at': tUserProfile.createdAt.toIso8601String(),
+                'updated_at': tUserProfile.updatedAt.toIso8601String(),
+                'deleted_at': tUserProfile.deletedAt?.toIso8601String(),
+              },
+            ],
+          );
+        },
+      );
+
       test('self_introduction のみの更新も行えること', () async {
         await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
         await tUserProfileRepository.updateByPrimaryKeySelective(

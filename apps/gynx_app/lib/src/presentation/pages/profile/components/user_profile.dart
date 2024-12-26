@@ -35,25 +35,27 @@ class UserProfile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              UserAvatar(
-                isLoading: isLoading,
-                avatarUrl: suiteUser?.tUserProfile.avatarUrl,
-                radius: 25,
-              ),
-              const Gap(SpaceSize.s16),
-              SizedBox(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _createUsernameWidget(context),
-                    _createGynxIdWidget(context),
-                  ],
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                UserAvatar(
+                  isLoading: isLoading,
+                  avatarUrl: suiteUser?.tUserProfile.avatarUrl,
+                  radius: 25,
                 ),
-              ),
-            ],
+                const Gap(SpaceSize.s16),
+                SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _createUsernameWidget(context),
+                      _createGynxIdWidget(context),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           if (isLoading ||
               !StringUtils.isNullOrEmpty(

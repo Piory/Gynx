@@ -29,8 +29,6 @@ class ProfilePage extends StatelessWidget {
             visibleDetectorKey: const Key('profile'),
             child: ExtendedNestedScrollView(
               onlyOneScrollInBody: true,
-              pinnedHeaderSliverHeightBuilder: () =>
-                  kToolbarHeight + MediaQuery.of(context).viewPadding.top,
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   SliverAppBar(
@@ -58,7 +56,7 @@ class ProfilePage extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SliverGap(SpaceSize.s16),
+                  const SliverGap(SpaceSize.s8),
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: _StickyTabBarDelegate(

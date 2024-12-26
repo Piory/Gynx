@@ -1,5 +1,5 @@
 import 'package:gynx_app/src/domain/entities/t_user_profile.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_profile_reposirory.dart';
+import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
@@ -21,13 +21,16 @@ class TUserProfileRepositoryImpl implements TUserProfileRepository {
     required String userId,
     required String? username,
     required String? avatarUrl,
+    bool isDeleteAvatarUrl = false,
     required String? selfIntroduction,
   }) async {
     final updateMap = <String, dynamic>{};
     if (username != null) {
       updateMap['username'] = username;
     }
-    if (avatarUrl != null) {
+    if (isDeleteAvatarUrl) {
+      updateMap['avatar_url'] = null;
+    } else if (avatarUrl != null) {
       updateMap['avatar_url'] = avatarUrl;
     }
     if (selfIntroduction != null) {
