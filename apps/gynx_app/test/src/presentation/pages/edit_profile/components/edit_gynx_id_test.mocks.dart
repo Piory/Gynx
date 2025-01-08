@@ -3,14 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i8;
 
-import 'package:flutter/material.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
 import 'package:gynx_app/src/domain/models/suite_user.dart' as _i2;
-import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i6;
+import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
+    as _i9;
+import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i7;
+import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart' as _i3;
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart'
-    as _i3;
-import 'package:gynx_app/src/presentation/navigation/page_type.dart' as _i5;
+    as _i4;
+import 'package:gynx_app/src/presentation/navigation/page_type.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -36,13 +39,36 @@ class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
         );
 }
 
+/// A class which mocks [LoadingDialog].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoadingDialog extends _i1.Mock implements _i3.LoadingDialog {
+  @override
+  void show() => super.noSuchMethod(
+        Invocation.method(
+          #show,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void hide() => super.noSuchMethod(
+        Invocation.method(
+          #hide,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
 /// A class which mocks [PageNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
+class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
   @override
   void pop<T extends Object?>(
-    _i4.BuildContext? context, [
+    _i5.BuildContext? context, [
     T? result,
   ]) =>
       super.noSuchMethod(
@@ -58,8 +84,8 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
 
   @override
   void push(
-    _i4.BuildContext? context,
-    _i5.PageType? pageType,
+    _i5.BuildContext? context,
+    _i6.PageType? pageType,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -74,8 +100,8 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
 
   @override
   void go(
-    _i4.BuildContext? context,
-    _i5.PageType? pageType,
+    _i5.BuildContext? context,
+    _i6.PageType? pageType,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -90,8 +116,8 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
 
   @override
   void pushReplacement(
-    _i4.BuildContext? context,
-    _i5.PageType? pageType,
+    _i5.BuildContext? context,
+    _i6.PageType? pageType,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -108,14 +134,14 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
 /// A class which mocks [SuiteUserUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSuiteUserUseCase extends _i1.Mock implements _i6.SuiteUserUseCase {
+class MockSuiteUserUseCase extends _i1.Mock implements _i7.SuiteUserUseCase {
   @override
-  _i7.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
+  _i8.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
         Invocation.method(
           #execute,
           [],
         ),
-        returnValue: _i7.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
+        returnValue: _i8.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
           this,
           Invocation.method(
             #execute,
@@ -123,12 +149,28 @@ class MockSuiteUserUseCase extends _i1.Mock implements _i6.SuiteUserUseCase {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
+            _i8.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
           this,
           Invocation.method(
             #execute,
             [],
           ),
         )),
-      ) as _i7.Future<_i2.SuiteUser>);
+      ) as _i8.Future<_i2.SuiteUser>);
+}
+
+/// A class which mocks [CheckGynxIdExistenceUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckGynxIdExistenceUsecase extends _i1.Mock
+    implements _i9.CheckGynxIdExistenceUsecase {
+  @override
+  _i8.Future<bool> execute(String? gynxId) => (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [gynxId],
+        ),
+        returnValue: _i8.Future<bool>.value(false),
+        returnValueForMissingStub: _i8.Future<bool>.value(false),
+      ) as _i8.Future<bool>);
 }

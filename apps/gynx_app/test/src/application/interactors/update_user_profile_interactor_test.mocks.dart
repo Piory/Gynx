@@ -1348,6 +1348,16 @@ class MockTUserRepository extends _i1.Mock implements _i15.TUserRepository {
       ) as _i7.Future<_i4.TUser>);
 
   @override
+  _i7.Future<bool> existsById(String? gynxId) => (super.noSuchMethod(
+        Invocation.method(
+          #existsById,
+          [gynxId],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+        returnValueForMissingStub: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+
+  @override
   _i7.Future<void> updateByPrimaryKey({
     required String? id,
     required String? gynxId,

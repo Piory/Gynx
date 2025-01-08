@@ -55,6 +55,9 @@ class L10nEn extends L10n {
   }
 
   @override
+  String get editGynxIdExistenceError => 'This Gynx ID is already in use.';
+
+  @override
   String get editSelfIntroduction => 'Edit Self Introduction';
 
   @override

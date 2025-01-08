@@ -34,6 +34,7 @@
       }
     }
   },
+  "editGynxIdExistenceError": "This Gynx ID is already in use.",
   "editSelfIntroduction": "Edit Self Introduction",
   "editSelfIntroductionLength": "Self Introduction must be up to {max} characters.",
   "@editSelfIntroductionLength": {

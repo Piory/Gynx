@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
+import 'package:gynx_app/src/application/interactors/check_gynx_id_existence_interactor.dart'
+    as _i1022;
 import 'package:gynx_app/src/application/interactors/link_identity_interactor.dart'
     as _i994;
 import 'package:gynx_app/src/application/interactors/sign_in_with_anonymous_interactor.dart'
@@ -30,6 +32,8 @@ import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart'
     as _i429;
 import 'package:gynx_app/src/domain/repositories/t_user_repository.dart'
     as _i252;
+import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
+    as _i599;
 import 'package:gynx_app/src/domain/usecases/link_identity_usecase.dart'
     as _i89;
 import 'package:gynx_app/src/domain/usecases/sign_in_with_anonymous_usecase.dart'
@@ -127,6 +131,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i703.Notify>(),
           gh<_i990.SignOutUseCase>(),
         ));
+    gh.singleton<_i599.CheckGynxIdExistenceUsecase>(() =>
+        _i1022.CheckGynxIdExistenceInteractor(gh<_i252.TUserRepository>()));
     gh.singleton<_i89.LinkIdentityUseCase>(
         () => _i994.LinkIdentityInteractor(gh<_i714.AuthRepository>()));
     gh.singleton<_i928.SignInWithAnonymousUseCase>(

@@ -12,14 +12,29 @@ class TUserRepositoryImpl implements TUserRepository {
 
   @override
   Future<TUser> findByPrimaryKey(String id) async {
-    final res = await _client.from(tableName).select().eq('id', id);
-    return TUser.fromJson(res.single);
+    final res =
+        await _client.from(tableName).select().eq('id', id).maybeSingle();
+    return TUser.fromJson(res!);
   }
 
   @override
   Future<TUser> findByGynxId(String gynxId) async {
-    final res = await _client.from(tableName).select().eq('gynx_id', gynxId);
-    return TUser.fromJson(res.single);
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('gynx_id', gynxId)
+        .maybeSingle();
+    return TUser.fromJson(res!);
+  }
+
+  @override
+  Future<bool> existsById(String gynxId) async {
+    final res = await _client
+        .from(tableName)
+        .select('gynx_id')
+        .eq('gynx_id', gynxId)
+        .maybeSingle();
+    return res != null;
   }
 
   @override

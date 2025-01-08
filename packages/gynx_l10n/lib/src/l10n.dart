@@ -179,6 +179,12 @@ abstract class L10n {
   /// **'Gynx ID must be between {min} and {max} characters.'**
   String editGynxIdLength(int min, int max);
 
+  /// No description provided for @editGynxIdExistenceError.
+  ///
+  /// In en, this message translates to:
+  /// **'This Gynx ID is already in use.'**
+  String get editGynxIdExistenceError;
+
   /// No description provided for @editSelfIntroduction.
   ///
   /// In en, this message translates to:

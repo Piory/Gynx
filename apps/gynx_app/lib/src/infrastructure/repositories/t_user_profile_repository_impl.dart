@@ -12,8 +12,12 @@ class TUserProfileRepositoryImpl implements TUserProfileRepository {
 
   @override
   Future<TUserProfile> findByPrimaryKey(String userId) async {
-    final res = await _client.from(tableName).select().eq('user_id', userId);
-    return TUserProfile.fromJson(res.single);
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('user_id', userId)
+        .maybeSingle();
+    return TUserProfile.fromJson(res!);
   }
 
   @override

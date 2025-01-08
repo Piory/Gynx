@@ -34,6 +34,7 @@
       }
     }
   },
+  "editGynxIdExistenceError": "この Gynx ID は既に使用されています。",
   "editSelfIntroduction": "自己紹介を編集",
   "editSelfIntroductionLength": "自己紹介は、{max}文字以内で入力してください。",
   "@editSelfIntroductionLength": {

@@ -41,6 +41,21 @@ void main() {
     });
   });
 
+  group('#existsByGynxId', () {
+    group('正常系', () {
+      test('データが存在しない場合、false が取得できること', () async {
+        final count = await tUserRepository.existsById(tUser.gynxId);
+        expect(count, isFalse);
+      });
+
+      test('データが存在する場合は、true が取得できること', () async {
+        await mockSupabaseClient.from(tableName).insert(tUser.toJson());
+        final count = await tUserRepository.existsById(tUser.gynxId);
+        expect(count, isTrue);
+      });
+    });
+  });
+
   group('#updateByPrimaryKey', () {
     group('正常系', () {
       test('正常にデータが1件更新されること', () async {

@@ -27,7 +27,6 @@ import 'edit_profile_controller_test.mocks.dart';
 void main() {
   final gynxId = faker.guid.guid();
   final username = faker.person.name();
-  final path = faker.guid.guid();
   final isDeleteAvatar = faker.randomGenerator.boolean();
   final selfIntroduction = faker.lorem.sentence();
 

@@ -10,7 +10,7 @@ SuiteUser generateDummySuiteUser() => SuiteUser(
 
 TUser generateDummyTUser() => TUser(
       id: faker.guid.guid(),
-      gynxId: faker.guid.guid(),
+      gynxId: 'gynx_id',
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,

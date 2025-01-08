@@ -56,83 +56,81 @@ void main() {
   }
 
   //
-  group('初期表示時', () {
-    group('正常系', () {
-      testWidgets('EditAvatar、ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
+  group('正常系', () {
+    testWidgets('EditAvatar、ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
+      await pumpWidget(tester);
+      final editAvatar = tester.widget<EditAvatar>(find.byType(EditAvatar));
+      expect(editAvatar.avatarUrl, suiteUser.tUserProfile.avatarUrl);
+      expect(find.text(suiteUser.tUserProfile.username), findsOneWidget);
+      expect(find.text(suiteUser.tUser.gynxId), findsOneWidget);
+      expect(
+        find.text(suiteUser.tUserProfile.selfIntroduction),
+        findsOneWidget,
+      );
+      verifyZeroInteractions(mockEditProfileController);
+    });
+
+    testWidgets(
+      'CloseButton をタップしても、EditProfileController#updateUserProfile が呼ばれないこと',
+      (tester) async {
         await pumpWidget(tester);
-        final editAvatar = tester.widget<EditAvatar>(find.byType(EditAvatar));
-        expect(editAvatar.avatarUrl, suiteUser.tUserProfile.avatarUrl);
-        expect(find.text(suiteUser.tUserProfile.username), findsOneWidget);
-        expect(find.text(suiteUser.tUser.gynxId), findsOneWidget);
-        expect(
-          find.text(suiteUser.tUserProfile.selfIntroduction),
-          findsOneWidget,
-        );
         verifyZeroInteractions(mockEditProfileController);
-      });
+        await tester.tap(find.byType(CloseButton));
+        verifyZeroInteractions(mockEditProfileController);
+      },
+    );
 
-      testWidgets(
-        'CloseButton をタップしても、EditProfileController#updateUserProfile が呼ばれないこと',
-        (tester) async {
-          await pumpWidget(tester);
-          verifyZeroInteractions(mockEditProfileController);
-          await tester.tap(find.byType(CloseButton));
-          verifyZeroInteractions(mockEditProfileController);
-        },
-      );
-
-      testWidgets(
-        '「${l10nJa.done}」をタップすると、EditProfileController#updateUserProfile が呼ばれること',
-        (tester) async {
-          await pumpWidget(tester);
-          verifyNever(
-            mockEditProfileController.updateUserProfile(
-              context: anyNamed('context'),
-              l10n: anyNamed('l10n'),
-              ref: anyNamed('ref'),
-              gynxId: null,
-              username: null,
-              avatarFile: null,
-              isDeleteAvatar: false,
-              selfIntroduction: null,
-            ),
-          );
-          await tester.tap(find.text(l10nJa.done));
-          verify(
-            mockEditProfileController.updateUserProfile(
-              context: anyNamed('context'),
-              l10n: anyNamed('l10n'),
-              ref: anyNamed('ref'),
-              gynxId: null,
-              username: null,
-              avatarFile: null,
-              isDeleteAvatar: false,
-              selfIntroduction: null,
-            ),
-          );
-        },
-      );
-
-      testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
+    testWidgets(
+      '「${l10nJa.done}」をタップすると、EditProfileController#updateUserProfile が呼ばれること',
+      (tester) async {
         await pumpWidget(tester);
-        await tester.tap(find.text(suiteUser.tUserProfile.username));
-        await tester.pumpAndSettle();
-        expect(find.byType(EditUsername), findsOneWidget);
-      });
+        verifyNever(
+          mockEditProfileController.updateUserProfile(
+            context: anyNamed('context'),
+            l10n: anyNamed('l10n'),
+            ref: anyNamed('ref'),
+            gynxId: null,
+            username: null,
+            avatarFile: null,
+            isDeleteAvatar: false,
+            selfIntroduction: null,
+          ),
+        );
+        await tester.tap(find.text(l10nJa.done));
+        verify(
+          mockEditProfileController.updateUserProfile(
+            context: anyNamed('context'),
+            l10n: anyNamed('l10n'),
+            ref: anyNamed('ref'),
+            gynxId: null,
+            username: null,
+            avatarFile: null,
+            isDeleteAvatar: false,
+            selfIntroduction: null,
+          ),
+        );
+      },
+    );
 
-      testWidgets('GynxID をタップしたら、EditGynxId を表示されること', (tester) async {
-        await pumpWidget(tester);
-        await tester.tap(find.text(suiteUser.tUser.gynxId));
-        await tester.pumpAndSettle();
-        expect(find.byType(EditGynxId), findsOneWidget);
-      });
+    testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
+      await pumpWidget(tester);
+      await tester.tap(find.text(suiteUser.tUserProfile.username));
+      await tester.pumpAndSettle();
+      expect(find.byType(EditUsername), findsOneWidget);
+    });
 
-      testWidgets('自己紹介をタップしたら、EditSelfIntroduction を表示されること', (tester) async {
-        await pumpWidget(tester);
-        await tester.tap(find.text(suiteUser.tUserProfile.selfIntroduction));
-        await tester.pumpAndSettle();
-        expect(find.byType(EditSelfIntroduction), findsOneWidget);
-      });
+    testWidgets('GynxID をタップしたら、EditGynxId を表示されること', (tester) async {
+      await pumpWidget(tester);
+      await tester.tap(find.text(suiteUser.tUser.gynxId));
+      await tester.pumpAndSettle();
+      expect(find.byType(EditGynxId), findsOneWidget);
+    });
+
+    testWidgets('自己紹介をタップしたら、EditSelfIntroduction を表示されること', (tester) async {
+      await pumpWidget(tester);
+      await tester.tap(find.text(suiteUser.tUserProfile.selfIntroduction));
+      await tester.pumpAndSettle();
+      expect(find.byType(EditSelfIntroduction), findsOneWidget);
     });
   });
 }

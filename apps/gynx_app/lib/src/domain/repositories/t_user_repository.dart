@@ -5,6 +5,8 @@ abstract interface class TUserRepository {
 
   Future<TUser> findByGynxId(String gynxId);
 
+  Future<bool> existsById(String gynxId);
+
   Future<void> updateByPrimaryKey({
     required String id,
     required String gynxId,

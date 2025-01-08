@@ -4,12 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart';
+import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
-class EditGynxId extends StatelessWidget {
+class EditGynxId extends ConsumerWidget {
   const EditGynxId({
     super.key,
     required this.onSaved,
@@ -21,7 +23,7 @@ class EditGynxId extends StatelessWidget {
   final FormFieldSetter<String> onSaved;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     final textScaler = MediaQuery.textScalerOf(context);
@@ -47,12 +49,11 @@ class EditGynxId extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  GetIt.I<PageNavigator>().pop(context);
-                }
-              },
+              onPressed: () => _onDone(
+                context: context,
+                ref: ref,
+                formKey: formKey,
+              ),
             ),
           ),
         ],
@@ -115,5 +116,49 @@ class EditGynxId extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _onDone({
+    required BuildContext context,
+    required WidgetRef ref,
+    required GlobalKey<FormBuilderState> formKey,
+  }) async {
+    final loadingDialog = GetIt.I<LoadingDialog>();
+    final pageNavigator = GetIt.I<PageNavigator>();
+    final checkGynxIdExistenceUseCase = GetIt.I<CheckGynxIdExistenceUsecase>();
+    loadingDialog.show();
+    try {
+      final currentState = formKey.currentState;
+      if (!currentState!.validate()) {
+        return;
+      }
+      final gynxIdField = currentState.fields['gynx_id']!;
+      final inputtedGynxId = gynxIdField.value as String;
+      final gynxId = ref.read(
+        userNotifierProvider.select(
+          (value) => value.value?.tUser.gynxId,
+        ),
+      );
+      if (inputtedGynxId == gynxId) {
+        if (context.mounted) {
+          pageNavigator.pop(context);
+        }
+        return;
+      }
+      if (await checkGynxIdExistenceUseCase.execute(inputtedGynxId)) {
+        if (context.mounted) {
+          gynxIdField.invalidate(
+            context.l10n.editGynxIdExistenceError,
+          );
+        }
+        return;
+      }
+      currentState.save();
+      if (context.mounted) {
+        pageNavigator.pop(context);
+      }
+    } finally {
+      loadingDialog.hide();
+    }
   }
 }
