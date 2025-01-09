@@ -38,10 +38,24 @@ class UserProfile extends StatelessWidget {
           IntrinsicHeight(
             child: Row(
               children: [
-                UserAvatar(
-                  isLoading: isLoading,
-                  avatarUrl: suiteUser?.tUserProfile.avatarUrl,
-                  radius: 25,
+                InkWell(
+                  child: Hero(
+                    tag: suiteUser?.tUser.id ?? '',
+                    child: UserAvatar(
+                      isLoading: isLoading,
+                      avatarUrl: suiteUser?.tUserProfile.avatarUrl,
+                      radius: 25,
+                    ),
+                  ),
+                  onTap: () {
+                    if (suiteUser?.tUserProfile.avatarUrl == null) {
+                      return;
+                    }
+                    pageNavigator.push(
+                      context,
+                      PageType.profileAvatar,
+                    );
+                  },
                 ),
                 const Gap(SpaceSize.s16),
                 SizedBox(

@@ -1,0 +1,71 @@
+import 'package:dismissible_page/dismissible_page.dart';
+import 'package:flutter/material.dart' hide Dialog;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
+import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_components/gynx_components.dart';
+import 'package:photo_view/photo_view.dart';
+
+class ProfileAvatarPage extends ConsumerWidget {
+  const ProfileAvatarPage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final suiteUser = ref.read(
+      userNotifierProvider.select(
+        (value) => value.value,
+      ),
+    );
+    final userId = suiteUser?.tUser.id ?? '';
+    final avatarUrl = suiteUser?.tUserProfile.avatarUrl;
+    return Stack(
+      children: [
+        DismissiblePage(
+          backgroundColor: colorScheme.surface,
+          onDismissed: () => GetIt.I<PageNavigator>().pop(context),
+          direction: DismissiblePageDismissDirection.multi,
+          child: PhotoView.customChild(
+            backgroundDecoration: const BoxDecoration(
+              color: Colors.transparent,
+            ),
+            scaleStateCycle: _scaleStateCycle,
+            initialScale: 0.75,
+            minScale: 0.75,
+            maxScale: 1.5,
+            heroAttributes: PhotoViewHeroAttributes(
+              tag: userId,
+              transitionOnUserGestures: true,
+            ),
+            child: UserAvatar(
+              isLoading: suiteUser == null,
+              avatarUrl: avatarUrl,
+              radius: (MediaQuery.of(context).size.width / 2) - SpaceSize.s64,
+            ),
+          ),
+        ),
+        const Positioned(
+          left: SpaceSize.s8,
+          child: SafeArea(
+            child: CloseButton(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  PhotoViewScaleState _scaleStateCycle(PhotoViewScaleState actual) {
+    switch (actual) {
+      case PhotoViewScaleState.initial:
+        return PhotoViewScaleState.covering;
+      case PhotoViewScaleState.covering:
+      case PhotoViewScaleState.originalSize:
+      case PhotoViewScaleState.zoomedIn:
+      case PhotoViewScaleState.zoomedOut:
+        return PhotoViewScaleState.initial;
+    }
+  }
+}

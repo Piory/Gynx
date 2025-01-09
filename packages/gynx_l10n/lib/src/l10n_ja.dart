@@ -197,4 +197,7 @@ class L10nJa extends L10n {
 
     return '$followerString フォロワー';
   }
+
+  @override
+  String get setting => '設定';
 }

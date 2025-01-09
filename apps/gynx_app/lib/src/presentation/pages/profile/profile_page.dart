@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart';
@@ -39,7 +41,10 @@ class ProfilePage extends StatelessWidget {
                           color: theme.colorScheme.primary,
                           size: 28,
                         ),
-                        onPressed: () {},
+                        onPressed: () => GetIt.I<PageNavigator>().push(
+                          context,
+                          PageType.setting,
+                        ),
                       ),
                     ],
                   ),

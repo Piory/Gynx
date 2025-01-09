@@ -4,10 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_page.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:iconly/iconly.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -55,16 +57,23 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  //
-  group('初期表示時', () {
-    group('正常系', () {
-      testWidgets('ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
-        await pumpWidget(tester);
-        final userProfileFinder = find.byType(UserProfile);
-        expect(userProfileFinder, findsOneWidget);
-        final userProfileWidget = tester.widget<UserProfile>(userProfileFinder);
-        expect(userProfileWidget.suiteUser, suiteUser);
-      });
+  group('正常系', () {
+    testWidgets('ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
+      await pumpWidget(tester);
+      final userProfileFinder = find.byType(UserProfile);
+      expect(userProfileFinder, findsOneWidget);
+      final userProfileWidget = tester.widget<UserProfile>(userProfileFinder);
+      expect(userProfileWidget.suiteUser, suiteUser);
     });
+
+    testWidgets(
+      'IconlyBold.setting をタップしたら、PageNavigator#push が呼ばれること',
+      (tester) async {
+        await pumpWidget(tester);
+        verifyNever(mockPageNavigator.push(any, PageType.setting));
+        await tester.tap(find.byIcon(IconlyBold.setting));
+        verify(mockPageNavigator.push(any, PageType.setting));
+      },
+    );
   });
 }

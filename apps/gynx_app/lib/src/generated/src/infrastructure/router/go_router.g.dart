@@ -9,7 +9,9 @@ part of '../../../../infrastructure/router/go_router.dart';
 List<RouteBase> get $appRoutes => [
       $dashboardShellRouteData,
       $rootPageRoute,
+      $profileAvatarPageRoute,
       $editProfilePageRoute,
+      $settingPageRoute,
     ];
 
 RouteBase get $dashboardShellRouteData => StatefulShellRouteData.$route(
@@ -142,6 +144,29 @@ extension $RootPageRouteExtension on RootPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $profileAvatarPageRoute => GoRouteData.$route(
+      path: '/profile/avatar',
+      factory: $ProfileAvatarPageRouteExtension._fromState,
+    );
+
+extension $ProfileAvatarPageRouteExtension on ProfileAvatarPageRoute {
+  static ProfileAvatarPageRoute _fromState(GoRouterState state) =>
+      const ProfileAvatarPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/avatar',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $editProfilePageRoute => GoRouteData.$route(
       path: '/profile/edit',
       factory: $EditProfilePageRouteExtension._fromState,
@@ -153,6 +178,29 @@ extension $EditProfilePageRouteExtension on EditProfilePageRoute {
 
   String get location => GoRouteData.$location(
         '/profile/edit',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $settingPageRoute => GoRouteData.$route(
+      path: '/profile/setting',
+      factory: $SettingPageRouteExtension._fromState,
+    );
+
+extension $SettingPageRouteExtension on SettingPageRoute {
+  static SettingPageRoute _fromState(GoRouterState state) =>
+      const SettingPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/setting',
       );
 
   void go(BuildContext context) => context.go(location);

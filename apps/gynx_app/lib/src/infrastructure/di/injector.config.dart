@@ -79,6 +79,8 @@ import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_contro
     as _i69;
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart'
     as _i723;
+import 'package:gynx_app/src/presentation/pages/setting/setting_controller.dart'
+    as _i50;
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_controller.dart'
     as _i400;
 import 'package:image_picker/image_picker.dart' as _i183;
@@ -127,6 +129,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i723.ProfileController>(() => _i723.ProfileController(
+          gh<_i190.LoadingDialog>(),
+          gh<_i703.Notify>(),
+          gh<_i990.SignOutUseCase>(),
+        ));
+    gh.singleton<_i50.SettingController>(() => _i50.SettingController(
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
           gh<_i990.SignOutUseCase>(),

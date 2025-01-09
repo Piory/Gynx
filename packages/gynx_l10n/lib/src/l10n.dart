@@ -430,6 +430,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'{follower} Follower'**
   String follower(int follower);
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

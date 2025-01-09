@@ -98,5 +98,6 @@
         "format": "compact"
       }
     }
-  }
+  },
+  "setting": "Setting"
 }
