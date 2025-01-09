@@ -39,14 +39,7 @@ class UserProfile extends StatelessWidget {
             child: Row(
               children: [
                 InkWell(
-                  child: Hero(
-                    tag: suiteUser?.tUser.id ?? '',
-                    child: UserAvatar(
-                      isLoading: isLoading,
-                      avatarUrl: suiteUser?.tUserProfile.avatarUrl,
-                      radius: 25,
-                    ),
-                  ),
+                  child: _createUserAvatar(suiteUser),
                   onTap: () {
                     if (suiteUser?.tUserProfile.avatarUrl == null) {
                       return;
@@ -165,6 +158,21 @@ class UserProfile extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _createUserAvatar(SuiteUser? suiteUser) {
+    final userAvatar = UserAvatar(
+      isLoading: isLoading,
+      avatarUrl: suiteUser?.tUserProfile.avatarUrl,
+      radius: 25,
+    );
+    if (suiteUser == null) {
+      return userAvatar;
+    }
+    return Hero(
+      tag: suiteUser.tUser.id,
+      child: userAvatar,
     );
   }
 

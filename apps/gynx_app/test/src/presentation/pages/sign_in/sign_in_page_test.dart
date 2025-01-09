@@ -3,49 +3,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/components/google_oauth_button.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_controller.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'sign_in_page_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<SignInController>(),
-  MockSpec<SupabaseClient>(),
-  MockSpec<GoTrueClient>(),
-  MockSpec<AuthState>(),
-  MockSpec<Session>(),
+  // MockSpec<SupabaseClient>(),
+  // MockSpec<GoTrueClient>(),
+  // MockSpec<AuthState>(),
+  // MockSpec<Session>(),
   MockSpec<PageNavigator>(),
 ])
 void main() {
   final l10nJa = L10nJa();
-  final mockSupabaseClient = MockSupabaseClient();
-  final mockGoTrueClient = MockGoTrueClient();
+  // final mockSupabaseClient = MockSupabaseClient();
+  // final mockGoTrueClient = MockGoTrueClient();
   final mockSignInController = MockSignInController();
   final mockPageNavigator = MockPageNavigator();
 
   setUpAll(() {
     GetIt.I.registerSingleton<SignInController>(mockSignInController);
-    GetIt.I.registerSingleton<SupabaseClient>(mockSupabaseClient);
+    // GetIt.I.registerSingleton<SupabaseClient>(mockSupabaseClient);
     GetIt.I.registerSingleton<PageNavigator>(mockPageNavigator);
   });
 
   setUp(() {
-    when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
+    //   when(mockSupabaseClient.auth).thenReturn(mockGoTrueClient);
   });
 
   tearDown(() {
-    verify(mockSupabaseClient.auth);
-    verify(mockGoTrueClient.onAuthStateChange);
-    verifyNoMoreInteractions(mockSupabaseClient);
-    verifyNoMoreInteractions(mockGoTrueClient);
-    reset(mockSupabaseClient);
-    reset(mockGoTrueClient);
+    // verify(mockSupabaseClient.auth);
+    // verify(mockGoTrueClient.onAuthStateChange);
+    // verifyNoMoreInteractions(mockSupabaseClient);
+    // verifyNoMoreInteractions(mockGoTrueClient);
+    // reset(mockSupabaseClient);
+    // reset(mockGoTrueClient);
+    verifyNoMoreInteractions(mockSignInController);
+    verifyNoMoreInteractions(mockPageNavigator);
     reset(mockSignInController);
     reset(mockPageNavigator);
   });
@@ -91,39 +91,39 @@ void main() {
     });
   });
 
-  group('リダイレクト', () {
-    group('正常系', () {
-      testWidgets(
-        'data.session に値が存在しない（未ログイン状態）場合、PageRouter#pushReplacement が呼ばれないこと',
-        (tester) async {
-          final mockAuthState = MockAuthState();
-          when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
-            return Stream.value(mockAuthState);
-          });
-          when(mockAuthState.session).thenReturn(null);
-          await pumpWidget(tester);
-          verify(mockAuthState.session);
-          verifyNoMoreInteractions(mockAuthState);
-        },
-      );
-
-      testWidgets(
-        'data.session に値が存在する（ログイン状態）場合、PageRouter#pushReplacement が呼ばれること',
-        (tester) async {
-          final mockAuthState = MockAuthState();
-          final mockSession = MockSession();
-          when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
-            return Stream.value(mockAuthState);
-          });
-          when(mockAuthState.session).thenReturn(mockSession);
-          await pumpWidget(tester);
-          verifyInOrder([
-            mockAuthState.session,
-            mockPageNavigator.pushReplacement(any, PageType.home),
-          ]);
-          verifyNoMoreInteractions(mockAuthState);
-        },
-      );
-    });
-  });
+  // group('リダイレクト', () {
+  //   group('正常系', () {
+  //     testWidgets(
+  //       'data.session に値が存在しない（未ログイン状態）場合、PageRouter#pushReplacement が呼ばれないこと',
+  //       (tester) async {
+  //         final mockAuthState = MockAuthState();
+  //         when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
+  //           return Stream.value(mockAuthState);
+  //         });
+  //         when(mockAuthState.session).thenReturn(null);
+  //         await pumpWidget(tester);
+  //         verify(mockAuthState.session);
+  //         verifyNoMoreInteractions(mockAuthState);
+  //       },
+  //     );
+  //
+  //     testWidgets(
+  //       'data.session に値が存在する（ログイン状態）場合、PageRouter#pushReplacement が呼ばれること',
+  //       (tester) async {
+  //         final mockAuthState = MockAuthState();
+  //         final mockSession = MockSession();
+  //         when(mockGoTrueClient.onAuthStateChange).thenAnswer((_) {
+  //           return Stream.value(mockAuthState);
+  //         });
+  //         when(mockAuthState.session).thenReturn(mockSession);
+  //         await pumpWidget(tester);
+  //         verifyInOrder([
+  //           mockAuthState.session,
+  //           mockPageNavigator.pushReplacement(any, PageType.home),
+  //         ]);
+  //         verifyNoMoreInteractions(mockAuthState);
+  //       },
+  //     );
+  //   });
+  // });
 }

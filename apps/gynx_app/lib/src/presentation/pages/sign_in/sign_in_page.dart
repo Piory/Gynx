@@ -2,14 +2,11 @@ import 'package:flutter/material.dart' hide Dialog;
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
-import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/components/apple_oauth_button.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/components/google_oauth_button.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_controller.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({
@@ -18,11 +15,6 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetIt.I<SupabaseClient>().auth.onAuthStateChange.listen((data) {
-      if (data.session != null && context.mounted) {
-        GetIt.I<PageNavigator>().pushReplacement(context, PageType.home);
-      }
-    });
     final controller = GetIt.I<SignInController>();
     final mediaQuery = MediaQuery.of(context);
     final theme = Theme.of(context);

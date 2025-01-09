@@ -9,6 +9,6 @@ part '../../generated/src/presentation/notifiers/user_notifier.g.dart';
 class UserNotifier extends _$UserNotifier {
   @override
   FutureOr<SuiteUser> build() async {
-    return await GetIt.I.get<SuiteUserUseCase>().execute();
+    return await GetIt.I<SuiteUserUseCase>().execute();
   }
 }

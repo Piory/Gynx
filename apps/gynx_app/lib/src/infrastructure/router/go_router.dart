@@ -7,8 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:gynx_app/src/infrastructure/router/pages/material_with_modals_page.dart';
 import 'package:gynx_app/src/presentation/layouts/dashboard.dart';
-import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:gynx_app/src/presentation/pages/home/home_page.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_page.dart';
@@ -16,17 +14,16 @@ import 'package:gynx_app/src/presentation/pages/profile_avatar/profile_avatar_pa
 import 'package:gynx_app/src/presentation/pages/setting/setting_page.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part '../../generated/src/infrastructure/router/go_router.g.dart';
 part 'branchs/home_branch.dart';
 part 'branchs/profile_branch.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 final goRouter = GoRouter(
   initialLocation: '/',
-  navigatorKey: _rootNavigatorKey,
+  navigatorKey: rootNavigatorKey,
   debugLogDiagnostics: kDebugMode,
   routes: $appRoutes,
   errorPageBuilder: (context, state) {
@@ -58,11 +55,6 @@ class DashboardShellRouteData extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    GetIt.I<SupabaseClient>().auth.onAuthStateChange.listen((data) {
-      if (data.session == null && context.mounted) {
-        GetIt.I<PageNavigator>().pushReplacement(context, PageType.root);
-      }
-    });
     return Dashboard(
       navigationShell: navigationShell,
     );
@@ -82,7 +74,7 @@ class RootPageRoute extends GoRouteData {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return MaterialPage(
+    return MaterialWithModalsPage(
       key: state.pageKey,
       fullscreenDialog: true,
       child: const SignInPage(),

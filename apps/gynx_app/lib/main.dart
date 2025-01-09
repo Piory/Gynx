@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gynx_app/src/infrastructure/di/injector.dart';
 import 'package:gynx_app/src/infrastructure/supabase/supabase_initializer.dart';
 import 'package:gynx_app/src/my_app.dart';
@@ -20,6 +21,8 @@ void main() async {
     return true;
   };
   runApp(
-    const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
