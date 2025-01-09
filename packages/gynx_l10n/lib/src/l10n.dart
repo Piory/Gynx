@@ -383,6 +383,12 @@ abstract class L10n {
   /// **'SignOut'**
   String get signOut;
 
+  /// No description provided for @signOutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to sign out?'**
+  String get signOutMessage;
+
   /// No description provided for @signOutError.
   ///
   /// In en, this message translates to:

@@ -5,7 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
 
-import 'package:gynx_app/src/domain/usecases/sign_out_usecase.dart' as _i4;
+import 'package:gynx_app/src/domain/usecases/sign_out_usecase.dart' as _i6;
+import 'package:gynx_app/src/presentation/dialogs/alert.dart' as _i4;
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart' as _i2;
 import 'package:gynx_app/src/presentation/dialogs/notify.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -61,10 +62,83 @@ class MockNotify extends _i1.Mock implements _i3.Notify {
       );
 }
 
+/// A class which mocks [Alert].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAlert extends _i1.Mock implements _i4.Alert {
+  @override
+  _i5.Future<void> showInfo({
+    required String? title,
+    required String? text,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showInfo,
+          [],
+          {
+            #title: title,
+            #text: text,
+          },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<_i4.AlertResultType> showAlert({
+    required String? title,
+    required String? text,
+    required String? leftButtonText,
+    required String? rightButtonText,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showAlert,
+          [],
+          {
+            #title: title,
+            #text: text,
+            #leftButtonText: leftButtonText,
+            #rightButtonText: rightButtonText,
+          },
+        ),
+        returnValue:
+            _i5.Future<_i4.AlertResultType>.value(_i4.AlertResultType.left),
+        returnValueForMissingStub:
+            _i5.Future<_i4.AlertResultType>.value(_i4.AlertResultType.left),
+      ) as _i5.Future<_i4.AlertResultType>);
+
+  @override
+  _i5.Future<_i4.ActionSheetResultType> showActionSheet({
+    String? title,
+    String? message,
+    required String? positiveButtonText,
+    required String? neutralButtonText,
+    required String? negativeButtonText,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showActionSheet,
+          [],
+          {
+            #title: title,
+            #message: message,
+            #positiveButtonText: positiveButtonText,
+            #neutralButtonText: neutralButtonText,
+            #negativeButtonText: negativeButtonText,
+          },
+        ),
+        returnValue: _i5.Future<_i4.ActionSheetResultType>.value(
+            _i4.ActionSheetResultType.positive),
+        returnValueForMissingStub: _i5.Future<_i4.ActionSheetResultType>.value(
+            _i4.ActionSheetResultType.positive),
+      ) as _i5.Future<_i4.ActionSheetResultType>);
+}
+
 /// A class which mocks [SignOutUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignOutUseCase extends _i1.Mock implements _i4.SignOutUseCase {
+class MockSignOutUseCase extends _i1.Mock implements _i6.SignOutUseCase {
   @override
   _i5.Future<void> execute() => (super.noSuchMethod(
         Invocation.method(

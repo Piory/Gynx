@@ -75,6 +75,7 @@
   "signIn": "ログイン",
   "signInError": "ログインに失敗しました",
   "signOut": "ログアウト",
+  "signOutMessage": "本当にログアウトしますか？",
   "signOutError": "ログアウトに失敗しました",
   "email": "メールアドレス",
   "password": "パスワード",

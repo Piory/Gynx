@@ -159,6 +159,9 @@ class L10nJa extends L10n {
   String get signOut => 'ログアウト';
 
   @override
+  String get signOutMessage => '本当にログアウトしますか？';
+
+  @override
   String get signOutError => 'ログアウトに失敗しました';
 
   @override

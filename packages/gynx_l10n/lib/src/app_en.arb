@@ -75,6 +75,7 @@
   "signIn": "SignIn",
   "signInError": "Sign in failed",
   "signOut": "SignOut",
+  "signOutMessage": "Are you sure you want to sign out?",
   "signOutError": "Sign out failed",
   "email": "Email",
   "password": "Password",

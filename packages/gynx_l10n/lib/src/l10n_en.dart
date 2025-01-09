@@ -159,6 +159,9 @@ class L10nEn extends L10n {
   String get signOut => 'SignOut';
 
   @override
+  String get signOutMessage => 'Are you sure you want to sign out?';
+
+  @override
   String get signOutError => 'Sign out failed';
 
   @override
