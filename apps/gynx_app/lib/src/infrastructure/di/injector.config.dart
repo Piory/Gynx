@@ -28,10 +28,20 @@ import 'package:gynx_app/src/domain/generators/uuid_generator.dart' as _i8;
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart' as _i714;
 import 'package:gynx_app/src/domain/repositories/storage_repository.dart'
     as _i850;
+import 'package:gynx_app/src/domain/repositories/t_post_media_repository.dart'
+    as _i978;
+import 'package:gynx_app/src/domain/repositories/t_post_repository.dart'
+    as _i957;
+import 'package:gynx_app/src/domain/repositories/t_user_follow_repository.dart'
+    as _i787;
+import 'package:gynx_app/src/domain/repositories/t_user_post_favorite_repository.dart'
+    as _i56;
 import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart'
     as _i429;
 import 'package:gynx_app/src/domain/repositories/t_user_repository.dart'
     as _i252;
+import 'package:gynx_app/src/domain/repositories/t_user_timeline_repository.dart'
+    as _i655;
 import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
     as _i599;
 import 'package:gynx_app/src/domain/usecases/link_identity_usecase.dart'
@@ -64,10 +74,20 @@ import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.da
     as _i19;
 import 'package:gynx_app/src/infrastructure/repositories/storage_repository_impl.dart'
     as _i165;
+import 'package:gynx_app/src/infrastructure/repositories/t_post_media_repository_impl.dart'
+    as _i129;
+import 'package:gynx_app/src/infrastructure/repositories/t_post_repository_impl.dart'
+    as _i35;
+import 'package:gynx_app/src/infrastructure/repositories/t_user_follow_repository_impl.dart'
+    as _i315;
+import 'package:gynx_app/src/infrastructure/repositories/t_user_post_favorite_repository_impl.dart'
+    as _i231;
 import 'package:gynx_app/src/infrastructure/repositories/t_user_profile_repository_impl.dart'
     as _i883;
 import 'package:gynx_app/src/infrastructure/repositories/t_user_repository_impl.dart'
     as _i69;
+import 'package:gynx_app/src/infrastructure/repositories/t_user_timeline_repository_impl.dart'
+    as _i351;
 import 'package:gynx_app/src/infrastructure/router/page_navigator_impl.dart'
     as _i83;
 import 'package:gynx_app/src/presentation/dialogs/alert.dart' as _i862;
@@ -124,10 +144,20 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i454.SupabaseClient>(),
           gh<_i116.GoogleSignIn>(),
         ));
+    gh.singleton<_i787.TUserFollowRepository>(
+        () => _i315.TUserFollowRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i978.TPostMediaRepository>(
+        () => _i129.TPostMediaRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i655.TUserTimelineRepository>(
+        () => _i351.TUserTimelineRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i990.SignOutUseCase>(
         () => _i154.SignOutInteractor(gh<_i714.AuthRepository>()));
+    gh.singleton<_i957.TPostRepository>(
+        () => _i35.TPostRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i56.TUserPostFavoriteRepository>(() =>
+        _i231.TUserPostFavoriteRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i723.ProfileController>(() => _i723.ProfileController(
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
