@@ -375,7 +375,7 @@ packages:
     source: hosted
     version: "1.0.2"
   envied:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: envied
       sha256: "129a0dbf32b90344fa2e9d6943569fdec8f17904e66161e0a1f09ee3416508ae"
@@ -814,6 +814,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../../packages/gynx_components"
+      relative: true
+    source: path
+    version: "0.0.0"
+  gynx_constants:
+    dependency: "direct main"
+    description:
+      path: "../../packages/gynx_constants"
       relative: true
     source: path
     version: "0.0.0"

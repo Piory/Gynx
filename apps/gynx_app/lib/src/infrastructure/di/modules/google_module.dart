@@ -1,5 +1,5 @@
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:gynx_app/src/constants/env.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:injectable/injectable.dart';
 
 @module

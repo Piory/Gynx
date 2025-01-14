@@ -14,7 +14,6 @@ dependencies:
   colorful_safe_area: 1.0.0
   cupertino_icons: ^1.0.8
   dismissible_page: 1.0.2
-  envied: 1.0.0
 #  firebase_analytics: 11.3.5
 #  firebase_auth: 5.3.3
 #  firebase_core: 3.8.0
@@ -39,6 +38,8 @@ dependencies:
   google_sign_in: 6.2.2
   gynx_components:
     path: ../../packages/gynx_components
+  gynx_constants:
+    path: ../../packages/gynx_constants
   gynx_l10n:
     path: ../../packages/gynx_l10n
   iconly: 1.0.1

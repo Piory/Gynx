@@ -1,4 +1,4 @@
-import 'package:gynx_app/src/constants/env.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> supabaseInitializer() async {

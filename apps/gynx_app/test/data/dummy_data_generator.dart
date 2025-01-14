@@ -35,7 +35,7 @@ TUserProfile generateDummyTUserProfile() => TUserProfile(
     );
 
 TUserFollow generateDummyTUserFollow() => TUserFollow(
-      id: faker.guid.guid(),
+      id: faker.randomGenerator.integer(4),
       userId: faker.guid.guid(),
       followUserId: faker.guid.guid(),
       createdAt: faker.date.dateTime(),
