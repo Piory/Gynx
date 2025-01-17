@@ -18,14 +18,13 @@ class TPostMediaRepositoryImpl implements TPostMediaRepository {
 
   @override
   Future<TPostMedia> findByPrimaryKey(String id) async {
-    final res =
-        await _client.from(tableName).select().eq('id', id).maybeSingle();
-    return TPostMedia.fromJson(res!);
+    final res = await _client.from(tableName).select().eq('id', id).single();
+    return TPostMedia.fromJson(res);
   }
 
   @override
   Future<TPostMediaList> findByPostId(int postId) async {
     final res = await _client.from(tableName).select().eq('post_id', postId);
-    return TPostMediaList.fromIterator(res.iterator);
+    return TPostMediaList.fromJson(res);
   }
 }

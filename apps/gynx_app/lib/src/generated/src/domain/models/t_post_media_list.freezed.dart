@@ -14,9 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+TPostMediaList _$TPostMediaListFromJson(Map<String, dynamic> json) {
+  return _TPostMediaList.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TPostMediaList {
   List<TPostMedia> get tPostMedias => throw _privateConstructorUsedError;
+
+  /// Serializes this TPostMediaList to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TPostMediaList
   /// with the given fields replaced by the non-null parameter values.
@@ -96,11 +103,14 @@ class __$$TPostMediaListImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TPostMediaListImpl extends _TPostMediaList {
   const _$TPostMediaListImpl(final List<TPostMedia> tPostMedias)
       : _tPostMedias = tPostMedias,
         super._();
+
+  factory _$TPostMediaListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TPostMediaListImplFromJson(json);
 
   final List<TPostMedia> _tPostMedias;
   @override
@@ -124,6 +134,7 @@ class _$TPostMediaListImpl extends _TPostMediaList {
                 .equals(other._tPostMedias, _tPostMedias));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_tPostMedias));
@@ -136,12 +147,22 @@ class _$TPostMediaListImpl extends _TPostMediaList {
   _$$TPostMediaListImplCopyWith<_$TPostMediaListImpl> get copyWith =>
       __$$TPostMediaListImplCopyWithImpl<_$TPostMediaListImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TPostMediaListImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TPostMediaList extends TPostMediaList {
   const factory _TPostMediaList(final List<TPostMedia> tPostMedias) =
       _$TPostMediaListImpl;
   const _TPostMediaList._() : super._();
+
+  factory _TPostMediaList.fromJson(Map<String, dynamic> json) =
+      _$TPostMediaListImpl.fromJson;
 
   @override
   List<TPostMedia> get tPostMedias;

@@ -14,9 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+TPostList _$TPostListFromJson(Map<String, dynamic> json) {
+  return _TPostList.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TPostList {
   List<TPost> get tPosts => throw _privateConstructorUsedError;
+
+  /// Serializes this TPostList to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TPostList
   /// with the given fields replaced by the non-null parameter values.
@@ -95,11 +102,14 @@ class __$$TPostListImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TPostListImpl extends _TPostList {
   const _$TPostListImpl(final List<TPost> tPosts)
       : _tPosts = tPosts,
         super._();
+
+  factory _$TPostListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TPostListImplFromJson(json);
 
   final List<TPost> _tPosts;
   @override
@@ -122,6 +132,7 @@ class _$TPostListImpl extends _TPostList {
             const DeepCollectionEquality().equals(other._tPosts, _tPosts));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_tPosts));
@@ -133,11 +144,21 @@ class _$TPostListImpl extends _TPostList {
   @pragma('vm:prefer-inline')
   _$$TPostListImplCopyWith<_$TPostListImpl> get copyWith =>
       __$$TPostListImplCopyWithImpl<_$TPostListImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TPostListImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TPostList extends TPostList {
   const factory _TPostList(final List<TPost> tPosts) = _$TPostListImpl;
   const _TPostList._() : super._();
+
+  factory _TPostList.fromJson(Map<String, dynamic> json) =
+      _$TPostListImpl.fromJson;
 
   @override
   List<TPost> get tPosts;

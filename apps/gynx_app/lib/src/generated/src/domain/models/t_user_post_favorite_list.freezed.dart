@@ -14,10 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+TUserPostFavoriteList _$TUserPostFavoriteListFromJson(
+    Map<String, dynamic> json) {
+  return _TUserPostFavoriteList.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TUserPostFavoriteList {
-  List<TUserPostFavorite> get tPostFavorites =>
+  List<TUserPostFavorite> get tUserPostFavorites =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this TUserPostFavoriteList to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TUserPostFavoriteList
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +40,7 @@ abstract class $TUserPostFavoriteListCopyWith<$Res> {
           $Res Function(TUserPostFavoriteList) then) =
       _$TUserPostFavoriteListCopyWithImpl<$Res, TUserPostFavoriteList>;
   @useResult
-  $Res call({List<TUserPostFavorite> tPostFavorites});
+  $Res call({List<TUserPostFavorite> tUserPostFavorites});
 }
 
 /// @nodoc
@@ -51,12 +59,12 @@ class _$TUserPostFavoriteListCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tPostFavorites = null,
+    Object? tUserPostFavorites = null,
   }) {
     return _then(_value.copyWith(
-      tPostFavorites: null == tPostFavorites
-          ? _value.tPostFavorites
-          : tPostFavorites // ignore: cast_nullable_to_non_nullable
+      tUserPostFavorites: null == tUserPostFavorites
+          ? _value.tUserPostFavorites
+          : tUserPostFavorites // ignore: cast_nullable_to_non_nullable
               as List<TUserPostFavorite>,
     ) as $Val);
   }
@@ -71,7 +79,7 @@ abstract class _$$TUserPostFavoriteListImplCopyWith<$Res>
       __$$TUserPostFavoriteListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TUserPostFavorite> tPostFavorites});
+  $Res call({List<TUserPostFavorite> tUserPostFavorites});
 }
 
 /// @nodoc
@@ -88,36 +96,40 @@ class __$$TUserPostFavoriteListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tPostFavorites = null,
+    Object? tUserPostFavorites = null,
   }) {
     return _then(_$TUserPostFavoriteListImpl(
-      null == tPostFavorites
-          ? _value._tPostFavorites
-          : tPostFavorites // ignore: cast_nullable_to_non_nullable
+      null == tUserPostFavorites
+          ? _value._tUserPostFavorites
+          : tUserPostFavorites // ignore: cast_nullable_to_non_nullable
               as List<TUserPostFavorite>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
   const _$TUserPostFavoriteListImpl(
-      final List<TUserPostFavorite> tPostFavorites)
-      : _tPostFavorites = tPostFavorites,
+      final List<TUserPostFavorite> tUserPostFavorites)
+      : _tUserPostFavorites = tUserPostFavorites,
         super._();
 
-  final List<TUserPostFavorite> _tPostFavorites;
+  factory _$TUserPostFavoriteListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TUserPostFavoriteListImplFromJson(json);
+
+  final List<TUserPostFavorite> _tUserPostFavorites;
   @override
-  List<TUserPostFavorite> get tPostFavorites {
-    if (_tPostFavorites is EqualUnmodifiableListView) return _tPostFavorites;
+  List<TUserPostFavorite> get tUserPostFavorites {
+    if (_tUserPostFavorites is EqualUnmodifiableListView)
+      return _tUserPostFavorites;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tPostFavorites);
+    return EqualUnmodifiableListView(_tUserPostFavorites);
   }
 
   @override
   String toString() {
-    return 'TUserPostFavoriteList(tPostFavorites: $tPostFavorites)';
+    return 'TUserPostFavoriteList(tUserPostFavorites: $tUserPostFavorites)';
   }
 
   @override
@@ -126,12 +138,13 @@ class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
         (other.runtimeType == runtimeType &&
             other is _$TUserPostFavoriteListImpl &&
             const DeepCollectionEquality()
-                .equals(other._tPostFavorites, _tPostFavorites));
+                .equals(other._tUserPostFavorites, _tUserPostFavorites));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_tPostFavorites));
+      runtimeType, const DeepCollectionEquality().hash(_tUserPostFavorites));
 
   /// Create a copy of TUserPostFavoriteList
   /// with the given fields replaced by the non-null parameter values.
@@ -141,16 +154,26 @@ class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
   _$$TUserPostFavoriteListImplCopyWith<_$TUserPostFavoriteListImpl>
       get copyWith => __$$TUserPostFavoriteListImplCopyWithImpl<
           _$TUserPostFavoriteListImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TUserPostFavoriteListImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TUserPostFavoriteList extends TUserPostFavoriteList {
   const factory _TUserPostFavoriteList(
-          final List<TUserPostFavorite> tPostFavorites) =
+          final List<TUserPostFavorite> tUserPostFavorites) =
       _$TUserPostFavoriteListImpl;
   const _TUserPostFavoriteList._() : super._();
 
+  factory _TUserPostFavoriteList.fromJson(Map<String, dynamic> json) =
+      _$TUserPostFavoriteListImpl.fromJson;
+
   @override
-  List<TUserPostFavorite> get tPostFavorites;
+  List<TUserPostFavorite> get tUserPostFavorites;
 
   /// Create a copy of TUserPostFavoriteList
   /// with the given fields replaced by the non-null parameter values.

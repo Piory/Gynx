@@ -42,6 +42,10 @@ import 'package:gynx_app/src/domain/repositories/t_user_repository.dart'
     as _i252;
 import 'package:gynx_app/src/domain/repositories/t_user_timeline_repository.dart'
     as _i655;
+import 'package:gynx_app/src/domain/repositories/v_post_repository.dart'
+    as _i290;
+import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart'
+    as _i675;
 import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
     as _i599;
 import 'package:gynx_app/src/domain/usecases/link_identity_usecase.dart'
@@ -88,6 +92,10 @@ import 'package:gynx_app/src/infrastructure/repositories/t_user_repository_impl.
     as _i69;
 import 'package:gynx_app/src/infrastructure/repositories/t_user_timeline_repository_impl.dart'
     as _i351;
+import 'package:gynx_app/src/infrastructure/repositories/v_post_repository_impl.dart'
+    as _i313;
+import 'package:gynx_app/src/infrastructure/repositories/v_user_detail_repository_impl.dart'
+    as _i525;
 import 'package:gynx_app/src/infrastructure/router/page_navigator_impl.dart'
     as _i83;
 import 'package:gynx_app/src/presentation/dialogs/alert.dart' as _i862;
@@ -140,6 +148,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i454.SupabaseClient>(),
           gh<_i265.ImageCompressor>(),
         ));
+    gh.singleton<_i675.VUserDetailRepository>(
+        () => _i525.VUserDetailRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i290.VPostRepository>(
+        () => _i313.VPostRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i714.AuthRepository>(() => _i19.AuthRepositoryImpl(
           gh<_i454.SupabaseClient>(),
           gh<_i116.GoogleSignIn>(),

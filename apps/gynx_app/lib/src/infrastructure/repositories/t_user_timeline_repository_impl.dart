@@ -19,9 +19,8 @@ class TUserTimelineRepositoryImpl implements TUserTimelineRepository {
 
   @override
   Future<TUserTimeline> findByPrimaryKey(String id) async {
-    final res =
-        await _client.from(tableName).select().eq('id', id).maybeSingle();
-    return TUserTimeline.fromJson(res!);
+    final res = await _client.from(tableName).select().eq('id', id).single();
+    return TUserTimeline.fromJson(res);
   }
 
   @override
@@ -34,6 +33,6 @@ class TUserTimelineRepositoryImpl implements TUserTimelineRepository {
         .select()
         .eq('user_id', userId)
         .eq('type', type);
-    return TUserTimelineList.fromIterator(res.iterator);
+    return TUserTimelineList.fromJson(res);
   }
 }

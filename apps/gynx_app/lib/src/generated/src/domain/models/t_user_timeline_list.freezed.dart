@@ -14,9 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+TUserTimelineList _$TUserTimelineListFromJson(Map<String, dynamic> json) {
+  return _TUserTimelineList.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TUserTimelineList {
   List<TUserTimeline> get tUserTimelines => throw _privateConstructorUsedError;
+
+  /// Serializes this TUserTimelineList to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TUserTimelineList
   /// with the given fields replaced by the non-null parameter values.
@@ -96,11 +103,14 @@ class __$$TUserTimelineListImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TUserTimelineListImpl extends _TUserTimelineList {
   const _$TUserTimelineListImpl(final List<TUserTimeline> tUserTimelines)
       : _tUserTimelines = tUserTimelines,
         super._();
+
+  factory _$TUserTimelineListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TUserTimelineListImplFromJson(json);
 
   final List<TUserTimeline> _tUserTimelines;
   @override
@@ -124,6 +134,7 @@ class _$TUserTimelineListImpl extends _TUserTimelineList {
                 .equals(other._tUserTimelines, _tUserTimelines));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_tUserTimelines));
@@ -136,12 +147,22 @@ class _$TUserTimelineListImpl extends _TUserTimelineList {
   _$$TUserTimelineListImplCopyWith<_$TUserTimelineListImpl> get copyWith =>
       __$$TUserTimelineListImplCopyWithImpl<_$TUserTimelineListImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TUserTimelineListImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TUserTimelineList extends TUserTimelineList {
   const factory _TUserTimelineList(final List<TUserTimeline> tUserTimelines) =
       _$TUserTimelineListImpl;
   const _TUserTimelineList._() : super._();
+
+  factory _TUserTimelineList.fromJson(Map<String, dynamic> json) =
+      _$TUserTimelineListImpl.fromJson;
 
   @override
   List<TUserTimeline> get tUserTimelines;

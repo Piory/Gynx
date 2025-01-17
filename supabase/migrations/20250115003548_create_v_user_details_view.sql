@@ -1,0 +1,34 @@
+CREATE VIEW v_user_details AS
+SELECT up.user_id,
+       u.gynx_id,
+       up.username,
+       up.avatar_url,
+       up.self_introduction,
+       (SELECT jsonb_agg(posts)
+        FROM (SELECT *
+              FROM v_posts
+              WHERE user_id = u.id
+              ORDER BY id DESC
+              LIMIT 20) posts)       AS latest_posts,
+       (SELECT count(*)
+        FROM t_user_follows
+        WHERE follow_user_id = u.id) AS follow_count,
+       (SELECT count(*)
+        FROM t_user_follows
+        WHERE user_id = u.id)        AS follower_count,
+       u.created_at,
+       u.updated_at
+FROM t_users u
+         LEFT JOIN t_user_profiles up ON u.id = up.user_id;
+
+COMMENT ON VIEW v_user_details IS 'ユーザービュー';
+COMMENT ON COLUMN v_user_details.user_id IS 'ユーザーID';
+COMMENT ON COLUMN v_user_details.gynx_id IS 'Gynx ID';
+COMMENT ON COLUMN v_user_details.username IS 'ユーザー名';
+COMMENT ON COLUMN v_user_details.avatar_url IS 'アバターURL';
+COMMENT ON COLUMN v_user_details.self_introduction IS '自己紹介';
+COMMENT ON COLUMN v_user_details.latest_posts IS '最新の投稿';
+COMMENT ON COLUMN v_user_details.follow_count IS 'フォロー数';
+COMMENT ON COLUMN v_user_details.follower_count IS 'フォロワー数';
+COMMENT ON COLUMN v_user_details.created_at IS '作成日時';
+COMMENT ON COLUMN v_user_details.updated_at IS '更新日時';

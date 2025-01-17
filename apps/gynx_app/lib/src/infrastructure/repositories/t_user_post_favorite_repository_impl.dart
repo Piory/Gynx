@@ -18,20 +18,19 @@ class TUserPostFavoriteRepositoryImpl implements TUserPostFavoriteRepository {
 
   @override
   Future<TUserPostFavorite> findByPrimaryKey(String id) async {
-    final res =
-        await _client.from(tableName).select().eq('id', id).maybeSingle();
-    return TUserPostFavorite.fromJson(res!);
+    final res = await _client.from(tableName).select().eq('id', id).single();
+    return TUserPostFavorite.fromJson(res);
   }
 
   @override
   Future<TUserPostFavoriteList> findByUserId(String userId) async {
     final res = await _client.from(tableName).select().eq('user_id', userId);
-    return TUserPostFavoriteList.fromIterator(res.iterator);
+    return TUserPostFavoriteList.fromJson(res);
   }
 
   @override
   Future<TUserPostFavoriteList> findByPostId(int postId) async {
     final res = await _client.from(tableName).select().eq('post_id', postId);
-    return TUserPostFavoriteList.fromIterator(res.iterator);
+    return TUserPostFavoriteList.fromJson(res);
   }
 }

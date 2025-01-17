@@ -17,16 +17,15 @@ class TUserFollowRepositoryImpl implements TUserFollowRepository {
   }
 
   @override
-  Future<TUserFollow> findByPrimaryKey(int id) async {
-    final res =
-        await _client.from(tableName).select().eq('id', id).maybeSingle();
-    return TUserFollow.fromJson(res!);
+  Future<TUserFollow> findByPrimaryKey(num id) async {
+    final res = await _client.from(tableName).select().eq('id', id).single();
+    return TUserFollow.fromJson(res);
   }
 
   @override
   Future<TUserFollowList> findByUserId(String userId) async {
     final res = await _client.from(tableName).select().eq('user_id', userId);
-    return TUserFollowList.fromIterator(res.iterator);
+    return TUserFollowList.fromJson(res);
   }
 
   @override
@@ -35,6 +34,6 @@ class TUserFollowRepositoryImpl implements TUserFollowRepository {
         .from(tableName)
         .select()
         .eq('follow_user_id', followUserId);
-    return TUserFollowList.fromIterator(res.iterator);
+    return TUserFollowList.fromJson(res);
   }
 }

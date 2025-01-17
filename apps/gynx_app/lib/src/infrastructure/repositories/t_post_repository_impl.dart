@@ -17,15 +17,14 @@ class TPostRepositoryImpl implements TPostRepository {
   }
 
   @override
-  Future<TPost> findByPrimaryKey(int id) async {
-    final res =
-        await _client.from(tableName).select().eq('id', id).maybeSingle();
-    return TPost.fromJson(res!);
+  Future<TPost> findByPrimaryKey(num id) async {
+    final res = await _client.from(tableName).select().eq('id', id).single();
+    return TPost.fromJson(res);
   }
 
   @override
   Future<TPostList> findByUserId(String userId) async {
     final res = await _client.from(tableName).select().eq('user_id', userId);
-    return TPostList.fromIterator(res.iterator);
+    return TPostList.fromJson(res);
   }
 }
