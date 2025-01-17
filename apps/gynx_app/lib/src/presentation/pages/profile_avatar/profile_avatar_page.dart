@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart' hide Dialog;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +22,7 @@ class ProfileAvatarPage extends ConsumerWidget {
       ),
     );
     final userId = suiteUser?.vUserDetail.userId ?? '';
-    final avatarUrl = suiteUser?.vUserDetail.avatarUrl;
+    final avatarUrl = suiteUser!.vUserDetail.avatarUrl!;
     return Stack(
       children: [
         DismissiblePage(
@@ -40,10 +41,14 @@ class ProfileAvatarPage extends ConsumerWidget {
               tag: userId,
               transitionOnUserGestures: true,
             ),
-            child: UserAvatar(
-              isLoading: suiteUser == null,
-              avatarUrl: avatarUrl,
-              radius: (MediaQuery.of(context).size.width / 2) - SpaceSize.s64,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: CachedNetworkImageProvider(avatarUrl),
+                ),
+              ),
             ),
           ),
         ),
