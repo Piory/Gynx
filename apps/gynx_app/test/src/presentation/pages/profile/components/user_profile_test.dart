@@ -52,7 +52,7 @@ void main() {
     }
 
     group('正常系', () {
-      testWidgets('ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
+      testWidgets('ユーザー名、GynxID、自己紹介、フォロー数、フォロワー数が表示されること', (tester) async {
         final suiteUser = generateDummySuiteUser();
         final tUser = suiteUser.vUserDetail;
         final tUserProfile = suiteUser.vUserDetail;
@@ -63,6 +63,10 @@ void main() {
         expect(find.text(tUserProfile.username), findsOneWidget);
         expect(find.text('@${tUser.gynxId}'), findsOneWidget);
         expect(find.text(tUserProfile.selfIntroduction), findsOneWidget);
+        final followCount = suiteUser.vUserDetail.followCount;
+        expect(find.text(l10nJa.follow(followCount)), findsOneWidget);
+        final followerCount = suiteUser.vUserDetail.followerCount;
+        expect(find.text(l10nJa.follower(followerCount)), findsOneWidget);
       });
 
       testWidgets(

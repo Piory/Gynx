@@ -249,7 +249,7 @@ class UserProfile extends StatelessWidget {
     // final followCount = null;
     final theme = Theme.of(context);
     return Text(
-      context.l10n.follow(598490),
+      context.l10n.follow(suiteUser?.vUserDetail.followCount ?? 0),
       style: theme.textTheme.bodyMedium!.copyWith(
         color: theme.colorScheme.onSurfaceVariant,
       ),
@@ -266,7 +266,7 @@ class UserProfile extends StatelessWidget {
     // final followerCount = null;
     final theme = Theme.of(context);
     return Text(
-      context.l10n.follower(12345),
+      context.l10n.follower(suiteUser?.vUserDetail.followerCount ?? 0),
       style: theme.textTheme.bodyMedium!.copyWith(
         color: theme.colorScheme.onSurfaceVariant,
       ),
