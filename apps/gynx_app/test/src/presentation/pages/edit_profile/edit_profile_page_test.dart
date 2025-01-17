@@ -60,11 +60,11 @@ void main() {
     testWidgets('EditAvatar、ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
       await pumpWidget(tester);
       final editAvatar = tester.widget<EditAvatar>(find.byType(EditAvatar));
-      expect(editAvatar.avatarUrl, suiteUser.tUserProfile.avatarUrl);
-      expect(find.text(suiteUser.tUserProfile.username), findsOneWidget);
-      expect(find.text(suiteUser.tUser.gynxId), findsOneWidget);
+      expect(editAvatar.avatarUrl, suiteUser.vUserDetail.avatarUrl);
+      expect(find.text(suiteUser.vUserDetail.username), findsOneWidget);
+      expect(find.text(suiteUser.vUserDetail.gynxId), findsOneWidget);
       expect(
-        find.text(suiteUser.tUserProfile.selfIntroduction),
+        find.text(suiteUser.vUserDetail.selfIntroduction),
         findsOneWidget,
       );
       verifyZeroInteractions(mockEditProfileController);
@@ -114,21 +114,21 @@ void main() {
 
     testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
       await pumpWidget(tester);
-      await tester.tap(find.text(suiteUser.tUserProfile.username));
+      await tester.tap(find.text(suiteUser.vUserDetail.username));
       await tester.pumpAndSettle();
       expect(find.byType(EditUsername), findsOneWidget);
     });
 
     testWidgets('GynxID をタップしたら、EditGynxId を表示されること', (tester) async {
       await pumpWidget(tester);
-      await tester.tap(find.text(suiteUser.tUser.gynxId));
+      await tester.tap(find.text(suiteUser.vUserDetail.gynxId));
       await tester.pumpAndSettle();
       expect(find.byType(EditGynxId), findsOneWidget);
     });
 
     testWidgets('自己紹介をタップしたら、EditSelfIntroduction を表示されること', (tester) async {
       await pumpWidget(tester);
-      await tester.tap(find.text(suiteUser.tUserProfile.selfIntroduction));
+      await tester.tap(find.text(suiteUser.vUserDetail.selfIntroduction));
       await tester.pumpAndSettle();
       expect(find.byType(EditSelfIntroduction), findsOneWidget);
     });

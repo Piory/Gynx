@@ -28,6 +28,11 @@ class EditGynxId extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textScaler = MediaQuery.textScalerOf(context);
     final formKey = GlobalObjectKey<FormBuilderState>(context);
+    final initialGynxId = ref.watch(
+      userNotifierProvider.select(
+        (value) => value.value?.vUserDetail.gynxId,
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,6 +58,7 @@ class EditGynxId extends ConsumerWidget {
                 context: context,
                 ref: ref,
                 formKey: formKey,
+                initialGynxId: initialGynxId,
               ),
             ),
           ),
@@ -65,34 +71,26 @@ class EditGynxId extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Consumer(
-                builder: (context, ref, child) {
-                  return FormBuilderTextField(
-                    name: 'gynx_id',
-                    initialValue: ref.watch(
-                      userNotifierProvider.select(
-                        (value) => value.value?.tUser.gynxId,
-                      ),
-                    ),
-                    autofocus: true,
-                    maxLength: _maxLengthLength,
-                    keyboardType: TextInputType.text,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(_minLength),
-                      FormBuilderValidators.maxLength(_maxLengthLength),
-                      FormBuilderValidators.match(
-                        RegExp(r'^[a-zA-Z0-9_]+$'),
-                        errorText: context.l10n.editGynxIdRegexpError,
-                      ),
-                    ]),
-                    decoration: InputDecoration(
-                      prefixText: '@',
-                      prefixStyle: textTheme.bodyMedium,
-                      labelText: context.l10n.gynxId,
-                    ),
-                    onSaved: (value) => onSaved(value?.trim()),
-                  );
-                },
+              FormBuilderTextField(
+                name: 'gynx_id',
+                initialValue: initialGynxId,
+                autofocus: true,
+                maxLength: _maxLengthLength,
+                keyboardType: TextInputType.text,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.minLength(_minLength),
+                  FormBuilderValidators.maxLength(_maxLengthLength),
+                  FormBuilderValidators.match(
+                    RegExp(r'^[a-zA-Z0-9_]+$'),
+                    errorText: context.l10n.editGynxIdRegexpError,
+                  ),
+                ]),
+                decoration: InputDecoration(
+                  prefixText: '@',
+                  prefixStyle: textTheme.bodyMedium,
+                  labelText: context.l10n.gynxId,
+                ),
+                onSaved: (value) => onSaved(value?.trim()),
               ),
               const Gap(SpaceSize.s16),
               Text(
@@ -122,7 +120,11 @@ class EditGynxId extends ConsumerWidget {
     required BuildContext context,
     required WidgetRef ref,
     required GlobalKey<FormBuilderState> formKey,
+    required String? initialGynxId,
   }) async {
+    if (initialGynxId == null) {
+      return;
+    }
     final loadingDialog = GetIt.I<LoadingDialog>();
     final pageNavigator = GetIt.I<PageNavigator>();
     final checkGynxIdExistenceUseCase = GetIt.I<CheckGynxIdExistenceUsecase>();
@@ -134,12 +136,7 @@ class EditGynxId extends ConsumerWidget {
       }
       final gynxIdField = currentState.fields['gynx_id']!;
       final inputtedGynxId = gynxIdField.value as String;
-      final gynxId = ref.read(
-        userNotifierProvider.select(
-          (value) => value.value?.tUser.gynxId,
-        ),
-      );
-      if (inputtedGynxId == gynxId) {
+      if (inputtedGynxId == initialGynxId) {
         if (context.mounted) {
           pageNavigator.pop(context);
         }

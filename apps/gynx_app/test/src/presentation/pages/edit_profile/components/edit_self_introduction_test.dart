@@ -74,7 +74,7 @@ void main() {
       );
       expect(
         formBuilderTextField.initialValue,
-        suiteUser.tUserProfile.selfIntroduction,
+        suiteUser.vUserDetail.selfIntroduction,
       );
     });
 

@@ -4,8 +4,7 @@ import 'package:gynx_app/src/domain/entities/user.dart';
 import 'package:gynx_app/src/domain/exceptions/user_not_signed_in_exception.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_repository.dart';
+import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -15,13 +14,11 @@ import 'suite_user_interactor_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<AuthRepository>(),
-  MockSpec<TUserRepository>(),
-  MockSpec<TUserProfileRepository>(),
+  MockSpec<VUserDetailRepository>(),
 ])
 void main() {
   final mockAuthRepository = MockAuthRepository();
-  final mockTUserRepository = MockTUserRepository();
-  final mockTUserProfileRepository = MockTUserProfileRepository();
+  final mockVUserDetailRepository = MockVUserDetailRepository();
   final user = User(
     id: faker.guid.guid(),
     displayName: faker.guid.guid(),
@@ -31,21 +28,17 @@ void main() {
     createdAt: DateTime.now(),
     lastSignInAt: DateTime.now(),
   );
-  final tUser = generateDummyTUser();
-  final tUserProfile = generateDummyTUserProfile();
+  final vUserDetail = generateDummyVUserDetail();
   final interactor = SuiteUserInteractor(
     mockAuthRepository,
-    mockTUserRepository,
-    mockTUserProfileRepository,
+    mockVUserDetailRepository,
   );
 
   tearDown(() {
     verifyNoMoreInteractions(mockAuthRepository);
-    verifyNoMoreInteractions(mockTUserRepository);
-    verifyNoMoreInteractions(mockTUserProfileRepository);
+    verifyNoMoreInteractions(mockVUserDetailRepository);
     reset(mockAuthRepository);
-    reset(mockTUserRepository);
-    reset(mockTUserProfileRepository);
+    reset(mockVUserDetailRepository);
   });
 
   group('正常系', () {
@@ -53,21 +46,17 @@ void main() {
       '正常に、SuiteUser が返されること',
       () async {
         when(mockAuthRepository.currentUser).thenReturn(user);
-        when(mockTUserRepository.findByPrimaryKey(user.id))
-            .thenAnswer((_) async => tUser);
-        when(mockTUserProfileRepository.findByPrimaryKey(user.id))
-            .thenAnswer((_) async => tUserProfile);
+        when(mockVUserDetailRepository.findByUserId(user.id))
+            .thenAnswer((_) async => vUserDetail);
         expect(
           await interactor.execute(),
           SuiteUser(
-            tUser: tUser,
-            tUserProfile: tUserProfile,
+            vUserDetail: vUserDetail,
           ),
         );
         verifyInOrder([
           mockAuthRepository.currentUser,
-          mockTUserRepository.findByPrimaryKey(user.id),
-          mockTUserProfileRepository.findByPrimaryKey(user.id),
+          mockVUserDetailRepository.findByUserId(user.id),
         ]);
       },
     );

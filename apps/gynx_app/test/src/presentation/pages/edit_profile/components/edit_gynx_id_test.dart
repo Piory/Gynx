@@ -88,7 +88,7 @@ void main() {
       );
       expect(
         formBuilderTextField.initialValue,
-        suiteUser.tUser.gynxId,
+        suiteUser.vUserDetail.gynxId,
       );
     });
 
@@ -116,7 +116,7 @@ void main() {
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          suiteUser.tUser.gynxId,
+          suiteUser.vUserDetail.gynxId,
         );
         verifyNever(mockLoadingDialog.show());
         verifyNever(mockPageNavigator.pop(any));

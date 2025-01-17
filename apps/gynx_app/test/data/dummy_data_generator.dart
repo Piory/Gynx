@@ -13,8 +13,7 @@ import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 
 SuiteUser generateDummySuiteUser() => SuiteUser(
-      tUser: generateDummyTUser(),
-      tUserProfile: generateDummyTUserProfile(),
+      vUserDetail: generateDummyVUserDetail(),
     );
 
 TUser generateDummyTUser() => TUser(
@@ -89,7 +88,7 @@ VUserDetail generateDummyVUserDetail({
 }) =>
     VUserDetail(
       userId: faker.guid.guid(),
-      gynxId: faker.guid.guid(),
+      gynxId: 'gynx_id',
       username: faker.person.name(),
       avatarUrl:
           faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,

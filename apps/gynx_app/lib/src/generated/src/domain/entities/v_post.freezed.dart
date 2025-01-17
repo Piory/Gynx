@@ -286,7 +286,7 @@ class _$VPostImpl extends _VPost {
       @JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'medias')
       @protected
-      required final List<TPostMedia> medias,
+      final List<TPostMedia> medias = const [],
       @JsonKey(name: 'avatar_url') required this.avatarUrl,
       @JsonKey(name: 'self_introduction') required this.selfIntroduction,
       @JsonKey(name: 'follow_count') required this.followCount,
@@ -414,9 +414,7 @@ abstract class _VPost extends VPost {
           @JsonKey(name: 'user_id') required final String userId,
           @JsonKey(name: 'repost') required final VPost? repost,
           @JsonKey(name: 'text') required final String? text,
-          @JsonKey(name: 'medias')
-          @protected
-          required final List<TPostMedia> medias,
+          @JsonKey(name: 'medias') @protected final List<TPostMedia> medias,
           @JsonKey(name: 'avatar_url') required final String avatarUrl,
           @JsonKey(name: 'self_introduction')
           required final String selfIntroduction,

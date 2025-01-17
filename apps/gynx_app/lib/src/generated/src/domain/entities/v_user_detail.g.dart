@@ -13,9 +13,10 @@ _$VUserDetailImpl _$$VUserDetailImplFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String,
       avatarUrl: json['avatar_url'] as String?,
       selfIntroduction: json['self_introduction'] as String,
-      latestPosts: (json['latest_posts'] as List<dynamic>)
-          .map((e) => VPost.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      latestPosts: (json['latest_posts'] as List<dynamic>?)
+              ?.map((e) => VPost.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       followCount: (json['follow_count'] as num).toInt(),
       followerCount: (json['follower_count'] as num).toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),

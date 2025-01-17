@@ -57,7 +57,7 @@ FROM t_posts p1
          LEFT JOIN t_post_medias pm ON p1.id = pm.post_id
 GROUP BY p1.id;
 
-COMMENT ON VIEW v_posts IS '投稿ビュー';
+COMMENT ON VIEW v_posts IS e'@graphql({"primary_key_columns": ["post_id"]})';
 COMMENT ON COLUMN v_posts.post_id IS '投稿ID';
 COMMENT ON COLUMN v_posts.user_id IS 'ユーザーID';
 COMMENT ON COLUMN v_posts.repost IS 'リポスト';

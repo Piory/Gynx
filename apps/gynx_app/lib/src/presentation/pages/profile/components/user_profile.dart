@@ -41,7 +41,7 @@ class UserProfile extends StatelessWidget {
                 InkWell(
                   child: _createUserAvatar(suiteUser),
                   onTap: () {
-                    if (suiteUser?.tUserProfile.avatarUrl == null) {
+                    if (suiteUser?.vUserDetail.avatarUrl == null) {
                       return;
                     }
                     pageNavigator.push(
@@ -66,12 +66,12 @@ class UserProfile extends StatelessWidget {
           ),
           if (isLoading ||
               !StringUtils.isNullOrEmpty(
-                suiteUser?.tUserProfile.selfIntroduction,
+                suiteUser?.vUserDetail.selfIntroduction,
               ))
             const Gap(SpaceSize.s16),
           if (isLoading ||
               !StringUtils.isNullOrEmpty(
-                suiteUser?.tUserProfile.selfIntroduction,
+                suiteUser?.vUserDetail.selfIntroduction,
               ))
             _createSelfIntroductionWidget(context),
           const Gap(SpaceSize.s16),
@@ -164,14 +164,14 @@ class UserProfile extends StatelessWidget {
   Widget _createUserAvatar(SuiteUser? suiteUser) {
     final userAvatar = UserAvatar(
       isLoading: isLoading,
-      avatarUrl: suiteUser?.tUserProfile.avatarUrl,
+      avatarUrl: suiteUser?.vUserDetail.avatarUrl,
       radius: 25,
     );
     if (suiteUser == null) {
       return userAvatar;
     }
     return Hero(
-      tag: suiteUser.tUser.id,
+      tag: suiteUser.vUserDetail.userId,
       child: userAvatar,
     );
   }
@@ -185,7 +185,7 @@ class UserProfile extends StatelessWidget {
     }
     final theme = Theme.of(context);
     return Text(
-      suiteUser?.tUserProfile.username ?? '',
+      suiteUser?.vUserDetail.username ?? '',
       style: theme.textTheme.titleMedium!.copyWith(
         fontWeight: FontWeight.bold,
         fontSize: 20,
@@ -200,7 +200,7 @@ class UserProfile extends StatelessWidget {
         height: 16,
       );
     }
-    final gynxId = suiteUser?.tUser.gynxId;
+    final gynxId = suiteUser?.vUserDetail.gynxId;
     final theme = Theme.of(context);
     return Text(
       gynxId == null ? '' : '@$gynxId',
@@ -231,7 +231,7 @@ class UserProfile extends StatelessWidget {
         ],
       );
     }
-    final selfIntroduction = suiteUser?.tUserProfile.selfIntroduction;
+    final selfIntroduction = suiteUser?.vUserDetail.selfIntroduction;
     final theme = Theme.of(context);
     return Text(
       selfIntroduction!,

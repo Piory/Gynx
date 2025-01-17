@@ -8,7 +8,7 @@ SELECT up.user_id,
 FROM public.t_users u
          LEFT JOIN public.t_user_profiles up ON u.id = up.user_id;
 
-COMMENT ON VIEW v_users IS 'ユーザービュー';
+COMMENT ON VIEW v_users IS e'@graphql({"primary_key_columns": ["user_id"]})';
 COMMENT ON COLUMN v_users.user_id IS 'ユーザーID';
 COMMENT ON COLUMN v_users.gynx_id IS 'Gynx ID';
 COMMENT ON COLUMN v_users.username IS 'ユーザー名';

@@ -20,8 +20,8 @@ class ProfileAvatarPage extends ConsumerWidget {
         (value) => value.value,
       ),
     );
-    final userId = suiteUser?.tUser.id ?? '';
-    final avatarUrl = suiteUser?.tUserProfile.avatarUrl;
+    final userId = suiteUser?.vUserDetail.userId ?? '';
+    final avatarUrl = suiteUser?.vUserDetail.avatarUrl;
     return Stack(
       children: [
         DismissiblePage(

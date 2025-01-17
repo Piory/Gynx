@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:gynx_app/src/domain/exceptions/user_not_signed_in_exception.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart';
-import 'package:gynx_app/src/domain/repositories/t_user_repository.dart';
+import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,13 +11,11 @@ import 'package:injectable/injectable.dart';
 class SuiteUserInteractor implements SuiteUserUseCase {
   const SuiteUserInteractor(
     this._authRepository,
-    this._tUserRepository,
-    this._tUserProfileRepository,
+    this._vUserDetailRepository,
   );
 
   final AuthRepository _authRepository;
-  final TUserRepository _tUserRepository;
-  final TUserProfileRepository _tUserProfileRepository;
+  final VUserDetailRepository _vUserDetailRepository;
 
   @override
   Future<SuiteUser> execute() async {
@@ -27,8 +24,7 @@ class SuiteUserInteractor implements SuiteUserUseCase {
       throw const UserNotSignedInException();
     }
     return SuiteUser(
-      tUser: await _tUserRepository.findByPrimaryKey(userId),
-      tUserProfile: await _tUserProfileRepository.findByPrimaryKey(userId),
+      vUserDetail: await _vUserDetailRepository.findByUserId(userId),
     );
   }
 }

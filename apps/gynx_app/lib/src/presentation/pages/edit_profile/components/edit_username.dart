@@ -70,7 +70,7 @@ class EditUsername extends StatelessWidget {
                     name: 'username',
                     initialValue: ref.watch(
                       userNotifierProvider.select(
-                        (value) => value.value?.tUserProfile.username,
+                        (value) => value.value?.vUserDetail.username,
                       ),
                     ),
                     autofocus: true,

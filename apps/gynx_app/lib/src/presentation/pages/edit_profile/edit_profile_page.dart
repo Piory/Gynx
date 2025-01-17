@@ -87,7 +87,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 builder: (context, ref, child) {
                   return ref.watch(userNotifierProvider).when(
                         data: (suiteUser) {
-                          final avatarUrl = suiteUser.tUserProfile.avatarUrl;
+                          final avatarUrl = suiteUser.vUserDetail.avatarUrl;
                           return EditAvatar(
                             avatarUrl: _isDeleteAvatar
                                 ? null
@@ -123,8 +123,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       builder: (context, ref, child) {
                         return ref.watch(userNotifierProvider).when(
                               data: (suiteUser) {
-                                final username =
-                                    suiteUser.tUserProfile.username;
+                                final username = suiteUser.vUserDetail.username;
                                 return EditProfileRow(
                                   name: context.l10n.username,
                                   text: _afterUsername ?? username,
@@ -161,7 +160,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       builder: (context, ref, _) {
                         return ref.watch(userNotifierProvider).when(
                               data: (suiteUser) {
-                                final gynxId = suiteUser.tUser.gynxId;
+                                final gynxId = suiteUser.vUserDetail.gynxId;
                                 return EditProfileRow(
                                   name: context.l10n.gynxId,
                                   text: _afterGynxId ?? gynxId,
@@ -201,7 +200,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                         return ref.watch(userNotifierProvider).when(
                               data: (suiteUser) {
                                 final selfIntroduction =
-                                    suiteUser.tUserProfile.selfIntroduction;
+                                    suiteUser.vUserDetail.selfIntroduction;
                                 return EditProfileRow(
                                   name: context.l10n.selfIntroduction,
                                   text: _afterSelfIntroduction ??

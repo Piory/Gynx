@@ -3,14 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:gynx_app/src/domain/entities/t_user.dart' as _i2;
-import 'package:gynx_app/src/domain/entities/t_user_profile.dart' as _i3;
-import 'package:gynx_app/src/domain/repositories/auth_repository.dart' as _i4;
-import 'package:gynx_app/src/domain/repositories/t_user_profile_repository.dart'
-    as _i7;
-import 'package:gynx_app/src/domain/repositories/t_user_repository.dart' as _i6;
+import 'package:gynx_app/src/domain/entities/v_user_detail.dart' as _i2;
+import 'package:gynx_app/src/domain/repositories/auth_repository.dart' as _i3;
+import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart'
+    as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -26,18 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeTUser_0 extends _i1.SmartFake implements _i2.TUser {
-  _FakeTUser_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeTUserProfile_1 extends _i1.SmartFake implements _i3.TUserProfile {
-  _FakeTUserProfile_1(
+class _FakeVUserDetail_0 extends _i1.SmartFake implements _i2.VUserDetail {
+  _FakeVUserDetail_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -49,7 +37,7 @@ class _FakeTUserProfile_1 extends _i1.SmartFake implements _i3.TUserProfile {
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   @override
   bool isSignedIn() => (super.noSuchMethod(
         Invocation.method(
@@ -61,223 +49,146 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       ) as bool);
 
   @override
-  _i5.Future<void> signInWithAnonymous() => (super.noSuchMethod(
+  _i4.Future<void> signInWithAnonymous() => (super.noSuchMethod(
         Invocation.method(
           #signInWithAnonymous,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> signInWithApple() => (super.noSuchMethod(
+  _i4.Future<void> signInWithApple() => (super.noSuchMethod(
         Invocation.method(
           #signInWithApple,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> signInWithGoogle() => (super.noSuchMethod(
+  _i4.Future<void> signInWithGoogle() => (super.noSuchMethod(
         Invocation.method(
           #signInWithGoogle,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> linkWithApple() => (super.noSuchMethod(
+  _i4.Future<void> linkWithApple() => (super.noSuchMethod(
         Invocation.method(
           #linkWithApple,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> linkWithGoogle() => (super.noSuchMethod(
+  _i4.Future<void> linkWithGoogle() => (super.noSuchMethod(
         Invocation.method(
           #linkWithGoogle,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> linkWithX() => (super.noSuchMethod(
+  _i4.Future<void> linkWithX() => (super.noSuchMethod(
         Invocation.method(
           #linkWithX,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> linkWithTwitch() => (super.noSuchMethod(
+  _i4.Future<void> linkWithTwitch() => (super.noSuchMethod(
         Invocation.method(
           #linkWithTwitch,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> linkWithDiscord() => (super.noSuchMethod(
+  _i4.Future<void> linkWithDiscord() => (super.noSuchMethod(
         Invocation.method(
           #linkWithDiscord,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> signOut() => (super.noSuchMethod(
+  _i4.Future<void> signOut() => (super.noSuchMethod(
         Invocation.method(
           #signOut,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
-/// A class which mocks [TUserRepository].
+/// A class which mocks [VUserDetailRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTUserRepository extends _i1.Mock implements _i6.TUserRepository {
+class MockVUserDetailRepository extends _i1.Mock
+    implements _i5.VUserDetailRepository {
   @override
-  _i5.Future<_i2.TUser> findByPrimaryKey(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #findByPrimaryKey,
-          [id],
-        ),
-        returnValue: _i5.Future<_i2.TUser>.value(_FakeTUser_0(
-          this,
-          Invocation.method(
-            #findByPrimaryKey,
-            [id],
-          ),
-        )),
-        returnValueForMissingStub: _i5.Future<_i2.TUser>.value(_FakeTUser_0(
-          this,
-          Invocation.method(
-            #findByPrimaryKey,
-            [id],
-          ),
-        )),
-      ) as _i5.Future<_i2.TUser>);
-
-  @override
-  _i5.Future<_i2.TUser> findByGynxId(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(
-          #findByGynxId,
-          [gynxId],
-        ),
-        returnValue: _i5.Future<_i2.TUser>.value(_FakeTUser_0(
-          this,
-          Invocation.method(
-            #findByGynxId,
-            [gynxId],
-          ),
-        )),
-        returnValueForMissingStub: _i5.Future<_i2.TUser>.value(_FakeTUser_0(
-          this,
-          Invocation.method(
-            #findByGynxId,
-            [gynxId],
-          ),
-        )),
-      ) as _i5.Future<_i2.TUser>);
-
-  @override
-  _i5.Future<bool> existsById(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(
-          #existsById,
-          [gynxId],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
-
-  @override
-  _i5.Future<void> updateByPrimaryKey({
-    required String? id,
-    required String? gynxId,
-  }) =>
+  _i4.Future<_i2.VUserDetail> findByUserId(String? userId) =>
       (super.noSuchMethod(
         Invocation.method(
-          #updateByPrimaryKey,
-          [],
-          {
-            #id: id,
-            #gynxId: gynxId,
-          },
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-}
-
-/// A class which mocks [TUserProfileRepository].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockTUserProfileRepository extends _i1.Mock
-    implements _i7.TUserProfileRepository {
-  @override
-  _i5.Future<_i3.TUserProfile> findByPrimaryKey(String? userId) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #findByPrimaryKey,
+          #findByUserId,
           [userId],
         ),
-        returnValue: _i5.Future<_i3.TUserProfile>.value(_FakeTUserProfile_1(
+        returnValue: _i4.Future<_i2.VUserDetail>.value(_FakeVUserDetail_0(
           this,
           Invocation.method(
-            #findByPrimaryKey,
+            #findByUserId,
             [userId],
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i3.TUserProfile>.value(_FakeTUserProfile_1(
+            _i4.Future<_i2.VUserDetail>.value(_FakeVUserDetail_0(
           this,
           Invocation.method(
-            #findByPrimaryKey,
+            #findByUserId,
             [userId],
           ),
         )),
-      ) as _i5.Future<_i3.TUserProfile>);
+      ) as _i4.Future<_i2.VUserDetail>);
 
   @override
-  _i5.Future<void> updateByPrimaryKeySelective({
-    required String? userId,
-    required String? username,
-    required String? avatarUrl,
-    bool? isDeleteAvatarUrl = false,
-    required String? selfIntroduction,
-  }) =>
+  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) =>
       (super.noSuchMethod(
         Invocation.method(
-          #updateByPrimaryKeySelective,
-          [],
-          {
-            #userId: userId,
-            #username: username,
-            #avatarUrl: avatarUrl,
-            #isDeleteAvatarUrl: isDeleteAvatarUrl,
-            #selfIntroduction: selfIntroduction,
-          },
+          #findByGynxId,
+          [gynxId],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<_i2.VUserDetail>.value(_FakeVUserDetail_0(
+          this,
+          Invocation.method(
+            #findByGynxId,
+            [gynxId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.VUserDetail>.value(_FakeVUserDetail_0(
+          this,
+          Invocation.method(
+            #findByGynxId,
+            [gynxId],
+          ),
+        )),
+      ) as _i4.Future<_i2.VUserDetail>);
 }

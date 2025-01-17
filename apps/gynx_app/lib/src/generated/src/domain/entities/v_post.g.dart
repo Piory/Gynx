@@ -13,9 +13,10 @@ _$VPostImpl _$$VPostImplFromJson(Map<String, dynamic> json) => _$VPostImpl(
           ? null
           : VPost.fromJson(json['repost'] as Map<String, dynamic>),
       text: json['text'] as String?,
-      medias: (json['medias'] as List<dynamic>)
-          .map((e) => TPostMedia.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      medias: (json['medias'] as List<dynamic>?)
+              ?.map((e) => TPostMedia.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       avatarUrl: json['avatar_url'] as String,
       selfIntroduction: json['self_introduction'] as String,
       followCount: (json['follow_count'] as num).toInt(),

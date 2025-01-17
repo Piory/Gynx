@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SuiteUser {
-  TUser get tUser => throw _privateConstructorUsedError;
-  TUserProfile get tUserProfile => throw _privateConstructorUsedError;
+  VUserDetail get vUserDetail => throw _privateConstructorUsedError;
 
   /// Create a copy of SuiteUser
   /// with the given fields replaced by the non-null parameter values.
@@ -31,10 +30,9 @@ abstract class $SuiteUserCopyWith<$Res> {
   factory $SuiteUserCopyWith(SuiteUser value, $Res Function(SuiteUser) then) =
       _$SuiteUserCopyWithImpl<$Res, SuiteUser>;
   @useResult
-  $Res call({TUser tUser, TUserProfile tUserProfile});
+  $Res call({VUserDetail vUserDetail});
 
-  $TUserCopyWith<$Res> get tUser;
-  $TUserProfileCopyWith<$Res> get tUserProfile;
+  $VUserDetailCopyWith<$Res> get vUserDetail;
 }
 
 /// @nodoc
@@ -52,18 +50,13 @@ class _$SuiteUserCopyWithImpl<$Res, $Val extends SuiteUser>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tUser = null,
-    Object? tUserProfile = null,
+    Object? vUserDetail = null,
   }) {
     return _then(_value.copyWith(
-      tUser: null == tUser
-          ? _value.tUser
-          : tUser // ignore: cast_nullable_to_non_nullable
-              as TUser,
-      tUserProfile: null == tUserProfile
-          ? _value.tUserProfile
-          : tUserProfile // ignore: cast_nullable_to_non_nullable
-              as TUserProfile,
+      vUserDetail: null == vUserDetail
+          ? _value.vUserDetail
+          : vUserDetail // ignore: cast_nullable_to_non_nullable
+              as VUserDetail,
     ) as $Val);
   }
 
@@ -71,19 +64,9 @@ class _$SuiteUserCopyWithImpl<$Res, $Val extends SuiteUser>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $TUserCopyWith<$Res> get tUser {
-    return $TUserCopyWith<$Res>(_value.tUser, (value) {
-      return _then(_value.copyWith(tUser: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SuiteUser
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TUserProfileCopyWith<$Res> get tUserProfile {
-    return $TUserProfileCopyWith<$Res>(_value.tUserProfile, (value) {
-      return _then(_value.copyWith(tUserProfile: value) as $Val);
+  $VUserDetailCopyWith<$Res> get vUserDetail {
+    return $VUserDetailCopyWith<$Res>(_value.vUserDetail, (value) {
+      return _then(_value.copyWith(vUserDetail: value) as $Val);
     });
   }
 }
@@ -96,12 +79,10 @@ abstract class _$$SuiteUserImplCopyWith<$Res>
       __$$SuiteUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TUser tUser, TUserProfile tUserProfile});
+  $Res call({VUserDetail vUserDetail});
 
   @override
-  $TUserCopyWith<$Res> get tUser;
-  @override
-  $TUserProfileCopyWith<$Res> get tUserProfile;
+  $VUserDetailCopyWith<$Res> get vUserDetail;
 }
 
 /// @nodoc
@@ -117,18 +98,13 @@ class __$$SuiteUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tUser = null,
-    Object? tUserProfile = null,
+    Object? vUserDetail = null,
   }) {
     return _then(_$SuiteUserImpl(
-      tUser: null == tUser
-          ? _value.tUser
-          : tUser // ignore: cast_nullable_to_non_nullable
-              as TUser,
-      tUserProfile: null == tUserProfile
-          ? _value.tUserProfile
-          : tUserProfile // ignore: cast_nullable_to_non_nullable
-              as TUserProfile,
+      vUserDetail: null == vUserDetail
+          ? _value.vUserDetail
+          : vUserDetail // ignore: cast_nullable_to_non_nullable
+              as VUserDetail,
     ));
   }
 }
@@ -136,17 +112,14 @@ class __$$SuiteUserImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuiteUserImpl extends _SuiteUser {
-  const _$SuiteUserImpl({required this.tUser, required this.tUserProfile})
-      : super._();
+  const _$SuiteUserImpl({required this.vUserDetail}) : super._();
 
   @override
-  final TUser tUser;
-  @override
-  final TUserProfile tUserProfile;
+  final VUserDetail vUserDetail;
 
   @override
   String toString() {
-    return 'SuiteUser(tUser: $tUser, tUserProfile: $tUserProfile)';
+    return 'SuiteUser(vUserDetail: $vUserDetail)';
   }
 
   @override
@@ -154,13 +127,12 @@ class _$SuiteUserImpl extends _SuiteUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuiteUserImpl &&
-            (identical(other.tUser, tUser) || other.tUser == tUser) &&
-            (identical(other.tUserProfile, tUserProfile) ||
-                other.tUserProfile == tUserProfile));
+            (identical(other.vUserDetail, vUserDetail) ||
+                other.vUserDetail == vUserDetail));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tUser, tUserProfile);
+  int get hashCode => Object.hash(runtimeType, vUserDetail);
 
   /// Create a copy of SuiteUser
   /// with the given fields replaced by the non-null parameter values.
@@ -172,15 +144,12 @@ class _$SuiteUserImpl extends _SuiteUser {
 }
 
 abstract class _SuiteUser extends SuiteUser {
-  const factory _SuiteUser(
-      {required final TUser tUser,
-      required final TUserProfile tUserProfile}) = _$SuiteUserImpl;
+  const factory _SuiteUser({required final VUserDetail vUserDetail}) =
+      _$SuiteUserImpl;
   const _SuiteUser._() : super._();
 
   @override
-  TUser get tUser;
-  @override
-  TUserProfile get tUserProfile;
+  VUserDetail get vUserDetail;
 
   /// Create a copy of SuiteUser
   /// with the given fields replaced by the non-null parameter values.

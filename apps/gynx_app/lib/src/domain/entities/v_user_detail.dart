@@ -13,7 +13,10 @@ class VUserDetail with _$VUserDetail {
     @JsonKey(name: 'username') required String username,
     @JsonKey(name: 'avatar_url') required String? avatarUrl,
     @JsonKey(name: 'self_introduction') required String selfIntroduction,
-    @JsonKey(name: 'latest_posts') @protected required List<VPost> latestPosts,
+    @JsonKey(name: 'latest_posts')
+    @Default([])
+    @protected
+    List<VPost> latestPosts,
     @JsonKey(name: 'follow_count') required int followCount,
     @JsonKey(name: 'follower_count') required int followerCount,
     @JsonKey(name: 'created_at') required DateTime createdAt,

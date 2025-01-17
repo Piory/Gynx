@@ -177,6 +177,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i599.CheckGynxIdExistenceUsecase>(() =>
         _i1022.CheckGynxIdExistenceInteractor(gh<_i252.TUserRepository>()));
+    gh.singleton<_i650.SuiteUserUseCase>(() => _i977.SuiteUserInteractor(
+          gh<_i714.AuthRepository>(),
+          gh<_i675.VUserDetailRepository>(),
+        ));
     gh.singleton<_i89.LinkIdentityUseCase>(
         () => _i994.LinkIdentityInteractor(gh<_i714.AuthRepository>()));
     gh.singleton<_i928.SignInWithAnonymousUseCase>(
@@ -197,11 +201,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i67.SignInWithOAuthUseCase>(
         () => _i496.SignInWithOAuthInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i650.SuiteUserUseCase>(() => _i977.SuiteUserInteractor(
-          gh<_i714.AuthRepository>(),
-          gh<_i252.TUserRepository>(),
-          gh<_i429.TUserProfileRepository>(),
-        ));
     gh.singleton<_i400.SignInController>(() => _i400.SignInController(
           gh<_i67.SignInWithOAuthUseCase>(),
           gh<_i928.SignInWithAnonymousUseCase>(),

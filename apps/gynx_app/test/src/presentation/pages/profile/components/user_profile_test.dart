@@ -54,8 +54,8 @@ void main() {
     group('正常系', () {
       testWidgets('ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
         final suiteUser = generateDummySuiteUser();
-        final tUser = suiteUser.tUser;
-        final tUserProfile = suiteUser.tUserProfile;
+        final tUser = suiteUser.vUserDetail;
+        final tUserProfile = suiteUser.vUserDetail;
         await pumpWidget(
           tester: tester,
           suiteUser: suiteUser,
@@ -69,13 +69,12 @@ void main() {
         'UserAvatar をタップすると、PageNavigator#push に PageType.profileAvatar が渡されていること',
         (tester) async {
           final suiteUser = generateDummySuiteUser();
-          final tUserProfile = suiteUser.tUserProfile.copyWith(
-            avatarUrl: faker.image.loremPicsum(),
-          );
           await pumpWidget(
             tester: tester,
             suiteUser: suiteUser.copyWith(
-              tUserProfile: tUserProfile,
+              vUserDetail: suiteUser.vUserDetail.copyWith(
+                avatarUrl: faker.image.loremPicsum(),
+              ),
             ),
           );
           verifyNever(mockPageNavigator.push(any, PageType.profileAvatar));
@@ -88,13 +87,12 @@ void main() {
         'avatarUrl が設定されていない場合は、UserAvatar をタップしても、PageNavigator#push は呼ばれないこと',
         (tester) async {
           final suiteUser = generateDummySuiteUser();
-          final tUserProfile = suiteUser.tUserProfile.copyWith(
-            avatarUrl: null,
-          );
           await pumpWidget(
             tester: tester,
             suiteUser: suiteUser.copyWith(
-              tUserProfile: tUserProfile,
+              vUserDetail: suiteUser.vUserDetail.copyWith(
+                avatarUrl: null,
+              ),
             ),
           );
           await tester.tap(find.byType(UserAvatar));

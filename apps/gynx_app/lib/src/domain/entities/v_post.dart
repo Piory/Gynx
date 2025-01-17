@@ -12,7 +12,7 @@ class VPost with _$VPost {
     @JsonKey(name: 'user_id') required String userId,
     @JsonKey(name: 'repost') required VPost? repost,
     @JsonKey(name: 'text') required String? text,
-    @JsonKey(name: 'medias') @protected required List<TPostMedia> medias,
+    @JsonKey(name: 'medias') @Default([]) @protected List<TPostMedia> medias,
     @JsonKey(name: 'avatar_url') required String avatarUrl,
     @JsonKey(name: 'self_introduction') required String selfIntroduction,
     @JsonKey(name: 'follow_count') required int followCount,

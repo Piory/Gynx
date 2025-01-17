@@ -17,11 +17,12 @@ SELECT up.user_id,
         FROM t_user_follows
         WHERE user_id = u.id)        AS follower_count,
        u.created_at,
-       u.updated_at
+       u.updated_at,
+       u.deleted_at
 FROM t_users u
          LEFT JOIN t_user_profiles up ON u.id = up.user_id;
 
-COMMENT ON VIEW v_user_details IS 'ユーザービュー';
+COMMENT ON VIEW v_user_details IS 'ユーザー詳細ビュー';
 COMMENT ON COLUMN v_user_details.user_id IS 'ユーザーID';
 COMMENT ON COLUMN v_user_details.gynx_id IS 'Gynx ID';
 COMMENT ON COLUMN v_user_details.username IS 'ユーザー名';
@@ -32,3 +33,4 @@ COMMENT ON COLUMN v_user_details.follow_count IS 'フォロー数';
 COMMENT ON COLUMN v_user_details.follower_count IS 'フォロワー数';
 COMMENT ON COLUMN v_user_details.created_at IS '作成日時';
 COMMENT ON COLUMN v_user_details.updated_at IS '更新日時';
+COMMENT ON COLUMN v_user_details.deleted_at IS '削除日時';

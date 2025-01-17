@@ -257,7 +257,7 @@ class _$VUserDetailImpl extends _VUserDetail {
       @JsonKey(name: 'self_introduction') required this.selfIntroduction,
       @JsonKey(name: 'latest_posts')
       @protected
-      required final List<VPost> latestPosts,
+      final List<VPost> latestPosts = const [],
       @JsonKey(name: 'follow_count') required this.followCount,
       @JsonKey(name: 'follower_count') required this.followerCount,
       @JsonKey(name: 'created_at') required this.createdAt,
@@ -376,21 +376,19 @@ class _$VUserDetailImpl extends _VUserDetail {
 
 abstract class _VUserDetail extends VUserDetail {
   const factory _VUserDetail(
-          {@JsonKey(name: 'user_id') required final String userId,
-          @JsonKey(name: 'gynx_id') required final String gynxId,
-          @JsonKey(name: 'username') required final String username,
-          @JsonKey(name: 'avatar_url') required final String? avatarUrl,
-          @JsonKey(name: 'self_introduction')
-          required final String selfIntroduction,
-          @JsonKey(name: 'latest_posts')
-          @protected
-          required final List<VPost> latestPosts,
-          @JsonKey(name: 'follow_count') required final int followCount,
-          @JsonKey(name: 'follower_count') required final int followerCount,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
-          @JsonKey(name: 'updated_at') required final DateTime updatedAt,
-          @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
-      _$VUserDetailImpl;
+      {@JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'gynx_id') required final String gynxId,
+      @JsonKey(name: 'username') required final String username,
+      @JsonKey(name: 'avatar_url') required final String? avatarUrl,
+      @JsonKey(name: 'self_introduction')
+      required final String selfIntroduction,
+      @JsonKey(name: 'latest_posts') @protected final List<VPost> latestPosts,
+      @JsonKey(name: 'follow_count') required final int followCount,
+      @JsonKey(name: 'follower_count') required final int followerCount,
+      @JsonKey(name: 'created_at') required final DateTime createdAt,
+      @JsonKey(name: 'updated_at') required final DateTime updatedAt,
+      @JsonKey(name: 'deleted_at')
+      required final DateTime? deletedAt}) = _$VUserDetailImpl;
   const _VUserDetail._() : super._();
 
   factory _VUserDetail.fromJson(Map<String, dynamic> json) =

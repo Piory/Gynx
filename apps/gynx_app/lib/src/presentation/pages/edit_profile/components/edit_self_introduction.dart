@@ -71,7 +71,7 @@ class EditSelfIntroduction extends StatelessWidget {
                     name: 'self_introduction',
                     initialValue: ref.watch(
                       userNotifierProvider.select(
-                        (value) => value.value?.tUserProfile.selfIntroduction,
+                        (value) => value.value?.vUserDetail.selfIntroduction,
                       ),
                     ),
                     autofocus: true,
