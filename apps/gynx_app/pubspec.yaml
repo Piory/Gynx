@@ -38,8 +38,6 @@ dependencies:
   go_router: 14.6.1
   google_fonts: 6.2.1
   google_sign_in: 6.2.2
-  gynx_components:
-    path: ../../packages/gynx_components
   gynx_constants:
     path: ../../packages/gynx_constants
   gynx_l10n:

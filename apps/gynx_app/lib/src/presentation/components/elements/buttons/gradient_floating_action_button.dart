@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gynx_components/src/components/elements/boxes/gradient_box.dart';
+import 'package:gynx_app/src/presentation/components/elements/boxes/gradient_box.dart';
 
 class GradientFloatingActionButton extends StatelessWidget {
   const GradientFloatingActionButton({

@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 

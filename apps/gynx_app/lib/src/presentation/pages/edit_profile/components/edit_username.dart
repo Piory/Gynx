@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
 class EditUsername extends StatelessWidget {
@@ -14,9 +14,6 @@ class EditUsername extends StatelessWidget {
     super.key,
     required this.onSaved,
   });
-
-  static const _minLength = 3;
-  static const _maxLength = 20;
 
   final FormFieldSetter<String> onSaved;
 
@@ -74,11 +71,15 @@ class EditUsername extends StatelessWidget {
                       ),
                     ),
                     autofocus: true,
-                    maxLength: _maxLength,
+                    maxLength: Constant.usernameMaxLength,
                     keyboardType: TextInputType.text,
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(_minLength),
-                      FormBuilderValidators.maxLength(_maxLength),
+                      FormBuilderValidators.minLength(
+                        Constant.usernameMinLength,
+                      ),
+                      FormBuilderValidators.maxLength(
+                        Constant.usernameMaxLength,
+                      ),
                     ]),
                     decoration: InputDecoration(
                       labelText: context.l10n.username,
@@ -90,8 +91,8 @@ class EditUsername extends StatelessWidget {
               const Gap(SpaceSize.s16),
               Text(
                 context.l10n.editUsernameLength(
-                  _minLength,
-                  _maxLength,
+                  Constant.usernameMinLength,
+                  Constant.usernameMaxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,

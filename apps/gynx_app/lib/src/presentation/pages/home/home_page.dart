@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
+import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
+import 'package:gynx_app/src/presentation/layouts/glass_sliver_app_bar.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/components/create_post_form.dart';
-import 'package:gynx_components/gynx_components.dart' hide Post;
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:iconly/iconly.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 

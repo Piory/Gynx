@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_components/src/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
-import 'package:gynx_components/src/notifications/scroll_controller_notification.dart';
+import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
+import 'package:gynx_app/src/presentation/notifications/scroll_controller_notification.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class _VisibleDetectScrollControllerNotifierTest extends StatefulWidget {

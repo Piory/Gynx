@@ -10,6 +10,7 @@ import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_gynx_id.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -165,7 +166,7 @@ void main() {
     );
 
     testWidgets(
-      '文字列が17文字以上の場合、「${l10nJa.done}」をタップしたら、17文字目以降は切り取られること',
+      '文字列が${Constant.gynxIdMaxLength + 1}文字以上の場合、「${l10nJa.done}」をタップしたら、${Constant.gynxIdMaxLength + 1}文字目以降は切り取られること',
       (tester) async {
         var onSavedCallCount = 0;
         await pumpWidget(
@@ -182,7 +183,8 @@ void main() {
         expect(onSavedCallCount, 0);
         verifyNever(mockLoadingDialog.show());
         verifyNever(
-            mockCheckGynxIdExistenceUseCase.execute('1234567890123456'));
+          mockCheckGynxIdExistenceUseCase.execute('1234567890123456'),
+        );
         verifyNever(mockPageNavigator.pop(any));
         verifyNever(mockLoadingDialog.hide());
         await tester.tap(find.widgetWithText(TextButton, l10nJa.done));
@@ -199,10 +201,12 @@ void main() {
 
   group('準正常系', () {
     testWidgets(
-      'GynxID が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(4)}」が表示されること',
+      'GynxID が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.gynxIdMinLength)}」が表示されること',
       (tester) async {
-        final errorMessageFinder =
-            find.text(formBuilderLocalizationJa.minLengthErrorText(4));
+        final errorMessageFinder = find.text(
+          formBuilderLocalizationJa
+              .minLengthErrorText(Constant.gynxIdMinLength),
+        );
         await pumpWidget(
           tester: tester,
           onSaved: (_) => fail('unexpected onSaved'),
@@ -224,7 +228,7 @@ void main() {
     );
 
     testWidgets(
-      '文字列が3文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(4)}」が表示されること',
+      '文字列が3文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.gynxIdMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder =
             find.text(formBuilderLocalizationJa.minLengthErrorText(4));

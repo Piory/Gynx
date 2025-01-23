@@ -8,7 +8,7 @@ import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dar
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
 class EditGynxId extends ConsumerWidget {
@@ -16,9 +16,6 @@ class EditGynxId extends ConsumerWidget {
     super.key,
     required this.onSaved,
   });
-
-  static const _minLength = 4;
-  static const _maxLength = 16;
 
   final FormFieldSetter<String> onSaved;
 
@@ -75,11 +72,15 @@ class EditGynxId extends ConsumerWidget {
                 name: 'gynx_id',
                 initialValue: initialGynxId,
                 autofocus: true,
-                maxLength: _maxLength,
+                maxLength: Constant.gynxIdMaxLength,
                 keyboardType: TextInputType.text,
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.minLength(_minLength),
-                  FormBuilderValidators.maxLength(_maxLength),
+                  FormBuilderValidators.minLength(
+                    Constant.gynxIdMinLength,
+                  ),
+                  FormBuilderValidators.maxLength(
+                    Constant.gynxIdMaxLength,
+                  ),
                   FormBuilderValidators.match(
                     RegExp(r'^[a-zA-Z0-9_]+$'),
                     errorText: context.l10n.editGynxIdRegexpError,
@@ -95,8 +96,8 @@ class EditGynxId extends ConsumerWidget {
               const Gap(SpaceSize.s16),
               Text(
                 context.l10n.editGynxIdLength(
-                  _minLength,
-                  _maxLength,
+                  Constant.gynxIdMinLength,
+                  Constant.gynxIdMaxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,

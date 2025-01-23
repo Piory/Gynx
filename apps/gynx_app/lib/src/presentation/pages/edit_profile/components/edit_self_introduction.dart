@@ -7,7 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
 class EditSelfIntroduction extends StatelessWidget {
@@ -15,9 +15,6 @@ class EditSelfIntroduction extends StatelessWidget {
     super.key,
     required this.onSaved,
   });
-
-  static const _maxLines = 5;
-  static const _maxLength = 160;
 
   final FormFieldSetter<String> onSaved;
 
@@ -76,12 +73,12 @@ class EditSelfIntroduction extends StatelessWidget {
                     ),
                     autofocus: true,
                     minLines: 1,
-                    maxLines: _maxLines,
-                    maxLength: _maxLength,
+                    maxLines: Constant.selfIntroductionMaxLines,
+                    maxLength: Constant.selfIntroductionMaxLength,
                     keyboardType: TextInputType.multiline,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.maxLength(
-                        _maxLength,
+                        Constant.selfIntroductionMaxLength,
                         checkNullOrEmpty: false,
                       ),
                     ]),
@@ -90,7 +87,8 @@ class EditSelfIntroduction extends StatelessWidget {
                         (oldValue, newValue) {
                           final numLines =
                               '\n'.allMatches(newValue.text).length;
-                          if (numLines > _maxLines - 1) {
+                          if (numLines >
+                              Constant.selfIntroductionMaxLines - 1) {
                             return oldValue;
                           }
                           return newValue;
@@ -107,7 +105,7 @@ class EditSelfIntroduction extends StatelessWidget {
               const Gap(SpaceSize.s16),
               Text(
                 context.l10n.editSelfIntroductionLength(
-                  _maxLength,
+                  Constant.selfIntroductionMaxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,

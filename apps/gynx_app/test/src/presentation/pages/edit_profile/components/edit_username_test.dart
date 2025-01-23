@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_username.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -142,7 +143,7 @@ void main() {
 
   group('準正常系', () {
     testWidgets(
-      'username が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(3)}」が表示されること',
+      'username が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.usernameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder =
             find.text(formBuilderLocalizationJa.minLengthErrorText(3));
@@ -159,7 +160,7 @@ void main() {
     );
 
     testWidgets(
-      '文字列が2文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(3)}」が表示されること',
+      '文字列が2文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.usernameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder =
             find.text(formBuilderLocalizationJa.minLengthErrorText(3));

@@ -4,9 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gynx_components/src/extensions/ScrollControllerExtension.dart';
 
-part '../../../generated/src/components/parts/layouts/glass_navigation_bar.freezed.dart';
+part '../../generated/src/presentation/layouts/glass_navigation_bar.freezed.dart';
+
+extension ScrollControllerExtension on ScrollController {
+  void scrollToTop() {
+    // 一番上までスクロール済みの場合は何もしない
+    if (position.minScrollExtent == position.pixels) {
+      return;
+    }
+    animateTo(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+}
 
 @freezed
 class NavigationBarItem with _$NavigationBarItem {

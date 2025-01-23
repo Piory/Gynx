@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
 
 void main() {
   const child = Center(

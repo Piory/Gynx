@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

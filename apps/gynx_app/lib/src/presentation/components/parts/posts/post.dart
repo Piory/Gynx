@@ -6,7 +6,7 @@ import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';

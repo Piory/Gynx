@@ -11,7 +11,7 @@ import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_pro
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_username.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_controller.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';

@@ -9,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -118,14 +119,21 @@ void main() {
     );
 
     testWidgets(
-      '文字列が161文字以上の場合、「${l10nJa.done}」をタップしたら、161文字目以降は切り取られること',
+      '文字列が${Constant.selfIntroductionMaxLength + 1}文字以上の場合、「${l10nJa.done}」をタップしたら、${Constant.selfIntroductionMaxLength + 1}文字目以降は切り取られること',
       (tester) async {
-        final newSelfIntroduction = 'a' * 161;
+        final newSelfIntroduction =
+            'a' * (Constant.selfIntroductionMaxLength + 1);
         var onSavedCallCount = 0;
         await pumpWidget(
           tester: tester,
           onSaved: (selfIntroduction) {
-            expect(selfIntroduction, newSelfIntroduction.substring(0, 160));
+            expect(
+              selfIntroduction,
+              newSelfIntroduction.substring(
+                0,
+                Constant.selfIntroductionMaxLength,
+              ),
+            );
             onSavedCallCount++;
           },
         );

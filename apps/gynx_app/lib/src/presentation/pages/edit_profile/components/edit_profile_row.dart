@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_app/src/presentation/components/elements/shimmers/shimmer.dart';
+import 'package:gynx_constants/gynx_constants.dart';
 
 class EditProfileRow extends StatelessWidget {
   const EditProfileRow({

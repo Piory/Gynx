@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_components/gynx_components.dart';
+import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
+import 'package:gynx_app/src/presentation/layouts/glass_navigation_bar.dart';
+import 'package:gynx_app/src/presentation/notifications/scroll_controller_notification.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class _GlassNavigationBarTest extends StatefulWidget {
