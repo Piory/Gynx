@@ -1,4 +1,3 @@
-export 'src/components/elements/avatars/user_avatar.dart';
 export 'src/components/elements/boxes/gradient_box.dart';
 export 'src/components/elements/buttons/gradient_outlined_button.dart';
 export 'src/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';

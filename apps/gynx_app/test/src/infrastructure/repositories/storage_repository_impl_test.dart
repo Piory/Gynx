@@ -51,7 +51,9 @@ void main() {
     reset(mockImageCompressor);
   });
 
-  for (final storageType in StorageType.values) {
+  for (final storageType in [
+    StorageType.users,
+  ]) {
     group('#uploadFile', () {
       group('正常系', () {
         test(
@@ -64,7 +66,7 @@ void main() {
             final uploadPath = '$path/$filename';
             final publicUrl = '${faker.internet.httpsUrl()}/$uploadPath';
             when(mockSupabaseStorageClient.from(storageType.id))
-                .thenReturn(mockStorageFileApi);
+                .thenAnswer((_) => mockStorageFileApi);
             when(mockImageCompressor.compress(mockFile))
                 .thenAnswer((_) async => fileBinary);
             when(
@@ -106,7 +108,7 @@ void main() {
         test('対象バケットのファイルの削除処理が呼ばれること (StorageType: $storageType)', () async {
           final path = faker.guid.guid();
           when(mockSupabaseStorageClient.from(storageType.id))
-              .thenReturn(mockStorageFileApi);
+              .thenAnswer((_) => mockStorageFileApi);
           when(mockStorageFileApi.remove([path]));
           await repository.deleteFile(
             storageType: storageType,

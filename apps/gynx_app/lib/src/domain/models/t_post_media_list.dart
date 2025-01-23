@@ -14,4 +14,20 @@ class TPostMediaList with _$TPostMediaList {
       _$TPostMediaListFromJson({'tPostMedias': json});
 
   static const empty = TPostMediaList([]);
+
+  bool get isEmpty => tPostMedias.isEmpty;
+
+  bool get isNotEmpty => tPostMedias.isNotEmpty;
+
+  int get length => tPostMedias.length;
+
+  TPostMedia getByIndex(int index) {
+    return tPostMedias[index];
+  }
+
+  List<String> get urls => map((e) => e.url);
+
+  List<T> map<T>(T Function(TPostMedia tPostMedia) f) {
+    return tPostMedias.map(f).toList();
+  }
 }

@@ -5,7 +5,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
@@ -69,7 +69,7 @@ class EditUsername extends StatelessWidget {
                   return FormBuilderTextField(
                     name: 'username',
                     initialValue: ref.watch(
-                      userNotifierProvider.select(
+                      suiteUserNotifierProvider.select(
                         (value) => value.value?.vUserDetail.username,
                       ),
                     ),

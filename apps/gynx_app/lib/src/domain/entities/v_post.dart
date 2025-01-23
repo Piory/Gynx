@@ -13,10 +13,8 @@ class VPost with _$VPost {
     @JsonKey(name: 'repost') required VPost? repost,
     @JsonKey(name: 'text') required String? text,
     @JsonKey(name: 'medias') @Default([]) @protected List<TPostMedia> medias,
-    @JsonKey(name: 'avatar_url') required String avatarUrl,
-    @JsonKey(name: 'self_introduction') required String selfIntroduction,
-    @JsonKey(name: 'follow_count') required int followCount,
-    @JsonKey(name: 'follower_count') required int followerCount,
+    @JsonKey(name: 'repost_count') required int repostCount,
+    @JsonKey(name: 'favorite_count') required int favoriteCount,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
     @JsonKey(name: 'deleted_at') required DateTime? deletedAt,
@@ -26,5 +24,5 @@ class VPost with _$VPost {
 
   factory VPost.fromJson(Map<String, dynamic> json) => _$VPostFromJson(json);
 
-  TPostMediaList get mediasList => TPostMediaList(medias);
+  TPostMediaList get tPostMediaList => TPostMediaList(medias);
 }

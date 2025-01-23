@@ -6,8 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gynx_app/src/infrastructure/di/injector.dart';
 import 'package:gynx_app/src/infrastructure/supabase/supabase_initializer.dart';
 import 'package:gynx_app/src/my_app.dart';
+import 'package:timeago_flutter/timeago_flutter.dart' as timeago;
 
 void main() async {
+  timeago.setLocaleMessages('ja', timeago.JaMessages());
+  timeago.setLocaleMessages('en', timeago.EnMessages());
+  timeago.setDefaultLocale('en');
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await supabaseInitializer();

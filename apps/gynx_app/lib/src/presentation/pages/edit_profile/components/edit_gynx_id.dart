@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
@@ -18,7 +18,7 @@ class EditGynxId extends ConsumerWidget {
   });
 
   static const _minLength = 4;
-  static const _maxLengthLength = 16;
+  static const _maxLength = 16;
 
   final FormFieldSetter<String> onSaved;
 
@@ -29,7 +29,7 @@ class EditGynxId extends ConsumerWidget {
     final textScaler = MediaQuery.textScalerOf(context);
     final formKey = GlobalObjectKey<FormBuilderState>(context);
     final initialGynxId = ref.watch(
-      userNotifierProvider.select(
+      suiteUserNotifierProvider.select(
         (value) => value.value?.vUserDetail.gynxId,
       ),
     );
@@ -75,11 +75,11 @@ class EditGynxId extends ConsumerWidget {
                 name: 'gynx_id',
                 initialValue: initialGynxId,
                 autofocus: true,
-                maxLength: _maxLengthLength,
+                maxLength: _maxLength,
                 keyboardType: TextInputType.text,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.minLength(_minLength),
-                  FormBuilderValidators.maxLength(_maxLengthLength),
+                  FormBuilderValidators.maxLength(_maxLength),
                   FormBuilderValidators.match(
                     RegExp(r'^[a-zA-Z0-9_]+$'),
                     errorText: context.l10n.editGynxIdRegexpError,
@@ -96,7 +96,7 @@ class EditGynxId extends ConsumerWidget {
               Text(
                 context.l10n.editGynxIdLength(
                   _minLength,
-                  _maxLengthLength,
+                  _maxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,

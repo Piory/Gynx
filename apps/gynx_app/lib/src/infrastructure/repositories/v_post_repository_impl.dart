@@ -19,11 +19,22 @@ class VPostRepositoryImpl implements VPostRepository {
   }
 
   @override
+  Future<VPostList> findByLatest(int count) async {
+    final res = await _client
+        .from(viewName)
+        .select()
+        .order('post_id', ascending: false)
+        .limit(count);
+    return VPostList.fromJson(res);
+  }
+
+  @override
   Future<VPostList> findBySincePostId(int sincePostId, int count) async {
     final res = await _client
         .from(viewName)
         .select()
         .gt('post_id', sincePostId)
+        .order('post_id', ascending: true)
         .limit(count);
     return VPostList.fromJson(res);
   }
@@ -34,6 +45,7 @@ class VPostRepositoryImpl implements VPostRepository {
         .from(viewName)
         .select()
         .lt('post_id', maxPostId)
+        .order('post_id', ascending: false)
         .limit(count);
     return VPostList.fromJson(res);
   }

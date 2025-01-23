@@ -221,6 +221,18 @@ abstract class L10n {
   /// **'Posts'**
   String get posts;
 
+  /// No description provided for @postHintText.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s are you doing lately?'**
+  String get postHintText;
+
+  /// No description provided for @postRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the post content.'**
+  String get postRequiredError;
+
   /// No description provided for @username.
   ///
   /// In en, this message translates to:
@@ -436,6 +448,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'{follower} Follower'**
   String follower(int follower);
+
+  /// No description provided for @uploadVideoTooLongErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Video is too long'**
+  String get uploadVideoTooLongErrorTitle;
+
+  /// No description provided for @uploadVideoTooLongErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload a video that is {max} seconds or less.'**
+  String uploadVideoTooLongErrorMessage(int max);
 
   /// No description provided for @setting.
   ///

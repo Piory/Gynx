@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_avatar.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_gynx_id.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_profile_row.dart';
@@ -85,7 +85,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             children: [
               Consumer(
                 builder: (context, ref, child) {
-                  return ref.watch(userNotifierProvider).when(
+                  return ref.watch(suiteUserNotifierProvider).when(
                         data: (suiteUser) {
                           final avatarUrl = suiteUser.vUserDetail.avatarUrl;
                           return EditAvatar(
@@ -121,7 +121,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   children: [
                     Consumer(
                       builder: (context, ref, child) {
-                        return ref.watch(userNotifierProvider).when(
+                        return ref.watch(suiteUserNotifierProvider).when(
                               data: (suiteUser) {
                                 final username = suiteUser.vUserDetail.username;
                                 return EditProfileRow(
@@ -158,7 +158,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                     ),
                     Consumer(
                       builder: (context, ref, _) {
-                        return ref.watch(userNotifierProvider).when(
+                        return ref.watch(suiteUserNotifierProvider).when(
                               data: (suiteUser) {
                                 final gynxId = suiteUser.vUserDetail.gynxId;
                                 return EditProfileRow(
@@ -197,7 +197,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                     ),
                     Consumer(
                       builder: (context, ref, child) {
-                        return ref.watch(userNotifierProvider).when(
+                        return ref.watch(suiteUserNotifierProvider).when(
                               data: (suiteUser) {
                                 final selfIntroduction =
                                     suiteUser.vUserDetail.selfIntroduction;

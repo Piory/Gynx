@@ -8,10 +8,11 @@ const homeStatefulShellBranch = TypedStatefulShellBranch<HomeShellBranch>(
   routes: [
     TypedGoRoute<HomePageRoute>(
       path: '/home',
-      routes: [
-        TypedGoRoute<HomeSample1PageRoute>(path: 'sample1'),
-        TypedGoRoute<HomeSample2PageRoute>(path: 'sample2'),
-      ],
+      // routes: [
+      // TypedGoRoute<PostMediaListViewPageRoute>(
+      //   path: 'posts/:postId/medias/:index',
+      // ),
+      // ],
     ),
   ],
 );
@@ -25,72 +26,35 @@ class HomePageRoute extends GoRouteData {
   }
 }
 
-class HomeSample1PageRoute extends GoRouteData {
-  const HomeSample1PageRoute();
+@TypedGoRoute<PostMediaListViewPageRoute>(
+  path: '/home/posts/:postId/medias/:index',
+)
+class PostMediaListViewPageRoute extends GoRouteData {
+  const PostMediaListViewPageRoute({
+    required this.postId,
+    required this.index,
+  });
+
+  final int postId;
+  final int index;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Home Sample1 Page'),
-            OutlinedButton(
-              onPressed: () => const HomeSample2PageRoute().push<void>(context),
-              child: const Text('Sample2'),
-            ),
-            ElevatedButton(
-              onPressed: () async =>
-                  CupertinoScaffold.showCupertinoModalBottomSheet(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => const Scaffold(
-                  body: Center(
-                    child: Text('Modal'),
-                  ),
-                ),
-              ),
-              child: const Text('Open Modal'),
-            ),
-          ],
-        ),
-      ),
-    );
+  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    return GetIt.I<AuthRepository>().isSignedIn()
+        ? null
+        : const RootPageRoute().location;
   }
-}
-
-class HomeSample2PageRoute extends GoRouteData {
-  const HomeSample2PageRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Home Sample2 Page'),
-            OutlinedButton(
-              onPressed: () => const HomeSample1PageRoute().push<void>(context),
-              child: const Text('Sample1'),
-            ),
-            ElevatedButton(
-              onPressed: () async =>
-                  CupertinoScaffold.showCupertinoModalBottomSheet(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => const Scaffold(
-                  body: Center(
-                    child: Text('Modal'),
-                  ),
-                ),
-              ),
-              child: const Text('Open Modal'),
-            ),
-          ],
-        ),
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CustomTransitionPage<void>(
+      key: state.pageKey,
+      child: PostMediaListViewPage(
+        postId: postId,
+        index: index,
       ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
     );
   }
 }

@@ -14,4 +14,40 @@ class VPostList with _$VPostList {
       VPostList(json.map(VPost.fromJson).toList());
 
   static const empty = VPostList([]);
+
+  bool get isEmpty => vPosts.isEmpty;
+
+  int get length => vPosts.length;
+
+  VPost getByIndex(int index) {
+    return vPosts[index];
+  }
+
+  VPost getByPostId(int postId) {
+    return vPosts.firstWhere((vPost) => vPost.postId == postId);
+  }
+
+  VPostList add(VPost vPost) {
+    return VPostList([...vPosts, vPost]);
+  }
+
+  VPostList addAll(VPostList vPostList) {
+    return VPostList([...vPosts, ...vPostList.vPosts]);
+  }
+
+  VPostList sortPostId({
+    bool descending = false,
+  }) {
+    return VPostList(
+      List<VPost>.from(vPosts)
+        ..sort(
+          (a, b) {
+            if (descending) {
+              return b.postId.compareTo(a.postId);
+            }
+            return a.postId.compareTo(b.postId);
+          },
+        ),
+    );
+  }
 }

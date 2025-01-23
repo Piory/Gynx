@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class GradientOutlinedButton extends StatelessWidget {
   const GradientOutlinedButton({
     super.key,
+    this.style,
     required this.onPressed,
     required this.child,
   });
 
+  final ButtonStyle? style;
   final VoidCallback onPressed;
   final Widget child;
 
@@ -25,6 +27,7 @@ class GradientOutlinedButton extends StatelessWidget {
       ).createShader(bounds),
       child: OutlinedButton(
         onPressed: onPressed,
+        style: style,
         child: child,
       ),
     );

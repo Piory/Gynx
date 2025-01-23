@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart';
 import 'package:gynx_components/gynx_components.dart';
@@ -51,7 +51,7 @@ class ProfilePage extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: Consumer(
                       builder: (context, ref, _) {
-                        return ref.watch(userNotifierProvider).when(
+                        return ref.watch(suiteUserNotifierProvider).when(
                               data: (suiteUser) => UserProfile(
                                 suiteUser: suiteUser,
                               ),

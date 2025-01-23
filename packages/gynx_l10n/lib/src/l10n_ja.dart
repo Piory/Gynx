@@ -78,6 +78,12 @@ class L10nJa extends L10n {
   String get posts => '投稿';
 
   @override
+  String get postHintText => '最近どうしてる？';
+
+  @override
+  String get postRequiredError => '投稿内容を入力してください。';
+
+  @override
   String get username => 'ユーザー名';
 
   @override
@@ -199,6 +205,14 @@ class L10nJa extends L10n {
     final String followerString = followerNumberFormat.format(follower);
 
     return '$followerString フォロワー';
+  }
+
+  @override
+  String get uploadVideoTooLongErrorTitle => '動画の長さが長すぎます';
+
+  @override
+  String uploadVideoTooLongErrorMessage(int max) {
+    return '動画の長さは、$max秒以内でアップロードしてください。';
   }
 
   @override

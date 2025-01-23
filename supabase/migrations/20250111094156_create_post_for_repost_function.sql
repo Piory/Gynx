@@ -1,28 +1,28 @@
 CREATE OR REPLACE FUNCTION create_post_for_repost(
-    userId UUID,
-    timelineType TIMELINE_TYPE,
-    targetPostId BIGINT
+    post_user_id UUID,
+    timeline_type TIMELINE_TYPE,
+    target_post_id BIGINT
 )
-    RETURNS VOID AS
+    RETURNS BIGINT AS
 $$
 DECLARE
-    postId      BIGINT := generate_snowflake_id();
-    followCount INT;
+    post_id      BIGINT := generate_snowflake_id();
+    follow_count INT;
 BEGIN
     BEGIN
         -- 投稿を作成
-        INSERT INTO t_posts (id, user_id, post_id) VALUES (postId, userId, targetPostId);
+        INSERT INTO t_posts (id, user_id, post_id) VALUES (post_id, post_user_id, target_post_id);
         -- 自分のタイムラインに投稿を追加
-        INSERT INTO t_user_timelines (user_id, type, post_id) VALUES (userId, timelineType, postId);
+        INSERT INTO t_user_timelines (user_id, type, post_id) VALUES (post_user_id, timeline_type, post_id);
         -- フォロワーのタイムラインにも投稿を追加
-        SELECT COUNT(*) FROM t_user_follows WHERE follow_user_id = userId INTO followCount;
-        IF followCount > 0 THEN
+        SELECT COUNT(*) FROM t_user_follows WHERE follow_user_id = post_user_id INTO follow_count;
+        IF follow_count > 0 THEN
             INSERT INTO t_user_timelines (user_id, type, post_id)
-            SELECT user_id, timelineType, postId
+            SELECT user_id, timeline_type, post_id
             FROM t_user_follows
-            WHERE follow_user_id = userId;
+            WHERE follow_user_id = post_user_id;
         END IF;
-        RETURN;
+        RETURN post_id;
     EXCEPTION
         WHEN OTHERS THEN
             RAISE;

@@ -31,14 +31,10 @@ mixin _$VPost {
   @JsonKey(name: 'medias')
   @protected
   List<TPostMedia> get medias => throw _privateConstructorUsedError;
-  @JsonKey(name: 'avatar_url')
-  String get avatarUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'self_introduction')
-  String get selfIntroduction => throw _privateConstructorUsedError;
-  @JsonKey(name: 'follow_count')
-  int get followCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'follower_count')
-  int get followerCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'repost_count')
+  int get repostCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'favorite_count')
+  int get favoriteCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -66,10 +62,8 @@ abstract class $VPostCopyWith<$Res> {
       @JsonKey(name: 'repost') VPost? repost,
       @JsonKey(name: 'text') String? text,
       @JsonKey(name: 'medias') @protected List<TPostMedia> medias,
-      @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'self_introduction') String selfIntroduction,
-      @JsonKey(name: 'follow_count') int followCount,
-      @JsonKey(name: 'follower_count') int followerCount,
+      @JsonKey(name: 'repost_count') int repostCount,
+      @JsonKey(name: 'favorite_count') int favoriteCount,
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
       @JsonKey(name: 'deleted_at') DateTime? deletedAt});
@@ -97,10 +91,8 @@ class _$VPostCopyWithImpl<$Res, $Val extends VPost>
     Object? repost = freezed,
     Object? text = freezed,
     Object? medias = null,
-    Object? avatarUrl = null,
-    Object? selfIntroduction = null,
-    Object? followCount = null,
-    Object? followerCount = null,
+    Object? repostCount = null,
+    Object? favoriteCount = null,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
@@ -126,21 +118,13 @@ class _$VPostCopyWithImpl<$Res, $Val extends VPost>
           ? _value.medias
           : medias // ignore: cast_nullable_to_non_nullable
               as List<TPostMedia>,
-      avatarUrl: null == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      followCount: null == followCount
-          ? _value.followCount
-          : followCount // ignore: cast_nullable_to_non_nullable
+      repostCount: null == repostCount
+          ? _value.repostCount
+          : repostCount // ignore: cast_nullable_to_non_nullable
               as int,
-      followerCount: null == followerCount
-          ? _value.followerCount
-          : followerCount // ignore: cast_nullable_to_non_nullable
+      favoriteCount: null == favoriteCount
+          ? _value.favoriteCount
+          : favoriteCount // ignore: cast_nullable_to_non_nullable
               as int,
       createdAt: null == createdAt
           ? _value.createdAt
@@ -185,10 +169,8 @@ abstract class _$$VPostImplCopyWith<$Res> implements $VPostCopyWith<$Res> {
       @JsonKey(name: 'repost') VPost? repost,
       @JsonKey(name: 'text') String? text,
       @JsonKey(name: 'medias') @protected List<TPostMedia> medias,
-      @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'self_introduction') String selfIntroduction,
-      @JsonKey(name: 'follow_count') int followCount,
-      @JsonKey(name: 'follower_count') int followerCount,
+      @JsonKey(name: 'repost_count') int repostCount,
+      @JsonKey(name: 'favorite_count') int favoriteCount,
       @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
       @JsonKey(name: 'deleted_at') DateTime? deletedAt});
@@ -215,10 +197,8 @@ class __$$VPostImplCopyWithImpl<$Res>
     Object? repost = freezed,
     Object? text = freezed,
     Object? medias = null,
-    Object? avatarUrl = null,
-    Object? selfIntroduction = null,
-    Object? followCount = null,
-    Object? followerCount = null,
+    Object? repostCount = null,
+    Object? favoriteCount = null,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
@@ -244,21 +224,13 @@ class __$$VPostImplCopyWithImpl<$Res>
           ? _value._medias
           : medias // ignore: cast_nullable_to_non_nullable
               as List<TPostMedia>,
-      avatarUrl: null == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      followCount: null == followCount
-          ? _value.followCount
-          : followCount // ignore: cast_nullable_to_non_nullable
+      repostCount: null == repostCount
+          ? _value.repostCount
+          : repostCount // ignore: cast_nullable_to_non_nullable
               as int,
-      followerCount: null == followerCount
-          ? _value.followerCount
-          : followerCount // ignore: cast_nullable_to_non_nullable
+      favoriteCount: null == favoriteCount
+          ? _value.favoriteCount
+          : favoriteCount // ignore: cast_nullable_to_non_nullable
               as int,
       createdAt: null == createdAt
           ? _value.createdAt
@@ -287,10 +259,8 @@ class _$VPostImpl extends _VPost {
       @JsonKey(name: 'medias')
       @protected
       final List<TPostMedia> medias = const [],
-      @JsonKey(name: 'avatar_url') required this.avatarUrl,
-      @JsonKey(name: 'self_introduction') required this.selfIntroduction,
-      @JsonKey(name: 'follow_count') required this.followCount,
-      @JsonKey(name: 'follower_count') required this.followerCount,
+      @JsonKey(name: 'repost_count') required this.repostCount,
+      @JsonKey(name: 'favorite_count') required this.favoriteCount,
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
       @JsonKey(name: 'deleted_at') required this.deletedAt})
@@ -323,17 +293,11 @@ class _$VPostImpl extends _VPost {
   }
 
   @override
-  @JsonKey(name: 'avatar_url')
-  final String avatarUrl;
+  @JsonKey(name: 'repost_count')
+  final int repostCount;
   @override
-  @JsonKey(name: 'self_introduction')
-  final String selfIntroduction;
-  @override
-  @JsonKey(name: 'follow_count')
-  final int followCount;
-  @override
-  @JsonKey(name: 'follower_count')
-  final int followerCount;
+  @JsonKey(name: 'favorite_count')
+  final int favoriteCount;
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
@@ -346,7 +310,7 @@ class _$VPostImpl extends _VPost {
 
   @override
   String toString() {
-    return 'VPost(postId: $postId, userId: $userId, repost: $repost, text: $text, medias: $medias, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, followCount: $followCount, followerCount: $followerCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'VPost(postId: $postId, userId: $userId, repost: $repost, text: $text, medias: $medias, repostCount: $repostCount, favoriteCount: $favoriteCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 
   @override
@@ -359,14 +323,10 @@ class _$VPostImpl extends _VPost {
             (identical(other.repost, repost) || other.repost == repost) &&
             (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other._medias, _medias) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.selfIntroduction, selfIntroduction) ||
-                other.selfIntroduction == selfIntroduction) &&
-            (identical(other.followCount, followCount) ||
-                other.followCount == followCount) &&
-            (identical(other.followerCount, followerCount) ||
-                other.followerCount == followerCount) &&
+            (identical(other.repostCount, repostCount) ||
+                other.repostCount == repostCount) &&
+            (identical(other.favoriteCount, favoriteCount) ||
+                other.favoriteCount == favoriteCount) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -384,10 +344,8 @@ class _$VPostImpl extends _VPost {
       repost,
       text,
       const DeepCollectionEquality().hash(_medias),
-      avatarUrl,
-      selfIntroduction,
-      followCount,
-      followerCount,
+      repostCount,
+      favoriteCount,
       createdAt,
       updatedAt,
       deletedAt);
@@ -415,11 +373,8 @@ abstract class _VPost extends VPost {
           @JsonKey(name: 'repost') required final VPost? repost,
           @JsonKey(name: 'text') required final String? text,
           @JsonKey(name: 'medias') @protected final List<TPostMedia> medias,
-          @JsonKey(name: 'avatar_url') required final String avatarUrl,
-          @JsonKey(name: 'self_introduction')
-          required final String selfIntroduction,
-          @JsonKey(name: 'follow_count') required final int followCount,
-          @JsonKey(name: 'follower_count') required final int followerCount,
+          @JsonKey(name: 'repost_count') required final int repostCount,
+          @JsonKey(name: 'favorite_count') required final int favoriteCount,
           @JsonKey(name: 'created_at') required final DateTime createdAt,
           @JsonKey(name: 'updated_at') required final DateTime updatedAt,
           @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
@@ -445,17 +400,11 @@ abstract class _VPost extends VPost {
   @protected
   List<TPostMedia> get medias;
   @override
-  @JsonKey(name: 'avatar_url')
-  String get avatarUrl;
+  @JsonKey(name: 'repost_count')
+  int get repostCount;
   @override
-  @JsonKey(name: 'self_introduction')
-  String get selfIntroduction;
-  @override
-  @JsonKey(name: 'follow_count')
-  int get followCount;
-  @override
-  @JsonKey(name: 'follower_count')
-  int get followerCount;
+  @JsonKey(name: 'favorite_count')
+  int get favoriteCount;
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;

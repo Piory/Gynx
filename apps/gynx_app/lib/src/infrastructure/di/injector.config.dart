@@ -8,10 +8,19 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_video_info/flutter_video_info.dart' as _i766;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:gynx_app/src/application/interactors/check_gynx_id_existence_interactor.dart'
     as _i1022;
+import 'package:gynx_app/src/application/interactors/create_post_interactor.dart'
+    as _i1009;
+import 'package:gynx_app/src/application/interactors/fetch_post_interactor.dart'
+    as _i785;
+import 'package:gynx_app/src/application/interactors/find_user_detail_interactor.dart'
+    as _i345;
+import 'package:gynx_app/src/application/interactors/find_user_interactor.dart'
+    as _i868;
 import 'package:gynx_app/src/application/interactors/link_identity_interactor.dart'
     as _i994;
 import 'package:gynx_app/src/application/interactors/sign_in_with_anonymous_interactor.dart'
@@ -26,6 +35,7 @@ import 'package:gynx_app/src/application/interactors/update_user_profile_interac
     as _i484;
 import 'package:gynx_app/src/domain/generators/uuid_generator.dart' as _i8;
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart' as _i714;
+import 'package:gynx_app/src/domain/repositories/post_repository.dart' as _i940;
 import 'package:gynx_app/src/domain/repositories/storage_repository.dart'
     as _i850;
 import 'package:gynx_app/src/domain/repositories/t_post_media_repository.dart'
@@ -46,8 +56,15 @@ import 'package:gynx_app/src/domain/repositories/v_post_repository.dart'
     as _i290;
 import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart'
     as _i675;
+import 'package:gynx_app/src/domain/repositories/v_user_repository.dart'
+    as _i532;
 import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
     as _i599;
+import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart' as _i751;
+import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart' as _i926;
+import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart'
+    as _i67;
+import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart' as _i826;
 import 'package:gynx_app/src/domain/usecases/link_identity_usecase.dart'
     as _i89;
 import 'package:gynx_app/src/domain/usecases/sign_in_with_anonymous_usecase.dart'
@@ -58,6 +75,8 @@ import 'package:gynx_app/src/domain/usecases/sign_out_usecase.dart' as _i990;
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i650;
 import 'package:gynx_app/src/domain/usecases/update_user_profile_usecase.dart'
     as _i433;
+import 'package:gynx_app/src/infrastructure/di/modules/flutter_video_info_module.dart'
+    as _i224;
 import 'package:gynx_app/src/infrastructure/di/modules/google_module.dart'
     as _i337;
 import 'package:gynx_app/src/infrastructure/di/modules/image_picker_module.dart'
@@ -76,6 +95,8 @@ import 'package:gynx_app/src/infrastructure/images/image_compressor.dart'
     as _i265;
 import 'package:gynx_app/src/infrastructure/repositories/auth_repository_impl.dart'
     as _i19;
+import 'package:gynx_app/src/infrastructure/repositories/post_repository_impl.dart'
+    as _i6;
 import 'package:gynx_app/src/infrastructure/repositories/storage_repository_impl.dart'
     as _i165;
 import 'package:gynx_app/src/infrastructure/repositories/t_post_media_repository_impl.dart'
@@ -96,6 +117,8 @@ import 'package:gynx_app/src/infrastructure/repositories/v_post_repository_impl.
     as _i313;
 import 'package:gynx_app/src/infrastructure/repositories/v_user_detail_repository_impl.dart'
     as _i525;
+import 'package:gynx_app/src/infrastructure/repositories/v_user_repository_impl.dart'
+    as _i557;
 import 'package:gynx_app/src/infrastructure/router/page_navigator_impl.dart'
     as _i83;
 import 'package:gynx_app/src/presentation/dialogs/alert.dart' as _i862;
@@ -105,6 +128,8 @@ import 'package:gynx_app/src/presentation/navigation/page_navigator.dart'
     as _i626;
 import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_controller.dart'
     as _i69;
+import 'package:gynx_app/src/presentation/pages/home/home_controller.dart'
+    as _i1004;
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart'
     as _i723;
 import 'package:gynx_app/src/presentation/pages/setting/setting_controller.dart'
@@ -131,10 +156,13 @@ extension GetItInjectableX on _i174.GetIt {
     final googleModule = _$GoogleModule();
     final supabaseModule = _$SupabaseModule();
     final imagePickerModule = _$ImagePickerModule();
+    final flutterVideoInfoModule = _$FlutterVideoInfoModule();
     gh.singleton<_i706.Uuid>(() => uuidModule.uuid);
     gh.singleton<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
     gh.singleton<_i454.SupabaseClient>(() => supabaseModule.client);
     gh.singleton<_i183.ImagePicker>(() => imagePickerModule.imagePicker);
+    gh.singleton<_i766.FlutterVideoInfo>(
+        () => flutterVideoInfoModule.flutterVideoInfo);
     gh.singleton<_i265.ImageCompressor>(() => const _i265.ImageCompressor());
     gh.singleton<_i190.LoadingDialog>(() => _i64.DialogImpl());
     gh.singleton<_i703.Notify>(() => _i136.NotifyImpl());
@@ -168,8 +196,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i35.TPostRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i532.VUserRepository>(
+        () => _i557.VUserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i56.TUserPostFavoriteRepository>(() =>
         _i231.TUserPostFavoriteRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i926.FetchPostUseCase>(
+        () => _i785.FetchPostInteractor(gh<_i290.VPostRepository>()));
+    gh.singleton<_i940.PostRepository>(
+        () => _i6.PostRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i723.ProfileController>(() => _i723.ProfileController(
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
@@ -177,6 +211,15 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i599.CheckGynxIdExistenceUsecase>(() =>
         _i1022.CheckGynxIdExistenceInteractor(gh<_i252.TUserRepository>()));
+    gh.singleton<_i67.FindUserDetailUseCase>(() =>
+        _i345.FindUserDetailInteractor(gh<_i675.VUserDetailRepository>()));
+    gh.singleton<_i751.CreatePostUseCase>(() => _i1009.CreatePostInteractor(
+          gh<_i8.UuidGenerator>(),
+          gh<_i714.AuthRepository>(),
+          gh<_i850.StorageRepository>(),
+          gh<_i940.PostRepository>(),
+          gh<_i290.VPostRepository>(),
+        ));
     gh.singleton<_i650.SuiteUserUseCase>(() => _i977.SuiteUserInteractor(
           gh<_i714.AuthRepository>(),
           gh<_i675.VUserDetailRepository>(),
@@ -201,6 +244,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i67.SignInWithOAuthUseCase>(
         () => _i496.SignInWithOAuthInteractor(gh<_i714.AuthRepository>()));
+    gh.singleton<_i1004.HomeController>(
+        () => _i1004.HomeController(gh<_i751.CreatePostUseCase>()));
+    gh.singleton<_i826.FindUserUseCase>(
+        () => _i868.FindUserInteractor(gh<_i532.VUserRepository>()));
     gh.singleton<_i400.SignInController>(() => _i400.SignInController(
           gh<_i67.SignInWithOAuthUseCase>(),
           gh<_i928.SignInWithAnonymousUseCase>(),
@@ -225,3 +272,5 @@ class _$GoogleModule extends _i337.GoogleModule {}
 class _$SupabaseModule extends _i412.SupabaseModule {}
 
 class _$ImagePickerModule extends _i704.ImagePickerModule {}
+
+class _$FlutterVideoInfoModule extends _i224.FlutterVideoInfoModule {}

@@ -17,10 +17,8 @@ _$VPostImpl _$$VPostImplFromJson(Map<String, dynamic> json) => _$VPostImpl(
               ?.map((e) => TPostMedia.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      avatarUrl: json['avatar_url'] as String,
-      selfIntroduction: json['self_introduction'] as String,
-      followCount: (json['follow_count'] as num).toInt(),
-      followerCount: (json['follower_count'] as num).toInt(),
+      repostCount: (json['repost_count'] as num).toInt(),
+      favoriteCount: (json['favorite_count'] as num).toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt: json['deleted_at'] == null
@@ -35,10 +33,8 @@ Map<String, dynamic> _$$VPostImplToJson(_$VPostImpl instance) =>
       'repost': instance.repost,
       'text': instance.text,
       'medias': instance.medias,
-      'avatar_url': instance.avatarUrl,
-      'self_introduction': instance.selfIntroduction,
-      'follow_count': instance.followCount,
-      'follower_count': instance.followerCount,
+      'repost_count': instance.repostCount,
+      'favorite_count': instance.favoriteCount,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
       'deleted_at': instance.deletedAt?.toIso8601String(),

@@ -48,6 +48,9 @@
   "share": "共有",
   "post": "投稿",
   "posts": "投稿",
+  "postedAt": "",
+  "postHintText": "最近どうしてる？",
+  "postRequiredError": "投稿内容を入力してください。",
   "username": "ユーザー名",
   "gynxId": "Gynx ID",
   "selfIntroduction": "自己紹介",
@@ -97,6 +100,15 @@
       "follower": {
         "type": "int",
         "format": "compact"
+      }
+    }
+  },
+  "uploadVideoTooLongErrorTitle": "動画の長さが長すぎます",
+  "uploadVideoTooLongErrorMessage": "動画の長さは、{max}秒以内でアップロードしてください。",
+  "@uploadVideoTooLongErrorMessage": {
+    "placeholders": {
+      "max": {
+        "type": "int"
       }
     }
   },

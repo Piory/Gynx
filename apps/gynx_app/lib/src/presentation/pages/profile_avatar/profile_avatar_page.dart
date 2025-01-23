@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' hide Dialog;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:photo_view/photo_view.dart';
 
@@ -17,9 +17,7 @@ class ProfileAvatarPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
     final suiteUser = ref.read(
-      userNotifierProvider.select(
-        (value) => value.value,
-      ),
+      suiteUserNotifierProvider.select((value) => value.value),
     );
     final userId = suiteUser?.vUserDetail.userId ?? '';
     final avatarUrl = suiteUser!.vUserDetail.avatarUrl!;

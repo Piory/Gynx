@@ -1,33 +1,33 @@
 CREATE OR REPLACE FUNCTION create_post(
-    userId UUID,
-    timelineType TIMELINE_TYPE,
+    post_user_id UUID,
+    timeline_type TIMELINE_TYPE,
     text TEXT,
     medias JSONB
 )
-    RETURNS VOID AS
+    RETURNS BIGINT AS
 $$
 DECLARE
-    postId      BIGINT := generate_snowflake_id();
-    followCount INT;
+    post_id      BIGINT := generate_snowflake_id();
+    follow_count INT;
 BEGIN
     BEGIN
         -- 投稿を作成
-        INSERT INTO t_posts (id, user_id, text) VALUES (postId, userId, text);
+        INSERT INTO t_posts (id, user_id, text) VALUES (post_id, post_user_id, text);
         -- 投稿メディアを作成
         INSERT INTO t_post_medias (post_id, display_order, type, url)
-        SELECT postId, idx, (media ->> 'type')::MEDIA_TYPE, media ->> 'url'
+        SELECT post_id, idx, (media ->> 'type')::MEDIA_TYPE, media ->> 'url'
         FROM jsonb_array_elements(medias) WITH ORDINALITY arr(media, idx);
         -- 自分のタイムラインに投稿を追加
-        INSERT INTO t_user_timelines (user_id, type, post_id) VALUES (userId, timelineType, postId);
+        INSERT INTO t_user_timelines (user_id, type, post_id) VALUES (post_user_id, timeline_type, post_id);
         -- フォロワーのタイムラインにも投稿を追加
-        SELECT COUNT(*) FROM t_user_follows WHERE follow_user_id = userId INTO followCount;
-        IF followCount > 0 THEN
+        SELECT COUNT(*) FROM t_user_follows WHERE follow_user_id = post_user_id INTO follow_count;
+        IF follow_count > 0 THEN
             INSERT INTO t_user_timelines (user_id, type, post_id)
-            SELECT user_id, timelineType, postId
+            SELECT user_id, timeline_type, post_id
             FROM t_user_follows
-            WHERE follow_user_id = userId;
+            WHERE follow_user_id = post_user_id;
         END IF;
-        RETURN;
+        RETURN post_id;
     EXCEPTION
         WHEN OTHERS THEN
             RAISE;

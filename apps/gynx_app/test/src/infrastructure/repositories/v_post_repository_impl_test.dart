@@ -15,238 +15,67 @@ void main() {
     faker.guid.guid(),
     httpClient: mockHttpClient,
   );
+  final vPost1 = generateDummyVPost(postId: 1);
+  final vPost2 = generateDummyVPost(postId: 2);
+  final vPost3 = generateDummyVPost(postId: 3);
+  final vPost4 = generateDummyVPost(postId: 4);
+  final vPost5 = generateDummyVPost(postId: 5);
   final vPostRepository = VPostRepositoryImpl(mockSupabaseClient);
 
-  final tPostMedias = [
-    generateDummyTPostMedia(),
-    generateDummyTPostMedia(),
-  ];
-  final vPost = generateDummyVPost(
-    postId: 1,
-  );
-  final vPostWithMedia = vPost.copyWith(
-    medias: tPostMedias,
-  );
-  final vPostWithRepost = vPost.copyWith(
-    repost: vPostWithMedia,
-  );
-
-  tearDown(mockHttpClient.reset);
+  setUpAll(() async {
+    await mockSupabaseClient.from(viewName).insert([
+      vPost1.toJson(),
+      vPost2.toJson(),
+      vPost3.toJson(),
+      vPost4.toJson(),
+      vPost5.toJson(),
+    ]);
+  });
 
   tearDownAll(mockHttpClient.close);
 
   group('#findByPostId', () {
     group('正常系', () {
-      test('正常にデータが1件取得されること', () async {
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        final foundVPost = await vPostRepository.findByPostId(vPost.postId);
-        expect(foundVPost, vPost);
-      });
-
-      test('正常にデータが1件取得されること（メディアあり）', () async {
-        await mockSupabaseClient.from(viewName).insert(vPostWithMedia.toJson());
-        final foundVPost =
-            await vPostRepository.findByPostId(vPostWithMedia.postId);
-        expect(foundVPost, vPostWithMedia);
-      });
-
-      test('正常にデータが1件取得されること（リポストあり）', () async {
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPostWithRepost.toJson());
-        final foundVPost =
-            await vPostRepository.findByPostId(vPostWithRepost.postId);
-        expect(foundVPost, vPostWithRepost);
+      test('正常にデータが1件作成されること', () async {
+        final actual = await vPostRepository.findByPostId(vPost3.postId);
+        expect(actual, vPost3);
       });
     });
   });
 
-  group('findBySincePostId', () {
+  group('#findByLatest', () {
     group('正常系', () {
-      test('指定した ID より、大きい ID のデータが取得できること', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId + 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId + 1,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost2.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost3.toJson());
-        final foundVPostList =
-            await vPostRepository.findBySincePostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2, vPost3]));
-      });
-
-      test('指定した ID より、大きい ID のデータが取得できること（メディアあり）', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId + 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId + 1,
-        );
-        final vPost2WithMedia = vPost2.copyWith(
-          medias: tPostMedias,
-        );
-        final vPost3WithMedia = vPost3.copyWith(
-          medias: tPostMedias,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost2WithMedia.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost3WithMedia.toJson());
-        final foundVPostList =
-            await vPostRepository.findBySincePostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2WithMedia, vPost3WithMedia]));
-      });
-
-      test('指定した ID より、大きい ID のデータが取得できること（リポストあり）', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId + 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId + 1,
-        );
-        final vPost2WithRepost = vPost2.copyWith(
-          repost: vPost,
-        );
-        final vPost3WithRepost = vPost3.copyWith(
-          repost: vPost2,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost2WithRepost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost3WithRepost.toJson());
-        final foundVPostList =
-            await vPostRepository.findBySincePostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2WithRepost, vPost3WithRepost]));
-      });
-
-      test('Count よりも多いデータが存在する場合は、Count で指定した数のデータが取得できること', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId + 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId + 1,
-        );
-        final vPost4 = generateDummyVPost(
-          postId: vPost3.postId + 1,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost2.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost3.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost4.toJson());
-        final foundVPostList =
-            await vPostRepository.findBySincePostId(vPost.postId, 2);
-        expect(foundVPostList, VPostList([vPost2, vPost3]));
-      });
-
-      test('指定した ID より、大きいデータが存在しない場合は、空の VPostList が返ってくること', () async {
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        final foundVPostList =
-            await vPostRepository.findBySincePostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList.empty);
+      test('正常にデータが1件作成されること', () async {
+        final actual = await vPostRepository.findByLatest(3);
+        expect(actual, VPostList([vPost5, vPost4, vPost3]));
       });
     });
   });
 
-  group('findByMaxPostId', () {
+  group('#findBySincePostId', () {
     group('正常系', () {
-      test('指定した ID より、小さい ID のデータが取得できること', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId - 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId - 1,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost2.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost3.toJson());
-        final foundVPostList =
-            await vPostRepository.findByMaxPostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2, vPost3]));
+      test('指定した postId より大きい値かつ指定した件数のデータが取得できること', () async {
+        final actual = await vPostRepository.findBySincePostId(2, 2);
+        expect(actual, VPostList([vPost3, vPost4]));
       });
 
-      test('指定した ID より、小さい ID のデータが取得できること（メディアあり）', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId - 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId - 1,
-        );
-        final vPost2WithMedia = vPost2.copyWith(
-          medias: tPostMedias,
-        );
-        final vPost3WithMedia = vPost3.copyWith(
-          medias: tPostMedias,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost2WithMedia.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost3WithMedia.toJson());
-        final foundVPostList =
-            await vPostRepository.findByMaxPostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2WithMedia, vPost3WithMedia]));
+      test('指定した postId より大きい値かつ指定した件数に満たない場合は、それ以降のデータが全て取得できること', () async {
+        final actual = await vPostRepository.findBySincePostId(2, 6);
+        expect(actual, VPostList([vPost3, vPost4, vPost5]));
+      });
+    });
+  });
+
+  group('#findByMaxPostId', () {
+    group('正常系', () {
+      test('指定した postId より小さい値かつ指定した件数のデータが取得できること', () async {
+        final actual = await vPostRepository.findByMaxPostId(4, 2);
+        expect(actual, VPostList([vPost3, vPost2]));
       });
 
-      test('指定した ID より、小さい ID のデータが取得できること（リポストあり）', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId - 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId - 1,
-        );
-        final vPost2WithRepost = vPost2.copyWith(
-          repost: vPost,
-        );
-        final vPost3WithRepost = vPost3.copyWith(
-          repost: vPost2,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost2WithRepost.toJson());
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vPost3WithRepost.toJson());
-        final foundVPostList =
-            await vPostRepository.findByMaxPostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList([vPost2WithRepost, vPost3WithRepost]));
-      });
-
-      test('Count よりも多いデータが存在する場合は、Count で指定した数のデータが取得できること', () async {
-        final vPost2 = generateDummyVPost(
-          postId: vPost.postId - 1,
-        );
-        final vPost3 = generateDummyVPost(
-          postId: vPost2.postId - 1,
-        );
-        final vPost4 = generateDummyVPost(
-          postId: vPost3.postId - 1,
-        );
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost2.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost3.toJson());
-        await mockSupabaseClient.from(viewName).insert(vPost4.toJson());
-        final foundVPostList =
-            await vPostRepository.findByMaxPostId(vPost.postId, 2);
-        expect(foundVPostList, VPostList([vPost2, vPost3]));
-      });
-
-      test('指定した ID より、小さいデータが存在しない場合は、空の VPostList が返ってくること', () async {
-        await mockSupabaseClient.from(viewName).insert(vPost.toJson());
-        final foundVPostList =
-            await vPostRepository.findByMaxPostId(vPost.postId, 10);
-        expect(foundVPostList, VPostList.empty);
+      test('指定した postId より小さい値かつ指定した件数に満たない場合は、それ以前のデータが全て取得できること', () async {
+        final actual = await vPostRepository.findByMaxPostId(4, 6);
+        expect(actual, VPostList([vPost3, vPost2, vPost1]));
       });
     });
   });

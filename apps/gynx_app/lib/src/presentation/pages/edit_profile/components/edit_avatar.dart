@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/components/edit_avatar_menu.dart';
 import 'package:gynx_components/gynx_components.dart';
 import 'package:iconly/iconly.dart';

@@ -78,6 +78,12 @@ class L10nEn extends L10n {
   String get posts => 'Posts';
 
   @override
+  String get postHintText => 'What\'s are you doing lately?';
+
+  @override
+  String get postRequiredError => 'Please enter the post content.';
+
+  @override
   String get username => 'Username';
 
   @override
@@ -199,6 +205,14 @@ class L10nEn extends L10n {
     final String followerString = followerNumberFormat.format(follower);
 
     return '$followerString Follower';
+  }
+
+  @override
+  String get uploadVideoTooLongErrorTitle => 'Video is too long';
+
+  @override
+  String uploadVideoTooLongErrorMessage(int max) {
+    return 'Please upload a video that is $max seconds or less.';
   }
 
   @override

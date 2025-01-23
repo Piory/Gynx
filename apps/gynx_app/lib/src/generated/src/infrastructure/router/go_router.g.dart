@@ -9,6 +9,7 @@ part of '../../../../infrastructure/router/go_router.dart';
 List<RouteBase> get $appRoutes => [
       $dashboardShellRouteData,
       $rootPageRoute,
+      $postMediaListViewPageRoute,
       $profileAvatarPageRoute,
       $editProfilePageRoute,
       $settingPageRoute,
@@ -22,16 +23,6 @@ RouteBase get $dashboardShellRouteData => StatefulShellRouteData.$route(
             GoRouteData.$route(
               path: '/home',
               factory: $HomePageRouteExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'sample1',
-                  factory: $HomeSample1PageRouteExtension._fromState,
-                ),
-                GoRouteData.$route(
-                  path: 'sample2',
-                  factory: $HomeSample2PageRouteExtension._fromState,
-                ),
-              ],
             ),
           ],
         ),
@@ -56,42 +47,6 @@ extension $HomePageRouteExtension on HomePageRoute {
 
   String get location => GoRouteData.$location(
         '/home',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $HomeSample1PageRouteExtension on HomeSample1PageRoute {
-  static HomeSample1PageRoute _fromState(GoRouterState state) =>
-      const HomeSample1PageRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/sample1',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $HomeSample2PageRouteExtension on HomeSample2PageRoute {
-  static HomeSample2PageRoute _fromState(GoRouterState state) =>
-      const HomeSample2PageRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/sample2',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -132,6 +87,32 @@ extension $RootPageRouteExtension on RootPageRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $postMediaListViewPageRoute => GoRouteData.$route(
+      path: '/home/posts/:postId/medias/:index',
+      factory: $PostMediaListViewPageRouteExtension._fromState,
+    );
+
+extension $PostMediaListViewPageRouteExtension on PostMediaListViewPageRoute {
+  static PostMediaListViewPageRoute _fromState(GoRouterState state) =>
+      PostMediaListViewPageRoute(
+        postId: int.parse(state.pathParameters['postId']!),
+        index: int.parse(state.pathParameters['index']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/posts/${Uri.encodeComponent(postId.toString())}/medias/${Uri.encodeComponent(index.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);

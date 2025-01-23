@@ -96,6 +96,7 @@ class GlassNavigationBar extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
+                  color: colorScheme.surface.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(
                     color: colorScheme.onSurfaceVariant.withOpacity(0.6),

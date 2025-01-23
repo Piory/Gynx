@@ -6,14 +6,27 @@ import 'package:gynx_app/src/domain/entities/t_user_follow.dart';
 import 'package:gynx_app/src/domain/entities/t_user_post_favorite.dart';
 import 'package:gynx_app/src/domain/entities/t_user_profile.dart';
 import 'package:gynx_app/src/domain/entities/t_user_timeline.dart';
+import 'package:gynx_app/src/domain/entities/user.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
+import 'package:gynx_app/src/domain/entities/v_user.dart';
 import 'package:gynx_app/src/domain/entities/v_user_detail.dart';
 import 'package:gynx_app/src/domain/enums/media_type.dart';
+import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 
 SuiteUser generateDummySuiteUser() => SuiteUser(
       vUserDetail: generateDummyVUserDetail(),
+    );
+
+User generateDummyUser() => User(
+      id: faker.guid.guid(),
+      displayName: faker.person.name(),
+      email: faker.internet.email(),
+      providers: [OAuthProviderType.google],
+      isAnonymous: faker.randomGenerator.boolean(),
+      createdAt: faker.date.dateTime(),
+      lastSignInAt: faker.date.dateTime(),
     );
 
 TUser generateDummyTUser() => TUser(
@@ -83,6 +96,16 @@ TPostMedia generateDummyTPostMedia() => TPostMedia(
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,
     );
 
+VUser generateDummyVUser() => VUser(
+      userId: faker.guid.guid(),
+      gynxId: 'gynx_id',
+      username: faker.person.name(),
+      avatarUrl:
+          faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
+      createdAt: faker.date.dateTime(),
+      updatedAt: faker.date.dateTime(),
+    );
+
 VUserDetail generateDummyVUserDetail({
   List<VPost> latestPosts = const [],
 }) =>
@@ -112,10 +135,8 @@ VPost generateDummyVPost({
       repost: repost,
       text: repost == null ? faker.guid.guid() : null,
       medias: medias,
-      avatarUrl: faker.image.loremPicsum(),
-      selfIntroduction: faker.guid.guid(),
-      followCount: faker.randomGenerator.integer(100),
-      followerCount: faker.randomGenerator.integer(100),
+      repostCount: faker.randomGenerator.integer(100),
+      favoriteCount: faker.randomGenerator.integer(100),
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,

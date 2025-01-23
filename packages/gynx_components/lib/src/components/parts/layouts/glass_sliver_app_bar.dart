@@ -20,16 +20,18 @@ class GlassSliverAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SliverAppBar(
       onStretchTrigger: onStretchTrigger,
       stretch: onStretchTrigger != null,
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         title: title,
-        background: const Blur(
+        background: Blur(
+          blurColor: colorScheme.surface,
           blur: 10,
-          colorOpacity: 0,
-          child: SizedBox.expand(),
+          colorOpacity: 0.7,
+          child: const SizedBox.expand(),
         ),
       ),
       bottom: bottom,

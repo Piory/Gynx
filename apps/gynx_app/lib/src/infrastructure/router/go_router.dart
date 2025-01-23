@@ -9,11 +9,11 @@ import 'package:gynx_app/src/infrastructure/router/pages/material_with_modals_pa
 import 'package:gynx_app/src/presentation/layouts/dashboard.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:gynx_app/src/presentation/pages/home/home_page.dart';
+import 'package:gynx_app/src/presentation/pages/post_media_list_view/post_media_list_view_page.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_page.dart';
 import 'package:gynx_app/src/presentation/pages/profile_avatar/profile_avatar_page.dart';
 import 'package:gynx_app/src/presentation/pages/setting/setting_page.dart';
 import 'package:gynx_app/src/presentation/pages/sign_in/sign_in_page.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 part '../../generated/src/infrastructure/router/go_router.g.dart';
 part 'branchs/home_branch.dart';
