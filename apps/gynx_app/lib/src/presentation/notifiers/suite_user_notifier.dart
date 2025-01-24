@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
+import 'package:gynx_app/src/presentation/notifiers/user_detail_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '../../generated/src/presentation/notifiers/suite_user_notifier.g.dart';
@@ -9,6 +11,11 @@ part '../../generated/src/presentation/notifiers/suite_user_notifier.g.dart';
 class SuiteUserNotifier extends _$SuiteUserNotifier {
   @override
   FutureOr<SuiteUser> build() async {
-    return await GetIt.I<SuiteUserUseCase>().execute();
+    final suiteUser = await GetIt.I<SuiteUserUseCase>().execute();
+    final userId = suiteUser.vUserDetail.userId;
+    ref
+      ..invalidate(userNotifierProvider.call(userId))
+      ..invalidate(userDetailNotifierProvider.call(userId));
+    return suiteUser;
   }
 }

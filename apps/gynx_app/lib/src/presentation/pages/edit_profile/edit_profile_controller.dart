@@ -6,7 +6,7 @@ import 'package:gynx_app/src/domain/usecases/update_user_profile_usecase.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/dialogs/notify.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -44,7 +44,7 @@ class EditProfileController {
         isDeleteAvatar: isDeleteAvatar,
         selfIntroduction: selfIntroduction,
       );
-      ref.invalidate(userNotifierProvider);
+      ref.invalidate(suiteUserNotifierProvider);
       if (context.mounted) {
         _pageNavigator.pop(context);
       }
