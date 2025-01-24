@@ -12,10 +12,12 @@ import 'package:image_picker/image_picker.dart';
 class FormBuilderImagePicker extends StatelessWidget {
   const FormBuilderImagePicker({
     super.key,
+    this.showVideo = false,
     this.textFieldFocusNode,
     required this.onChanged,
   });
 
+  final bool showVideo;
   final FocusNode? textFieldFocusNode;
   final ValueChanged<List<XFile>> onChanged;
 
@@ -61,20 +63,21 @@ class FormBuilderImagePicker extends StatelessWidget {
                 size: 26,
               ),
             ),
-            IconButton(
-              onPressed: () => _onPressed(
-                selectedMediaCount: selectedMediaCount,
-                pick: () => _pickVideo(
-                  field: field,
-                  l10n: context.l10n,
-                  source: ImageSource.gallery,
+            if (showVideo)
+              IconButton(
+                onPressed: () => _onPressed(
+                  selectedMediaCount: selectedMediaCount,
+                  pick: () => _pickVideo(
+                    field: field,
+                    l10n: context.l10n,
+                    source: ImageSource.gallery,
+                  ),
+                ),
+                icon: const Icon(
+                  IconlyLight.video,
+                  size: 26,
                 ),
               ),
-              icon: const Icon(
-                IconlyLight.video,
-                size: 26,
-              ),
-            ),
           ],
         );
       },

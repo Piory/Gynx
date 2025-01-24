@@ -62,6 +62,7 @@ void main() {
             home: Scaffold(
               body: FormBuilderImagePicker(
                 onChanged: onChanged,
+                showVideo: true,
               ),
             ),
           ),
