@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
@@ -89,7 +90,9 @@ void main() {
         );
 
         expect(find.text(suiteUser.vUserDetail.username), findsOneWidget);
-        expect(find.text('@${suiteUser.vUserDetail.gynxId}'), findsOneWidget);
+        expect(find.byType(GynxId), findsOneWidget);
+        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
+        expect(gynxId.id, suiteUser.vUserDetail.gynxId);
         expect(find.text(l10nJa.postRequiredError), findsNothing);
       });
 

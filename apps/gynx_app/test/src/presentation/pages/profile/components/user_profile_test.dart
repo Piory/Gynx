@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
@@ -61,7 +62,9 @@ void main() {
           suiteUser: suiteUser,
         );
         expect(find.text(tUserProfile.username), findsOneWidget);
-        expect(find.text('@${tUser.gynxId}'), findsOneWidget);
+        expect(find.byType(GynxId), findsOneWidget);
+        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
+        expect(gynxId.id, tUser.gynxId);
         expect(find.text(tUserProfile.selfIntroduction), findsOneWidget);
         final followCount = suiteUser.vUserDetail.followCount;
         expect(find.text(l10nJa.follow(followCount)), findsOneWidget);

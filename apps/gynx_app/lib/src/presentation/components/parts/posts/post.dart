@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
@@ -66,11 +67,8 @@ class Post extends ConsumerWidget {
                               ),
                             ),
                             const Gap(SpaceSize.s4),
-                            Text(
-                              '@$gynxId',
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant,
-                              ),
+                            GynxId(
+                              id: gynxId,
                             ),
                           ],
                         ),

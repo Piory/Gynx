@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/shimmers/shimmer.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
@@ -202,13 +203,8 @@ class UserProfile extends StatelessWidget {
         height: 16,
       );
     }
-    final gynxId = suiteUser?.vUserDetail.gynxId;
-    final theme = Theme.of(context);
-    return Text(
-      gynxId == null ? '' : '@$gynxId',
-      style: theme.textTheme.bodyMedium!.copyWith(
-        color: theme.colorScheme.onSurfaceVariant,
-      ),
+    return GynxId(
+      id: suiteUser?.vUserDetail.gynxId,
     );
   }
 

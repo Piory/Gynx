@@ -5,6 +5,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
@@ -109,15 +110,8 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                                             ),
                                           ),
                                           const Gap(SpaceSize.s4),
-                                          Text(
-                                            suiteUser == null
-                                                ? ''
-                                                : '@${suiteUser.vUserDetail.gynxId}',
-                                            style: theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                              color: theme
-                                                  .colorScheme.onSurfaceVariant,
-                                            ),
+                                          GynxId(
+                                            id: suiteUser?.vUserDetail.gynxId,
                                           ),
                                         ],
                                       ),

@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -72,7 +73,9 @@ void main() {
           vPost: vPost,
         );
         expect(find.text(vUser.username), findsOneWidget);
-        expect(find.text('@${vUser.gynxId}'), findsOneWidget);
+        expect(find.byType(GynxId), findsOneWidget);
+        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
+        expect(gynxId.id, vUser.gynxId);
         expect(find.text(vPost.text!), findsOneWidget);
         expect(find.byType(MediaList), findsNothing);
       });
@@ -85,7 +88,9 @@ void main() {
           vPost: vPostWithMedia,
         );
         expect(find.text(vUser.username), findsOneWidget);
-        expect(find.text('@${vUser.gynxId}'), findsOneWidget);
+        expect(find.byType(GynxId), findsOneWidget);
+        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
+        expect(gynxId.id, vUser.gynxId);
         expect(find.text(vPost.text!), findsOneWidget);
         expect(find.byType(MediaList), findsOneWidget);
       });
