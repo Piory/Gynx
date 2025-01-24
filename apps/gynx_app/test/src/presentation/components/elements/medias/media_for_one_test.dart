@@ -18,6 +18,7 @@ void main() {
             home: Scaffold(
               body: MediaForOne(
                 url: url,
+                heroTagGenerator: (url) => url,
                 onTap: onTap,
                 onClosed: null,
               ),

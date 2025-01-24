@@ -81,3 +81,38 @@ class RootPageRoute extends GoRouteData {
     );
   }
 }
+
+@TypedGoRoute<PostMediaListViewPageRoute>(
+  path: '/posts/:postId/medias/:postMediaId',
+)
+class PostMediaListViewPageRoute extends GoRouteData {
+  const PostMediaListViewPageRoute({
+    required this.postId,
+    required this.postMediaId,
+  });
+
+  final int postId;
+  final String postMediaId;
+
+  @override
+  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    return GetIt.I<AuthRepository>().isSignedIn()
+        ? null
+        : const RootPageRoute().location;
+  }
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CustomTransitionPage<void>(
+      fullscreenDialog: true,
+      key: state.pageKey,
+      child: PostMediaListViewPage(
+        postId: postId,
+        postMediaId: postMediaId,
+        from: state.uri.queryParameters['f'] ?? '',
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
+    );
+  }
+}

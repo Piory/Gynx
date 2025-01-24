@@ -59,8 +59,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
   @override
   void push(
     _i4.BuildContext? context,
-    _i5.PageType? pageType,
-  ) =>
+    _i5.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
       super.noSuchMethod(
         Invocation.method(
           #push,
@@ -68,6 +70,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
             context,
             pageType,
           ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
         ),
         returnValueForMissingStub: null,
       );
@@ -75,8 +81,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
   @override
   void go(
     _i4.BuildContext? context,
-    _i5.PageType? pageType,
-  ) =>
+    _i5.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
       super.noSuchMethod(
         Invocation.method(
           #go,
@@ -84,6 +92,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
             context,
             pageType,
           ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
         ),
         returnValueForMissingStub: null,
       );
@@ -91,8 +103,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
   @override
   void pushReplacement(
     _i4.BuildContext? context,
-    _i5.PageType? pageType,
-  ) =>
+    _i5.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
       super.noSuchMethod(
         Invocation.method(
           #pushReplacement,
@@ -100,6 +114,10 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
             context,
             pageType,
           ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
         ),
         returnValueForMissingStub: null,
       );

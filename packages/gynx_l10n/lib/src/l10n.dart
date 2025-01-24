@@ -233,6 +233,18 @@ abstract class L10n {
   /// **'Please enter the post content.'**
   String get postRequiredError;
 
+  /// No description provided for @postListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts yet'**
+  String get postListEmpty;
+
+  /// No description provided for @favoritePostListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite posts yet'**
+  String get favoritePostListEmpty;
+
   /// No description provided for @username.
   ///
   /// In en, this message translates to:

@@ -20,6 +20,7 @@ void main() {
             home: Scaffold(
               body: MediaForTwo(
                 urls: urls,
+                heroTagGenerator: (url) => url,
                 onTap: onTap,
                 onClosed: null,
               ),

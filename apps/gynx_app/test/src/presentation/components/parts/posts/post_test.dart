@@ -6,8 +6,11 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:gynx_app/src/presentation/components/elements/medias/media.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
+import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -18,9 +21,11 @@ import 'post_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<FindUserUseCase>(),
+  MockSpec<PageNavigator>(),
 ])
 void main() {
   final mockFindUserUseCase = MockFindUserUseCase();
+  final mockPageNavigator = MockPageNavigator();
   const postId = 12345;
   final vPost = generateDummyVPost(postId: postId);
   final vUser = generateDummyVUser().copyWith(
@@ -30,11 +35,14 @@ void main() {
 
   setUpAll(() {
     GetIt.I.registerSingleton<FindUserUseCase>(mockFindUserUseCase);
+    GetIt.I.registerSingleton<PageNavigator>(mockPageNavigator);
   });
 
   tearDown(() {
     verifyNoMoreInteractions(mockFindUserUseCase);
+    verifyNoMoreInteractions(mockPageNavigator);
     reset(mockFindUserUseCase);
+    reset(mockPageNavigator);
   });
 
   group('Post', () {
@@ -55,6 +63,7 @@ void main() {
               body: SingleChildScrollView(
                 child: Post(
                   vPost: vPost,
+                  from: 'test',
                 ),
               ),
             ),
@@ -93,6 +102,42 @@ void main() {
         expect(gynxId.id, vUser.gynxId);
         expect(find.text(vPost.text!), findsOneWidget);
         expect(find.byType(MediaList), findsOneWidget);
+      });
+
+      testWidgets('Media をタップしたら、PageNavigator#push が呼ばれること', (tester) async {
+        final tPostMedia = generateDummyTPostMedia();
+        final vPostWithMedia = vPost.copyWith(medias: [tPostMedia]);
+        await pumpWidget(
+          tester: tester,
+          vPost: vPostWithMedia,
+        );
+        verifyNever(
+          mockPageNavigator.push(
+            any,
+            PageType.postMedia,
+            pathParams: {
+              'postId': postId,
+              'postMediaId': tPostMedia.id,
+            },
+            queryParams: {
+              'f': 'test',
+            },
+          ),
+        );
+        await tester.tap(find.byType(Media));
+        verify(
+          mockPageNavigator.push(
+            any,
+            PageType.postMedia,
+            pathParams: {
+              'postId': vPostWithMedia.postId,
+              'postMediaId': tPostMedia.id,
+            },
+            queryParams: {
+              'f': 'test',
+            },
+          ),
+        );
       });
     });
   });

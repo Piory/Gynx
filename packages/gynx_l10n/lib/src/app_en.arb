@@ -50,6 +50,8 @@
   "posts": "Posts",
   "postHintText": "What's are you doing lately?",
   "postRequiredError": "Please enter the post content.",
+  "postListEmpty": "No posts yet",
+  "favoritePostListEmpty": "No favorite posts yet",
   "username": "Username",
   "gynxId": "Gynx ID",
   "selfIntroduction": "Self Introduction",

@@ -9,6 +9,7 @@ void main() {
   group('Media', () {
     Future<void> pumpWidget({
       required WidgetTester tester,
+      required String Function(String) heroTagGenerator,
       required ValueSetter<String>? onTap,
       required ValueSetter<String>? onClosed,
     }) async {
@@ -20,6 +21,7 @@ void main() {
                 borderRadius: BorderRadius.circular(8),
                 fit: BoxFit.cover,
                 url: url,
+                heroTagGenerator: heroTagGenerator,
                 onTap: onTap,
                 onClosed: onClosed,
               ),
@@ -31,10 +33,24 @@ void main() {
 
     //
     group('正常系', () {
+      testWidgets('heroTagGenerator で返した値が、Hero の tag に指定されていること',
+          (tester) async {
+        const heroTag = 'hero_tag';
+        await pumpWidget(
+          tester: tester,
+          heroTagGenerator: (_) => heroTag,
+          onTap: null,
+          onClosed: null,
+        );
+        final hero = tester.widget<Hero>(find.byType(Hero));
+        expect(hero.tag, heroTag);
+      });
+
       testWidgets('onTap が設定されていると、画像をタップした時に、onTap が呼ばれること', (tester) async {
         var calledCount = 0;
         await pumpWidget(
           tester: tester,
+          heroTagGenerator: (url) => url,
           onTap: (actual) {
             calledCount++;
             expect(actual, url);
@@ -51,6 +67,7 @@ void main() {
       testWidgets('onTap が設定しない場合は、タップしてもエラーが発生しないこと', (tester) async {
         await pumpWidget(
           tester: tester,
+          heroTagGenerator: (url) => url,
           onTap: null,
           onClosed: null,
         );
@@ -65,6 +82,7 @@ void main() {
           var calledCount = 0;
           await pumpWidget(
             tester: tester,
+            heroTagGenerator: (url) => url,
             onTap: null,
             onClosed: (actual) {
               calledCount++;

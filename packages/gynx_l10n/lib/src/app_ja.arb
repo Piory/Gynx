@@ -51,6 +51,8 @@
   "postedAt": "",
   "postHintText": "最近どうしてる？",
   "postRequiredError": "投稿内容を入力してください。",
+  "postListEmpty": "まだ投稿がありません",
+  "favoritePostListEmpty": "お気に入りの投稿がありません",
   "username": "ユーザー名",
   "gynxId": "Gynx ID",
   "selfIntroduction": "自己紹介",

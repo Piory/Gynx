@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/post_list.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
@@ -23,6 +24,7 @@ import 'profile_page_test.mocks.dart';
   MockSpec<PageNavigator>(),
 ])
 void main() {
+  final l10nJa = L10nJa();
   final suiteUser = generateDummySuiteUser();
   final mockProfileController = MockProfileController();
   final mockSuiteUserUseCase = MockSuiteUserUseCase();
@@ -73,6 +75,39 @@ void main() {
         verifyNever(mockPageNavigator.push(any, PageType.setting));
         await tester.tap(find.byIcon(IconlyBold.setting));
         verify(mockPageNavigator.push(any, PageType.setting));
+      },
+    );
+
+    testWidgets(
+      '初期表示では、「${l10nJa.posts}」タブが表示されて、タブ内に PostList が表示されていること',
+      (tester) async {
+        await pumpWidget(tester);
+        final postListFinder = find.byKey(const Key('posts'));
+        expect(postListFinder, findsOneWidget);
+        final favoriteListFinder = find.byKey(const Key('favorites'));
+        expect(favoriteListFinder, findsNothing);
+        expect(
+          find.descendant(of: postListFinder, matching: find.byType(PostList)),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      '「${l10nJa.favorites}」タブをタップしたら、タブ内に PostList が表示されていること',
+      (tester) async {
+        await pumpWidget(tester);
+        await tester.tap(find.text(l10nJa.favorites));
+        await tester.pumpAndSettle();
+        final postListFinder = find.byKey(const Key('posts'));
+        expect(postListFinder, findsNothing);
+        final favoriteListFinder = find.byKey(const Key('favorites'));
+        expect(favoriteListFinder, findsOneWidget);
+        expect(
+          find.descendant(
+              of: favoriteListFinder, matching: find.byType(PostList)),
+          findsOneWidget,
+        );
       },
     );
   });

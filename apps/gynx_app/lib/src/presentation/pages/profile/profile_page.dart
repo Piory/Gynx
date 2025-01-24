@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gynx_app/src/domain/models/v_post_list.dart';
 import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/post_list.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/post_list_loading.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
-import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
@@ -84,36 +86,44 @@ class ProfilePage extends StatelessWidget {
               },
               body: TabBarView(
                 children: [
-                  ListView.separated(
-                    padding: const EdgeInsets.only(top: SpaceSize.s8),
-                    itemCount: 100,
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        height: 0,
-                        color: theme.colorScheme.onSurfaceVariant
-                            .withOpacity(0.15),
-                      );
+                  Consumer(
+                    key: const Key('posts'),
+                    builder: (context, ref, _) {
+                      return ref.watch(suiteUserNotifierProvider).when(
+                            data: (suiteUser) {
+                              final userId = suiteUser.vUserDetail.userId;
+                              return PostList(
+                                from: '$userId-posts',
+                                vPostList:
+                                    suiteUser.vUserDetail.latestPostsList,
+                              );
+                            },
+                            loading: () => const PostListLoading(),
+                            error: (error, _) => const PostListLoading(),
+                          );
                     },
-                    // itemBuilder: (context, index) => const Post(),
-                    itemBuilder: (context, index) => const SizedBox.shrink(),
                   ),
-                  ListView.separated(
-                    padding: const EdgeInsets.only(top: SpaceSize.s8),
-                    itemCount: 100,
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        height: 0,
-                        color: theme.colorScheme.onSurfaceVariant
-                            .withOpacity(0.15),
-                      );
+                  Consumer(
+                    key: const Key('favorites'),
+                    builder: (context, ref, _) {
+                      return ref.watch(suiteUserNotifierProvider).when(
+                            data: (suiteUser) {
+                              final userId = suiteUser.vUserDetail.userId;
+                              return PostList(
+                                from: '$userId-favorite',
+                                vPostList: VPostList.empty,
+                                emptyIcon: const Icon(
+                                  IconlyBold.star,
+                                  size: 48,
+                                ),
+                                emptyMessage:
+                                    context.l10n.favoritePostListEmpty,
+                              );
+                            },
+                            loading: () => const PostListLoading(),
+                            error: (error, _) => const PostListLoading(),
+                          );
                     },
-                    itemBuilder: (context, index) => ListTile(
-                      title: ElevatedButton(
-                        onPressed: () =>
-                            GetIt.I<ProfileController>().signOut(context.l10n),
-                        child: const Text('Sign Out'),
-                      ),
-                    ),
                   ),
                 ],
               ),

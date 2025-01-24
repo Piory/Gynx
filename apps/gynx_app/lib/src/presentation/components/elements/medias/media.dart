@@ -7,6 +7,7 @@ class Media extends StatelessWidget {
     required this.borderRadius,
     required this.fit,
     required this.url,
+    required this.heroTagGenerator,
     required this.onTap,
     required this.onClosed,
   });
@@ -14,6 +15,7 @@ class Media extends StatelessWidget {
   final BorderRadius borderRadius;
   final BoxFit fit;
   final String url;
+  final String Function(String) heroTagGenerator;
   final ValueSetter<String>? onTap;
   final ValueSetter<String>? onClosed;
 
@@ -23,7 +25,7 @@ class Media extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Hero(
-          tag: url,
+          tag: heroTagGenerator(url),
           child: InkWell(
             onTap: () => onTap?.call(url),
             child: DecoratedBox(

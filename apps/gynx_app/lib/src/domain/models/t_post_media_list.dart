@@ -25,6 +25,14 @@ class TPostMediaList with _$TPostMediaList {
     return tPostMedias[index];
   }
 
+  TPostMedia getByUrl(String url) {
+    return tPostMedias.firstWhere((media) => media.url == url);
+  }
+
+  int indexOfId(String id) {
+    return tPostMedias.indexWhere((media) => media.id == id);
+  }
+
   List<String> get urls => map((e) => e.url);
 
   List<T> map<T>(T Function(TPostMedia tPostMedia) f) {

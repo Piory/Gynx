@@ -12,17 +12,32 @@ class PageNavigatorImpl implements PageNavigator {
   }
 
   @override
-  void push(BuildContext context, PageType pageType) {
-    context.push(pageType.path);
+  void push(
+    BuildContext context,
+    PageType pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) {
+    context.push(pageType.buildPath(pathParams, queryParams));
   }
 
   @override
-  void go(BuildContext context, PageType pageType) {
-    context.go(pageType.path);
+  void go(
+    BuildContext context,
+    PageType pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) {
+    context.go(pageType.buildPath(pathParams, queryParams));
   }
 
   @override
-  void pushReplacement(BuildContext context, PageType pageType) {
-    context.pushReplacement(pageType.path);
+  void pushReplacement(
+    BuildContext context,
+    PageType pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) {
+    context.pushReplacement(pageType.buildPath(pathParams, queryParams));
   }
 }

@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
-import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
+import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:iconly/iconly.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
 class Post extends ConsumerWidget {
   const Post({
     super.key,
+    required this.from,
     required this.vPost,
   });
 
+  final String from;
   final VPost vPost;
 
   @override
@@ -111,12 +116,22 @@ class Post extends ConsumerWidget {
                           const Gap(SpaceSize.s8),
                           MediaList(
                             urls: vPost.tPostMediaList.urls,
+                            heroTagGenerator: (url) => _heroTagGenerator(
+                              vPost,
+                              url,
+                            ),
                             onTap: (url) {
-                              PostMediaListViewPageRoute(
-                                postId: vPost.postId,
-                                index: vPost.tPostMediaList.urls.indexOf(url),
-                              ).push<void>(
+                              GetIt.I<PageNavigator>().push(
                                 context,
+                                PageType.postMedia,
+                                pathParams: {
+                                  'postId': vPost.postId,
+                                  'postMediaId':
+                                      vPost.tPostMediaList.getByUrl(url).id,
+                                },
+                                queryParams: {
+                                  'f': from,
+                                },
                               );
                             },
                           ),
@@ -128,7 +143,7 @@ class Post extends ConsumerWidget {
                       children: [
                         InkWell(
                           child: Icon(
-                            EvaIcons.message_circle_outline,
+                            IconlyLight.chat,
                             size: 20,
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
@@ -160,7 +175,7 @@ class Post extends ConsumerWidget {
                         const Gap(SpaceSize.s24),
                         InkWell(
                           child: Icon(
-                            EvaIcons.star_outline,
+                            IconlyLight.star,
                             size: 20,
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
@@ -184,5 +199,10 @@ class Post extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  String _heroTagGenerator(VPost vPost, String url) {
+    final tPostMediaId = vPost.tPostMediaList.getByUrl(url).id;
+    return '$from-$tPostMediaId';
   }
 }

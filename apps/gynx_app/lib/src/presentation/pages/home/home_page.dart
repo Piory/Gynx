@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
 import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
-import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/sliver_post_list.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/sliver_post_list_loading.dart';
 import 'package:gynx_app/src/presentation/layouts/glass_sliver_app_bar.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/components/create_post_form.dart';
@@ -18,7 +19,10 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final isLoading = ref.watch(
+      timelineNotifierProvider(TimelineType.follow)
+          .select((state) => state.isLoading),
+    );
     return Scaffold(
       extendBodyBehindAppBar: true,
       floatingActionButton: Padding(
@@ -42,6 +46,9 @@ class HomePage extends ConsumerWidget {
         visibleDetectorKey: const Key('home'),
         child: CustomScrollView(
           primary: true,
+          physics: isLoading
+              ? const NeverScrollableScrollPhysics()
+              : const AlwaysScrollableScrollPhysics(),
           slivers: [
             GlassSliverAppBar(
               title: Assets.svgs.logos.gynxLogo.svg(
@@ -54,47 +61,21 @@ class HomePage extends ConsumerWidget {
               ),
             ),
             ref.watch(timelineNotifierProvider(TimelineType.follow)).when(
-              data: (vPostList) {
-                if (vPostList.isEmpty) {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: Text('No posts'),
-                    ),
-                  );
-                }
-                return SliverList.separated(
-                  itemCount: vPostList.length,
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      height: 0,
-                      color:
-                          theme.colorScheme.onSurfaceVariant.withOpacity(0.15),
+                  data: (vPostList) => SliverPostList(
+                    from: 'home',
+                    vPostList: vPostList,
+                  ),
+                  loading: () => const SliverPostListLoading(),
+                  error: (error, _) {
+                    return SliverFillRemaining(
+                      child: Center(
+                        child: Text(
+                          error.toString(),
+                        ),
+                      ),
                     );
                   },
-                  itemBuilder: (context, index) {
-                    return Post(
-                      vPost: vPostList.getByIndex(index),
-                    );
-                  },
-                );
-              },
-              loading: () {
-                return const SliverFillRemaining(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              },
-              error: (error, _) {
-                return SliverFillRemaining(
-                  child: Center(
-                    child: Text(
-                      error.toString(),
-                    ),
-                  ),
-                );
-              },
-            ),
+                ),
           ],
         ),
       ),

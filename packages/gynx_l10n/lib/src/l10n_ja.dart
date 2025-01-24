@@ -84,6 +84,12 @@ class L10nJa extends L10n {
   String get postRequiredError => '投稿内容を入力してください。';
 
   @override
+  String get postListEmpty => 'まだ投稿がありません';
+
+  @override
+  String get favoritePostListEmpty => 'お気に入りの投稿がありません';
+
+  @override
   String get username => 'ユーザー名';
 
   @override

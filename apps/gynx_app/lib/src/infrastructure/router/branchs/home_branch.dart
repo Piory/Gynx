@@ -25,36 +25,3 @@ class HomePageRoute extends GoRouteData {
     return const HomePage();
   }
 }
-
-@TypedGoRoute<PostMediaListViewPageRoute>(
-  path: '/home/posts/:postId/medias/:index',
-)
-class PostMediaListViewPageRoute extends GoRouteData {
-  const PostMediaListViewPageRoute({
-    required this.postId,
-    required this.index,
-  });
-
-  final int postId;
-  final int index;
-
-  @override
-  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
-    return GetIt.I<AuthRepository>().isSignedIn()
-        ? null
-        : const RootPageRoute().location;
-  }
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return CustomTransitionPage<void>(
-      key: state.pageKey,
-      child: PostMediaListViewPage(
-        postId: postId,
-        index: index,
-      ),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-          FadeTransition(opacity: animation, child: child),
-    );
-  }
-}

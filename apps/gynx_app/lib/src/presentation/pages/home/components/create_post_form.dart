@@ -152,6 +152,8 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                                           urls: _medias
                                               .map((m) => m.path)
                                               .toList(),
+                                          heroTagGenerator: (url) =>
+                                              'create-post-$url',
                                           onClosed: (url) {
                                             final medias = _medias
                                                 .where((m) => m.path != url)

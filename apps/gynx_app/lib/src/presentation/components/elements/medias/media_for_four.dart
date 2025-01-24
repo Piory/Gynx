@@ -6,11 +6,13 @@ class MediaForFour extends StatelessWidget {
   const MediaForFour({
     super.key,
     required this.urls,
+    required this.heroTagGenerator,
     required this.onTap,
     required this.onClosed,
   }) : assert(urls.length == 4);
 
   final List<String> urls;
+  final String Function(String) heroTagGenerator;
   final ValueSetter<String>? onTap;
   final ValueSetter<String>? onClosed;
 
@@ -30,6 +32,7 @@ class MediaForFour extends StatelessWidget {
             ),
             fit: BoxFit.cover,
             url: urls.first,
+            heroTagGenerator: heroTagGenerator,
             onTap: onTap,
             onClosed: onClosed,
           ),
@@ -43,6 +46,7 @@ class MediaForFour extends StatelessWidget {
             ),
             fit: BoxFit.cover,
             url: urls[1],
+            heroTagGenerator: heroTagGenerator,
             onTap: onTap,
             onClosed: onClosed,
           ),
@@ -56,6 +60,7 @@ class MediaForFour extends StatelessWidget {
             ),
             fit: BoxFit.cover,
             url: urls[2],
+            heroTagGenerator: heroTagGenerator,
             onTap: onTap,
             onClosed: onClosed,
           ),
@@ -68,6 +73,7 @@ class MediaForFour extends StatelessWidget {
               bottomRight: Radius.circular(12),
             ),
             fit: BoxFit.cover,
+            heroTagGenerator: heroTagGenerator,
             url: urls[3],
             onTap: onTap,
             onClosed: onClosed,

@@ -100,7 +100,7 @@ extension $RootPageRouteExtension on RootPageRoute {
 }
 
 RouteBase get $postMediaListViewPageRoute => GoRouteData.$route(
-      path: '/home/posts/:postId/medias/:index',
+      path: '/posts/:postId/medias/:postMediaId',
       factory: $PostMediaListViewPageRouteExtension._fromState,
     );
 
@@ -108,11 +108,11 @@ extension $PostMediaListViewPageRouteExtension on PostMediaListViewPageRoute {
   static PostMediaListViewPageRoute _fromState(GoRouterState state) =>
       PostMediaListViewPageRoute(
         postId: int.parse(state.pathParameters['postId']!),
-        index: int.parse(state.pathParameters['index']!),
+        postMediaId: state.pathParameters['postMediaId']!,
       );
 
   String get location => GoRouteData.$location(
-        '/home/posts/${Uri.encodeComponent(postId.toString())}/medias/${Uri.encodeComponent(index.toString())}',
+        '/posts/${Uri.encodeComponent(postId.toString())}/medias/${Uri.encodeComponent(postMediaId)}',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -8,11 +8,13 @@ class MediaList extends StatelessWidget {
   const MediaList({
     super.key,
     required this.urls,
+    required this.heroTagGenerator,
     this.onTap,
     this.onClosed,
   });
 
   final List<String> urls;
+  final String Function(String) heroTagGenerator;
   final ValueSetter<String>? onTap;
   final ValueSetter<String>? onClosed;
 
@@ -22,24 +24,28 @@ class MediaList extends StatelessWidget {
       case 1:
         return MediaForOne(
           url: urls.single,
+          heroTagGenerator: heroTagGenerator,
           onTap: onTap,
           onClosed: onClosed,
         );
       case 2:
         return MediaForTwo(
           urls: urls,
+          heroTagGenerator: heroTagGenerator,
           onTap: onTap,
           onClosed: onClosed,
         );
       case 3:
         return MediaForThree(
           urls: urls,
+          heroTagGenerator: heroTagGenerator,
           onTap: onTap,
           onClosed: onClosed,
         );
       case 4:
         return MediaForFour(
           urls: urls,
+          heroTagGenerator: heroTagGenerator,
           onTap: onTap,
           onClosed: onClosed,
         );

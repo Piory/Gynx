@@ -84,6 +84,12 @@ class L10nEn extends L10n {
   String get postRequiredError => 'Please enter the post content.';
 
   @override
+  String get postListEmpty => 'No posts yet';
+
+  @override
+  String get favoritePostListEmpty => 'No favorite posts yet';
+
+  @override
   String get username => 'Username';
 
   @override

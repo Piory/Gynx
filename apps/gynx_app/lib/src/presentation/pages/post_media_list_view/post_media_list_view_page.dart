@@ -14,11 +14,13 @@ class PostMediaListViewPage extends ConsumerWidget {
   const PostMediaListViewPage({
     super.key,
     required this.postId,
-    required this.index,
+    required this.postMediaId,
+    required this.from,
   });
 
   final int postId;
-  final int index;
+  final String postMediaId;
+  final String from;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,17 +41,16 @@ class PostMediaListViewPage extends ConsumerWidget {
           direction: DismissiblePageDismissDirection.multi,
           child: PhotoViewGallery.builder(
             pageController: PageController(
-              initialPage: index,
+              initialPage: tPostMediaList.indexOfId(postMediaId),
             ),
             itemCount: tPostMediaList.length,
             backgroundDecoration: const BoxDecoration(
               color: Colors.transparent,
             ),
             builder: (context, index) {
-              final url = tPostMediaList.getByIndex(index).url;
               return PhotoViewGalleryPageOptions(
                 heroAttributes: PhotoViewHeroAttributes(
-                  tag: url,
+                  tag: '$from-$postMediaId',
                   transitionOnUserGestures: true,
                 ),
                 imageProvider: CachedNetworkImageProvider(

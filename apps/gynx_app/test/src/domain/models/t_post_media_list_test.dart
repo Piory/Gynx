@@ -42,6 +42,32 @@ void main() {
     });
   });
 
+  group('#getByUrl', () {
+    test('TPostMediaList に指定した url が存在する場合、その要素を返す', () {
+      final tPostMedia = generateDummyTPostMedia();
+      final list = TPostMediaList([tPostMedia]);
+      expect(list.getByUrl(tPostMedia.url), tPostMedia);
+    });
+  });
+
+  group('#indexOfId', () {
+    test('TPostMediaList が空の場合、-1 を返す', () {
+      expect(TPostMediaList.empty.indexOfId('1'), -1);
+    });
+
+    test('TPostMediaList に指定した id が存在する場合、そのインデックスを返す', () {
+      final tPostMedia = generateDummyTPostMedia();
+      final list = TPostMediaList([tPostMedia]);
+      expect(list.indexOfId(tPostMedia.id), 0);
+    });
+
+    test('TPostMediaList に指定した id が存在しない場合、-1 を返す', () {
+      final tPostMedia = generateDummyTPostMedia();
+      final list = TPostMediaList([tPostMedia]);
+      expect(list.indexOfId('2'), -1);
+    });
+  });
+
   group('#urls', () {
     test('TPostMediaList が空の場合、空リストを返す', () {
       expect(TPostMediaList.empty.urls, []);

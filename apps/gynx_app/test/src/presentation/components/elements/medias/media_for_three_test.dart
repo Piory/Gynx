@@ -21,6 +21,7 @@ void main() {
             home: Scaffold(
               body: MediaForThree(
                 urls: urls,
+                heroTagGenerator: (url) => url,
                 onTap: onTap,
                 onClosed: null,
               ),

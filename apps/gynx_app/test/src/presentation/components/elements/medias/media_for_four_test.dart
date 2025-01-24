@@ -22,6 +22,7 @@ void main() {
             home: Scaffold(
               body: MediaForFour(
                 urls: urls,
+                heroTagGenerator: (url) => url,
                 onTap: onTap,
                 onClosed: null,
               ),

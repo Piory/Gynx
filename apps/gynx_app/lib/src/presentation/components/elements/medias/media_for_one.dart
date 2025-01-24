@@ -6,11 +6,13 @@ class MediaForOne extends StatefulWidget {
   const MediaForOne({
     super.key,
     required this.url,
+    required this.heroTagGenerator,
     required this.onTap,
     required this.onClosed,
   });
 
   final String url;
+  final String Function(String) heroTagGenerator;
   final ValueSetter<String>? onTap;
   final ValueSetter<String>? onClosed;
 
@@ -53,6 +55,7 @@ class _MediaForOneState extends State<MediaForOne> {
               borderRadius: BorderRadius.circular(12),
               fit: BoxFit.fitWidth,
               url: widget.url,
+              heroTagGenerator: widget.heroTagGenerator,
               onTap: widget.onTap,
               onClosed: widget.onClosed,
             ),

@@ -5,8 +5,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:flutter/material.dart' as _i6;
 import 'package:gynx_app/src/domain/entities/v_user.dart' as _i2;
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart' as _i3;
+import 'package:gynx_app/src/presentation/navigation/page_navigator.dart'
+    as _i5;
+import 'package:gynx_app/src/presentation/navigation/page_type.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -57,4 +61,91 @@ class MockFindUserUseCase extends _i1.Mock implements _i3.FindUserUseCase {
           ),
         )),
       ) as _i4.Future<_i2.VUser>);
+}
+
+/// A class which mocks [PageNavigator].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
+  @override
+  void pop<T extends Object?>(
+    _i6.BuildContext? context, [
+    T? result,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #pop,
+          [
+            context,
+            result,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void push(
+    _i6.BuildContext? context,
+    _i7.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #push,
+          [
+            context,
+            pageType,
+          ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void go(
+    _i6.BuildContext? context,
+    _i7.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #go,
+          [
+            context,
+            pageType,
+          ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void pushReplacement(
+    _i6.BuildContext? context,
+    _i7.PageType? pageType, {
+    Map<String, dynamic>? pathParams,
+    Map<String, dynamic>? queryParams,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #pushReplacement,
+          [
+            context,
+            pageType,
+          ],
+          {
+            #pathParams: pathParams,
+            #queryParams: queryParams,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
 }

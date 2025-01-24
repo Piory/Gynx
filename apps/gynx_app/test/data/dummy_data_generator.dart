@@ -15,6 +15,8 @@ import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 
+int _maxInt = 4294967296;
+
 SuiteUser generateDummySuiteUser() => SuiteUser(
       vUserDetail: generateDummyVUserDetail(),
     );
@@ -49,7 +51,7 @@ TUserProfile generateDummyTUserProfile() => TUserProfile(
     );
 
 TUserFollow generateDummyTUserFollow() => TUserFollow(
-      id: faker.randomGenerator.integer(4),
+      id: faker.randomGenerator.integer(_maxInt),
       userId: faker.guid.guid(),
       followUserId: faker.guid.guid(),
       createdAt: faker.date.dateTime(),
@@ -60,7 +62,7 @@ TUserFollow generateDummyTUserFollow() => TUserFollow(
 TUserPostFavorite generateDummyTUserPostFavorite() => TUserPostFavorite(
       id: faker.guid.guid(),
       userId: faker.guid.guid(),
-      postId: faker.randomGenerator.integer(4),
+      postId: faker.randomGenerator.integer(_maxInt),
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,
@@ -70,14 +72,14 @@ TUserTimeline generateDummyTUserTimeline() => TUserTimeline(
       id: faker.guid.guid(),
       userId: faker.guid.guid(),
       type: TimelineType.follow,
-      postId: faker.randomGenerator.integer(4),
+      postId: faker.randomGenerator.integer(_maxInt),
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,
     );
 
 TPost generateDummyTPost() => TPost(
-      id: faker.randomGenerator.integer(4),
+      id: faker.randomGenerator.integer(_maxInt),
       userId: faker.guid.guid(),
       text: faker.lorem.sentence(),
       createdAt: faker.date.dateTime(),
@@ -87,8 +89,8 @@ TPost generateDummyTPost() => TPost(
 
 TPostMedia generateDummyTPostMedia() => TPostMedia(
       id: faker.guid.guid(),
-      postId: faker.randomGenerator.integer(4),
-      displayOrder: faker.randomGenerator.integer(4),
+      postId: faker.randomGenerator.integer(_maxInt),
+      displayOrder: faker.randomGenerator.integer(_maxInt),
       type: MediaType.values[faker.randomGenerator.integer(2)],
       url: faker.image.loremPicsum(),
       createdAt: faker.date.dateTime(),

@@ -8,6 +8,7 @@ import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/post_list_empty.dart';
 import 'package:gynx_app/src/presentation/pages/home/components/create_post_form.dart';
 import 'package:gynx_app/src/presentation/pages/home/home_page.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -77,7 +78,7 @@ void main() {
           tester: tester,
           vPostList: VPostList.empty,
         );
-        expect(find.text('No posts'), findsOneWidget);
+        expect(find.byType(PostListEmpty), findsOneWidget);
         expect(find.byType(CreatePostForm), findsNothing);
         expect(find.byType(SliverList), findsNothing);
         expect(find.byType(Post), findsNothing);
@@ -97,7 +98,7 @@ void main() {
           tester: tester,
           vPostList: vPostList,
         );
-        expect(find.text('No posts'), findsNothing);
+        expect(find.byType(PostListEmpty), findsNothing);
         expect(find.byType(CreatePostForm), findsNothing);
         expect(find.byType(SliverList), findsOneWidget);
         expect(find.byType(Post), findsNWidgets(vPostList.length));
