@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart' hide Dialog;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_constants/gynx_constants.dart';
@@ -15,6 +15,7 @@ class ProfileAvatarPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final size = MediaQuery.of(context).size;
     final colorScheme = Theme.of(context).colorScheme;
     final suiteUser = ref.read(
       suiteUserNotifierProvider.select((value) => value.value),
@@ -32,19 +33,17 @@ class ProfileAvatarPage extends ConsumerWidget {
               color: Colors.transparent,
             ),
             scaleStateCycle: _scaleStateCycle,
-            initialScale: 0.75,
-            minScale: 0.75,
             maxScale: 1.5,
             heroAttributes: PhotoViewHeroAttributes(
               tag: userId,
               transitionOnUserGestures: true,
             ),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.fitWidth,
-                  image: CachedNetworkImageProvider(avatarUrl),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Center(
+                child: UserAvatar(
+                  avatarUrl: avatarUrl,
+                  radius: (size.width / 2) - SpaceSize.s16,
                 ),
               ),
             ),
