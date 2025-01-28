@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/usecases/update_user_profile_usecase.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/dialogs/notify.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/edit_profile/edit_profile_controller.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
@@ -87,7 +87,7 @@ void main() {
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: selfIntroduction,
           ),
-          mockWidgetRef.invalidate(userNotifierProvider),
+          mockWidgetRef.invalidate(suiteUserNotifierProvider),
           mockBuildContext.mounted,
           mockPageNavigator.pop(mockBuildContext),
           mockLoadingDialog.hide(),
@@ -116,7 +116,7 @@ void main() {
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: null,
           ),
-          mockWidgetRef.invalidate(userNotifierProvider),
+          mockWidgetRef.invalidate(suiteUserNotifierProvider),
           mockBuildContext.mounted,
           mockPageNavigator.pop(mockBuildContext),
           mockLoadingDialog.hide(),

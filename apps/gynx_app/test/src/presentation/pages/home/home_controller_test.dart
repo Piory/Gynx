@@ -5,6 +5,7 @@ import 'package:gynx_app/src/domain/enums/media_type.dart';
 import 'package:gynx_app/src/domain/models/media.dart';
 import 'package:gynx_app/src/domain/models/media_list.dart';
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/home_controller.dart';
 import 'package:mockito/annotations.dart';
@@ -15,10 +16,12 @@ import 'home_controller_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<CreatePostUseCase>(),
+  MockSpec<SuiteUserNotifier>(),
   MockSpec<TimelineNotifier>(),
 ])
 void main() {
   final mockCreatePostUseCase = MockCreatePostUseCase();
+  final mockSuiteUserNotifier = MockSuiteUserNotifier();
   final mockTimelineNotifier = MockTimelineNotifier();
   final homeController = HomeController(mockCreatePostUseCase);
 
@@ -29,8 +32,10 @@ void main() {
   });
 
   tearDown(() {
+    verifyNoMoreInteractions(mockSuiteUserNotifier);
     verifyNoMoreInteractions(mockTimelineNotifier);
     verifyNoMoreInteractions(mockCreatePostUseCase);
+    reset(mockSuiteUserNotifier);
     reset(mockTimelineNotifier);
     reset(mockCreatePostUseCase);
   });
@@ -58,10 +63,8 @@ void main() {
             ),
           ),
         ).thenAnswer((_) async => vPost);
-        when(
-          mockTimelineNotifier.add(vPost),
-        );
         await homeController.createPost(
+          suiteUserNotifier: mockSuiteUserNotifier,
           timelineNotifier: mockTimelineNotifier,
           text: text,
           mediaPaths: [path1, path2],
@@ -83,6 +86,7 @@ void main() {
             ),
           ),
           mockTimelineNotifier.add(vPost),
+          mockSuiteUserNotifier.addPost(vPost),
         ]);
       });
     });

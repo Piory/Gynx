@@ -21,11 +21,9 @@ class SliverPostList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (vPostList.isEmpty) {
       return SliverFillRemaining(
-        child: SafeArea(
-          child: PostListEmpty(
-            icon: emptyIcon,
-            message: emptyMessage,
-          ),
+        child: PostListEmpty(
+          icon: emptyIcon,
+          message: emptyMessage,
         ),
       );
     }

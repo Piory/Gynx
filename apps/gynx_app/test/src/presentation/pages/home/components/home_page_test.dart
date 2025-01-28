@@ -85,8 +85,10 @@ void main() {
       });
 
       testWidgets('タイムライン上に表示される投稿がある場合、投稿が表示されること', (tester) async {
-        final vPosts = List.generate(3, (i) => generateDummyVPost(postId: i));
-        final vPostList = VPostList(vPosts);
+        final vPostList = VPostList(
+          List.generate(3, (i) => generateDummyVPost(postId: i)),
+        ).sortPostId(descending: true);
+        final vPosts = vPostList.vPosts;
         for (final vPost in vPosts) {
           when(mockFindUserUseCase.execute(vPost.userId)).thenAnswer(
             (_) async => generateDummyVUser().copyWith(
@@ -117,8 +119,10 @@ void main() {
         expect(find.byType(CreatePostForm), findsNothing);
         await tester.tap(find.byType(FloatingActionButton));
         verifyNever(mockSuiteUserUseCase.execute());
+        verifyNever(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId));
         await tester.pumpAndSettle();
         verify(mockSuiteUserUseCase.execute());
+        verify(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId));
         expect(find.byType(CreatePostForm), findsOneWidget);
       });
     });

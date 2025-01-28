@@ -11,7 +11,8 @@ part '../../generated/src/presentation/notifiers/timeline_notifier.g.dart';
 class TimelineNotifier extends _$TimelineNotifier {
   @override
   FutureOr<VPostList> build(TimelineType timelineType) async {
-    return await GetIt.I<FetchPostUseCase>().execute();
+    final vPostList = await GetIt.I<FetchPostUseCase>().execute();
+    return vPostList.sortPostId(descending: true);
   }
 
   void add(VPost vPost) {

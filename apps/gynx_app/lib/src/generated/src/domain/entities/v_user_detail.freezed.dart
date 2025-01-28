@@ -33,6 +33,9 @@ mixin _$VUserDetail {
   @JsonKey(name: 'latest_posts')
   @protected
   List<VPost> get latestPosts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'favorite_posts')
+  @protected
+  List<VPost> get favoritePosts => throw _privateConstructorUsedError;
   @JsonKey(name: 'follow_count')
   int get followCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'follower_count')
@@ -67,6 +70,7 @@ abstract class $VUserDetailCopyWith<$Res> {
       @JsonKey(name: 'avatar_url') String? avatarUrl,
       @JsonKey(name: 'self_introduction') String selfIntroduction,
       @JsonKey(name: 'latest_posts') @protected List<VPost> latestPosts,
+      @JsonKey(name: 'favorite_posts') @protected List<VPost> favoritePosts,
       @JsonKey(name: 'follow_count') int followCount,
       @JsonKey(name: 'follower_count') int followerCount,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -95,6 +99,7 @@ class _$VUserDetailCopyWithImpl<$Res, $Val extends VUserDetail>
     Object? avatarUrl = freezed,
     Object? selfIntroduction = null,
     Object? latestPosts = null,
+    Object? favoritePosts = null,
     Object? followCount = null,
     Object? followerCount = null,
     Object? createdAt = null,
@@ -125,6 +130,10 @@ class _$VUserDetailCopyWithImpl<$Res, $Val extends VUserDetail>
       latestPosts: null == latestPosts
           ? _value.latestPosts
           : latestPosts // ignore: cast_nullable_to_non_nullable
+              as List<VPost>,
+      favoritePosts: null == favoritePosts
+          ? _value.favoritePosts
+          : favoritePosts // ignore: cast_nullable_to_non_nullable
               as List<VPost>,
       followCount: null == followCount
           ? _value.followCount
@@ -165,6 +174,7 @@ abstract class _$$VUserDetailImplCopyWith<$Res>
       @JsonKey(name: 'avatar_url') String? avatarUrl,
       @JsonKey(name: 'self_introduction') String selfIntroduction,
       @JsonKey(name: 'latest_posts') @protected List<VPost> latestPosts,
+      @JsonKey(name: 'favorite_posts') @protected List<VPost> favoritePosts,
       @JsonKey(name: 'follow_count') int followCount,
       @JsonKey(name: 'follower_count') int followerCount,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -191,6 +201,7 @@ class __$$VUserDetailImplCopyWithImpl<$Res>
     Object? avatarUrl = freezed,
     Object? selfIntroduction = null,
     Object? latestPosts = null,
+    Object? favoritePosts = null,
     Object? followCount = null,
     Object? followerCount = null,
     Object? createdAt = null,
@@ -221,6 +232,10 @@ class __$$VUserDetailImplCopyWithImpl<$Res>
       latestPosts: null == latestPosts
           ? _value._latestPosts
           : latestPosts // ignore: cast_nullable_to_non_nullable
+              as List<VPost>,
+      favoritePosts: null == favoritePosts
+          ? _value._favoritePosts
+          : favoritePosts // ignore: cast_nullable_to_non_nullable
               as List<VPost>,
       followCount: null == followCount
           ? _value.followCount
@@ -258,12 +273,16 @@ class _$VUserDetailImpl extends _VUserDetail {
       @JsonKey(name: 'latest_posts')
       @protected
       final List<VPost> latestPosts = const [],
+      @JsonKey(name: 'favorite_posts')
+      @protected
+      final List<VPost> favoritePosts = const [],
       @JsonKey(name: 'follow_count') required this.followCount,
       @JsonKey(name: 'follower_count') required this.followerCount,
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
       @JsonKey(name: 'deleted_at') required this.deletedAt})
       : _latestPosts = latestPosts,
+        _favoritePosts = favoritePosts,
         super._();
 
   factory _$VUserDetailImpl.fromJson(Map<String, dynamic> json) =>
@@ -294,6 +313,16 @@ class _$VUserDetailImpl extends _VUserDetail {
     return EqualUnmodifiableListView(_latestPosts);
   }
 
+  final List<VPost> _favoritePosts;
+  @override
+  @JsonKey(name: 'favorite_posts')
+  @protected
+  List<VPost> get favoritePosts {
+    if (_favoritePosts is EqualUnmodifiableListView) return _favoritePosts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoritePosts);
+  }
+
   @override
   @JsonKey(name: 'follow_count')
   final int followCount;
@@ -312,7 +341,7 @@ class _$VUserDetailImpl extends _VUserDetail {
 
   @override
   String toString() {
-    return 'VUserDetail(userId: $userId, gynxId: $gynxId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, latestPosts: $latestPosts, followCount: $followCount, followerCount: $followerCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'VUserDetail(userId: $userId, gynxId: $gynxId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, latestPosts: $latestPosts, favoritePosts: $favoritePosts, followCount: $followCount, followerCount: $followerCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 
   @override
@@ -330,6 +359,8 @@ class _$VUserDetailImpl extends _VUserDetail {
                 other.selfIntroduction == selfIntroduction) &&
             const DeepCollectionEquality()
                 .equals(other._latestPosts, _latestPosts) &&
+            const DeepCollectionEquality()
+                .equals(other._favoritePosts, _favoritePosts) &&
             (identical(other.followCount, followCount) ||
                 other.followCount == followCount) &&
             (identical(other.followerCount, followerCount) ||
@@ -352,6 +383,7 @@ class _$VUserDetailImpl extends _VUserDetail {
       avatarUrl,
       selfIntroduction,
       const DeepCollectionEquality().hash(_latestPosts),
+      const DeepCollectionEquality().hash(_favoritePosts),
       followCount,
       followerCount,
       createdAt,
@@ -383,6 +415,9 @@ abstract class _VUserDetail extends VUserDetail {
       @JsonKey(name: 'self_introduction')
       required final String selfIntroduction,
       @JsonKey(name: 'latest_posts') @protected final List<VPost> latestPosts,
+      @JsonKey(name: 'favorite_posts')
+      @protected
+      final List<VPost> favoritePosts,
       @JsonKey(name: 'follow_count') required final int followCount,
       @JsonKey(name: 'follower_count') required final int followerCount,
       @JsonKey(name: 'created_at') required final DateTime createdAt,
@@ -413,6 +448,10 @@ abstract class _VUserDetail extends VUserDetail {
   @JsonKey(name: 'latest_posts')
   @protected
   List<VPost> get latestPosts;
+  @override
+  @JsonKey(name: 'favorite_posts')
+  @protected
+  List<VPost> get favoritePosts;
   @override
   @JsonKey(name: 'follow_count')
   int get followCount;

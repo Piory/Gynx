@@ -6,7 +6,7 @@ part of '../../../../presentation/notifiers/suite_user_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$suiteUserNotifierHash() => r'1825d300cd3cc1ae3ea66672d0325bbc885fc65c';
+String _$suiteUserNotifierHash() => r'258c078125fdfd4154b9434309bd2b04282abe43';
 
 /// See also [SuiteUserNotifier].
 @ProviderFor(SuiteUserNotifier)

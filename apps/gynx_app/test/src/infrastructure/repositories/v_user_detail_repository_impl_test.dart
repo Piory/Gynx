@@ -37,6 +37,11 @@ void main() {
       vPost2,
       vPost3,
     ],
+    favoritePosts: [
+      vPost1,
+      vPost2,
+      vPost3,
+    ],
   );
 
   tearDown(mockHttpClient.reset);

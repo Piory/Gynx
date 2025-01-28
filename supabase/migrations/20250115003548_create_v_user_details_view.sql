@@ -10,6 +10,14 @@ SELECT up.user_id,
               WHERE user_id = u.id
               ORDER BY id DESC
               LIMIT 20) posts)       AS latest_posts,
+       (SELECT jsonb_agg(posts)
+        FROM (SELECT *
+              FROM v_posts
+              WHERE post_id IN (SELECT post_id
+                           FROM t_user_post_favorites
+                           WHERE user_id = u.id)
+              ORDER BY id DESC
+              LIMIT 20) posts)       AS favorite_posts,
        (SELECT count(*)
         FROM t_user_follows
         WHERE follow_user_id = u.id) AS follow_count,
@@ -29,6 +37,7 @@ COMMENT ON COLUMN v_user_details.username IS 'ユーザー名';
 COMMENT ON COLUMN v_user_details.avatar_url IS 'アバターURL';
 COMMENT ON COLUMN v_user_details.self_introduction IS '自己紹介';
 COMMENT ON COLUMN v_user_details.latest_posts IS '最新の投稿';
+COMMENT ON COLUMN v_user_details.favorite_posts IS 'お気に入りの投稿';
 COMMENT ON COLUMN v_user_details.follow_count IS 'フォロー数';
 COMMENT ON COLUMN v_user_details.follower_count IS 'フォロワー数';
 COMMENT ON COLUMN v_user_details.created_at IS '作成日時';

@@ -236,6 +236,7 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
       }
       currentState.save();
       await GetIt.I<HomeController>().createPost(
+        suiteUserNotifier: ref.read(suiteUserNotifierProvider.notifier),
         timelineNotifier: ref.read(
           timelineNotifierProvider(TimelineType.follow).notifier,
         ),

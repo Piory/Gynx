@@ -26,6 +26,7 @@ class PostList extends StatelessWidget {
       );
     }
     final theme = Theme.of(context);
+    final sortedVPostList = vPostList.sortPostId(descending: true);
     return ListView.separated(
       itemCount: vPostList.length,
       separatorBuilder: (context, index) => Divider(
@@ -34,7 +35,7 @@ class PostList extends StatelessWidget {
       ),
       itemBuilder: (context, index) => Post(
         from: from,
-        vPost: vPostList.getByIndex(index),
+        vPost: sortedVPostList.getByIndex(index),
       ),
     );
   }

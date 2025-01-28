@@ -18,8 +18,8 @@ void main() {
   final vPost1 = generateDummyVPost(postId: 1);
   final vPost2 = generateDummyVPost(postId: 2);
   final vPostList = VPostList([
-    vPost1,
     vPost2,
+    vPost1,
   ]);
   final mockFetchPostUseCase = MockFetchPostUseCase();
 

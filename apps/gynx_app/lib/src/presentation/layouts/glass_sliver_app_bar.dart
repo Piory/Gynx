@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class GlassSliverAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GlassSliverAppBar({
     super.key,
+    required this.pinned,
     this.title,
     this.bottom,
     this.onStretchTrigger,
     this.actions,
   });
 
+  final bool pinned;
   final Widget? title;
   final PreferredSizeWidget? bottom;
   final Future<void> Function()? onStretchTrigger;
@@ -24,6 +26,7 @@ class GlassSliverAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SliverAppBar(
       onStretchTrigger: onStretchTrigger,
       stretch: onStretchTrigger != null,
+      pinned: pinned,
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         title: title,

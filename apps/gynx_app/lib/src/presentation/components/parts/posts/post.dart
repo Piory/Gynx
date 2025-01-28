@@ -151,7 +151,10 @@ class Post extends ConsumerWidget {
                         ),
                         const Gap(SpaceSize.s4),
                         Text(
-                          '0',
+                          Formatter.fromNumber(
+                            context.l10n,
+                            0,
+                          ),
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
@@ -167,7 +170,10 @@ class Post extends ConsumerWidget {
                         ),
                         const Gap(SpaceSize.s4),
                         Text(
-                          '${vPost.repostCount}',
+                          Formatter.fromNumber(
+                            context.l10n,
+                            vPost.repostCount,
+                          ),
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
@@ -183,7 +189,10 @@ class Post extends ConsumerWidget {
                         ),
                         const Gap(SpaceSize.s4),
                         Text(
-                          '${vPost.favoriteCount}',
+                          Formatter.fromNumber(
+                            context.l10n,
+                            vPost.favoriteCount,
+                          ),
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),

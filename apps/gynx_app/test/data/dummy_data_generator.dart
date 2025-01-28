@@ -110,6 +110,7 @@ VUser generateDummyVUser() => VUser(
 
 VUserDetail generateDummyVUserDetail({
   List<VPost> latestPosts = const [],
+  List<VPost> favoritePosts = const [],
 }) =>
     VUserDetail(
       userId: faker.guid.guid(),
@@ -119,6 +120,7 @@ VUserDetail generateDummyVUserDetail({
           faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       selfIntroduction: faker.lorem.sentence(),
       latestPosts: latestPosts,
+      favoritePosts: favoritePosts,
       followCount: faker.randomGenerator.integer(100),
       followerCount: faker.randomGenerator.integer(100),
       createdAt: faker.date.dateTime(),

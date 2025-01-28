@@ -9,13 +9,15 @@ import 'dart:typed_data' as _i11;
 
 import 'package:flutter/material.dart' as _i6;
 import 'package:gynx_app/src/domain/models/suite_user.dart' as _i3;
-import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i15;
+import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i16;
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart' as _i4;
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart'
     as _i5;
 import 'package:gynx_app/src/presentation/navigation/page_type.dart' as _i7;
-import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart'
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart'
     as _i14;
+import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart'
+    as _i15;
 import 'package:gynx_app/src/presentation/pages/home/home_controller.dart'
     as _i13;
 import 'package:image_picker/image_picker.dart' as _i12;
@@ -470,7 +472,8 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
 class MockHomeController extends _i1.Mock implements _i13.HomeController {
   @override
   _i9.Future<void> createPost({
-    required _i14.TimelineNotifier? timelineNotifier,
+    required _i14.SuiteUserNotifier? suiteUserNotifier,
+    required _i15.TimelineNotifier? timelineNotifier,
     required String? text,
     required List<String>? mediaPaths,
   }) =>
@@ -479,6 +482,7 @@ class MockHomeController extends _i1.Mock implements _i13.HomeController {
           #createPost,
           [],
           {
+            #suiteUserNotifier: suiteUserNotifier,
             #timelineNotifier: timelineNotifier,
             #text: text,
             #mediaPaths: mediaPaths,
@@ -492,7 +496,7 @@ class MockHomeController extends _i1.Mock implements _i13.HomeController {
 /// A class which mocks [SuiteUserUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSuiteUserUseCase extends _i1.Mock implements _i15.SuiteUserUseCase {
+class MockSuiteUserUseCase extends _i1.Mock implements _i16.SuiteUserUseCase {
   @override
   _i9.Future<_i3.SuiteUser> execute() => (super.noSuchMethod(
         Invocation.method(

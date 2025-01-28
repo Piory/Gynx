@@ -19,9 +19,16 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(
-      timelineNotifierProvider(TimelineType.follow)
-          .select((state) => state.isLoading),
+    final isAppBarPinned = ref.watch(
+      timelineNotifierProvider(TimelineType.follow).select((state) {
+        if (state.isLoading) {
+          return true;
+        }
+        if (state.value?.isEmpty ?? true) {
+          return true;
+        }
+        return false;
+      }),
     );
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -46,11 +53,10 @@ class HomePage extends ConsumerWidget {
         visibleDetectorKey: const Key('home'),
         child: CustomScrollView(
           primary: true,
-          physics: isLoading
-              ? const NeverScrollableScrollPhysics()
-              : const AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
             GlassSliverAppBar(
+              pinned: isAppBarPinned,
               title: Assets.svgs.logos.gynxLogo.svg(
                 width: 40,
               ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/domain/models/v_post_list.dart';
 import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post_list.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post_list_loading.dart';
@@ -89,40 +88,40 @@ class ProfilePage extends StatelessWidget {
                   Consumer(
                     key: const Key('posts'),
                     builder: (context, ref, _) {
-                      return ref.watch(suiteUserNotifierProvider).when(
-                            data: (suiteUser) {
-                              final userId = suiteUser.vUserDetail.userId;
-                              return PostList(
-                                from: '$userId-posts',
-                                vPostList:
-                                    suiteUser.vUserDetail.latestPostsList,
-                              );
-                            },
-                            loading: () => const PostListLoading(),
-                            error: (error, _) => const PostListLoading(),
-                          );
+                      final vUserDetail = ref.watch(
+                        suiteUserNotifierProvider.select(
+                          (value) => value.value?.vUserDetail,
+                        ),
+                      );
+                      if (vUserDetail == null) {
+                        return const PostListLoading();
+                      }
+                      return PostList(
+                        from: '${vUserDetail.userId}-posts',
+                        vPostList: vUserDetail.latestPostList,
+                      );
                     },
                   ),
                   Consumer(
                     key: const Key('favorites'),
                     builder: (context, ref, _) {
-                      return ref.watch(suiteUserNotifierProvider).when(
-                            data: (suiteUser) {
-                              final userId = suiteUser.vUserDetail.userId;
-                              return PostList(
-                                from: '$userId-favorite',
-                                vPostList: VPostList.empty,
-                                emptyIcon: const Icon(
-                                  IconlyBold.star,
-                                  size: 48,
-                                ),
-                                emptyMessage:
-                                    context.l10n.favoritePostListEmpty,
-                              );
-                            },
-                            loading: () => const PostListLoading(),
-                            error: (error, _) => const PostListLoading(),
-                          );
+                      final vUserDetail = ref.watch(
+                        suiteUserNotifierProvider.select(
+                          (value) => value.value?.vUserDetail,
+                        ),
+                      );
+                      if (vUserDetail == null) {
+                        return const PostListLoading();
+                      }
+                      return PostList(
+                        from: '${vUserDetail.userId}-favorite',
+                        vPostList: vUserDetail.favoritePostList,
+                        emptyIcon: const Icon(
+                          IconlyBold.star,
+                          size: 48,
+                        ),
+                        emptyMessage: context.l10n.favoritePostListEmpty,
+                      );
                     },
                   ),
                 ],

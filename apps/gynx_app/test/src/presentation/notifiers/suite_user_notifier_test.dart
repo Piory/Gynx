@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
@@ -54,6 +55,46 @@ void main() {
         mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
         mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
       ]);
+    });
+
+    group('#addPost', () {
+      test(
+        'SuiteUser.VUserDetail.latestPosts に、渡した VPost が追加されていること',
+        () async {
+          when(mockSuiteUserUseCase.execute())
+              .thenAnswer((_) async => suiteUser);
+          when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
+              .thenAnswer((_) async => vUser);
+          when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
+              .thenAnswer((_) async => vUserDetail);
+          final vPost = generateDummyVPost(
+            postId: faker.randomGenerator.integer(100),
+          );
+          final container = createContainer();
+          verifyNever(mockSuiteUserUseCase.execute());
+          verifyNever(
+            mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          );
+          verifyNever(
+            mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+          );
+          await container.read(suiteUserNotifierProvider.future);
+          verifyInOrder([
+            mockSuiteUserUseCase.execute(),
+            mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+            mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+          ]);
+          final result = await container.read(suiteUserNotifierProvider.future);
+          expect(result.vUserDetail.latestPostList, isEmpty);
+          container.read(suiteUserNotifierProvider.notifier).addPost(vPost);
+          final addedResult =
+              await container.read(suiteUserNotifierProvider.future);
+          expect(
+            addedResult.vUserDetail.latestPostList.vPosts,
+            contains(vPost),
+          );
+        },
+      );
     });
   });
 }

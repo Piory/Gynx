@@ -101,6 +101,7 @@ void main() {
         (tester) async {
           when(
             mockHomeController.createPost(
+              suiteUserNotifier: anyNamed('suiteUserNotifier'),
               timelineNotifier: anyNamed('timelineNotifier'),
               text: postText,
               mediaPaths: [],
@@ -114,6 +115,7 @@ void main() {
 
           verifyNever(
             mockHomeController.createPost(
+              suiteUserNotifier: anyNamed('suiteUserNotifier'),
               timelineNotifier: anyNamed('timelineNotifier'),
               text: postText,
               mediaPaths: [],
@@ -126,6 +128,7 @@ void main() {
           verifyInOrder([
             mockLoadingDialog.show(),
             mockHomeController.createPost(
+              suiteUserNotifier: anyNamed('suiteUserNotifier'),
               timelineNotifier: anyNamed('timelineNotifier'),
               text: postText,
               mediaPaths: [],
@@ -147,6 +150,7 @@ void main() {
         ).thenAnswer((_) async => mockXFile);
         when(
           mockHomeController.createPost(
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
             mediaPaths: [path],
@@ -169,6 +173,7 @@ void main() {
 
         verifyNever(
           mockHomeController.createPost(
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
             mediaPaths: [],
@@ -181,6 +186,7 @@ void main() {
         verifyInOrder([
           mockLoadingDialog.show(),
           mockHomeController.createPost(
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
             mediaPaths: [path],

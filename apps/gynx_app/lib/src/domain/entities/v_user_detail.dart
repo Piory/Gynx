@@ -17,6 +17,10 @@ class VUserDetail with _$VUserDetail {
     @Default([])
     @protected
     List<VPost> latestPosts,
+    @JsonKey(name: 'favorite_posts')
+    @Default([])
+    @protected
+    List<VPost> favoritePosts,
     @JsonKey(name: 'follow_count') required int followCount,
     @JsonKey(name: 'follower_count') required int followerCount,
     @JsonKey(name: 'created_at') required DateTime createdAt,
@@ -29,5 +33,7 @@ class VUserDetail with _$VUserDetail {
   factory VUserDetail.fromJson(Map<String, dynamic> json) =>
       _$VUserDetailFromJson(json);
 
-  VPostList get latestPostsList => VPostList(latestPosts);
+  VPostList get latestPostList => VPostList(latestPosts);
+
+  VPostList get favoritePostList => VPostList(favoritePosts);
 }
