@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
@@ -237,9 +236,7 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
       currentState.save();
       await GetIt.I<HomeController>().createPost(
         suiteUserNotifier: ref.read(suiteUserNotifierProvider.notifier),
-        timelineNotifier: ref.read(
-          timelineNotifierProvider(TimelineType.follow).notifier,
-        ),
+        timelineNotifier: ref.read(timelineNotifierProvider.notifier),
         text: currentState.fields['text']!.value as String,
         mediaPaths: (currentState.fields['medias']!.value as List<XFile>)
             .map((m) => m.path)

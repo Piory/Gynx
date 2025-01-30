@@ -21,7 +21,6 @@ dependencies:
   icons_plus: 5.0.0
   nil: 1.1.1
   riverpod_annotation: 2.6.1
-  shimmer: 3.0.0
   visibility_detector: 0.4.0+2
 
 dev_dependencies:

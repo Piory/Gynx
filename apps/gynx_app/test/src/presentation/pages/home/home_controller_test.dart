@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -23,7 +24,9 @@ void main() {
   final mockCreatePostUseCase = MockCreatePostUseCase();
   final mockSuiteUserNotifier = MockSuiteUserNotifier();
   final mockTimelineNotifier = MockTimelineNotifier();
-  final homeController = HomeController(mockCreatePostUseCase);
+  final homeController = HomeController(
+    mockCreatePostUseCase,
+  );
 
   final vPost = generateDummyVPost(postId: faker.randomGenerator.integer(100));
 
@@ -85,7 +88,7 @@ void main() {
               ],
             ),
           ),
-          mockTimelineNotifier.add(vPost),
+          mockTimelineNotifier.add(vPost.postId),
           mockSuiteUserNotifier.addPost(vPost),
         ]);
       });

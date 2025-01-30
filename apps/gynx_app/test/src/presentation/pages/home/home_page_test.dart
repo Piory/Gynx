@@ -18,7 +18,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:timeago_flutter/timeago_flutter.dart' as timeago;
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../../../data/dummy_data_generator.dart';
+import '../../../../data/dummy_data_generator.dart';
 import 'home_page_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -121,8 +121,11 @@ void main() {
         verifyNever(mockSuiteUserUseCase.execute());
         verifyNever(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId));
         await tester.pumpAndSettle();
-        verify(mockSuiteUserUseCase.execute());
-        verify(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId));
+        verifyInOrder([
+          mockFetchPostUseCase.execute(),
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
         expect(find.byType(CreatePostForm), findsOneWidget);
       });
     });

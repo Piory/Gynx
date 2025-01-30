@@ -8,6 +8,7 @@ import 'package:gynx_app/src/presentation/components/elements/avatars/user_avata
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/user_notifier.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -19,14 +20,15 @@ class Post extends ConsumerWidget {
   const Post({
     super.key,
     required this.from,
-    required this.vPost,
+    required this.postId,
   });
 
   final String from;
-  final VPost vPost;
+  final int postId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final vPost = ref.watch(postNotifierProvider(postId));
     final theme = Theme.of(context);
     final username = ref.watch(
       userNotifierProvider(vPost.userId).select(

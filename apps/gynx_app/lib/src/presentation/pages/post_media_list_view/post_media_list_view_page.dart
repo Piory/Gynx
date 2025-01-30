@@ -3,9 +3,8 @@ import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
-import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_notifier.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -26,12 +25,12 @@ class PostMediaListViewPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
     final tPostMediaList = ref.read(
-      timelineNotifierProvider(TimelineType.follow).select(
-        (value) => value.value?.getByPostId(postId).tPostMediaList,
-      ),
+      postNotifierProvider.call(postId).select(
+            (value) => value.tPostMediaList,
+          ),
     );
-    if (tPostMediaList == null) {
-      return const SizedBox();
+    if (tPostMediaList.isEmpty) {
+      return const SizedBox.shrink();
     }
     return Stack(
       children: [

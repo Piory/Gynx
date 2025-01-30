@@ -33,7 +33,7 @@ class HomeController {
             .toList(),
       ),
     );
-    timelineNotifier.add(vPost);
+    timelineNotifier.add(vPost.postId);
     suiteUserNotifier.addPost(vPost);
   }
 }

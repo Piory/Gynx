@@ -1,9 +1,38 @@
+import 'package:gynx_app/src/domain/models/post_id_list.dart';
 import 'package:gynx_app/src/domain/models/v_post_list.dart';
 import 'package:test/test.dart';
 
 import '../../../data/dummy_data_generator.dart';
 
 void main() {
+  group('#maxPostId', () {
+    test('VPostList が空の場合、null を返す', () {
+      expect(VPostList.empty.maxPostId, isNull);
+    });
+
+    test('VPostList が空でない場合、最大の postId を返す', () {
+      final vPost1 = generateDummyVPost(postId: 1);
+      final vPost2 = generateDummyVPost(postId: 3);
+      final vPost3 = generateDummyVPost(postId: 2);
+      final list = VPostList([vPost1, vPost2, vPost3]);
+      expect(list.maxPostId, 3);
+    });
+  });
+
+  group('#minPostId', () {
+    test('VPostList が空の場合、null を返す', () {
+      expect(VPostList.empty.minPostId, isNull);
+    });
+
+    test('VPostList が空でない場合、最小の postId を返す', () {
+      final vPost1 = generateDummyVPost(postId: 1);
+      final vPost2 = generateDummyVPost(postId: 3);
+      final vPost3 = generateDummyVPost(postId: 2);
+      final list = VPostList([vPost1, vPost2, vPost3]);
+      expect(list.minPostId, 1);
+    });
+  });
+
   group('#isEmpty', () {
     test('VPostList が空の場合、true を返す', () {
       expect(VPostList.empty.isEmpty, isTrue);
@@ -21,6 +50,20 @@ void main() {
 
     test('VPostList が空でない場合、要素数を返す', () {
       expect(VPostList([generateDummyVPost(postId: 1)]).length, 1);
+    });
+  });
+
+  group('#getPostIdList', () {
+    test('VPostList が空の場合、PostIdList.empty を返す', () {
+      expect(VPostList.empty.postIdList, PostIdList.empty);
+    });
+
+    test('VPostList が空でない場合、PostIdList を返す', () {
+      final vPost1 = generateDummyVPost(postId: 1);
+      final vPost2 = generateDummyVPost(postId: 3);
+      final vPost3 = generateDummyVPost(postId: 2);
+      final list = VPostList([vPost1, vPost2, vPost3]);
+      expect(list.postIdList, const PostIdList([1, 3, 2]));
     });
   });
 

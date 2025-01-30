@@ -3,18 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i8;
 
 import 'package:gynx_app/src/domain/entities/v_post.dart' as _i2;
-import 'package:gynx_app/src/domain/enums/timeline_type.dart' as _i11;
-import 'package:gynx_app/src/domain/models/media_list.dart' as _i8;
+import 'package:gynx_app/src/domain/models/media_list.dart' as _i9;
 import 'package:gynx_app/src/domain/models/suite_user.dart' as _i4;
-import 'package:gynx_app/src/domain/models/v_post_list.dart' as _i5;
-import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart' as _i6;
+import 'package:gynx_app/src/domain/models/v_post_list.dart' as _i6;
+import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart' as _i7;
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart'
-    as _i9;
-import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart'
     as _i10;
+import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart'
+    as _i11;
+import 'package:gynx_app/src/presentation/notifiers/timeline_notifier_mixin.dart'
+    as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:riverpod_annotation/riverpod_annotation.dart' as _i3;
 
@@ -72,8 +73,18 @@ class _FakeSuiteUser_3 extends _i1.SmartFake implements _i4.SuiteUser {
         );
 }
 
-class _FakeVPostList_4 extends _i1.SmartFake implements _i5.VPostList {
-  _FakeVPostList_4(
+class _FakeTimelineState_4 extends _i1.SmartFake implements _i5.TimelineState {
+  _FakeTimelineState_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeVPostList_5 extends _i1.SmartFake implements _i6.VPostList {
+  _FakeVPostList_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -85,11 +96,11 @@ class _FakeVPostList_4 extends _i1.SmartFake implements _i5.VPostList {
 /// A class which mocks [CreatePostUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCreatePostUseCase extends _i1.Mock implements _i6.CreatePostUseCase {
+class MockCreatePostUseCase extends _i1.Mock implements _i7.CreatePostUseCase {
   @override
-  _i7.Future<_i2.VPost> execute({
+  _i8.Future<_i2.VPost> execute({
     required String? text,
-    required _i8.MediaList? mediaList,
+    required _i9.MediaList? mediaList,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -100,7 +111,7 @@ class MockCreatePostUseCase extends _i1.Mock implements _i6.CreatePostUseCase {
             #mediaList: mediaList,
           },
         ),
-        returnValue: _i7.Future<_i2.VPost>.value(_FakeVPost_0(
+        returnValue: _i8.Future<_i2.VPost>.value(_FakeVPost_0(
           this,
           Invocation.method(
             #execute,
@@ -111,7 +122,7 @@ class MockCreatePostUseCase extends _i1.Mock implements _i6.CreatePostUseCase {
             },
           ),
         )),
-        returnValueForMissingStub: _i7.Future<_i2.VPost>.value(_FakeVPost_0(
+        returnValueForMissingStub: _i8.Future<_i2.VPost>.value(_FakeVPost_0(
           this,
           Invocation.method(
             #execute,
@@ -122,13 +133,13 @@ class MockCreatePostUseCase extends _i1.Mock implements _i6.CreatePostUseCase {
             },
           ),
         )),
-      ) as _i7.Future<_i2.VPost>);
+      ) as _i8.Future<_i2.VPost>);
 }
 
 /// A class which mocks [SuiteUserNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
+class MockSuiteUserNotifier extends _i1.Mock implements _i10.SuiteUserNotifier {
   @override
   _i3.AutoDisposeAsyncNotifierProviderRef<_i4.SuiteUser> get ref =>
       (super.noSuchMethod(
@@ -167,26 +178,26 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
       );
 
   @override
-  _i7.Future<_i4.SuiteUser> get future => (super.noSuchMethod(
+  _i8.Future<_i4.SuiteUser> get future => (super.noSuchMethod(
         Invocation.getter(#future),
-        returnValue: _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+        returnValue: _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.getter(#future),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+            _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.getter(#future),
         )),
-      ) as _i7.Future<_i4.SuiteUser>);
+      ) as _i8.Future<_i4.SuiteUser>);
 
   @override
-  _i7.FutureOr<_i4.SuiteUser> build() => (super.noSuchMethod(
+  _i8.FutureOr<_i4.SuiteUser> build() => (super.noSuchMethod(
         Invocation.method(
           #build,
           [],
         ),
-        returnValue: _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+        returnValue: _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.method(
             #build,
@@ -194,14 +205,14 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+            _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.method(
             #build,
             [],
           ),
         )),
-      ) as _i7.FutureOr<_i4.SuiteUser>);
+      ) as _i8.FutureOr<_i4.SuiteUser>);
 
   @override
   void addPost(_i2.VPost? vPost) => super.noSuchMethod(
@@ -233,9 +244,9 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
       );
 
   @override
-  _i7.Future<_i4.SuiteUser> update(
-    _i7.FutureOr<_i4.SuiteUser> Function(_i4.SuiteUser)? cb, {
-    _i7.FutureOr<_i4.SuiteUser> Function(
+  _i8.Future<_i4.SuiteUser> update(
+    _i8.FutureOr<_i4.SuiteUser> Function(_i4.SuiteUser)? cb, {
+    _i8.FutureOr<_i4.SuiteUser> Function(
       Object,
       StackTrace,
     )? onError,
@@ -246,7 +257,7 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
           [cb],
           {#onError: onError},
         ),
-        returnValue: _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+        returnValue: _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.method(
             #update,
@@ -255,7 +266,7 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
+            _i8.Future<_i4.SuiteUser>.value(_FakeSuiteUser_3(
           this,
           Invocation.method(
             #update,
@@ -263,7 +274,7 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
             {#onError: onError},
           ),
         )),
-      ) as _i7.Future<_i4.SuiteUser>);
+      ) as _i8.Future<_i4.SuiteUser>);
 
   @override
   bool updateShouldNotify(
@@ -286,53 +297,77 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i9.SuiteUserNotifier {
 /// A class which mocks [TimelineNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
+class MockTimelineNotifier extends _i1.Mock implements _i11.TimelineNotifier {
   @override
-  _i11.TimelineType get timelineType => (super.noSuchMethod(
-        Invocation.getter(#timelineType),
-        returnValue: _i11.TimelineType.follow,
-        returnValueForMissingStub: _i11.TimelineType.follow,
-      ) as _i11.TimelineType);
+  _i3.AutoDisposeAsyncNotifierProviderRef<_i5.TimelineState>
+      get timelineNotifierRef => (super.noSuchMethod(
+            Invocation.getter(#timelineNotifierRef),
+            returnValue:
+                _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.TimelineState>(
+              this,
+              Invocation.getter(#timelineNotifierRef),
+            ),
+            returnValueForMissingStub:
+                _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.TimelineState>(
+              this,
+              Invocation.getter(#timelineNotifierRef),
+            ),
+          ) as _i3.AutoDisposeAsyncNotifierProviderRef<_i5.TimelineState>);
 
   @override
-  set timelineType(_i11.TimelineType? _timelineType) => super.noSuchMethod(
+  _i3.AsyncValue<_i5.TimelineState> get timelineState => (super.noSuchMethod(
+        Invocation.getter(#timelineState),
+        returnValue: _FakeAsyncValue_2<_i5.TimelineState>(
+          this,
+          Invocation.getter(#timelineState),
+        ),
+        returnValueForMissingStub: _FakeAsyncValue_2<_i5.TimelineState>(
+          this,
+          Invocation.getter(#timelineState),
+        ),
+      ) as _i3.AsyncValue<_i5.TimelineState>);
+
+  @override
+  set timelineState(_i3.AsyncValue<_i5.TimelineState>? value) =>
+      super.noSuchMethod(
         Invocation.setter(
-          #timelineType,
-          _timelineType,
+          #timelineState,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i3.AutoDisposeAsyncNotifierProviderRef<_i5.VPostList> get ref =>
+  _i3.AutoDisposeAsyncNotifierProviderRef<_i5.TimelineState> get ref =>
       (super.noSuchMethod(
         Invocation.getter(#ref),
-        returnValue: _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.VPostList>(
+        returnValue:
+            _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.TimelineState>(
           this,
           Invocation.getter(#ref),
         ),
         returnValueForMissingStub:
-            _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.VPostList>(
+            _FakeAutoDisposeAsyncNotifierProviderRef_1<_i5.TimelineState>(
           this,
           Invocation.getter(#ref),
         ),
-      ) as _i3.AutoDisposeAsyncNotifierProviderRef<_i5.VPostList>);
+      ) as _i3.AutoDisposeAsyncNotifierProviderRef<_i5.TimelineState>);
 
   @override
-  _i3.AsyncValue<_i5.VPostList> get state => (super.noSuchMethod(
+  _i3.AsyncValue<_i5.TimelineState> get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeAsyncValue_2<_i5.VPostList>(
+        returnValue: _FakeAsyncValue_2<_i5.TimelineState>(
           this,
           Invocation.getter(#state),
         ),
-        returnValueForMissingStub: _FakeAsyncValue_2<_i5.VPostList>(
+        returnValueForMissingStub: _FakeAsyncValue_2<_i5.TimelineState>(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i3.AsyncValue<_i5.VPostList>);
+      ) as _i3.AsyncValue<_i5.TimelineState>);
 
   @override
-  set state(_i3.AsyncValue<_i5.VPostList>? newState) => super.noSuchMethod(
+  set state(_i3.AsyncValue<_i5.TimelineState>? newState) => super.noSuchMethod(
         Invocation.setter(
           #state,
           newState,
@@ -341,66 +376,102 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
       );
 
   @override
-  _i7.Future<_i5.VPostList> get future => (super.noSuchMethod(
+  _i8.Future<_i5.TimelineState> get future => (super.noSuchMethod(
         Invocation.getter(#future),
-        returnValue: _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+        returnValue: _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.getter(#future),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+            _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.getter(#future),
         )),
-      ) as _i7.Future<_i5.VPostList>);
+      ) as _i8.Future<_i5.TimelineState>);
 
   @override
-  _i7.FutureOr<_i5.VPostList> build(_i11.TimelineType? timelineType) =>
-      (super.noSuchMethod(
+  int get length => (super.noSuchMethod(
+        Invocation.getter(#length),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  _i8.FutureOr<_i5.TimelineState> build() => (super.noSuchMethod(
         Invocation.method(
           #build,
-          [timelineType],
+          [],
         ),
-        returnValue: _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+        returnValue: _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.method(
             #build,
-            [timelineType],
+            [],
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+            _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.method(
             #build,
-            [timelineType],
+            [],
           ),
         )),
-      ) as _i7.FutureOr<_i5.VPostList>);
+      ) as _i8.FutureOr<_i5.TimelineState>);
 
   @override
-  void add(_i2.VPost? vPost) => super.noSuchMethod(
+  _i8.Future<_i6.VPostList> fetchBySincePostId(int? sincePostId) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #add,
-          [vPost],
+          #fetchBySincePostId,
+          [sincePostId],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i8.Future<_i6.VPostList>.value(_FakeVPostList_5(
+          this,
+          Invocation.method(
+            #fetchBySincePostId,
+            [sincePostId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i8.Future<_i6.VPostList>.value(_FakeVPostList_5(
+          this,
+          Invocation.method(
+            #fetchBySincePostId,
+            [sincePostId],
+          ),
+        )),
+      ) as _i8.Future<_i6.VPostList>);
 
   @override
-  void addAll(_i5.VPostList? vPostList) => super.noSuchMethod(
+  _i8.Future<_i6.VPostList> fetchByMaxPostId(int? maxPostId) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #addAll,
-          [vPostList],
+          #fetchByMaxPostId,
+          [maxPostId],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i8.Future<_i6.VPostList>.value(_FakeVPostList_5(
+          this,
+          Invocation.method(
+            #fetchByMaxPostId,
+            [maxPostId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i8.Future<_i6.VPostList>.value(_FakeVPostList_5(
+          this,
+          Invocation.method(
+            #fetchByMaxPostId,
+            [maxPostId],
+          ),
+        )),
+      ) as _i8.Future<_i6.VPostList>);
 
   @override
   void listenSelf(
     void Function(
-      _i3.AsyncValue<_i5.VPostList>?,
-      _i3.AsyncValue<_i5.VPostList>,
+      _i3.AsyncValue<_i5.TimelineState>?,
+      _i3.AsyncValue<_i5.TimelineState>,
     )? listener, {
     void Function(
       Object,
@@ -417,9 +488,9 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
       );
 
   @override
-  _i7.Future<_i5.VPostList> update(
-    _i7.FutureOr<_i5.VPostList> Function(_i5.VPostList)? cb, {
-    _i7.FutureOr<_i5.VPostList> Function(
+  _i8.Future<_i5.TimelineState> update(
+    _i8.FutureOr<_i5.TimelineState> Function(_i5.TimelineState)? cb, {
+    _i8.FutureOr<_i5.TimelineState> Function(
       Object,
       StackTrace,
     )? onError,
@@ -430,7 +501,7 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
           [cb],
           {#onError: onError},
         ),
-        returnValue: _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+        returnValue: _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.method(
             #update,
@@ -439,7 +510,7 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
           ),
         )),
         returnValueForMissingStub:
-            _i7.Future<_i5.VPostList>.value(_FakeVPostList_4(
+            _i8.Future<_i5.TimelineState>.value(_FakeTimelineState_4(
           this,
           Invocation.method(
             #update,
@@ -447,12 +518,12 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
             {#onError: onError},
           ),
         )),
-      ) as _i7.Future<_i5.VPostList>);
+      ) as _i8.Future<_i5.TimelineState>);
 
   @override
   bool updateShouldNotify(
-    _i3.AsyncValue<_i5.VPostList>? previous,
-    _i3.AsyncValue<_i5.VPostList>? next,
+    _i3.AsyncValue<_i5.TimelineState>? previous,
+    _i3.AsyncValue<_i5.TimelineState>? next,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -465,4 +536,43 @@ class MockTimelineNotifier extends _i1.Mock implements _i10.TimelineNotifier {
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
+
+  @override
+  int getByIndex(int? index) => (super.noSuchMethod(
+        Invocation.method(
+          #getByIndex,
+          [index],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  _i8.Future<void> fetchNext() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchNext,
+          [],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
+
+  @override
+  _i8.Future<void> fetchPrevious() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchPrevious,
+          [],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
+
+  @override
+  void add(int? postId) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [postId],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

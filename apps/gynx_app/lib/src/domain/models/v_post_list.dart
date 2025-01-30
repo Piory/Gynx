@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
+import 'package:gynx_app/src/domain/models/post_id_list.dart';
 
 part '../../generated/src/domain/models/v_post_list.freezed.dart';
 part '../../generated/src/domain/models/v_post_list.g.dart';
@@ -15,9 +18,32 @@ class VPostList with _$VPostList {
 
   static const empty = VPostList([]);
 
+  int? get maxPostId {
+    if (vPosts.isEmpty) {
+      return null;
+    }
+    return vPosts.map((vPost) => vPost.postId).reduce(max);
+  }
+
+  int? get minPostId {
+    if (vPosts.isEmpty) {
+      return null;
+    }
+    return vPosts.map((vPost) => vPost.postId).reduce(min);
+  }
+
   bool get isEmpty => vPosts.isEmpty;
 
   int get length => vPosts.length;
+
+  PostIdList get postIdList {
+    if (vPosts.isEmpty) {
+      return PostIdList.empty;
+    }
+    return PostIdList(
+      vPosts.map((vPost) => vPost.postId).toList(),
+    );
+  }
 
   VPost getByIndex(int index) {
     return vPosts[index];

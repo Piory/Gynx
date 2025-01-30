@@ -279,9 +279,8 @@ class _MyApp extends ConsumerState<MyApp> {
             borderRadius: BorderRadius.circular(16),
             overlay: Padding(
               padding: const EdgeInsets.all(SpaceSize.s16),
-              child: LoadingAnimationWidget.flickr(
-                leftDotColor: colorScheme.primary,
-                rightDotColor: colorScheme.secondary,
+              child: LoadingAnimationWidget.inkDrop(
+                color: colorScheme.primary,
                 size: 28,
               ),
             ),

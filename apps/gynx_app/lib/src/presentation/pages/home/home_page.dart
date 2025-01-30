@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gynx_app/src/domain/enums/timeline_type.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' hide Refreshable;
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
+import 'package:gynx_app/src/presentation/components/elements/lists/refreshable_custom_scroll_view.dart';
 import 'package:gynx_app/src/presentation/components/elements/notifier/visible_detect_scroll_controller_notifier.dart';
-import 'package:gynx_app/src/presentation/components/parts/posts/sliver_post_list.dart';
-import 'package:gynx_app/src/presentation/components/parts/posts/sliver_post_list_loading.dart';
 import 'package:gynx_app/src/presentation/layouts/glass_sliver_app_bar.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/components/create_post_form.dart';
+import 'package:gynx_app/src/presentation/pages/home/components/sliver_follow_timeline.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:iconly/iconly.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -20,16 +19,17 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isAppBarPinned = ref.watch(
-      timelineNotifierProvider(TimelineType.follow).select((state) {
+      timelineNotifierProvider.select((state) {
         if (state.isLoading) {
           return true;
         }
-        if (state.value?.isEmpty ?? true) {
+        if (state.value?.postIdList.isEmpty ?? true) {
           return true;
         }
         return false;
       }),
     );
+    final timelineNotifier = ref.read(timelineNotifierProvider.notifier);
     return Scaffold(
       extendBodyBehindAppBar: true,
       floatingActionButton: Padding(
@@ -51,37 +51,21 @@ class HomePage extends ConsumerWidget {
       ),
       body: VisibleDetectScrollControllerNotifier(
         visibleDetectorKey: const Key('home'),
-        child: CustomScrollView(
-          primary: true,
-          physics: const AlwaysScrollableScrollPhysics(),
-          slivers: [
-            GlassSliverAppBar(
-              pinned: isAppBarPinned,
-              title: Assets.svgs.logos.gynxLogo.svg(
-                width: 40,
-              ),
+        child: RefreshableCustomScrollView(
+          sliverAppBar: GlassSliverAppBar(
+            pinned: isAppBarPinned,
+            title: Assets.svgs.logos.gynxLogo.svg(
+              width: 40,
             ),
-            const SliverPadding(
+          ),
+          onRefresh: timelineNotifier.fetchNext,
+          slivers: const [
+            SliverPadding(
               padding: EdgeInsets.only(
                 top: SpaceSize.s4,
               ),
             ),
-            ref.watch(timelineNotifierProvider(TimelineType.follow)).when(
-                  data: (vPostList) => SliverPostList(
-                    from: 'home',
-                    vPostList: vPostList,
-                  ),
-                  loading: () => const SliverPostListLoading(),
-                  error: (error, _) {
-                    return SliverFillRemaining(
-                      child: Center(
-                        child: Text(
-                          error.toString(),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+            SliverFollowTimeline(),
           ],
         ),
       ),

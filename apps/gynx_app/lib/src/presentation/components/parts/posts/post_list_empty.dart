@@ -17,27 +17,25 @@ class PostListEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (icon == null)
-            const Icon(
-              IconlyLight.paper_negative,
-              size: 48,
-            )
-          else
-            icon!,
-          const Gap(SpaceSize.s8),
-          Text(
-            message ?? context.l10n.postListEmpty,
-            style: theme.textTheme.bodyMedium!.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (icon == null)
+          const Icon(
+            IconlyLight.paper_negative,
+            size: 48,
+          )
+        else
+          icon!,
+        const Gap(SpaceSize.s8),
+        Text(
+          message ?? context.l10n.postListEmpty,
+          style: theme.textTheme.bodyMedium!.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
           ),
-          const Gap(SpaceSize.s64),
-        ],
-      ),
+        ),
+        const Gap(SpaceSize.s64),
+      ],
     );
   }
 }

@@ -11,6 +11,7 @@ import 'package:gynx_app/src/presentation/components/elements/medias/media_list.
 import 'package:gynx_app/src/presentation/components/parts/posts/post.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_notifier.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -55,6 +56,11 @@ void main() {
           .thenAnswer((_) async => vUser);
       await tester.pumpWidget(
         ProviderScope(
+          overrides: [
+            postNotifierProvider(vPost.postId).overrideWith(
+              () => PostNotifierMock(vPost),
+            ),
+          ],
           child: MaterialApp(
             locale: const Locale('ja'),
             localizationsDelegates: L10n.localizationsDelegates,
@@ -62,8 +68,8 @@ void main() {
             home: Scaffold(
               body: SingleChildScrollView(
                 child: Post(
-                  vPost: vPost,
                   from: 'test',
+                  postId: vPost.postId,
                 ),
               ),
             ),

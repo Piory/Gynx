@@ -34,6 +34,8 @@ class ProfileAvatarPage extends ConsumerWidget {
             ),
             scaleStateCycle: _scaleStateCycle,
             maxScale: 1.5,
+            minScale: PhotoViewComputedScale.contained,
+            initialScale: PhotoViewComputedScale.contained,
             heroAttributes: PhotoViewHeroAttributes(
               tag: userId,
               transitionOnUserGestures: true,

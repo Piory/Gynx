@@ -1,29 +1,36 @@
 import 'package:get_it/get_it.dart';
-import 'package:gynx_app/src/domain/entities/v_post.dart';
-import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/v_post_list.dart';
 import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart';
+import 'package:gynx_app/src/presentation/notifiers/timeline_notifier_mixin.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '../../generated/src/presentation/notifiers/timeline_notifier.g.dart';
 
 @riverpod
-class TimelineNotifier extends _$TimelineNotifier {
+class TimelineNotifier extends _$TimelineNotifier with TimelineNotifierMixin {
   @override
-  FutureOr<VPostList> build(TimelineType timelineType) async {
-    final vPostList = await GetIt.I<FetchPostUseCase>().execute();
-    return vPostList.sortPostId(descending: true);
-  }
+  FutureOr<TimelineState> build() async => const TimelineState();
 
-  void add(VPost vPost) {
-    state = AsyncValue.data(
-      state.requireValue.add(vPost).sortPostId(descending: true),
-    );
-  }
+  @override
+  // ignore: deprecated_member_use
+  AutoDisposeAsyncNotifierProviderRef<TimelineState> get timelineNotifierRef =>
+      ref;
 
-  void addAll(VPostList vPostList) {
-    state = AsyncValue.data(
-      state.requireValue.addAll(vPostList).sortPostId(descending: true),
-    );
-  }
+  @override
+  AsyncValue<TimelineState> get timelineState => state;
+
+  @override
+  set timelineState(AsyncValue<TimelineState> value) => state = value;
+
+  @override
+  Future<VPostList> fetchBySincePostId(int? sincePostId) =>
+      GetIt.I<FetchPostUseCase>().execute(
+        sincePostId: maxPostId,
+      );
+
+  @override
+  Future<VPostList> fetchByMaxPostId(int? maxPostId) =>
+      GetIt.I<FetchPostUseCase>().execute(
+        maxPostId: minPostId,
+      );
 }
