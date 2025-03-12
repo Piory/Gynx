@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,234 +10,32 @@ part of '../../../../domain/entities/t_user_profile.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TUserProfile _$TUserProfileFromJson(Map<String, dynamic> json) {
-  return _TUserProfile.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TUserProfile {
-  @JsonKey(name: 'user_id')
-  String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'username')
-  String get username => throw _privateConstructorUsedError;
-  @JsonKey(name: 'avatar_url')
-  String? get avatarUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'self_introduction')
-  String get selfIntroduction => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt => throw _privateConstructorUsedError;
-
-  /// Serializes this TUserProfile to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get userId;
+  String get username;
+  String? get avatarUrl;
+  String get selfIntroduction;
+  DateTime get createdAt;
+  DateTime get updatedAt;
+  DateTime? get deletedAt;
 
   /// Create a copy of TUserProfile
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TUserProfileCopyWith<TUserProfile> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TUserProfileCopyWith<$Res> {
-  factory $TUserProfileCopyWith(
-          TUserProfile value, $Res Function(TUserProfile) then) =
-      _$TUserProfileCopyWithImpl<$Res, TUserProfile>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'avatar_url') String? avatarUrl,
-      @JsonKey(name: 'self_introduction') String selfIntroduction,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
-}
-
-/// @nodoc
-class _$TUserProfileCopyWithImpl<$Res, $Val extends TUserProfile>
-    implements $TUserProfileCopyWith<$Res> {
-  _$TUserProfileCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TUserProfile
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-    Object? username = null,
-    Object? avatarUrl = freezed,
-    Object? selfIntroduction = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TUserProfileImplCopyWith<$Res>
-    implements $TUserProfileCopyWith<$Res> {
-  factory _$$TUserProfileImplCopyWith(
-          _$TUserProfileImpl value, $Res Function(_$TUserProfileImpl) then) =
-      __$$TUserProfileImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'avatar_url') String? avatarUrl,
-      @JsonKey(name: 'self_introduction') String selfIntroduction,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
-}
-
-/// @nodoc
-class __$$TUserProfileImplCopyWithImpl<$Res>
-    extends _$TUserProfileCopyWithImpl<$Res, _$TUserProfileImpl>
-    implements _$$TUserProfileImplCopyWith<$Res> {
-  __$$TUserProfileImplCopyWithImpl(
-      _$TUserProfileImpl _value, $Res Function(_$TUserProfileImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TUserProfile
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-    Object? username = null,
-    Object? avatarUrl = freezed,
-    Object? selfIntroduction = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
-  }) {
-    return _then(_$TUserProfileImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$TUserProfileImpl extends _TUserProfile {
-  const _$TUserProfileImpl(
-      {@JsonKey(name: 'user_id') required this.userId,
-      @JsonKey(name: 'username') required this.username,
-      @JsonKey(name: 'avatar_url') required this.avatarUrl,
-      @JsonKey(name: 'self_introduction') required this.selfIntroduction,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'updated_at') required this.updatedAt,
-      @JsonKey(name: 'deleted_at') required this.deletedAt})
-      : super._();
-
-  factory _$TUserProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TUserProfileImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'user_id')
-  final String userId;
-  @override
-  @JsonKey(name: 'username')
-  final String username;
-  @override
-  @JsonKey(name: 'avatar_url')
-  final String? avatarUrl;
-  @override
-  @JsonKey(name: 'self_introduction')
-  final String selfIntroduction;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  final DateTime? deletedAt;
-
-  @override
-  String toString() {
-    return 'TUserProfile(userId: $userId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
-  }
+      _$TUserProfileCopyWithImpl<TUserProfile>(
+          this as TUserProfile, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TUserProfileImpl &&
+            other is TUserProfile &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -257,64 +56,79 @@ class _$TUserProfileImpl extends _TUserProfile {
   int get hashCode => Object.hash(runtimeType, userId, username, avatarUrl,
       selfIntroduction, createdAt, updatedAt, deletedAt);
 
-  /// Create a copy of TUserProfile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TUserProfileImplCopyWith<_$TUserProfileImpl> get copyWith =>
-      __$$TUserProfileImplCopyWithImpl<_$TUserProfileImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TUserProfileImplToJson(
-      this,
-    );
+  String toString() {
+    return 'TUserProfile(userId: $userId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
-abstract class _TUserProfile extends TUserProfile {
-  const factory _TUserProfile(
-          {@JsonKey(name: 'user_id') required final String userId,
-          @JsonKey(name: 'username') required final String username,
-          @JsonKey(name: 'avatar_url') required final String? avatarUrl,
-          @JsonKey(name: 'self_introduction')
-          required final String selfIntroduction,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
-          @JsonKey(name: 'updated_at') required final DateTime updatedAt,
-          @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
-      _$TUserProfileImpl;
-  const _TUserProfile._() : super._();
+/// @nodoc
+abstract mixin class $TUserProfileCopyWith<$Res> {
+  factory $TUserProfileCopyWith(
+          TUserProfile value, $Res Function(TUserProfile) _then) =
+      _$TUserProfileCopyWithImpl;
+  @useResult
+  $Res call(
+      {String userId,
+      String username,
+      String? avatarUrl,
+      String selfIntroduction,
+      DateTime createdAt,
+      DateTime updatedAt,
+      DateTime? deletedAt});
+}
 
-  factory _TUserProfile.fromJson(Map<String, dynamic> json) =
-      _$TUserProfileImpl.fromJson;
+/// @nodoc
+class _$TUserProfileCopyWithImpl<$Res> implements $TUserProfileCopyWith<$Res> {
+  _$TUserProfileCopyWithImpl(this._self, this._then);
 
-  @override
-  @JsonKey(name: 'user_id')
-  String get userId;
-  @override
-  @JsonKey(name: 'username')
-  String get username;
-  @override
-  @JsonKey(name: 'avatar_url')
-  String? get avatarUrl;
-  @override
-  @JsonKey(name: 'self_introduction')
-  String get selfIntroduction;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt;
+  final TUserProfile _self;
+  final $Res Function(TUserProfile) _then;
 
   /// Create a copy of TUserProfile
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TUserProfileImplCopyWith<_$TUserProfileImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  $Res call({
+    Object? userId = null,
+    Object? username = null,
+    Object? avatarUrl = freezed,
+    Object? selfIntroduction = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? deletedAt = freezed,
+  }) {
+    return _then(TUserProfile(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatarUrl: freezed == avatarUrl
+          ? _self.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selfIntroduction: null == selfIntroduction
+          ? _self.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      deletedAt: freezed == deletedAt
+          ? _self.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
 }
+
+// dart format on

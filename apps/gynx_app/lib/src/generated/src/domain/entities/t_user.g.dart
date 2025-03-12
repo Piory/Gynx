@@ -6,18 +6,31 @@ part of '../../../../domain/entities/t_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserImpl _$$TUserImplFromJson(Map<String, dynamic> json) => _$TUserImpl(
-      id: json['id'] as String,
-      gynxId: json['gynx_id'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TUser _$TUserFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TUser',
+      json,
+      ($checkedConvert) {
+        final val = TUser(
+          id: $checkedConvert('id', (v) => v as String),
+          gynxId: $checkedConvert('gynx_id', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'gynxId': 'gynx_id',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TUserImplToJson(_$TUserImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TUserToJson(TUser instance) => <String, dynamic>{
       'id': instance.id,
       'gynx_id': instance.gynxId,
       'created_at': instance.createdAt.toIso8601String(),

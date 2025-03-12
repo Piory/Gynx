@@ -8,10 +8,15 @@ part '../../generated/src/presentation/notifiers/timeline_notifier_mixin.freezed
 
 @freezed
 class TimelineState with _$TimelineState {
-  const factory TimelineState({
-    @Default(false) bool isNoMorePost,
-    @Default(PostIdList.empty) PostIdList postIdList,
-  }) = _TimelineState;
+  const TimelineState({
+    this.isNoMorePost = false,
+    this.postIdList = PostIdList.empty,
+  });
+
+  @override
+  final bool isNoMorePost;
+  @override
+  final PostIdList postIdList;
 }
 
 mixin class TimelineNotifierMixin {

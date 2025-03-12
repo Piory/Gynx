@@ -6,31 +6,60 @@ part of '../../../../domain/entities/v_user_detail.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VUserDetailImpl _$$VUserDetailImplFromJson(Map<String, dynamic> json) =>
-    _$VUserDetailImpl(
-      userId: json['user_id'] as String,
-      gynxId: json['gynx_id'] as String,
-      username: json['username'] as String,
-      avatarUrl: json['avatar_url'] as String?,
-      selfIntroduction: json['self_introduction'] as String,
-      latestPosts: (json['latest_posts'] as List<dynamic>?)
-              ?.map((e) => VPost.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      favoritePosts: (json['favorite_posts'] as List<dynamic>?)
-              ?.map((e) => VPost.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      followCount: (json['follow_count'] as num).toInt(),
-      followerCount: (json['follower_count'] as num).toInt(),
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+VUserDetail _$VUserDetailFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'VUserDetail',
+      json,
+      ($checkedConvert) {
+        final val = VUserDetail(
+          userId: $checkedConvert('user_id', (v) => v as String),
+          gynxId: $checkedConvert('gynx_id', (v) => v as String),
+          username: $checkedConvert('username', (v) => v as String),
+          avatarUrl: $checkedConvert('avatar_url', (v) => v as String?),
+          selfIntroduction:
+              $checkedConvert('self_introduction', (v) => v as String),
+          latestPosts: $checkedConvert(
+              'latest_posts',
+              (v) =>
+                  (v as List<dynamic>?)
+                      ?.map((e) => VPost.fromJson(e as Map<String, dynamic>))
+                      .toList() ??
+                  const []),
+          favoritePosts: $checkedConvert(
+              'favorite_posts',
+              (v) =>
+                  (v as List<dynamic>?)
+                      ?.map((e) => VPost.fromJson(e as Map<String, dynamic>))
+                      .toList() ??
+                  const []),
+          followCount:
+              $checkedConvert('follow_count', (v) => (v as num).toInt()),
+          followerCount:
+              $checkedConvert('follower_count', (v) => (v as num).toInt()),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userId': 'user_id',
+        'gynxId': 'gynx_id',
+        'avatarUrl': 'avatar_url',
+        'selfIntroduction': 'self_introduction',
+        'latestPosts': 'latest_posts',
+        'favoritePosts': 'favorite_posts',
+        'followCount': 'follow_count',
+        'followerCount': 'follower_count',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$VUserDetailImplToJson(_$VUserDetailImpl instance) =>
+Map<String, dynamic> _$VUserDetailToJson(VUserDetail instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
       'gynx_id': instance.gynxId,

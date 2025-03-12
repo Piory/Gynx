@@ -6,20 +6,37 @@ part of '../../../../domain/entities/t_user_profile.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserProfileImpl _$$TUserProfileImplFromJson(Map<String, dynamic> json) =>
-    _$TUserProfileImpl(
-      userId: json['user_id'] as String,
-      username: json['username'] as String,
-      avatarUrl: json['avatar_url'] as String?,
-      selfIntroduction: json['self_introduction'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TUserProfile _$TUserProfileFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TUserProfile',
+      json,
+      ($checkedConvert) {
+        final val = TUserProfile(
+          userId: $checkedConvert('user_id', (v) => v as String),
+          username: $checkedConvert('username', (v) => v as String),
+          avatarUrl: $checkedConvert('avatar_url', (v) => v as String?),
+          selfIntroduction:
+              $checkedConvert('self_introduction', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userId': 'user_id',
+        'avatarUrl': 'avatar_url',
+        'selfIntroduction': 'self_introduction',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TUserProfileImplToJson(_$TUserProfileImpl instance) =>
+Map<String, dynamic> _$TUserProfileToJson(TUserProfile instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
       'username': instance.username,

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,74 +10,52 @@ part of '../../../../domain/models/media_list.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MediaList {
-  List<Media> get medias => throw _privateConstructorUsedError;
+  List<Media> get medias;
 
   /// Create a copy of MediaList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MediaListCopyWith<MediaList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MediaListCopyWith<$Res> {
-  factory $MediaListCopyWith(MediaList value, $Res Function(MediaList) then) =
-      _$MediaListCopyWithImpl<$Res, MediaList>;
-  @useResult
-  $Res call({List<Media> medias});
-}
-
-/// @nodoc
-class _$MediaListCopyWithImpl<$Res, $Val extends MediaList>
-    implements $MediaListCopyWith<$Res> {
-  _$MediaListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MediaList
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $MediaListCopyWith<MediaList> get copyWith =>
+      _$MediaListCopyWithImpl<MediaList>(this as MediaList, _$identity);
+
   @override
-  $Res call({
-    Object? medias = null,
-  }) {
-    return _then(_value.copyWith(
-      medias: null == medias
-          ? _value.medias
-          : medias // ignore: cast_nullable_to_non_nullable
-              as List<Media>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MediaList &&
+            const DeepCollectionEquality().equals(other.medias, medias));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(medias));
+
+  @override
+  String toString() {
+    return 'MediaList(medias: $medias)';
   }
 }
 
 /// @nodoc
-abstract class _$$MediaListImplCopyWith<$Res>
-    implements $MediaListCopyWith<$Res> {
-  factory _$$MediaListImplCopyWith(
-          _$MediaListImpl value, $Res Function(_$MediaListImpl) then) =
-      __$$MediaListImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MediaListCopyWith<$Res> {
+  factory $MediaListCopyWith(MediaList value, $Res Function(MediaList) _then) =
+      _$MediaListCopyWithImpl;
   @useResult
   $Res call({List<Media> medias});
 }
 
 /// @nodoc
-class __$$MediaListImplCopyWithImpl<$Res>
-    extends _$MediaListCopyWithImpl<$Res, _$MediaListImpl>
-    implements _$$MediaListImplCopyWith<$Res> {
-  __$$MediaListImplCopyWithImpl(
-      _$MediaListImpl _value, $Res Function(_$MediaListImpl) _then)
-      : super(_value, _then);
+class _$MediaListCopyWithImpl<$Res> implements $MediaListCopyWith<$Res> {
+  _$MediaListCopyWithImpl(this._self, this._then);
+
+  final MediaList _self;
+  final $Res Function(MediaList) _then;
 
   /// Create a copy of MediaList
   /// with the given fields replaced by the non-null parameter values.
@@ -85,67 +64,13 @@ class __$$MediaListImplCopyWithImpl<$Res>
   $Res call({
     Object? medias = null,
   }) {
-    return _then(_$MediaListImpl(
+    return _then(MediaList(
       null == medias
-          ? _value._medias
+          ? _self.medias
           : medias // ignore: cast_nullable_to_non_nullable
               as List<Media>,
     ));
   }
 }
 
-/// @nodoc
-
-class _$MediaListImpl extends _MediaList {
-  const _$MediaListImpl(final List<Media> medias)
-      : _medias = medias,
-        super._();
-
-  final List<Media> _medias;
-  @override
-  List<Media> get medias {
-    if (_medias is EqualUnmodifiableListView) return _medias;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_medias);
-  }
-
-  @override
-  String toString() {
-    return 'MediaList(medias: $medias)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MediaListImpl &&
-            const DeepCollectionEquality().equals(other._medias, _medias));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_medias));
-
-  /// Create a copy of MediaList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MediaListImplCopyWith<_$MediaListImpl> get copyWith =>
-      __$$MediaListImplCopyWithImpl<_$MediaListImpl>(this, _$identity);
-}
-
-abstract class _MediaList extends MediaList {
-  const factory _MediaList(final List<Media> medias) = _$MediaListImpl;
-  const _MediaList._() : super._();
-
-  @override
-  List<Media> get medias;
-
-  /// Create a copy of MediaList
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MediaListImplCopyWith<_$MediaListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

@@ -107,7 +107,7 @@ RouteBase get $postMediaListViewPageRoute => GoRouteData.$route(
 extension $PostMediaListViewPageRouteExtension on PostMediaListViewPageRoute {
   static PostMediaListViewPageRoute _fromState(GoRouterState state) =>
       PostMediaListViewPageRoute(
-        postId: int.parse(state.pathParameters['postId']!),
+        postId: int.parse(state.pathParameters['postId']!)!,
         postMediaId: state.pathParameters['postMediaId']!,
       );
 

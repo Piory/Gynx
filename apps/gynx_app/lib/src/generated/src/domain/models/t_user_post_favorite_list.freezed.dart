@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,88 +10,57 @@ part of '../../../../domain/models/t_user_post_favorite_list.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TUserPostFavoriteList _$TUserPostFavoriteListFromJson(
-    Map<String, dynamic> json) {
-  return _TUserPostFavoriteList.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TUserPostFavoriteList {
-  @protected
-  List<TUserPostFavorite> get tUserPostFavorites =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this TUserPostFavoriteList to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<TUserPostFavorite> get tUserPostFavorites;
 
   /// Create a copy of TUserPostFavoriteList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TUserPostFavoriteListCopyWith<TUserPostFavoriteList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TUserPostFavoriteListCopyWith<$Res> {
-  factory $TUserPostFavoriteListCopyWith(TUserPostFavoriteList value,
-          $Res Function(TUserPostFavoriteList) then) =
-      _$TUserPostFavoriteListCopyWithImpl<$Res, TUserPostFavoriteList>;
-  @useResult
-  $Res call({@protected List<TUserPostFavorite> tUserPostFavorites});
-}
-
-/// @nodoc
-class _$TUserPostFavoriteListCopyWithImpl<$Res,
-        $Val extends TUserPostFavoriteList>
-    implements $TUserPostFavoriteListCopyWith<$Res> {
-  _$TUserPostFavoriteListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TUserPostFavoriteList
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $TUserPostFavoriteListCopyWith<TUserPostFavoriteList> get copyWith =>
+      _$TUserPostFavoriteListCopyWithImpl<TUserPostFavoriteList>(
+          this as TUserPostFavoriteList, _$identity);
+
   @override
-  $Res call({
-    Object? tUserPostFavorites = null,
-  }) {
-    return _then(_value.copyWith(
-      tUserPostFavorites: null == tUserPostFavorites
-          ? _value.tUserPostFavorites
-          : tUserPostFavorites // ignore: cast_nullable_to_non_nullable
-              as List<TUserPostFavorite>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TUserPostFavoriteList &&
+            const DeepCollectionEquality()
+                .equals(other.tUserPostFavorites, tUserPostFavorites));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(tUserPostFavorites));
+
+  @override
+  String toString() {
+    return 'TUserPostFavoriteList(tUserPostFavorites: $tUserPostFavorites)';
   }
 }
 
 /// @nodoc
-abstract class _$$TUserPostFavoriteListImplCopyWith<$Res>
-    implements $TUserPostFavoriteListCopyWith<$Res> {
-  factory _$$TUserPostFavoriteListImplCopyWith(
-          _$TUserPostFavoriteListImpl value,
-          $Res Function(_$TUserPostFavoriteListImpl) then) =
-      __$$TUserPostFavoriteListImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $TUserPostFavoriteListCopyWith<$Res> {
+  factory $TUserPostFavoriteListCopyWith(TUserPostFavoriteList value,
+          $Res Function(TUserPostFavoriteList) _then) =
+      _$TUserPostFavoriteListCopyWithImpl;
   @useResult
-  $Res call({@protected List<TUserPostFavorite> tUserPostFavorites});
+  $Res call({List<TUserPostFavorite> tUserPostFavorites});
 }
 
 /// @nodoc
-class __$$TUserPostFavoriteListImplCopyWithImpl<$Res>
-    extends _$TUserPostFavoriteListCopyWithImpl<$Res,
-        _$TUserPostFavoriteListImpl>
-    implements _$$TUserPostFavoriteListImplCopyWith<$Res> {
-  __$$TUserPostFavoriteListImplCopyWithImpl(_$TUserPostFavoriteListImpl _value,
-      $Res Function(_$TUserPostFavoriteListImpl) _then)
-      : super(_value, _then);
+class _$TUserPostFavoriteListCopyWithImpl<$Res>
+    implements $TUserPostFavoriteListCopyWith<$Res> {
+  _$TUserPostFavoriteListCopyWithImpl(this._self, this._then);
+
+  final TUserPostFavoriteList _self;
+  final $Res Function(TUserPostFavoriteList) _then;
 
   /// Create a copy of TUserPostFavoriteList
   /// with the given fields replaced by the non-null parameter values.
@@ -99,89 +69,13 @@ class __$$TUserPostFavoriteListImplCopyWithImpl<$Res>
   $Res call({
     Object? tUserPostFavorites = null,
   }) {
-    return _then(_$TUserPostFavoriteListImpl(
+    return _then(TUserPostFavoriteList(
       null == tUserPostFavorites
-          ? _value._tUserPostFavorites
+          ? _self.tUserPostFavorites
           : tUserPostFavorites // ignore: cast_nullable_to_non_nullable
               as List<TUserPostFavorite>,
     ));
   }
 }
 
-/// @nodoc
-@JsonSerializable()
-class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
-  const _$TUserPostFavoriteListImpl(
-      @protected final List<TUserPostFavorite> tUserPostFavorites)
-      : _tUserPostFavorites = tUserPostFavorites,
-        super._();
-
-  factory _$TUserPostFavoriteListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TUserPostFavoriteListImplFromJson(json);
-
-  final List<TUserPostFavorite> _tUserPostFavorites;
-  @override
-  @protected
-  List<TUserPostFavorite> get tUserPostFavorites {
-    if (_tUserPostFavorites is EqualUnmodifiableListView)
-      return _tUserPostFavorites;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tUserPostFavorites);
-  }
-
-  @override
-  String toString() {
-    return 'TUserPostFavoriteList(tUserPostFavorites: $tUserPostFavorites)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TUserPostFavoriteListImpl &&
-            const DeepCollectionEquality()
-                .equals(other._tUserPostFavorites, _tUserPostFavorites));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_tUserPostFavorites));
-
-  /// Create a copy of TUserPostFavoriteList
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TUserPostFavoriteListImplCopyWith<_$TUserPostFavoriteListImpl>
-      get copyWith => __$$TUserPostFavoriteListImplCopyWithImpl<
-          _$TUserPostFavoriteListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TUserPostFavoriteListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TUserPostFavoriteList extends TUserPostFavoriteList {
-  const factory _TUserPostFavoriteList(
-          @protected final List<TUserPostFavorite> tUserPostFavorites) =
-      _$TUserPostFavoriteListImpl;
-  const _TUserPostFavoriteList._() : super._();
-
-  factory _TUserPostFavoriteList.fromJson(Map<String, dynamic> json) =
-      _$TUserPostFavoriteListImpl.fromJson;
-
-  @override
-  @protected
-  List<TUserPostFavorite> get tUserPostFavorites;
-
-  /// Create a copy of TUserPostFavoriteList
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TUserPostFavoriteListImplCopyWith<_$TUserPostFavoriteListImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

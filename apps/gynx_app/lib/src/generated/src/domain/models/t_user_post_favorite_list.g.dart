@@ -6,16 +6,26 @@ part of '../../../../domain/models/t_user_post_favorite_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserPostFavoriteListImpl _$$TUserPostFavoriteListImplFromJson(
+TUserPostFavoriteList _$TUserPostFavoriteListFromJson(
         Map<String, dynamic> json) =>
-    _$TUserPostFavoriteListImpl(
-      (json['tUserPostFavorites'] as List<dynamic>)
-          .map((e) => TUserPostFavorite.fromJson(e as Map<String, dynamic>))
-          .toList(),
+    $checkedCreate(
+      'TUserPostFavoriteList',
+      json,
+      ($checkedConvert) {
+        final val = TUserPostFavoriteList(
+          $checkedConvert(
+              'tUserPostFavorites',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      TUserPostFavorite.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$TUserPostFavoriteListImplToJson(
-        _$TUserPostFavoriteListImpl instance) =>
+Map<String, dynamic> _$TUserPostFavoriteListToJson(
+        TUserPostFavoriteList instance) =>
     <String, dynamic>{
       'tUserPostFavorites': instance.tUserPostFavorites,
     };

@@ -6,19 +6,33 @@ part of '../../../../domain/entities/t_user_follow.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserFollowImpl _$$TUserFollowImplFromJson(Map<String, dynamic> json) =>
-    _$TUserFollowImpl(
-      id: (json['id'] as num).toInt(),
-      userId: json['user_id'] as String,
-      followUserId: json['follow_user_id'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TUserFollow _$TUserFollowFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TUserFollow',
+      json,
+      ($checkedConvert) {
+        final val = TUserFollow(
+          id: $checkedConvert('id', (v) => (v as num).toInt()),
+          userId: $checkedConvert('user_id', (v) => v as String),
+          followUserId: $checkedConvert('follow_user_id', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userId': 'user_id',
+        'followUserId': 'follow_user_id',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TUserFollowImplToJson(_$TUserFollowImpl instance) =>
+Map<String, dynamic> _$TUserFollowToJson(TUserFollow instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,

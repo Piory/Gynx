@@ -23,10 +23,15 @@ extension ScrollControllerExtension on ScrollController {
 
 @freezed
 class NavigationBarItem with _$NavigationBarItem {
-  const factory NavigationBarItem({
-    required IconData selectedIcon,
-    required IconData unselectedIcon,
-  }) = _NavigationBarItem;
+  const NavigationBarItem({
+    required this.selectedIcon,
+    required this.unselectedIcon,
+  });
+
+  @override
+  final IconData selectedIcon;
+  @override
+  final IconData unselectedIcon;
 }
 
 ScrollDirection _lastScrollDirection = ScrollDirection.idle;

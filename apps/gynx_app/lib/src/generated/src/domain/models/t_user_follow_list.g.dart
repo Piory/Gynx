@@ -6,16 +6,23 @@ part of '../../../../domain/models/t_user_follow_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserFollowListImpl _$$TUserFollowListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TUserFollowListImpl(
-      (json['tUserFollows'] as List<dynamic>)
-          .map((e) => TUserFollow.fromJson(e as Map<String, dynamic>))
-          .toList(),
+TUserFollowList _$TUserFollowListFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TUserFollowList',
+      json,
+      ($checkedConvert) {
+        final val = TUserFollowList(
+          $checkedConvert(
+              'tUserFollows',
+              (v) => (v as List<dynamic>)
+                  .map((e) => TUserFollow.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$TUserFollowListImplToJson(
-        _$TUserFollowListImpl instance) =>
+Map<String, dynamic> _$TUserFollowListToJson(TUserFollowList instance) =>
     <String, dynamic>{
       'tUserFollows': instance.tUserFollows,
     };

@@ -6,14 +6,21 @@ part of '../../../../domain/models/t_post_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TPostListImpl _$$TPostListImplFromJson(Map<String, dynamic> json) =>
-    _$TPostListImpl(
-      (json['tPosts'] as List<dynamic>)
-          .map((e) => TPost.fromJson(e as Map<String, dynamic>))
-          .toList(),
+TPostList _$TPostListFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TPostList',
+      json,
+      ($checkedConvert) {
+        final val = TPostList(
+          $checkedConvert(
+              'tPosts',
+              (v) => (v as List<dynamic>)
+                  .map((e) => TPost.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$TPostListImplToJson(_$TPostListImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TPostListToJson(TPostList instance) => <String, dynamic>{
       'tPosts': instance.tPosts,
     };

@@ -6,16 +6,23 @@ part of '../../../../domain/models/t_user_timeline_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserTimelineListImpl _$$TUserTimelineListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TUserTimelineListImpl(
-      (json['tUserTimelines'] as List<dynamic>)
-          .map((e) => TUserTimeline.fromJson(e as Map<String, dynamic>))
-          .toList(),
+TUserTimelineList _$TUserTimelineListFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TUserTimelineList',
+      json,
+      ($checkedConvert) {
+        final val = TUserTimelineList(
+          $checkedConvert(
+              'tUserTimelines',
+              (v) => (v as List<dynamic>)
+                  .map((e) => TUserTimeline.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$TUserTimelineListImplToJson(
-        _$TUserTimelineListImpl instance) =>
+Map<String, dynamic> _$TUserTimelineListToJson(TUserTimelineList instance) =>
     <String, dynamic>{
       'tUserTimelines': instance.tUserTimelines,
     };

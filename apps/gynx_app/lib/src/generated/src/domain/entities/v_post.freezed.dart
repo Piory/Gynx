@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,320 +10,39 @@ part of '../../../../domain/entities/v_post.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VPost _$VPostFromJson(Map<String, dynamic> json) {
-  return _VPost.fromJson(json);
-}
 
 /// @nodoc
 mixin _$VPost {
-  @JsonKey(name: 'post_id')
-  int get postId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id')
-  String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'repost')
-  VPost? get repost => throw _privateConstructorUsedError;
-  @JsonKey(name: 'text')
-  String? get text => throw _privateConstructorUsedError;
-  @JsonKey(name: 'medias')
-  @protected
-  List<TPostMedia> get medias => throw _privateConstructorUsedError;
-  @JsonKey(name: 'repost_count')
-  int get repostCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'favorite_count')
-  int get favoriteCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt => throw _privateConstructorUsedError;
-
-  /// Serializes this VPost to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get postId;
+  String get userId;
+  VPost? get repost;
+  String? get text;
+  List<TPostMedia> get medias;
+  int get repostCount;
+  int get favoriteCount;
+  DateTime get createdAt;
+  DateTime get updatedAt;
+  DateTime? get deletedAt;
 
   /// Create a copy of VPost
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VPostCopyWith<VPost> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $VPostCopyWith<$Res> {
-  factory $VPostCopyWith(VPost value, $Res Function(VPost) then) =
-      _$VPostCopyWithImpl<$Res, VPost>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'post_id') int postId,
-      @JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'repost') VPost? repost,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'medias') @protected List<TPostMedia> medias,
-      @JsonKey(name: 'repost_count') int repostCount,
-      @JsonKey(name: 'favorite_count') int favoriteCount,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
-
-  $VPostCopyWith<$Res>? get repost;
-}
-
-/// @nodoc
-class _$VPostCopyWithImpl<$Res, $Val extends VPost>
-    implements $VPostCopyWith<$Res> {
-  _$VPostCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of VPost
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? postId = null,
-    Object? userId = null,
-    Object? repost = freezed,
-    Object? text = freezed,
-    Object? medias = null,
-    Object? repostCount = null,
-    Object? favoriteCount = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      repost: freezed == repost
-          ? _value.repost
-          : repost // ignore: cast_nullable_to_non_nullable
-              as VPost?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      medias: null == medias
-          ? _value.medias
-          : medias // ignore: cast_nullable_to_non_nullable
-              as List<TPostMedia>,
-      repostCount: null == repostCount
-          ? _value.repostCount
-          : repostCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      favoriteCount: null == favoriteCount
-          ? _value.favoriteCount
-          : favoriteCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
-  }
-
-  /// Create a copy of VPost
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $VPostCopyWith<$Res>? get repost {
-    if (_value.repost == null) {
-      return null;
-    }
-
-    return $VPostCopyWith<$Res>(_value.repost!, (value) {
-      return _then(_value.copyWith(repost: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$VPostImplCopyWith<$Res> implements $VPostCopyWith<$Res> {
-  factory _$$VPostImplCopyWith(
-          _$VPostImpl value, $Res Function(_$VPostImpl) then) =
-      __$$VPostImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'post_id') int postId,
-      @JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'repost') VPost? repost,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'medias') @protected List<TPostMedia> medias,
-      @JsonKey(name: 'repost_count') int repostCount,
-      @JsonKey(name: 'favorite_count') int favoriteCount,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'deleted_at') DateTime? deletedAt});
-
-  @override
-  $VPostCopyWith<$Res>? get repost;
-}
-
-/// @nodoc
-class __$$VPostImplCopyWithImpl<$Res>
-    extends _$VPostCopyWithImpl<$Res, _$VPostImpl>
-    implements _$$VPostImplCopyWith<$Res> {
-  __$$VPostImplCopyWithImpl(
-      _$VPostImpl _value, $Res Function(_$VPostImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of VPost
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? postId = null,
-    Object? userId = null,
-    Object? repost = freezed,
-    Object? text = freezed,
-    Object? medias = null,
-    Object? repostCount = null,
-    Object? favoriteCount = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? deletedAt = freezed,
-  }) {
-    return _then(_$VPostImpl(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      repost: freezed == repost
-          ? _value.repost
-          : repost // ignore: cast_nullable_to_non_nullable
-              as VPost?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      medias: null == medias
-          ? _value._medias
-          : medias // ignore: cast_nullable_to_non_nullable
-              as List<TPostMedia>,
-      repostCount: null == repostCount
-          ? _value.repostCount
-          : repostCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      favoriteCount: null == favoriteCount
-          ? _value.favoriteCount
-          : favoriteCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      deletedAt: freezed == deletedAt
-          ? _value.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$VPostImpl extends _VPost {
-  const _$VPostImpl(
-      {@JsonKey(name: 'post_id') required this.postId,
-      @JsonKey(name: 'user_id') required this.userId,
-      @JsonKey(name: 'repost') required this.repost,
-      @JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'medias')
-      @protected
-      final List<TPostMedia> medias = const [],
-      @JsonKey(name: 'repost_count') required this.repostCount,
-      @JsonKey(name: 'favorite_count') required this.favoriteCount,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'updated_at') required this.updatedAt,
-      @JsonKey(name: 'deleted_at') required this.deletedAt})
-      : _medias = medias,
-        super._();
-
-  factory _$VPostImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VPostImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'post_id')
-  final int postId;
-  @override
-  @JsonKey(name: 'user_id')
-  final String userId;
-  @override
-  @JsonKey(name: 'repost')
-  final VPost? repost;
-  @override
-  @JsonKey(name: 'text')
-  final String? text;
-  final List<TPostMedia> _medias;
-  @override
-  @JsonKey(name: 'medias')
-  @protected
-  List<TPostMedia> get medias {
-    if (_medias is EqualUnmodifiableListView) return _medias;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_medias);
-  }
-
-  @override
-  @JsonKey(name: 'repost_count')
-  final int repostCount;
-  @override
-  @JsonKey(name: 'favorite_count')
-  final int favoriteCount;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  final DateTime? deletedAt;
-
-  @override
-  String toString() {
-    return 'VPost(postId: $postId, userId: $userId, repost: $repost, text: $text, medias: $medias, repostCount: $repostCount, favoriteCount: $favoriteCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
-  }
+  $VPostCopyWith<VPost> get copyWith =>
+      _$VPostCopyWithImpl<VPost>(this as VPost, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VPostImpl &&
+            other is VPost &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.repost, repost) || other.repost == repost) &&
             (identical(other.text, text) || other.text == text) &&
-            const DeepCollectionEquality().equals(other._medias, _medias) &&
+            const DeepCollectionEquality().equals(other.medias, medias) &&
             (identical(other.repostCount, repostCount) ||
                 other.repostCount == repostCount) &&
             (identical(other.favoriteCount, favoriteCount) ||
@@ -343,82 +63,103 @@ class _$VPostImpl extends _VPost {
       userId,
       repost,
       text,
-      const DeepCollectionEquality().hash(_medias),
+      const DeepCollectionEquality().hash(medias),
       repostCount,
       favoriteCount,
       createdAt,
       updatedAt,
       deletedAt);
 
-  /// Create a copy of VPost
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$VPostImplCopyWith<_$VPostImpl> get copyWith =>
-      __$$VPostImplCopyWithImpl<_$VPostImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VPostImplToJson(
-      this,
-    );
+  String toString() {
+    return 'VPost(postId: $postId, userId: $userId, repost: $repost, text: $text, medias: $medias, repostCount: $repostCount, favoriteCount: $favoriteCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
-abstract class _VPost extends VPost {
-  const factory _VPost(
-          {@JsonKey(name: 'post_id') required final int postId,
-          @JsonKey(name: 'user_id') required final String userId,
-          @JsonKey(name: 'repost') required final VPost? repost,
-          @JsonKey(name: 'text') required final String? text,
-          @JsonKey(name: 'medias') @protected final List<TPostMedia> medias,
-          @JsonKey(name: 'repost_count') required final int repostCount,
-          @JsonKey(name: 'favorite_count') required final int favoriteCount,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
-          @JsonKey(name: 'updated_at') required final DateTime updatedAt,
-          @JsonKey(name: 'deleted_at') required final DateTime? deletedAt}) =
-      _$VPostImpl;
-  const _VPost._() : super._();
+/// @nodoc
+abstract mixin class $VPostCopyWith<$Res> {
+  factory $VPostCopyWith(VPost value, $Res Function(VPost) _then) =
+      _$VPostCopyWithImpl;
+  @useResult
+  $Res call(
+      {int postId,
+      String userId,
+      VPost? repost,
+      String? text,
+      List<TPostMedia> medias,
+      int repostCount,
+      int favoriteCount,
+      DateTime createdAt,
+      DateTime updatedAt,
+      DateTime? deletedAt});
+}
 
-  factory _VPost.fromJson(Map<String, dynamic> json) = _$VPostImpl.fromJson;
+/// @nodoc
+class _$VPostCopyWithImpl<$Res> implements $VPostCopyWith<$Res> {
+  _$VPostCopyWithImpl(this._self, this._then);
 
-  @override
-  @JsonKey(name: 'post_id')
-  int get postId;
-  @override
-  @JsonKey(name: 'user_id')
-  String get userId;
-  @override
-  @JsonKey(name: 'repost')
-  VPost? get repost;
-  @override
-  @JsonKey(name: 'text')
-  String? get text;
-  @override
-  @JsonKey(name: 'medias')
-  @protected
-  List<TPostMedia> get medias;
-  @override
-  @JsonKey(name: 'repost_count')
-  int get repostCount;
-  @override
-  @JsonKey(name: 'favorite_count')
-  int get favoriteCount;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime get updatedAt;
-  @override
-  @JsonKey(name: 'deleted_at')
-  DateTime? get deletedAt;
+  final VPost _self;
+  final $Res Function(VPost) _then;
 
   /// Create a copy of VPost
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VPostImplCopyWith<_$VPostImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  $Res call({
+    Object? postId = null,
+    Object? userId = null,
+    Object? repost = freezed,
+    Object? text = freezed,
+    Object? medias = null,
+    Object? repostCount = null,
+    Object? favoriteCount = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? deletedAt = freezed,
+  }) {
+    return _then(VPost(
+      postId: null == postId
+          ? _self.postId
+          : postId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      repost: freezed == repost
+          ? _self.repost
+          : repost // ignore: cast_nullable_to_non_nullable
+              as VPost?,
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      medias: null == medias
+          ? _self.medias
+          : medias // ignore: cast_nullable_to_non_nullable
+              as List<TPostMedia>,
+      repostCount: null == repostCount
+          ? _self.repostCount
+          : repostCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      favoriteCount: null == favoriteCount
+          ? _self.favoriteCount
+          : favoriteCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _self.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      deletedAt: freezed == deletedAt
+          ? _self.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
 }
+
+// dart format on

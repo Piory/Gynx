@@ -6,19 +6,32 @@ part of '../../../../domain/entities/t_post.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TPostImpl _$$TPostImplFromJson(Map<String, dynamic> json) => _$TPostImpl(
-      id: (json['id'] as num).toInt(),
-      userId: json['user_id'] as String,
-      text: json['text'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TPost _$TPostFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TPost',
+      json,
+      ($checkedConvert) {
+        final val = TPost(
+          id: $checkedConvert('id', (v) => (v as num).toInt()),
+          userId: $checkedConvert('user_id', (v) => v as String),
+          text: $checkedConvert('text', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userId': 'user_id',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TPostImplToJson(_$TPostImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TPostToJson(TPost instance) => <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
       'text': instance.text,

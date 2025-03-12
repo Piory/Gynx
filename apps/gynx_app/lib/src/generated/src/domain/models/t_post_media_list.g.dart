@@ -6,15 +6,23 @@ part of '../../../../domain/models/t_post_media_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TPostMediaListImpl _$$TPostMediaListImplFromJson(Map<String, dynamic> json) =>
-    _$TPostMediaListImpl(
-      (json['tPostMedias'] as List<dynamic>)
-          .map((e) => TPostMedia.fromJson(e as Map<String, dynamic>))
-          .toList(),
+TPostMediaList _$TPostMediaListFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TPostMediaList',
+      json,
+      ($checkedConvert) {
+        final val = TPostMediaList(
+          $checkedConvert(
+              'tPostMedias',
+              (v) => (v as List<dynamic>)
+                  .map((e) => TPostMedia.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$TPostMediaListImplToJson(
-        _$TPostMediaListImpl instance) =>
+Map<String, dynamic> _$TPostMediaListToJson(TPostMediaList instance) =>
     <String, dynamic>{
       'tPostMedias': instance.tPostMedias,
     };

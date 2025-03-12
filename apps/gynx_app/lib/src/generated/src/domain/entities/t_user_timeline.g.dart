@@ -6,20 +6,36 @@ part of '../../../../domain/entities/t_user_timeline.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TUserTimelineImpl _$$TUserTimelineImplFromJson(Map<String, dynamic> json) =>
-    _$TUserTimelineImpl(
-      id: json['id'] as String,
-      userId: json['user_id'] as String,
-      type: $enumDecode(_$TimelineTypeEnumMap, json['type']),
-      postId: (json['post_id'] as num).toInt(),
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TUserTimeline _$TUserTimelineFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'TUserTimeline',
+      json,
+      ($checkedConvert) {
+        final val = TUserTimeline(
+          id: $checkedConvert('id', (v) => v as String),
+          userId: $checkedConvert('user_id', (v) => v as String),
+          type: $checkedConvert(
+              'type', (v) => $enumDecode(_$TimelineTypeEnumMap, v)),
+          postId: $checkedConvert('post_id', (v) => (v as num).toInt()),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'userId': 'user_id',
+        'postId': 'post_id',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TUserTimelineImplToJson(_$TUserTimelineImpl instance) =>
+Map<String, dynamic> _$TUserTimelineToJson(TUserTimeline instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,

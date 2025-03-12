@@ -6,21 +6,37 @@ part of '../../../../domain/entities/t_post_media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TPostMediaImpl _$$TPostMediaImplFromJson(Map<String, dynamic> json) =>
-    _$TPostMediaImpl(
-      id: json['id'] as String,
-      postId: (json['post_id'] as num).toInt(),
-      displayOrder: (json['display_order'] as num).toInt(),
-      type: $enumDecode(_$MediaTypeEnumMap, json['type']),
-      url: json['url'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-      deletedAt: json['deleted_at'] == null
-          ? null
-          : DateTime.parse(json['deleted_at'] as String),
+TPostMedia _$TPostMediaFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'TPostMedia',
+      json,
+      ($checkedConvert) {
+        final val = TPostMedia(
+          id: $checkedConvert('id', (v) => v as String),
+          postId: $checkedConvert('post_id', (v) => (v as num).toInt()),
+          displayOrder:
+              $checkedConvert('display_order', (v) => (v as num).toInt()),
+          type: $checkedConvert(
+              'type', (v) => $enumDecode(_$MediaTypeEnumMap, v)),
+          url: $checkedConvert('url', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
+          updatedAt:
+              $checkedConvert('updated_at', (v) => DateTime.parse(v as String)),
+          deletedAt: $checkedConvert('deleted_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'postId': 'post_id',
+        'displayOrder': 'display_order',
+        'createdAt': 'created_at',
+        'updatedAt': 'updated_at',
+        'deletedAt': 'deleted_at'
+      },
     );
 
-Map<String, dynamic> _$$TPostMediaImplToJson(_$TPostMediaImpl instance) =>
+Map<String, dynamic> _$TPostMediaToJson(TPostMedia instance) =>
     <String, dynamic>{
       'id': instance.id,
       'post_id': instance.postId,
