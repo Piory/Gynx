@@ -4,16 +4,28 @@ part '../../generated/src/domain/entities/t_user.freezed.dart';
 part '../../generated/src/domain/entities/t_user.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TUser with _$TUser {
-  const factory TUser({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'gynx_id') required String gynxId,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'deleted_at') required DateTime? deletedAt,
-  }) = _TUser;
-
-  const TUser._();
+  const TUser({
+    required this.id,
+    required this.gynxId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.deletedAt,
+  });
 
   factory TUser.fromJson(Map<String, dynamic> json) => _$TUserFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String gynxId;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? deletedAt;
+
+  Map<String, dynamic> toJson() => _$TUserToJson(this);
 }

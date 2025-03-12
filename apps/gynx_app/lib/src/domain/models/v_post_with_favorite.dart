@@ -6,10 +6,13 @@ part '../../generated/src/domain/models/v_post_with_favorite.freezed.dart';
 
 @freezed
 class VPostWithFavorite with _$VPostWithFavorite {
-  const factory VPostWithFavorite({
-    required VPost vPost,
-    required TUserPostFavorite tUserPostFavorite,
-  }) = _VPostWithFavorite;
+  const VPostWithFavorite({
+    required this.vPost,
+    required this.tUserPostFavorite,
+  });
 
-  const VPostWithFavorite._();
+  @override
+  final VPost vPost;
+  @override
+  final TUserPostFavorite tUserPostFavorite;
 }

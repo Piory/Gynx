@@ -4,18 +4,32 @@ part '../../generated/src/domain/entities/t_user_post_favorite.freezed.dart';
 part '../../generated/src/domain/entities/t_user_post_favorite.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TUserPostFavorite with _$TUserPostFavorite {
-  const factory TUserPostFavorite({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'user_id') required String userId,
-    @JsonKey(name: 'post_id') required int postId,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'deleted_at') required DateTime? deletedAt,
-  }) = _TUserPostFavorite;
-
-  const TUserPostFavorite._();
+  const TUserPostFavorite({
+    required this.id,
+    required this.userId,
+    required this.postId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.deletedAt,
+  });
 
   factory TUserPostFavorite.fromJson(Map<String, dynamic> json) =>
       _$TUserPostFavoriteFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String userId;
+  @override
+  final int postId;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? deletedAt;
+
+  Map<String, dynamic> toJson() => _$TUserPostFavoriteToJson(this);
 }

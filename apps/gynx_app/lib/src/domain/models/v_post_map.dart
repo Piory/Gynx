@@ -6,9 +6,7 @@ part '../../generated/src/domain/models/v_post_map.freezed.dart';
 
 @freezed
 class VPostMap with _$VPostMap {
-  const factory VPostMap(@protected Map<int, VPost> map) = _VPostMap;
-
-  const VPostMap._();
+  const VPostMap(@protected this.map);
 
   factory VPostMap.byVPostList(VPostList vPostList) => VPostMap(
         Map.fromEntries(
@@ -17,6 +15,9 @@ class VPostMap with _$VPostMap {
       );
 
   static const empty = VPostMap({});
+
+  @override
+  final Map<int, VPost> map;
 
   Map<int, VPost> get values => map;
 

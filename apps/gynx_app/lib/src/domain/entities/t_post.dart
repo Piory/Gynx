@@ -4,17 +4,31 @@ part '../../generated/src/domain/entities/t_post.freezed.dart';
 part '../../generated/src/domain/entities/t_post.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TPost with _$TPost {
-  const factory TPost({
-    @JsonKey(name: 'id') required int id,
-    @JsonKey(name: 'user_id') required String userId,
-    @JsonKey(name: 'text') required String text,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'deleted_at') required DateTime? deletedAt,
-  }) = _TPost;
-
-  const TPost._();
+  const TPost({
+    required this.id,
+    required this.userId,
+    required this.text,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.deletedAt,
+  });
 
   factory TPost.fromJson(Map<String, dynamic> json) => _$TPostFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String userId;
+  @override
+  final String text;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? deletedAt;
+
+  Map<String, dynamic> toJson() => _$TPostToJson(this);
 }

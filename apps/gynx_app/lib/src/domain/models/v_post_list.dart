@@ -8,15 +8,17 @@ part '../../generated/src/domain/models/v_post_list.freezed.dart';
 part '../../generated/src/domain/models/v_post_list.g.dart';
 
 @freezed
+@JsonSerializable()
 class VPostList with _$VPostList {
-  const factory VPostList(List<VPost> vPosts) = _VPostList;
-
-  const VPostList._();
+  const VPostList(this.vPosts);
 
   factory VPostList.fromJson(List<Map<String, dynamic>> json) =>
       VPostList(json.map(VPost.fromJson).toList());
 
   static const empty = VPostList([]);
+
+  @override
+  final List<VPost> vPosts;
 
   int? get maxPostId {
     if (vPosts.isEmpty) {

@@ -6,34 +6,56 @@ part '../../generated/src/domain/entities/v_user_detail.freezed.dart';
 part '../../generated/src/domain/entities/v_user_detail.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class VUserDetail with _$VUserDetail {
-  const factory VUserDetail({
-    @JsonKey(name: 'user_id') required String userId,
-    @JsonKey(name: 'gynx_id') required String gynxId,
-    @JsonKey(name: 'username') required String username,
-    @JsonKey(name: 'avatar_url') required String? avatarUrl,
-    @JsonKey(name: 'self_introduction') required String selfIntroduction,
-    @JsonKey(name: 'latest_posts')
-    @Default([])
-    @protected
-    List<VPost> latestPosts,
-    @JsonKey(name: 'favorite_posts')
-    @Default([])
-    @protected
-    List<VPost> favoritePosts,
-    @JsonKey(name: 'follow_count') required int followCount,
-    @JsonKey(name: 'follower_count') required int followerCount,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'deleted_at') required DateTime? deletedAt,
-  }) = _VUserDetail;
-
-  const VUserDetail._();
+  const VUserDetail({
+    required this.userId,
+    required this.gynxId,
+    required this.username,
+    required this.avatarUrl,
+    required this.selfIntroduction,
+    this.latestPosts = const [],
+    this.favoritePosts = const [],
+    required this.followCount,
+    required this.followerCount,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.deletedAt,
+  });
 
   factory VUserDetail.fromJson(Map<String, dynamic> json) =>
       _$VUserDetailFromJson(json);
 
+  @override
+  final String userId;
+  @override
+  final String gynxId;
+  @override
+  final String username;
+  @override
+  final String? avatarUrl;
+  @override
+  final String selfIntroduction;
+  @protected
+  @override
+  final List<VPost> latestPosts;
+  @protected
+  @override
+  final List<VPost> favoritePosts;
+  @override
+  final int followCount;
+  @override
+  final int followerCount;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? deletedAt;
+
   VPostList get latestPostList => VPostList(latestPosts);
 
   VPostList get favoritePostList => VPostList(favoritePosts);
+
+  Map<String, dynamic> toJson() => _$VUserDetailToJson(this);
 }

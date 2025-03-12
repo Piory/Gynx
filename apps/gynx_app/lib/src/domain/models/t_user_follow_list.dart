@@ -5,14 +5,15 @@ part '../../generated/src/domain/models/t_user_follow_list.freezed.dart';
 part '../../generated/src/domain/models/t_user_follow_list.g.dart';
 
 @freezed
+@JsonSerializable()
 class TUserFollowList with _$TUserFollowList {
-  const factory TUserFollowList(List<TUserFollow> tUserFollows) =
-      _TUserFollowList;
-
-  const TUserFollowList._();
+  const TUserFollowList(this.tUserFollows);
 
   factory TUserFollowList.fromJson(List<Map<String, dynamic>> json) =>
       _$TUserFollowListFromJson({'tUserFollows': json});
 
   static const empty = TUserFollowList([]);
+
+  @override
+  final List<TUserFollow> tUserFollows;
 }

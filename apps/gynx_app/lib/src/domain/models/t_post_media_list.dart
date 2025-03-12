@@ -5,15 +5,17 @@ part '../../generated/src/domain/models/t_post_media_list.freezed.dart';
 part '../../generated/src/domain/models/t_post_media_list.g.dart';
 
 @freezed
+@JsonSerializable()
 class TPostMediaList with _$TPostMediaList {
-  const factory TPostMediaList(List<TPostMedia> tPostMedias) = _TPostMediaList;
-
-  const TPostMediaList._();
+  const TPostMediaList(this.tPostMedias);
 
   factory TPostMediaList.fromJson(List<Map<String, dynamic>> json) =>
       _$TPostMediaListFromJson({'tPostMedias': json});
 
   static const empty = TPostMediaList([]);
+
+  @override
+  final List<TPostMedia> tPostMedias;
 
   bool get isEmpty => tPostMedias.isEmpty;
 

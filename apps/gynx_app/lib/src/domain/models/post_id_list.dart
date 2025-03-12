@@ -6,11 +6,12 @@ part '../../generated/src/domain/models/post_id_list.freezed.dart';
 
 @freezed
 class PostIdList with _$PostIdList {
-  const factory PostIdList(List<int> postIds) = _PostIdList;
-
-  const PostIdList._();
+  const PostIdList(this.postIds);
 
   static const empty = PostIdList([]);
+
+  @override
+  final List<int> postIds;
 
   int? get maxPostId {
     if (postIds.isEmpty) {

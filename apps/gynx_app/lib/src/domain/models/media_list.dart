@@ -5,11 +5,12 @@ part '../../generated/src/domain/models/media_list.freezed.dart';
 
 @freezed
 class MediaList with _$MediaList {
-  const factory MediaList(List<Media> medias) = _MediaList;
-
-  const MediaList._();
+  const MediaList(this.medias);
 
   static const empty = MediaList([]);
+
+  @override
+  final List<Media> medias;
 
   bool get isEmpty => medias.isEmpty;
 

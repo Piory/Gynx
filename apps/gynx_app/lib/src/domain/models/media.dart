@@ -5,10 +5,13 @@ part '../../generated/src/domain/models/media.freezed.dart';
 
 @freezed
 class Media with _$Media {
-  const factory Media({
-    required MediaType type,
-    required String url,
-  }) = _Media;
+  const Media({
+    required this.type,
+    required this.url,
+  });
 
-  const Media._();
+  @override
+  final MediaType type;
+  @override
+  final String url;
 }

@@ -5,13 +5,28 @@ part '../../generated/src/domain/entities/user.freezed.dart';
 
 @freezed
 class User with _$User {
-  const factory User({
-    required String id,
-    required String displayName,
-    required String email,
-    required List<OAuthProviderType> providers,
-    required bool isAnonymous,
-    required DateTime createdAt,
-    required DateTime lastSignInAt,
-  }) = _User;
+  const User({
+    required this.id,
+    required this.displayName,
+    required this.email,
+    required this.providers,
+    required this.isAnonymous,
+    required this.createdAt,
+    required this.lastSignInAt,
+  });
+
+  @override
+  final String id;
+  @override
+  final String displayName;
+  @override
+  final String email;
+  @override
+  final List<OAuthProviderType> providers;
+  @override
+  final bool isAnonymous;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime lastSignInAt;
 }

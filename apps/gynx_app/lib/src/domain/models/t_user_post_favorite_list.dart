@@ -5,17 +5,19 @@ part '../../generated/src/domain/models/t_user_post_favorite_list.freezed.dart';
 part '../../generated/src/domain/models/t_user_post_favorite_list.g.dart';
 
 @freezed
+@JsonSerializable()
 class TUserPostFavoriteList with _$TUserPostFavoriteList {
-  const factory TUserPostFavoriteList(
-    @protected List<TUserPostFavorite> tUserPostFavorites,
-  ) = _TUserPostFavoriteList;
-
-  const TUserPostFavoriteList._();
+  const TUserPostFavoriteList(
+    this.tUserPostFavorites,
+  );
 
   factory TUserPostFavoriteList.fromJson(List<Map<String, dynamic>> json) =>
       _$TUserPostFavoriteListFromJson({'tUserPostFavorites': json});
 
   static const empty = TUserPostFavoriteList([]);
+
+  @override
+  final List<TUserPostFavorite> tUserPostFavorites;
 
   List<TUserPostFavorite> get values => tUserPostFavorites;
 

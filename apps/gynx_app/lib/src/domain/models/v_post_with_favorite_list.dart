@@ -8,11 +8,9 @@ part '../../generated/src/domain/models/v_post_with_favorite_list.freezed.dart';
 
 @freezed
 class VPostWithFavoriteList with _$VPostWithFavoriteList {
-  const factory VPostWithFavoriteList(
-    List<VPostWithFavorite> vPostWithFavorites,
-  ) = _VPostWithFavoriteList;
-
-  const VPostWithFavoriteList._();
+  const VPostWithFavoriteList(
+    this.vPostWithFavorites,
+  );
 
   factory VPostWithFavoriteList.by(
     VPostList vPostList,
@@ -35,6 +33,9 @@ class VPostWithFavoriteList with _$VPostWithFavoriteList {
   }
 
   static const empty = VPostWithFavoriteList([]);
+
+  @override
+  final List<VPostWithFavorite> vPostWithFavorites;
 
   bool get isEmpty => vPostWithFavorites.isEmpty;
 
