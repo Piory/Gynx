@@ -21,6 +21,7 @@ TUserPostFavoriteList _$TUserPostFavoriteListFromJson(
 
 /// @nodoc
 mixin _$TUserPostFavoriteList {
+  @protected
   List<TUserPostFavorite> get tUserPostFavorites =>
       throw _privateConstructorUsedError;
 
@@ -40,7 +41,7 @@ abstract class $TUserPostFavoriteListCopyWith<$Res> {
           $Res Function(TUserPostFavoriteList) then) =
       _$TUserPostFavoriteListCopyWithImpl<$Res, TUserPostFavoriteList>;
   @useResult
-  $Res call({List<TUserPostFavorite> tUserPostFavorites});
+  $Res call({@protected List<TUserPostFavorite> tUserPostFavorites});
 }
 
 /// @nodoc
@@ -79,7 +80,7 @@ abstract class _$$TUserPostFavoriteListImplCopyWith<$Res>
       __$$TUserPostFavoriteListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TUserPostFavorite> tUserPostFavorites});
+  $Res call({@protected List<TUserPostFavorite> tUserPostFavorites});
 }
 
 /// @nodoc
@@ -111,7 +112,7 @@ class __$$TUserPostFavoriteListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
   const _$TUserPostFavoriteListImpl(
-      final List<TUserPostFavorite> tUserPostFavorites)
+      @protected final List<TUserPostFavorite> tUserPostFavorites)
       : _tUserPostFavorites = tUserPostFavorites,
         super._();
 
@@ -120,6 +121,7 @@ class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
 
   final List<TUserPostFavorite> _tUserPostFavorites;
   @override
+  @protected
   List<TUserPostFavorite> get tUserPostFavorites {
     if (_tUserPostFavorites is EqualUnmodifiableListView)
       return _tUserPostFavorites;
@@ -165,7 +167,7 @@ class _$TUserPostFavoriteListImpl extends _TUserPostFavoriteList {
 
 abstract class _TUserPostFavoriteList extends TUserPostFavoriteList {
   const factory _TUserPostFavoriteList(
-          final List<TUserPostFavorite> tUserPostFavorites) =
+          @protected final List<TUserPostFavorite> tUserPostFavorites) =
       _$TUserPostFavoriteListImpl;
   const _TUserPostFavoriteList._() : super._();
 
@@ -173,6 +175,7 @@ abstract class _TUserPostFavoriteList extends TUserPostFavoriteList {
       _$TUserPostFavoriteListImpl.fromJson;
 
   @override
+  @protected
   List<TUserPostFavorite> get tUserPostFavorites;
 
   /// Create a copy of TUserPostFavoriteList

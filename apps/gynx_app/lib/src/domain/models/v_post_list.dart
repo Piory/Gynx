@@ -32,6 +32,14 @@ class VPostList with _$VPostList {
     return vPosts.map((vPost) => vPost.postId).reduce(min);
   }
 
+  VPost get latestPost {
+    return sortPostId(descending: true).vPosts.first;
+  }
+
+  VPost get oldestPost {
+    return sortPostId().vPosts.first;
+  }
+
   bool get isEmpty => vPosts.isEmpty;
 
   int get length => vPosts.length;

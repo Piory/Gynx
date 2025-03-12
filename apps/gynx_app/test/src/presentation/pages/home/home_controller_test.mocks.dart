@@ -224,6 +224,46 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i10.SuiteUserNotifier {
       );
 
   @override
+  _i8.Future<void> fetchNextForLatestPosts() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchNextForLatestPosts,
+          [],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
+
+  @override
+  _i8.Future<bool> fetchPreviousForLatestPosts() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchPreviousForLatestPosts,
+          [],
+        ),
+        returnValue: _i8.Future<bool>.value(false),
+        returnValueForMissingStub: _i8.Future<bool>.value(false),
+      ) as _i8.Future<bool>);
+
+  @override
+  _i8.Future<void> fetchNextForFavoritePosts() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchNextForFavoritePosts,
+          [],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
+
+  @override
+  _i8.Future<bool> fetchPreviousForFavoritePosts() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchPreviousForFavoritePosts,
+          [],
+        ),
+        returnValue: _i8.Future<bool>.value(false),
+        returnValueForMissingStub: _i8.Future<bool>.value(false),
+      ) as _i8.Future<bool>);
+
+  @override
   void listenSelf(
     void Function(
       _i3.AsyncValue<_i4.SuiteUser>?,

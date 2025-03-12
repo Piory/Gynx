@@ -3,15 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i8;
 
 import 'package:gynx_app/src/domain/entities/v_user.dart' as _i3;
 import 'package:gynx_app/src/domain/entities/v_user_detail.dart' as _i4;
 import 'package:gynx_app/src/domain/models/suite_user.dart' as _i2;
+import 'package:gynx_app/src/domain/models/v_post_list.dart' as _i5;
+import 'package:gynx_app/src/domain/models/v_post_with_favorite_list.dart'
+    as _i6;
+import 'package:gynx_app/src/domain/usecases/fetch_user_post_favorite_usecase.dart'
+    as _i12;
+import 'package:gynx_app/src/domain/usecases/fetch_user_post_usecase.dart'
+    as _i11;
 import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart'
-    as _i8;
-import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart' as _i7;
-import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i5;
+    as _i10;
+import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart' as _i9;
+import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -57,17 +64,38 @@ class _FakeVUserDetail_2 extends _i1.SmartFake implements _i4.VUserDetail {
         );
 }
 
+class _FakeVPostList_3 extends _i1.SmartFake implements _i5.VPostList {
+  _FakeVPostList_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeVPostWithFavoriteList_4 extends _i1.SmartFake
+    implements _i6.VPostWithFavoriteList {
+  _FakeVPostWithFavoriteList_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [SuiteUserUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSuiteUserUseCase extends _i1.Mock implements _i5.SuiteUserUseCase {
+class MockSuiteUserUseCase extends _i1.Mock implements _i7.SuiteUserUseCase {
   @override
-  _i6.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
+  _i8.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
         Invocation.method(
           #execute,
           [],
         ),
-        returnValue: _i6.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
+        returnValue: _i8.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
           this,
           Invocation.method(
             #execute,
@@ -75,55 +103,55 @@ class MockSuiteUserUseCase extends _i1.Mock implements _i5.SuiteUserUseCase {
           ),
         )),
         returnValueForMissingStub:
-            _i6.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
+            _i8.Future<_i2.SuiteUser>.value(_FakeSuiteUser_0(
           this,
           Invocation.method(
             #execute,
             [],
           ),
         )),
-      ) as _i6.Future<_i2.SuiteUser>);
+      ) as _i8.Future<_i2.SuiteUser>);
 }
 
 /// A class which mocks [FindUserUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFindUserUseCase extends _i1.Mock implements _i7.FindUserUseCase {
+class MockFindUserUseCase extends _i1.Mock implements _i9.FindUserUseCase {
   @override
-  _i6.Future<_i3.VUser> execute(String? userId) => (super.noSuchMethod(
+  _i8.Future<_i3.VUser> execute(String? userId) => (super.noSuchMethod(
         Invocation.method(
           #execute,
           [userId],
         ),
-        returnValue: _i6.Future<_i3.VUser>.value(_FakeVUser_1(
+        returnValue: _i8.Future<_i3.VUser>.value(_FakeVUser_1(
           this,
           Invocation.method(
             #execute,
             [userId],
           ),
         )),
-        returnValueForMissingStub: _i6.Future<_i3.VUser>.value(_FakeVUser_1(
+        returnValueForMissingStub: _i8.Future<_i3.VUser>.value(_FakeVUser_1(
           this,
           Invocation.method(
             #execute,
             [userId],
           ),
         )),
-      ) as _i6.Future<_i3.VUser>);
+      ) as _i8.Future<_i3.VUser>);
 }
 
 /// A class which mocks [FindUserDetailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFindUserDetailUseCase extends _i1.Mock
-    implements _i8.FindUserDetailUseCase {
+    implements _i10.FindUserDetailUseCase {
   @override
-  _i6.Future<_i4.VUserDetail> execute(String? userId) => (super.noSuchMethod(
+  _i8.Future<_i4.VUserDetail> execute(String? userId) => (super.noSuchMethod(
         Invocation.method(
           #execute,
           [userId],
         ),
-        returnValue: _i6.Future<_i4.VUserDetail>.value(_FakeVUserDetail_2(
+        returnValue: _i8.Future<_i4.VUserDetail>.value(_FakeVUserDetail_2(
           this,
           Invocation.method(
             #execute,
@@ -131,12 +159,111 @@ class MockFindUserDetailUseCase extends _i1.Mock
           ),
         )),
         returnValueForMissingStub:
-            _i6.Future<_i4.VUserDetail>.value(_FakeVUserDetail_2(
+            _i8.Future<_i4.VUserDetail>.value(_FakeVUserDetail_2(
           this,
           Invocation.method(
             #execute,
             [userId],
           ),
         )),
-      ) as _i6.Future<_i4.VUserDetail>);
+      ) as _i8.Future<_i4.VUserDetail>);
+}
+
+/// A class which mocks [FetchUserPostUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFetchUserPostUseCase extends _i1.Mock
+    implements _i11.FetchUserPostUseCase {
+  @override
+  _i8.Future<_i5.VPostList> execute({
+    required String? userId,
+    int? sincePostId,
+    int? maxPostId,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [],
+          {
+            #userId: userId,
+            #sincePostId: sincePostId,
+            #maxPostId: maxPostId,
+          },
+        ),
+        returnValue: _i8.Future<_i5.VPostList>.value(_FakeVPostList_3(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #userId: userId,
+              #sincePostId: sincePostId,
+              #maxPostId: maxPostId,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i8.Future<_i5.VPostList>.value(_FakeVPostList_3(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #userId: userId,
+              #sincePostId: sincePostId,
+              #maxPostId: maxPostId,
+            },
+          ),
+        )),
+      ) as _i8.Future<_i5.VPostList>);
+}
+
+/// A class which mocks [FetchUserPostFavoriteUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFetchUserPostFavoriteUseCase extends _i1.Mock
+    implements _i12.FetchUserPostFavoriteUseCase {
+  @override
+  _i8.Future<_i6.VPostWithFavoriteList> execute({
+    required String? userId,
+    DateTime? latestAt,
+    DateTime? oldestAt,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [],
+          {
+            #userId: userId,
+            #latestAt: latestAt,
+            #oldestAt: oldestAt,
+          },
+        ),
+        returnValue: _i8.Future<_i6.VPostWithFavoriteList>.value(
+            _FakeVPostWithFavoriteList_4(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #userId: userId,
+              #latestAt: latestAt,
+              #oldestAt: oldestAt,
+            },
+          ),
+        )),
+        returnValueForMissingStub: _i8.Future<_i6.VPostWithFavoriteList>.value(
+            _FakeVPostWithFavoriteList_4(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #userId: userId,
+              #latestAt: latestAt,
+              #oldestAt: oldestAt,
+            },
+          ),
+        )),
+      ) as _i8.Future<_i6.VPostWithFavoriteList>);
 }

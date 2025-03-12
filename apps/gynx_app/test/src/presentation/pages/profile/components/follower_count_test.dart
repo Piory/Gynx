@@ -7,18 +7,14 @@ import 'package:gynx_app/src/domain/models/suite_user.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
-import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/follow_count.dart';
+import 'package:gynx_app/src/presentation/components/elements/shimmers/shimmer.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/follower_count.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/self_introduction.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/username.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../../data/dummy_data_generator.dart';
-import 'user_profile_test.mocks.dart';
+import 'follower_count_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<SuiteUserUseCase>(),
@@ -26,6 +22,9 @@ import 'user_profile_test.mocks.dart';
   MockSpec<FindUserDetailUseCase>(),
 ])
 void main() {
+  final l10nJa = L10nJa();
+  final suiteUser = generateDummySuiteUser();
+  final vUser = generateDummyVUser();
   final mockSuiteUserUseCase = MockSuiteUserUseCase();
   final mockFindUserUseCase = MockFindUserUseCase();
   final mockFindUserDetailUseCase = MockFindUserDetailUseCase();
@@ -45,11 +44,16 @@ void main() {
     reset(mockFindUserDetailUseCase);
   });
 
-  group('UserProfile', () {
+  group('FollowerCount', () {
     Future<void> pumpWidget({
       required WidgetTester tester,
       required SuiteUser suiteUser,
     }) async {
+      when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
+      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
+          .thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
+          .thenAnswer((_) async => suiteUser.vUserDetail);
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -57,7 +61,7 @@ void main() {
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
             home: Scaffold(
-              body: UserProfile(),
+              body: FollowerCount(),
             ),
           ),
         ),
@@ -65,22 +69,38 @@ void main() {
     }
 
     group('正常系', () {
-      testWidgets('ユーザー名、GynxID、自己紹介、フォロー数、フォロワー数が表示されること', (tester) async {
-        final suiteUser = generateDummySuiteUser();
-        final tUser = suiteUser.vUserDetail;
-        final tUserProfile = suiteUser.vUserDetail;
+      testWidgets('フォロワー数が取得されるまでは、Shimmer が表示されていること', (tester) async {
         await pumpWidget(
           tester: tester,
           suiteUser: suiteUser,
         );
-        expect(find.text(tUserProfile.username), findsOneWidget);
-        expect(find.byType(GynxId), findsOneWidget);
-        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
-        expect(gynxId.id, tUser.gynxId);
-        expect(find.byType(Username), findsOneWidget);
-        expect(find.byType(SelfIntroduction), findsOneWidget);
-        expect(find.byType(FollowCount), findsOneWidget);
-        expect(find.byType(FollowerCount), findsOneWidget);
+        verifyInOrder([
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
+        expect(find.byType(Shimmer), findsOneWidget);
+        expect(find.byType(Text), findsNothing);
+      });
+
+      testWidgets('フォロワー数が表示されていること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+          suiteUser: suiteUser,
+        );
+        verifyInOrder([
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
+        expect(find.byType(Shimmer), findsOneWidget);
+        expect(find.byType(Text), findsNothing);
+        await tester.pumpAndSettle();
+        expect(find.byType(Shimmer), findsNothing);
+        expect(
+          find.text(l10nJa.follow(suiteUser.vUserDetail.followerCount)),
+          findsOneWidget,
+        );
       });
     });
   });

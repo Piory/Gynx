@@ -7,7 +7,7 @@ part '../../generated/src/domain/models/t_user_post_favorite_list.g.dart';
 @freezed
 class TUserPostFavoriteList with _$TUserPostFavoriteList {
   const factory TUserPostFavoriteList(
-    List<TUserPostFavorite> tUserPostFavorites,
+    @protected List<TUserPostFavorite> tUserPostFavorites,
   ) = _TUserPostFavoriteList;
 
   const TUserPostFavoriteList._();
@@ -16,4 +16,9 @@ class TUserPostFavoriteList with _$TUserPostFavoriteList {
       _$TUserPostFavoriteListFromJson({'tUserPostFavorites': json});
 
   static const empty = TUserPostFavoriteList([]);
+
+  List<TUserPostFavorite> get values => tUserPostFavorites;
+
+  TUserPostFavoriteList toList(Iterable<TUserPostFavorite> list) =>
+      TUserPostFavoriteList(list.toList());
 }

@@ -15,8 +15,12 @@ void main() {
     faker.guid.guid(),
     httpClient: mockHttpClient,
   );
-  final tUserPostFavorite1 = generateDummyTUserPostFavorite();
-  final tUserPostFavorite2 = generateDummyTUserPostFavorite();
+  final tUserPostFavorite1 = generateDummyTUserPostFavorite().copyWith(
+    createdAt: DateTime.now(),
+  );
+  final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
+    createdAt: tUserPostFavorite1.createdAt.add(const Duration(seconds: 1)),
+  );
   final tUserPostFavoriteRepository = TUserPostFavoriteRepositoryImpl(
     mockSupabaseClient,
   );
@@ -38,12 +42,10 @@ void main() {
   group('#findByPrimaryKey', () {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite1.toJson());
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite2.toJson());
+        await mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+        ]);
         final foundTUserPostFavorite =
             await tUserPostFavoriteRepository.findByPrimaryKey(
           tUserPostFavorite1.id,
@@ -59,12 +61,10 @@ void main() {
         final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
           userId: tUserPostFavorite1.userId,
         );
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite1.toJson());
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite2.toJson());
+        await mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+        ]);
         final foundTUserPostFavoriteList =
             await tUserPostFavoriteRepository.findByUserId(
           tUserPostFavorite1.userId,
@@ -88,12 +88,10 @@ void main() {
         final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
           postId: tUserPostFavorite1.postId,
         );
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite1.toJson());
-        await mockSupabaseClient
-            .from(tableName)
-            .insert(tUserPostFavorite2.toJson());
+        await mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+        ]);
         final foundTUserPostFavoriteList =
             await tUserPostFavoriteRepository.findByPostId(
           tUserPostFavorite1.postId,
@@ -110,4 +108,214 @@ void main() {
       });
     });
   });
+
+  group(
+    '#findByUserIdAndLatest',
+    () {
+      final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+      );
+      final tUserPostFavorite3 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+        createdAt: tUserPostFavorite1.createdAt.add(const Duration(seconds: 2)),
+      );
+
+      setUp(() {
+        mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+          tUserPostFavorite3.toJson(),
+        ]);
+      });
+
+      group('正常系', () {
+        test('指定した userId に紐づくデータが指定した件数取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatest(
+            tUserPostFavorite1.userId,
+            2,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite2,
+                tUserPostFavorite1,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatest(
+            tUserPostFavorite1.userId,
+            5,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite3,
+                tUserPostFavorite2,
+                tUserPostFavorite1,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatest(
+            tUserPostFavorite1.userId,
+            2,
+          );
+          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
+        });
+      });
+    },
+    skip: 'mock_supabase_http_client の DateTime の指定に対応していなさそうなのでスキップ',
+  );
+
+  group(
+    '#findByUserIdAndSinceAt',
+    () {
+      final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+      );
+      final tUserPostFavorite3 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+        createdAt: tUserPostFavorite1.createdAt.add(const Duration(seconds: 2)),
+      );
+
+      setUp(() {
+        mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+          tUserPostFavorite3.toJson(),
+        ]);
+      });
+
+      group('正常系', () {
+        test('指定した userId に紐づくデータが指定した件数取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+            tUserPostFavorite1.userId,
+            tUserPostFavorite1.createdAt,
+            2,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite2,
+                tUserPostFavorite3,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+            tUserPostFavorite1.userId,
+            tUserPostFavorite1.createdAt,
+            3,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite2,
+                tUserPostFavorite3,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+            faker.guid.guid(),
+            tUserPostFavorite1.createdAt,
+            2,
+          );
+
+          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
+        });
+      });
+    },
+    skip: 'mock_supabase_http_client の DateTime の指定に対応していなさそうなのでスキップ',
+  );
+
+  group(
+    '#findByUserIdAndMaxAt',
+    () {
+      final tUserPostFavorite2 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+      );
+      final tUserPostFavorite3 = generateDummyTUserPostFavorite().copyWith(
+        userId: tUserPostFavorite1.userId,
+        createdAt: tUserPostFavorite1.createdAt.add(const Duration(seconds: 2)),
+      );
+
+      setUp(() {
+        mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+          tUserPostFavorite3.toJson(),
+        ]);
+      });
+
+      group('正常系', () {
+        test('指定した userId に紐づくデータが指定した件数取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
+            tUserPostFavorite1.userId,
+            tUserPostFavorite3.createdAt,
+            2,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite3,
+                tUserPostFavorite2,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
+            tUserPostFavorite1.userId,
+            tUserPostFavorite3.createdAt,
+            3,
+          );
+          expect(
+            foundTUserPostFavoriteList,
+            TUserPostFavoriteList(
+              [
+                tUserPostFavorite3,
+                tUserPostFavorite2,
+                tUserPostFavorite1,
+              ],
+            ),
+          );
+        });
+
+        test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
+          final foundTUserPostFavoriteList =
+              await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
+            faker.guid.guid(),
+            tUserPostFavorite3.createdAt,
+            2,
+          );
+          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
+        });
+      });
+    },
+    skip: 'mock_supabase_http_client の DateTime の指定に対応していなさそうなのでスキップ',
+  );
 }

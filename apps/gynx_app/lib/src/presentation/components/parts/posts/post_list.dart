@@ -13,6 +13,7 @@ class PostList extends StatefulWidget {
     required this.postIdList,
     this.emptyIcon,
     this.emptyMessage,
+    this.wantKeepAlive = false,
   });
 
   final String from;
@@ -20,17 +21,23 @@ class PostList extends StatefulWidget {
   final PostIdList postIdList;
   final Icon? emptyIcon;
   final String? emptyMessage;
+  final bool wantKeepAlive;
 
   @override
   State<PostList> createState() => _PostListState();
 }
 
-class _PostListState extends State<PostList> {
+class _PostListState extends State<PostList>
+    with AutomaticKeepAliveClientMixin {
   bool _isLoading = false;
   bool _isNoMoreData = false;
 
   @override
+  bool get wantKeepAlive => widget.wantKeepAlive;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return InfiniteList(

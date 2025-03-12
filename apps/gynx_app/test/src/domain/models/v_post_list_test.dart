@@ -33,6 +33,42 @@ void main() {
     });
   });
 
+  group('#latestPost', () {
+    group('正常系', () {
+      test('VPostList の中で、postId が一番大きい VPost が取得されること', () {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 3);
+        final vPost3 = generateDummyVPost(postId: 2);
+        final list = VPostList([vPost1, vPost2, vPost3]);
+        expect(list.latestPost, vPost2);
+      });
+    });
+
+    group('異常系', () {
+      test('VPostList が空の場合、例外が発生すること', () {
+        expect(() => VPostList.empty.latestPost, throwsStateError);
+      });
+    });
+  });
+
+  group('#oldestPost', () {
+    group('正常系', () {
+      test('VPostList の中で、postId が一番小さい VPost が取得されること', () {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 3);
+        final vPost3 = generateDummyVPost(postId: 2);
+        final list = VPostList([vPost1, vPost2, vPost3]);
+        expect(list.oldestPost, vPost1);
+      });
+    });
+
+    group('異常系', () {
+      test('VPostList が空の場合、例外が発生すること', () {
+        expect(() => VPostList.empty.oldestPost, throwsStateError);
+      });
+    });
+  });
+
   group('#isEmpty', () {
     test('VPostList が空の場合、true を返す', () {
       expect(VPostList.empty.isEmpty, isTrue);

@@ -17,6 +17,10 @@ import 'package:gynx_app/src/application/interactors/create_post_interactor.dart
     as _i1009;
 import 'package:gynx_app/src/application/interactors/fetch_post_interactor.dart'
     as _i785;
+import 'package:gynx_app/src/application/interactors/fetch_user_post_favorite_interactor.dart'
+    as _i261;
+import 'package:gynx_app/src/application/interactors/fetch_user_post_interactor.dart'
+    as _i265;
 import 'package:gynx_app/src/application/interactors/find_user_detail_interactor.dart'
     as _i345;
 import 'package:gynx_app/src/application/interactors/find_user_interactor.dart'
@@ -62,6 +66,10 @@ import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dar
     as _i599;
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart' as _i751;
 import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart' as _i926;
+import 'package:gynx_app/src/domain/usecases/fetch_user_post_favorite_usecase.dart'
+    as _i721;
+import 'package:gynx_app/src/domain/usecases/fetch_user_post_usecase.dart'
+    as _i526;
 import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart'
     as _i67;
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart' as _i826;
@@ -194,6 +202,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i154.SignOutInteractor(gh<_i714.AuthRepository>()));
     gh.singleton<_i957.TPostRepository>(
         () => _i35.TPostRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.singleton<_i526.FetchUserPostUseCase>(
+        () => _i265.FetchUserPostInteractor(gh<_i290.VPostRepository>()));
     gh.singleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
     gh.singleton<_i532.VUserRepository>(
@@ -246,6 +256,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i496.SignInWithOAuthInteractor(gh<_i714.AuthRepository>()));
     gh.singleton<_i1004.HomeController>(
         () => _i1004.HomeController(gh<_i751.CreatePostUseCase>()));
+    gh.singleton<_i721.FetchUserPostFavoriteUseCase>(
+        () => _i261.FetchUserPostFavoriteInteractor(
+              gh<_i56.TUserPostFavoriteRepository>(),
+              gh<_i290.VPostRepository>(),
+            ));
     gh.singleton<_i826.FindUserUseCase>(
         () => _i868.FindUserInteractor(gh<_i532.VUserRepository>()));
     gh.singleton<_i400.SignInController>(() => _i400.SignInController(

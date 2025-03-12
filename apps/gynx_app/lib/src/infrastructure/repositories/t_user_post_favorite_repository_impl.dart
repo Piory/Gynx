@@ -33,4 +33,50 @@ class TUserPostFavoriteRepositoryImpl implements TUserPostFavoriteRepository {
     final res = await _client.from(tableName).select().eq('post_id', postId);
     return TUserPostFavoriteList.fromJson(res);
   }
+
+  @override
+  Future<TUserPostFavoriteList> findByUserIdAndLatest(
+    String userId,
+    int count,
+  ) async {
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('user_id', userId)
+        .order('created_at', ascending: false)
+        .limit(count);
+    return TUserPostFavoriteList.fromJson(res);
+  }
+
+  @override
+  Future<TUserPostFavoriteList> findByUserIdAndLatestAt(
+    String userId,
+    DateTime sinceAt,
+    int count,
+  ) async {
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('user_id', userId)
+        .gt('created_at', sinceAt.toIso8601String())
+        .order('created_at', ascending: true)
+        .limit(count);
+    return TUserPostFavoriteList.fromJson(res);
+  }
+
+  @override
+  Future<TUserPostFavoriteList> findByUserIdAndOldestAt(
+    String userId,
+    DateTime maxAt,
+    int count,
+  ) async {
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('user_id', userId)
+        .lt('created_at', maxAt.toIso8601String())
+        .order('created_at', ascending: false)
+        .limit(count);
+    return TUserPostFavoriteList.fromJson(res);
+  }
 }
