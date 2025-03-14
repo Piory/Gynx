@@ -1,27 +1,10 @@
+name: Gynx
 version: 0.0.0
 publish_to: none
-name: Gynx
-
 environment:
   sdk: ^3.6.0
   flutter: ^3.29.1
-workspace:
-  - apps/gynx_app
-  - packages/gynx_components
-  - packages/gynx_constants
-  - packages/gynx_l10n
-  - supabase/rls
 dependencies:
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-  gynx_components:
-    path: packages/gynx_components
-  gynx_constants:
-    path: packages/gynx_constants
-  gynx_l10n:
-    path: packages/gynx_l10n
   animated_flip_counter: 0.3.4
   basic_utils: 5.8.2
   blur: 4.0.0
@@ -31,18 +14,20 @@ dependencies:
   dismissible_page: 1.0.2
   envied: 1.1.1
   extended_nested_scroll_view: 6.2.1
-  firebase_core: 3.12.1
-  firebase_auth: 5.5.1
-  firebase_crashlytics: 4.3.4
   firebase_analytics: 11.4.4
-  flutter_riverpod: 2.6.1
-  riverpod: 2.6.1
-  riverpod_annotation: 2.6.1
+  firebase_auth: 5.5.1
+  firebase_core: 3.12.1
+  firebase_crashlytics: 4.3.4
+  flutter:
+    sdk: flutter
   flutter_form_builder: 10.0.0
   flutter_image_compress: 2.4.0
+  flutter_localizations:
+    sdk: flutter
   flutter_native_splash: 2.4.5
   flutter_platform_alert: 0.7.0
   flutter_platform_widgets: 8.0.0
+  flutter_riverpod: 2.6.1
   flutter_smart_dialog: 4.9.8+7
   flutter_staggered_grid_view: 0.7.0
   flutter_svg: 2.0.17
@@ -51,18 +36,27 @@ dependencies:
   freezed_annotation: 3.0.0
   gap: 3.0.1
   get_it: 8.0.3
+  go_router: 14.8.1
   google_fonts: 6.2.1
   google_sign_in: 6.3.0
-  go_router: 14.8.1
+  gynx_components:
+    path: packages/gynx_components
+  gynx_constants:
+    path: packages/gynx_constants
+  gynx_l10n:
+    path: packages/gynx_l10n
   iconly: 1.0.1
   icons_plus: 5.0.0
+  image_picker: 1.1.2
   injectable: 2.5.0
-  intl: '>=0.19.0 <0.21.0'
+  intl: ">=0.19.0 <0.21.0"
   json_annotation: 4.9.0
   loading_animation_widget: 1.3.0
   modal_bottom_sheet: 3.0.0
   nil: 1.1.1
   photo_view: 0.15.0
+  riverpod: 2.6.1
+  riverpod_annotation: 2.6.1
   shimmer: 3.0.0
   smooth_page_indicator: 1.2.1
   supabase_flutter: 2.8.4
@@ -70,7 +64,6 @@ dependencies:
   uuid: 4.5.1
   very_good_infinite_list: 0.9.0
   visibility_detector: 0.4.0+2
-  image_picker: 1.1.2
 dev_dependencies:
   build_runner: 2.4.15
   change_app_package_name: 1.5.0
@@ -79,22 +72,28 @@ dev_dependencies:
   flutter_gen_runner: 5.10.0
   flutter_launcher_icons: 0.14.3
   flutter_lints: 5.0.0
+  flutter_test:
+    sdk: flutter
   freezed: 3.0.3
   go_router_builder: 2.8.2
   injectable_generator: 2.7.0
   json_serializable: 6.9.4
   lint: 2.8.0
   lints: 5.1.1
+  melos: 7.0.0-dev.7
   mock_supabase_http_client: 0.0.3+2
   mockito: 5.4.5
-  riverpod_generator: 2.6.5
-  test: 1.25.15
-  supabase: 2.6.3
   pedantic_mono: any
-  melos: 7.0.0-dev.7
-  flutter_test:
-    sdk: flutter
-
+  pubspec_dependency_sorter: ^1.0.5
+  riverpod_generator: 2.6.5
+  supabase: 2.6.3
+  test: 1.25.15
+workspace:
+  - apps/gynx_app
+  - packages/gynx_components
+  - packages/gynx_constants
+  - packages/gynx_l10n
+  - supabase/rls
 melos:
   scripts:
     gen: melos exec --ignore='gynx_l10n' --ignore='rls' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
@@ -106,15 +105,9 @@ melos:
     supabase-stop: supabase stop
   command:
     version:
-      # # Only allow versioning to happen on main branch.
-      # branch: master
-      # Additionally build a changelog at the root of the workspace.
       workspaceChangelog: true
     bootstrap:
-      usePubspecOverrides:
-      # It seems so that running "pub get" in parallel has some issues (like
-      # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
-      # makes the CI much more stable.
+      usePubspecOverrides: null
       runPubGetInParallel: false
       environment:
         sdk: ^3.6.0
