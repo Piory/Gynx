@@ -100,6 +100,7 @@ melos:
     gen-l10n: melos exec --scope='gynx_l10n' -- flutter gen-l10n
     fix: melos exec --fail-fast -- "dart fix --apply ."
     format: melos format --ignore='gynx_l10n'
+    analyze: melos exec --fail-fast -- "dart analyze ."
     test: melos exec --fail-fast -- "flutter test"
     supabase-start: supabase start
     supabase-stop: supabase stop
