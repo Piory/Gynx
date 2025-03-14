@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: gynx_l10n,gynx_constants
-dependency_overrides:
-  gynx_constants:
-    path: ../../packages/gynx_constants
-  gynx_l10n:
-    path: ../../packages/gynx_l10n
