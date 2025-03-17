@@ -1,7 +1,6 @@
 name: rls
 version: 0.0.0
 publish_to: none
-
 environment:
   sdk: ^3.6.0
 resolution: workspace

@@ -1,7 +1,9 @@
 name: gynx_constants
 version: 0.0.0
 publish_to: none
-
 environment:
   sdk: ^3.6.0
+dev_dependencies:
+  build_runner: 2.4.15
+  envied_generator: 1.1.1
 resolution: workspace

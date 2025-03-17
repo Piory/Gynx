@@ -1,11 +1,9 @@
 name: gynx_l10n
 version: 0.0.0
 publish_to: none
-
 environment:
   sdk: ^3.6.0
   flutter: ^3.29.1
 resolution: workspace
-
 flutter:
   generate: true
