@@ -1,6 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "labels": [
+    "renovate-bot"
+  ],
+  "schedule": [
+    "after 10pm and before 5am every weekend",
+    "every weekend"
+  ],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "prHourlyLimit": 10,
+  "prConcurrentLimit": 10,
+  "ignoreDeps": [
+    "dev.flutter.flutter-plugin-loader",
   ]
 }
