@@ -12,7 +12,7 @@ class FetchUserPostInteractor implements FetchUserPostUseCase {
     this._vPostRepository,
   );
 
-  static const _count = Constant.fetchPostCount;
+  static const int _count = Constant.fetchPostCount;
 
   final VPostRepository _vPostRepository;
 

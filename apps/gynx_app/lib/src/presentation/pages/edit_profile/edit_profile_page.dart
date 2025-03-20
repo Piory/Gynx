@@ -27,7 +27,7 @@ class EditProfilePage extends ConsumerStatefulWidget {
 
 class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   XFile? _afterAvatarPath;
-  bool _isDeleteAvatar = false;
+  var _isDeleteAvatar = false;
   String? _afterUsername;
   String? _afterGynxId;
   String? _afterSelfIntroduction;

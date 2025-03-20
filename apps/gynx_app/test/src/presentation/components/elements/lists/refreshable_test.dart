@@ -35,7 +35,6 @@ void main() {
       await tester.pump();
     }
 
-    ;
 
     group('正常系', () {
       testWidgets('下にドラッグすると、onRefresh が呼ばれること', (tester) async {

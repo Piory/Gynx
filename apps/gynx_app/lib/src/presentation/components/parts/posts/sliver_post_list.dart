@@ -26,8 +26,8 @@ class SliverPostList extends StatefulWidget {
 }
 
 class _SliverPostListState extends State<SliverPostList> {
-  bool _isLoading = false;
-  bool _isNoMoreData = false;
+  var _isLoading = false;
+  var _isNoMoreData = false;
 
   @override
   Widget build(BuildContext context) {

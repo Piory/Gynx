@@ -19,7 +19,7 @@ class _VisibleDetectScrollControllerNotifierTest extends StatefulWidget {
 
 class _VisibleDetectScrollControllerNotifierTestState
     extends State<_VisibleDetectScrollControllerNotifierTest> {
-  int _currentIndex = 0;
+  var _currentIndex = 0;
 
   static const _screens = [
     VisibleDetectScrollControllerNotifier(

@@ -18,7 +18,7 @@ class SliverFollowTimeline extends ConsumerStatefulWidget {
 }
 
 class _SliverFollowTimelineState extends ConsumerState<SliverFollowTimeline> {
-  bool _isInitialized = false;
+  var _isInitialized = false;
 
   @override
   void initState() {

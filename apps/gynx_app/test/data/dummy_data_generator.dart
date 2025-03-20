@@ -15,7 +15,7 @@ import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 
-int _maxInt = 4294967296;
+var _maxInt = 4294967296;
 
 SuiteUser generateDummySuiteUser() => SuiteUser(
       vUserDetail: generateDummyVUserDetail(),

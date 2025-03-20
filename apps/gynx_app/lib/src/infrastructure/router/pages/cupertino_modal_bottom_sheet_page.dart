@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 const double _kPreviousPageVisibleOffset = 10;
-const Radius _kDefaultTopRadius = Radius.circular(12);
-const BoxShadow _kDefaultBoxShadow = BoxShadow(
+const _kDefaultTopRadius = Radius.circular(12);
+const _kDefaultBoxShadow = BoxShadow(
   blurRadius: 10,
   color: Colors.black12,
   spreadRadius: 5,

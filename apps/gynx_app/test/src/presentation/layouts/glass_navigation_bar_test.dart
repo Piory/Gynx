@@ -15,7 +15,7 @@ class _GlassNavigationBarTest extends StatefulWidget {
 
 class _GlassNavigationBarTestState extends State<_GlassNavigationBarTest> {
   ScrollController? _primaryScrollController;
-  int _currentIndex = 0;
+  var _currentIndex = 0;
 
   static final _screens = [
     VisibleDetectScrollControllerNotifier(

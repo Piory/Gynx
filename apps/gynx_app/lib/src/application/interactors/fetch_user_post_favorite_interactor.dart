@@ -16,7 +16,7 @@ class FetchUserPostFavoriteInteractor implements FetchUserPostFavoriteUseCase {
     this._vPostRepository,
   );
 
-  static const _count = Constant.fetchPostCount;
+  static const int _count = Constant.fetchPostCount;
 
   final TUserPostFavoriteRepository _tUserPostFavoriteRepository;
   final VPostRepository _vPostRepository;

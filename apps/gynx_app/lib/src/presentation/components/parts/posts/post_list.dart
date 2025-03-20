@@ -29,8 +29,8 @@ class PostList extends StatefulWidget {
 
 class _PostListState extends State<PostList>
     with AutomaticKeepAliveClientMixin {
-  bool _isLoading = false;
-  bool _isNoMoreData = false;
+  var _isLoading = false;
+  var _isNoMoreData = false;
 
   @override
   bool get wantKeepAlive => widget.wantKeepAlive;

@@ -123,7 +123,7 @@ void main() {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
-            locale: const Locale('ja'),
+            locale: Locale('ja'),
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
             home: Scaffold(

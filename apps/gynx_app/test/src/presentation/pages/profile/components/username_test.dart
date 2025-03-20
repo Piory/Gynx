@@ -8,7 +8,6 @@ import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/components/elements/shimmers/shimmer.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/follow_count.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/username.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
