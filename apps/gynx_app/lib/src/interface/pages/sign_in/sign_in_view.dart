@@ -4,10 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/constants/padding_size.dart';
 import 'package:gynx_app/src/generated/assets/assets.gen.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/components/apple_oauth_button.dart';
-import 'package:gynx_app/src/interface/pages/sign_in/components/discord_oauth_button.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/components/google_oauth_button.dart';
-import 'package:gynx_app/src/interface/pages/sign_in/components/twitch_oauth_button.dart';
-import 'package:gynx_app/src/interface/pages/sign_in/components/x_oauth_button.dart';
 import 'package:gynx_app/src/interface/pages/sign_in/sign_in_controller.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
@@ -29,6 +26,7 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
   @override
   Widget get view {
     final mediaQuery = MediaQuery.of(context);
+    final colorOnSurface = Theme.of(context).colorScheme.onSurface;
     return Scaffold(
       key: globalKey,
       body: SafeArea(
@@ -39,57 +37,81 @@ class _SignInViewState extends CleanViewState<SignInView, SignInController> {
                 horizontal: mediaQuery.size.width * 0.05,
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: PaddingSize.s32),
                   Assets.svgs.logos.gynxLogoWithNameDark.svg(
                     width: 160,
                   ),
                   const SizedBox(height: PaddingSize.s32),
                   Text(
-                    context.l10n.signInTitle,
+                    context.l10n.signUpOrSignIn,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   const SizedBox(height: PaddingSize.s64),
-                  Text(
-                    context.l10n.signInDescription,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: PaddingSize.s12),
-                  AppleOAuthButton(
-                    onPressed: () {
-                      print('AppleOAuthButton');
-                    },
-                  ),
-                  const SizedBox(height: PaddingSize.s8),
-                  GoogleOAuthButton(
-                    onPressed: () {
-                      print('GoogleOAuthButton');
-                    },
-                  ),
-                  const SizedBox(height: PaddingSize.s8),
-                  XOAuthButton(
-                    onPressed: () {
-                      print('XOAuthButton');
-                    },
-                  ),
-                  const SizedBox(height: PaddingSize.s8),
-                  TwitchOAuthButton(
-                    onPressed: () {
-                      print('TwitchOAuthButton');
-                    },
-                  ),
-                  const SizedBox(height: PaddingSize.s8),
-                  DiscordOAuthButton(
-                    onPressed: () {
-                      print('DiscordOAuthButton');
-                    },
-                  ),
-                  const SizedBox(height: PaddingSize.s32),
-                  Text(
-                    context
-                        .l10n.continueIsApproveTermsOfServiceAndPrivacyPolicy,
+                  Column(
+                    children: [
+                      AppleOAuthButton(
+                        onPressed: () {},
+                      ),
+                      const SizedBox(height: PaddingSize.s8),
+                      GoogleOAuthButton(
+                        onPressed: controller.signInWithGoogle,
+                      ),
+                      const SizedBox(height: PaddingSize.s16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: colorOnSurface,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: PaddingSize.s8,
+                            ),
+                            child: Text(
+                              context.l10n.or,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(
+                                    color: colorOnSurface,
+                                  ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: colorOnSurface,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: PaddingSize.s16),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: controller.signInWithAnonymous,
+                          child: Text(
+                            context.l10n.continueAsGuest,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: PaddingSize.s4),
+                      Text(
+                        context.l10n.continueAsGuestWarning,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: colorOnSurface,
+                            ),
+                      ),
+                      const SizedBox(height: PaddingSize.s32),
+                      Text(
+                        context.l10n
+                            .continueIsApproveTermsOfServiceAndPrivacyPolicy,
+                      ),
+                    ],
                   ),
                 ],
               ),

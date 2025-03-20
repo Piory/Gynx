@@ -6,11 +6,13 @@
 import 'dart:async' as _i4;
 
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart'
-    as _i7;
-import 'package:gynx_app/src/application/usecase/interactors/sign_in_interactor.dart'
-    as _i5;
-import 'package:gynx_app/src/application/usecase/params/sign_in_param.dart'
     as _i6;
+import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_anonymous_interactor.dart'
+    as _i5;
+import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_interactor.dart'
+    as _i7;
+import 'package:gynx_app/src/application/usecase/params/sign_in_with_oauth_param.dart'
+    as _i8;
 import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart' as _i3;
 import 'package:logging/logging.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -43,24 +45,6 @@ class _FakeLogger_0 extends _i1.SmartFake implements _i2.Logger {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   @override
-  _i4.Future<void> signUp({
-    required String? email,
-    required String? password,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #signUp,
-          [],
-          {
-            #email: email,
-            #password: password,
-          },
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
   _i4.Future<void> signInWithAnonymous() => (super.noSuchMethod(
         Invocation.method(
           #signInWithAnonymous,
@@ -71,18 +55,70 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> signInWithPassword({
-    required String? email,
-    required String? password,
-  }) =>
-      (super.noSuchMethod(
+  _i4.Future<void> signInWithApple() => (super.noSuchMethod(
         Invocation.method(
-          #signInWithPassword,
+          #signInWithApple,
           [],
-          {
-            #email: email,
-            #password: password,
-          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> signInWithGoogle() => (super.noSuchMethod(
+        Invocation.method(
+          #signInWithGoogle,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> linkWithApple() => (super.noSuchMethod(
+        Invocation.method(
+          #linkWithApple,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> linkWithGoogle() => (super.noSuchMethod(
+        Invocation.method(
+          #linkWithGoogle,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> linkWithX() => (super.noSuchMethod(
+        Invocation.method(
+          #linkWithX,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> linkWithTwitch() => (super.noSuchMethod(
+        Invocation.method(
+          #linkWithTwitch,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> linkWithDiscord() => (super.noSuchMethod(
+        Invocation.method(
+          #linkWithDiscord,
+          [],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
@@ -99,10 +135,11 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
       ) as _i4.Future<void>);
 }
 
-/// A class which mocks [SignInInteractor].
+/// A class which mocks [SignInWithAnonymousInteractor].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInInteractor extends _i1.Mock implements _i5.SignInInteractor {
+class MockSignInWithAnonymousInteractor extends _i1.Mock
+    implements _i5.SignInWithAnonymousInteractor {
   @override
   _i2.Logger get logger => (super.noSuchMethod(
         Invocation.getter(#logger),
@@ -117,7 +154,7 @@ class MockSignInInteractor extends _i1.Mock implements _i5.SignInInteractor {
       ) as _i2.Logger);
 
   @override
-  _i4.Future<_i4.Stream<void>> buildUseCaseStream(_i6.SignInParam? params) =>
+  _i4.Future<_i4.Stream<void>> buildUseCaseStream(dynamic params) =>
       (super.noSuchMethod(
         Invocation.method(
           #buildUseCaseStream,
@@ -131,8 +168,66 @@ class MockSignInInteractor extends _i1.Mock implements _i5.SignInInteractor {
 
   @override
   void execute(
-    _i7.Observer<void>? observer, [
-    _i6.SignInParam? params,
+    _i6.Observer<void>? observer, [
+    dynamic params,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [
+            observer,
+            params,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [SignInWithOAuthInteractor].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSignInWithOAuthInteractor extends _i1.Mock
+    implements _i7.SignInWithOAuthInteractor {
+  @override
+  _i2.Logger get logger => (super.noSuchMethod(
+        Invocation.getter(#logger),
+        returnValue: _FakeLogger_0(
+          this,
+          Invocation.getter(#logger),
+        ),
+        returnValueForMissingStub: _FakeLogger_0(
+          this,
+          Invocation.getter(#logger),
+        ),
+      ) as _i2.Logger);
+
+  @override
+  _i4.Future<_i4.Stream<void>> buildUseCaseStream(
+          _i8.SignInWithOAuthParam? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #buildUseCaseStream,
+          [params],
+        ),
+        returnValue:
+            _i4.Future<_i4.Stream<void>>.value(_i4.Stream<void>.empty()),
+        returnValueForMissingStub:
+            _i4.Future<_i4.Stream<void>>.value(_i4.Stream<void>.empty()),
+      ) as _i4.Future<_i4.Stream<void>>);
+
+  @override
+  void execute(
+    _i6.Observer<void>? observer, [
+    _i8.SignInWithOAuthParam? params,
   ]) =>
       super.noSuchMethod(
         Invocation.method(

@@ -4,16 +4,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:ui' as _i8;
+import 'dart:ui' as _i9;
 
+import 'package:flutter/material.dart' as _i10;
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart'
-    as _i6;
-import 'package:gynx_app/src/application/usecase/interactors/sign_in_interactor.dart'
-    as _i3;
-import 'package:gynx_app/src/application/usecase/params/sign_in_param.dart'
     as _i5;
-import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart'
+import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_anonymous_interactor.dart'
+    as _i3;
+import 'package:gynx_app/src/application/usecase/interactors/sign_in_with_oauth_interactor.dart'
+    as _i6;
+import 'package:gynx_app/src/application/usecase/params/sign_in_with_oauth_param.dart'
     as _i7;
+import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart' as _i11;
+import 'package:gynx_app/src/interface/pages/sign_in/sign_in_presenter.dart'
+    as _i8;
 import 'package:logging/logging.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -40,10 +44,11 @@ class _FakeLogger_0 extends _i1.SmartFake implements _i2.Logger {
         );
 }
 
-/// A class which mocks [SignInInteractor].
+/// A class which mocks [SignInWithAnonymousInteractor].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInInteractor extends _i1.Mock implements _i3.SignInInteractor {
+class MockSignInWithAnonymousInteractor extends _i1.Mock
+    implements _i3.SignInWithAnonymousInteractor {
   @override
   _i2.Logger get logger => (super.noSuchMethod(
         Invocation.getter(#logger),
@@ -58,7 +63,7 @@ class MockSignInInteractor extends _i1.Mock implements _i3.SignInInteractor {
       ) as _i2.Logger);
 
   @override
-  _i4.Future<_i4.Stream<void>> buildUseCaseStream(_i5.SignInParam? params) =>
+  _i4.Future<_i4.Stream<void>> buildUseCaseStream(dynamic params) =>
       (super.noSuchMethod(
         Invocation.method(
           #buildUseCaseStream,
@@ -72,8 +77,66 @@ class MockSignInInteractor extends _i1.Mock implements _i3.SignInInteractor {
 
   @override
   void execute(
-    _i6.Observer<void>? observer, [
-    _i5.SignInParam? params,
+    _i5.Observer<void>? observer, [
+    dynamic params,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [
+            observer,
+            params,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [SignInWithOAuthInteractor].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSignInWithOAuthInteractor extends _i1.Mock
+    implements _i6.SignInWithOAuthInteractor {
+  @override
+  _i2.Logger get logger => (super.noSuchMethod(
+        Invocation.getter(#logger),
+        returnValue: _FakeLogger_0(
+          this,
+          Invocation.getter(#logger),
+        ),
+        returnValueForMissingStub: _FakeLogger_0(
+          this,
+          Invocation.getter(#logger),
+        ),
+      ) as _i2.Logger);
+
+  @override
+  _i4.Future<_i4.Stream<void>> buildUseCaseStream(
+          _i7.SignInWithOAuthParam? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #buildUseCaseStream,
+          [params],
+        ),
+        returnValue:
+            _i4.Future<_i4.Stream<void>>.value(_i4.Stream<void>.empty()),
+        returnValueForMissingStub:
+            _i4.Future<_i4.Stream<void>>.value(_i4.Stream<void>.empty()),
+      ) as _i4.Future<_i4.Stream<void>>);
+
+  @override
+  void execute(
+    _i5.Observer<void>? observer, [
+    _i7.SignInWithOAuthParam? params,
   ]) =>
       super.noSuchMethod(
         Invocation.method(
@@ -99,53 +162,55 @@ class MockSignInInteractor extends _i1.Mock implements _i3.SignInInteractor {
 /// A class which mocks [SignInPresenter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInPresenter extends _i1.Mock implements _i7.SignInPresenter {
+class MockSignInPresenter extends _i1.Mock implements _i8.SignInPresenter {
   @override
-  _i8.VoidCallback get signInOnComplete => (super.noSuchMethod(
-        Invocation.getter(#signInOnComplete),
+  _i9.VoidCallback get authOnComplete => (super.noSuchMethod(
+        Invocation.getter(#authOnComplete),
         returnValue: () {},
         returnValueForMissingStub: () {},
-      ) as _i8.VoidCallback);
+      ) as _i9.VoidCallback);
 
   @override
-  set signInOnComplete(_i8.VoidCallback? _signInOnComplete) =>
-      super.noSuchMethod(
+  set authOnComplete(_i9.VoidCallback? _authOnComplete) => super.noSuchMethod(
         Invocation.setter(
-          #signInOnComplete,
-          _signInOnComplete,
+          #authOnComplete,
+          _authOnComplete,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void Function(dynamic) get signInOnError => (super.noSuchMethod(
-        Invocation.getter(#signInOnError),
-        returnValue: (dynamic __p0) {},
-        returnValueForMissingStub: (dynamic __p0) {},
-      ) as void Function(dynamic));
+  _i10.ValueSetter<dynamic> get authOnError => (super.noSuchMethod(
+        Invocation.getter(#authOnError),
+        returnValue: (dynamic value) {},
+        returnValueForMissingStub: (dynamic value) {},
+      ) as _i10.ValueSetter<dynamic>);
 
   @override
-  set signInOnError(void Function(dynamic)? _signInOnError) =>
+  set authOnError(_i10.ValueSetter<dynamic>? _authOnError) =>
       super.noSuchMethod(
         Invocation.setter(
-          #signInOnError,
-          _signInOnError,
+          #authOnError,
+          _authOnError,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void signIn(
-    String? email,
-    String? password,
-  ) =>
+  void signInWithAnonymous() => super.noSuchMethod(
+        Invocation.method(
+          #signInWithAnonymous,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void signInWithOAuth(_i11.OAuthProviderType? oauthProviderType) =>
       super.noSuchMethod(
         Invocation.method(
-          #signIn,
-          [
-            email,
-            password,
-          ],
+          #signInWithOAuth,
+          [oauthProviderType],
         ),
         returnValueForMissingStub: null,
       );

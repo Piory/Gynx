@@ -4,7 +4,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gynx_app/src/infrastructure/router/go_router.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 final class ColorPalette {
   // Purple
@@ -26,11 +25,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
-      if (data.session == null) {
-        await Supabase.instance.client.auth.signInAnonymously();
-      }
-    });
     final colorScheme = const ColorScheme.dark(
       primary: ColorPalette.primary,
     ).copyWith(
@@ -71,6 +65,7 @@ class MyApp extends StatelessWidget {
           splashFactory: NoSplash.splashFactory,
           highlightColor: Colors.transparent,
           textTheme: textTheme,
+          // dividerColor: colorScheme.primary.withOpacity(0.6),
           navigationBarTheme: NavigationBarThemeData(
             height: 56,
             backgroundColor: colorScheme.surface,

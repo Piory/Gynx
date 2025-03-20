@@ -107,6 +107,18 @@ abstract class L10n {
   /// **'Required'**
   String get required;
 
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @signUpOrSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up or Sign in'**
+  String get signUpOrSignIn;
+
   /// No description provided for @signInTitle.
   ///
   /// In en, this message translates to:
@@ -148,6 +160,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Continue with Discord'**
   String get continueWithDiscord;
+
+  /// No description provided for @continueAsGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as guest'**
+  String get continueAsGuest;
+
+  /// No description provided for @continueAsGuestWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing as a guest, some features may be limited.'**
+  String get continueAsGuestWarning;
 
   /// No description provided for @continueIsApproveTermsOfServiceAndPrivacyPolicy.
   ///

@@ -13,6 +13,12 @@ class L10nEn extends L10n {
   String get required => 'Required';
 
   @override
+  String get or => 'or';
+
+  @override
+  String get signUpOrSignIn => 'Sign up or Sign in';
+
+  @override
   String get signInTitle => 'Sign in to make the most of Gynx!';
 
   @override
@@ -32,6 +38,12 @@ class L10nEn extends L10n {
 
   @override
   String get continueWithDiscord => 'Continue with Discord';
+
+  @override
+  String get continueAsGuest => 'Continue as guest';
+
+  @override
+  String get continueAsGuestWarning => 'By continuing as a guest, some features may be limited.';
 
   @override
   String get continueIsApproveTermsOfServiceAndPrivacyPolicy => 'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.';

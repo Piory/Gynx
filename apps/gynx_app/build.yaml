@@ -1,6 +1,9 @@
 targets:
   $default:
     builders:
+      envied_generator|envied:
+        options:
+          override: true
       source_gen|combining_builder:
         options:
           build_extensions:

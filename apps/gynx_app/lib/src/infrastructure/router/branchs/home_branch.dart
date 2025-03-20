@@ -20,6 +20,11 @@ class HomePageRoute extends GoRouteData {
   const HomePageRoute();
 
   @override
+  FutureOr<bool> onExit(BuildContext context, GoRouterState state) {
+    return true;
+  }
+
+  @override
   Widget build(BuildContext context, GoRouterState state) {
     return Scaffold(
       body: Center(
@@ -32,12 +37,8 @@ class HomePageRoute extends GoRouteData {
               child: const Text('Sample1'),
             ),
             ElevatedButton(
-              onPressed: () => const SignInRoute().push<void>(context),
+              onPressed: () => const RootRoute().push<void>(context),
               child: const Text('SignIn'),
-            ),
-            ElevatedButton(
-              onPressed: () => const SignUpRoute().push<void>(context),
-              child: const Text('SignUp'),
             ),
             ElevatedButton(
               onPressed: () async =>

@@ -1,11 +1,9 @@
+import 'package:gynx_app/src/constants/env.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-Future<void> supabaseInitializer({
-  required String url,
-  required String anonKey,
-}) async {
+Future<void> supabaseInitializer() async {
   await Supabase.initialize(
-    url: url,
-    anonKey: anonKey,
+    url: Env.supabaseUrl,
+    anonKey: Env.supabaseAnonKey,
   );
 }

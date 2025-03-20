@@ -8,8 +8,7 @@ part of '../../../../infrastructure/router/go_router.dart';
 
 List<RouteBase> get $appRoutes => [
       $mainShellRouteData,
-      $signInRoute,
-      $signUpRoute,
+      $rootRoute,
     ];
 
 RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
@@ -38,16 +37,6 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
             GoRouteData.$route(
               path: '/profile',
               factory: $ProfilePageRouteExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: '/sample1',
-                  factory: $ProfileSample1PageRouteExtension._fromState,
-                ),
-                GoRouteData.$route(
-                  path: '/sample2',
-                  factory: $ProfileSample2PageRouteExtension._fromState,
-                ),
-              ],
             ),
           ],
         ),
@@ -130,74 +119,16 @@ extension $ProfilePageRouteExtension on ProfilePageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ProfileSample1PageRouteExtension on ProfileSample1PageRoute {
-  static ProfileSample1PageRoute _fromState(GoRouterState state) =>
-      const ProfileSample1PageRoute();
-
-  String get location => GoRouteData.$location(
-        '/sample1',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $ProfileSample2PageRouteExtension on ProfileSample2PageRoute {
-  static ProfileSample2PageRoute _fromState(GoRouterState state) =>
-      const ProfileSample2PageRoute();
-
-  String get location => GoRouteData.$location(
-        '/sample2',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $signInRoute => GoRouteData.$route(
-      path: '/sign-in',
-      factory: $SignInRouteExtension._fromState,
+RouteBase get $rootRoute => GoRouteData.$route(
+      path: '/',
+      factory: $RootRouteExtension._fromState,
     );
 
-extension $SignInRouteExtension on SignInRoute {
-  static SignInRoute _fromState(GoRouterState state) => const SignInRoute();
+extension $RootRouteExtension on RootRoute {
+  static RootRoute _fromState(GoRouterState state) => const RootRoute();
 
   String get location => GoRouteData.$location(
-        '/sign-in',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $signUpRoute => GoRouteData.$route(
-      path: '/sign-up',
-      factory: $SignUpRouteExtension._fromState,
-    );
-
-extension $SignUpRouteExtension on SignUpRoute {
-  static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
-
-  String get location => GoRouteData.$location(
-        '/sign-up',
+        '/',
       );
 
   void go(BuildContext context) => context.go(location);

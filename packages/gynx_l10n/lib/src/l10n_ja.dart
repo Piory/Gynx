@@ -13,6 +13,12 @@ class L10nJa extends L10n {
   String get required => '必須';
 
   @override
+  String get or => 'または';
+
+  @override
+  String get signUpOrSignIn => '新規登録またはログイン';
+
+  @override
   String get signInTitle => 'ログインして、Gynxを最大限に活用しよう！';
 
   @override
@@ -32,6 +38,12 @@ class L10nJa extends L10n {
 
   @override
   String get continueWithDiscord => 'Discord で続ける';
+
+  @override
+  String get continueAsGuest => 'ゲストユーザーとして続ける';
+
+  @override
+  String get continueAsGuestWarning => 'ゲストユーザーとして続行すると、アプリの一部の機能が制限されます';
 
   @override
   String get continueIsApproveTermsOfServiceAndPrivacyPolicy => '続行することで、Gynx の利用規約およびプライバシーポリシーに同意するものとします。';

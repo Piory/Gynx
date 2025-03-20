@@ -106,18 +106,28 @@ class MockSignInController extends _i1.Mock implements _i4.SignInController {
       ) as bool);
 
   @override
-  void signIn({
-    required String? email,
-    required String? password,
-  }) =>
-      super.noSuchMethod(
+  void signInWithApple() => super.noSuchMethod(
         Invocation.method(
-          #signIn,
+          #signInWithApple,
           [],
-          {
-            #email: email,
-            #password: password,
-          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void signInWithGoogle() => super.noSuchMethod(
+        Invocation.method(
+          #signInWithGoogle,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void signInWithAnonymous() => super.noSuchMethod(
+        Invocation.method(
+          #signInWithAnonymous,
+          [],
         ),
         returnValueForMissingStub: null,
       );

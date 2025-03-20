@@ -8,10 +8,7 @@ const profileStatefulShellBranch = TypedStatefulShellBranch<ProfileShellBranch>(
   routes: [
     TypedGoRoute<ProfilePageRoute>(
       path: '/profile',
-      routes: [
-        TypedGoRoute<ProfileSample1PageRoute>(path: '/sample1'),
-        TypedGoRoute<ProfileSample2PageRoute>(path: '/sample2'),
-      ],
+      // routes: const [],
     ),
   ],
 );
@@ -21,30 +18,6 @@ class ProfilePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const Center(
-      child: Text('Profile Page'),
-    );
-  }
-}
-
-class ProfileSample1PageRoute extends GoRouteData {
-  const ProfileSample1PageRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const Center(
-      child: Text('Profile Sample1 Page'),
-    );
-  }
-}
-
-class ProfileSample2PageRoute extends GoRouteData {
-  const ProfileSample2PageRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const Center(
-      child: Text('Profile Sample2 Page'),
-    );
+    return const ProfileView();
   }
 }

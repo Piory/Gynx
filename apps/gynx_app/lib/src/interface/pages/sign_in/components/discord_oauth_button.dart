@@ -14,7 +14,7 @@ class DiscordOAuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OAuthButton(
-      backgroundColor: const Color(0xFF7289DA),
+      backgroundColor: const Color(0xFF5865F2),
       borderRadius: BorderRadius.zero,
       text: Text(context.l10n.continueWithDiscord),
       onPressed: onPressed,

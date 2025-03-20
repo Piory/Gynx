@@ -1,20 +1,16 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gynx_app/src/domain/repositories/auth_reposirory.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  const AuthRepositoryImpl(this._client);
+  const AuthRepositoryImpl(this._client, this._googleSignIn);
+
+  static const _redirectTo = 'com.piory.gynx.local://oauth2-callback/';
 
   final SupabaseClient _client;
-
-  @override
-  Future<void> signUp({
-    required String email,
-    required String password,
-  }) {
-    return _client.auth.signUp(email: email, password: password);
-  }
+  final GoogleSignIn _googleSignIn;
 
   @override
   Future<void> signInWithAnonymous() async {
@@ -23,13 +19,70 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signInWithPassword({
-    required String email,
-    required String password,
-  }) async {
-    await _client.auth.signInWithPassword(
-      email: email,
-      password: password,
+  Future<void> signInWithApple() async {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    final googleUser = await _googleSignIn.signIn();
+    final googleAuth = await googleUser!.authentication;
+    final idToken = googleAuth.idToken;
+    if (idToken == null) {
+      throw Exception('Google sign in failed. idToken is null');
+    }
+    final accessToken = googleAuth.accessToken;
+    if (accessToken == null) {
+      throw Exception('Google sign in failed. accessToken is null');
+    }
+    await _client.auth.signInWithIdToken(
+      provider: OAuthProvider.google,
+      idToken: idToken,
+      accessToken: accessToken,
+    );
+  }
+
+  @override
+  Future<void> linkWithApple() async {
+    await _client.auth.linkIdentity(
+      OAuthProvider.apple,
+      redirectTo: _redirectTo,
+    );
+  }
+
+  @override
+  Future<void> linkWithGoogle() async {
+    await _client.auth.linkIdentity(
+      OAuthProvider.google,
+      redirectTo: _redirectTo,
+      authScreenLaunchMode: LaunchMode.externalApplication,
+    );
+  }
+
+  @override
+  Future<void> linkWithX() async {
+    await _client.auth.linkIdentity(
+      OAuthProvider.twitter,
+      redirectTo: _redirectTo,
+      authScreenLaunchMode: LaunchMode.externalApplication,
+    );
+  }
+
+  @override
+  Future<void> linkWithTwitch() async {
+    await _client.auth.linkIdentity(
+      OAuthProvider.twitch,
+      redirectTo: _redirectTo,
+      authScreenLaunchMode: LaunchMode.externalApplication,
+    );
+  }
+
+  @override
+  Future<void> linkWithDiscord() async {
+    await _client.auth.linkIdentity(
+      OAuthProvider.discord,
+      redirectTo: _redirectTo,
+      authScreenLaunchMode: LaunchMode.externalApplication,
     );
   }
 

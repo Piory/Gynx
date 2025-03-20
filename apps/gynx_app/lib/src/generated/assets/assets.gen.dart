@@ -59,12 +59,8 @@ class $AssetsSvgsLogosGen {
 class Assets {
   Assets._();
 
-  static const String aEnv = 'assets/.env';
   static const $AssetsLogosGen logos = $AssetsLogosGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {
