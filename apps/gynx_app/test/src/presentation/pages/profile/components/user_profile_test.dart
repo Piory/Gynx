@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
-import 'package:gynx_app/src/domain/usecases/find_user_detail_usecase.dart';
-import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/pages/profile/components/follow_count.dart';
@@ -22,27 +20,17 @@ import 'user_profile_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<SuiteUserUseCase>(),
-  MockSpec<FindUserUseCase>(),
-  MockSpec<FindUserDetailUseCase>(),
 ])
 void main() {
   final mockSuiteUserUseCase = MockSuiteUserUseCase();
-  final mockFindUserUseCase = MockFindUserUseCase();
-  final mockFindUserDetailUseCase = MockFindUserDetailUseCase();
 
   setUpAll(() {
     GetIt.I.registerSingleton<SuiteUserUseCase>(mockSuiteUserUseCase);
-    GetIt.I.registerSingleton<FindUserUseCase>(mockFindUserUseCase);
-    GetIt.I.registerSingleton<FindUserDetailUseCase>(mockFindUserDetailUseCase);
   });
 
   tearDown(() {
     verifyNoMoreInteractions(mockSuiteUserUseCase);
-    verifyNoMoreInteractions(mockFindUserUseCase);
-    verifyNoMoreInteractions(mockFindUserDetailUseCase);
     reset(mockSuiteUserUseCase);
-    reset(mockFindUserUseCase);
-    reset(mockFindUserDetailUseCase);
   });
 
   group('UserProfile', () {
@@ -50,6 +38,7 @@ void main() {
       required WidgetTester tester,
       required SuiteUser suiteUser,
     }) async {
+      when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -62,6 +51,8 @@ void main() {
           ),
         ),
       );
+      verify(mockSuiteUserUseCase.execute());
+      await tester.pump();
     }
 
     group('正常系', () {

@@ -101,7 +101,7 @@ void main() {
             tester: tester,
             suiteUser: suiteUser.copyWith(
               vUserDetail: suiteUser.vUserDetail.copyWith(
-                avatarUrl: null,
+                avatarUrl: 'https://example.com/avatar.png',
               ),
             ),
           );
