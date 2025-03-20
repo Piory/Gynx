@@ -1,0 +1,44 @@
+inputs:
+  flutter-version:
+    required: false
+    default: 3.29.2
+  melos-version:
+    required: false
+    default: 7.0.0-dev.7
+  google-client-id:
+    required: true
+    description: Google Client ID
+    default: false
+  supabase-url:
+    required: false
+    description: Supabase URL
+  supabase-anon-key:
+    required: false
+    description: Supabase Anon Key
+  supabase-service-role-key:
+    required: false
+    description: Supabase Service Role Key
+
+name: Setup Flutter
+description: Setup Flutter
+runs:
+  using: composite
+  steps:
+    - name: Create r4b_constants .env
+      shell: bash
+      run: |
+        echo "SUPABASE_URL=${{ inputs.supabase-url }}" > ./packages/gynx_constants/.env
+        echo "SUPABASE_ANON_KEY=${{ inputs.supabase-anon-key }}" >> ./packages/gynx_constants/.env
+        echo "SUPABASE_SERVICE_ROLE_KEY=${{ inputs.supabase-service-role-key }}" >> ./packages/gynx_constants/.env
+        echo "GOOGLE_CLIENT_ID=${{ inputs.google-client-id }}" >> ./packages/gynx_constants/.env
+    - uses: flutter-actions/setup-flutter@v4
+      with:
+        channel: stable
+        version: ${{ inputs.flutter-version }}
+    - name: Install melos
+      shell: bash
+      run: dart pub global activate melos ${{ inputs.melos-version }}
+    - run: melos bs
+      shell: bash
+    - run: melos gen-gynx-constants
+      shell: bash
