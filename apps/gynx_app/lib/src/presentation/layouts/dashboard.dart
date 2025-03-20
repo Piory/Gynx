@@ -47,7 +47,8 @@ class _DashboardState extends State<Dashboard> {
                 horizontal: SpaceSize.s32,
               ),
               selectedColor: colorScheme.primary,
-              unselectedColor: colorScheme.onSurfaceVariant.withOpacity(0.9),
+              unselectedColor:
+                  colorScheme.onSurfaceVariant.withValues(alpha: 0.9),
               items: const [
                 NavigationBarItem(
                   selectedIcon: IconlyBold.home,

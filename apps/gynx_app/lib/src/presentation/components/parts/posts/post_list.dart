@@ -61,7 +61,7 @@ class _PostListState extends State<PostList>
       ),
       separatorBuilder: (context, index) => Divider(
         height: 0,
-        color: theme.colorScheme.onSurfaceVariant.withOpacity(0.15),
+        color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.15),
       ),
       centerLoading: true,
       centerEmpty: true,

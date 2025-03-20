@@ -273,7 +273,7 @@ void main() {
     });
 
     group('Others data', () {
-      test('Insert X (403 Forbidden)', () async {
+      test('Insert X (403 Forbidden)', () {
         expect(
           () => supabaseClient.from(tableName).insert({
             'post_id': otherUserPostId,

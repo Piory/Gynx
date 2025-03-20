@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:gynx_app/src/domain/usecases/sign_out_usecase.dart';
 import 'package:gynx_app/src/presentation/dialogs/alert.dart';

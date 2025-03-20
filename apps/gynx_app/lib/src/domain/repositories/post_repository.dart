@@ -1,3 +1,5 @@
+// ignore_for_file: one_member_abstracts
+
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/media_list.dart';
 

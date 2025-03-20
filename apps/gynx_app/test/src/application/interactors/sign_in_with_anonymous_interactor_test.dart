@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:gynx_app/src/application/interactors/sign_in_with_anonymous_interactor.dart';
 import 'package:gynx_app/src/domain/repositories/auth_repository.dart';

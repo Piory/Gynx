@@ -112,9 +112,9 @@ class _MyApp extends ConsumerState<MyApp> {
           iconTheme: IconThemeData(
             color: colorScheme.primary,
           ),
-          dividerColor: colorScheme.onSurfaceVariant.withOpacity(0.6),
+          dividerColor: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
           dividerTheme: DividerThemeData(
-            color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+            color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
           ),
           appBarTheme: AppBarTheme(
             backgroundColor: colorScheme.surface,
@@ -135,7 +135,7 @@ class _MyApp extends ConsumerState<MyApp> {
           ),
           tabBarTheme: TabBarTheme(
             dividerHeight: 1,
-            dividerColor: colorScheme.onSurfaceVariant.withOpacity(0.15),
+            dividerColor: colorScheme.onSurfaceVariant.withValues(alpha: 0.15),
           ),
           navigationBarTheme: NavigationBarThemeData(
             height: 56,
@@ -174,7 +174,7 @@ class _MyApp extends ConsumerState<MyApp> {
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: colorScheme.outline.withOpacity(0.6),
+                color: colorScheme.outline.withValues(alpha: 0.6),
               ),
               borderRadius: BorderRadius.circular(16),
             ),
@@ -205,7 +205,7 @@ class _MyApp extends ConsumerState<MyApp> {
             floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
               if (states.contains(WidgetState.disabled)) {
                 return textTheme.bodyMedium!.copyWith(
-                  color: colorScheme.onSurfaceVariant.withOpacity(0.38),
+                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.38),
                   fontWeight: FontWeight.bold,
                 );
               }

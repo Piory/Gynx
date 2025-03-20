@@ -92,7 +92,7 @@ class EditAvatarMenu extends StatelessWidget {
                   color: colorScheme.error,
                 ),
               ),
-              onTap: () async {
+              onTap: () {
                 onChanged?.call(null);
                 if (context.mounted) {
                   pageNavigator.pop(context);

@@ -55,7 +55,7 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
           preferredSize: const Size.fromHeight(0.1),
           child: Divider(
             height: 0,
-            color: colorScheme.onSurfaceVariant.withOpacity(0.15),
+            color: colorScheme.onSurfaceVariant.withValues(alpha: 0.15),
           ),
         ),
         leading: CloseButton(

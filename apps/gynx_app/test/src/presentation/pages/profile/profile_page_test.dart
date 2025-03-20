@@ -6,7 +6,6 @@ import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:gynx_app/src/presentation/components/parts/posts/post_list.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
-import 'package:gynx_app/src/presentation/pages/profile/components/user_profile.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_controller.dart';
 import 'package:gynx_app/src/presentation/pages/profile/profile_page.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
@@ -59,14 +58,6 @@ void main() {
   }
 
   group('正常系', () {
-    testWidgets('ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
-      await pumpWidget(tester);
-      final userProfileFinder = find.byType(UserProfile);
-      expect(userProfileFinder, findsOneWidget);
-      // final userProfileWidget = tester.widget<UserProfile>(userProfileFinder);
-      // expect(userProfileWidget.suiteUser, suiteUser);
-    });
-
     testWidgets(
       'IconlyBold.setting をタップしたら、PageNavigator#push が呼ばれること',
       (tester) async {

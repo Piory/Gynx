@@ -113,7 +113,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: colorScheme.onSurfaceVariant.withOpacity(0.3),
+                    color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                   ),
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -153,8 +153,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       },
                     ),
                     Divider(
-                      color:
-                          theme.colorScheme.onSurfaceVariant.withOpacity(0.3),
+                      color: theme.colorScheme.onSurfaceVariant
+                          .withValues(alpha: 0.3),
                     ),
                     Consumer(
                       builder: (context, ref, _) {
@@ -192,8 +192,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       },
                     ),
                     Divider(
-                      color:
-                          theme.colorScheme.onSurfaceVariant.withOpacity(0.3),
+                      color: theme.colorScheme.onSurfaceVariant
+                          .withValues(alpha: 0.3),
                     ),
                     Consumer(
                       builder: (context, ref, child) {

@@ -59,7 +59,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signInWithApple() async {
+  Future<void> signInWithApple() {
     throw UnimplementedError();
   }
 

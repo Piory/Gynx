@@ -70,7 +70,7 @@ void main() {
 
   group('#urls', () {
     test('TPostMediaList が空の場合、空リストを返す', () {
-      expect(TPostMediaList.empty.urls, []);
+      expect(TPostMediaList.empty.urls, <String>[]);
     });
 
     test('TPostMediaList が空でない場合、各要素の url を返す', () {

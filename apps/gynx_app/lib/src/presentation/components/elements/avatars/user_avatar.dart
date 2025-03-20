@@ -41,7 +41,7 @@ class UserAvatar extends StatelessWidget {
       child: Icon(
         IconlyBold.profile,
         size: radius * 1.25,
-        color: theme.colorScheme.surface.withOpacity(0.5),
+        color: theme.colorScheme.surface.withValues(alpha: 0.5),
       ),
     );
   }

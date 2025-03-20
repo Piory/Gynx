@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/post_id_list.dart';
 import 'package:gynx_app/src/domain/models/v_post_list.dart';

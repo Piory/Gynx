@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
 import 'package:gynx_app/src/domain/usecases/sign_in_with_anonymous_usecase.dart';
 import 'package:gynx_app/src/domain/usecases/sign_in_with_oauth_usecase.dart';

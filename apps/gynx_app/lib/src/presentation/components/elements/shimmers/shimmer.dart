@@ -24,8 +24,8 @@ class Shimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final baseColor = colorScheme.onSurface.withOpacity(0.1);
-    final highlightColor = colorScheme.onSurface.withOpacity(0.05);
+    final baseColor = colorScheme.onSurface.withValues(alpha: 0.1);
+    final highlightColor = colorScheme.onSurface.withValues(alpha: 0.05);
     return shimmer.Shimmer.fromColors(
       baseColor: baseColor,
       highlightColor: highlightColor,

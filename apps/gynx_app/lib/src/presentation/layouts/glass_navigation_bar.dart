@@ -114,10 +114,10 @@ class GlassNavigationBar extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: colorScheme.surface.withOpacity(0.7),
+                  color: colorScheme.surface.withValues(alpha: 0.7),
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(
-                    color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+                    color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                   ),
                 ),
                 child: Row(
@@ -228,7 +228,8 @@ class GlassNavigationBar extends StatelessWidget {
                       // color: colorScheme.primary,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                        color: colorScheme.onSurfaceVariant.withOpacity(0.6),
+                        color:
+                            colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                       ),
                     ),
                     child: InkWell(

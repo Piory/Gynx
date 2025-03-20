@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:gynx_app/src/application/interactors/create_post_interactor.dart';
 import 'package:gynx_app/src/domain/enums/media_type.dart';
@@ -190,7 +191,7 @@ void main() {
   group('純正常系', () {
     test(
       'AuthRepository#currentUser が null の場合、UserNotSignedInException が throw されること',
-      () async {
+      () {
         when(mockAuthRepository.currentUser).thenReturn(null);
         expect(
           () => interactor.execute(

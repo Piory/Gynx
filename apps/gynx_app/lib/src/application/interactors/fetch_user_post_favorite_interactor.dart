@@ -44,7 +44,7 @@ class FetchUserPostFavoriteInteractor implements FetchUserPostFavoriteUseCase {
     required String userId,
     DateTime? latestAt,
     DateTime? oldestAt,
-  }) async {
+  }) {
     if (latestAt != null) {
       return _tUserPostFavoriteRepository.findByUserIdAndLatestAt(
         userId,

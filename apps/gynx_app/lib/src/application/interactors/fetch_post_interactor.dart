@@ -20,7 +20,7 @@ class FetchPostInteractor implements FetchPostUseCase {
   Future<VPostList> execute({
     int? sincePostId,
     int? maxPostId,
-  }) async {
+  }) {
     if (sincePostId != null) {
       return _vPostRepository.findBySincePostId(sincePostId, _count);
     } else if (maxPostId != null) {

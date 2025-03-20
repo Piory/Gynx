@@ -53,7 +53,7 @@ class Media extends StatelessWidget {
                 style: ButtonStyle(
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   backgroundColor: WidgetStateProperty.all(
-                    Colors.black.withOpacity(0.8),
+                    Colors.black.withValues(alpha: 0.8),
                   ),
                   padding: WidgetStateProperty.all(const EdgeInsets.all(4)),
                   iconColor: WidgetStateProperty.all(Colors.white),

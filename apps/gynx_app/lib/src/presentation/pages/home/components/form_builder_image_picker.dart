@@ -91,7 +91,8 @@ class FormBuilderImagePicker extends StatelessWidget {
     if (selectedMediaCount >= Constant.maxMediaCount) {
       return;
     }
-    // テキストフィールドのフォーカスにフォーカスした状態で、画像選択を行うと、IconButton の表示が崩れるため、フォーカス中は一度フォーカスを行い、画像選択完了後に再度フォーカスを行う
+    // テキストフィールドのフォーカスにフォーカスした状態で、画像選択を行うと、
+    // IconButton の表示が崩れるため、フォーカス中は一度フォーカスを行い、画像選択完了後に再度フォーカスを行う
     final hasFocus = textFieldFocusNode?.hasFocus ?? false;
     if (hasFocus) {
       textFieldFocusNode?.unfocus();

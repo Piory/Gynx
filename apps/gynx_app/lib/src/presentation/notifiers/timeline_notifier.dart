@@ -9,7 +9,7 @@ part '../../generated/src/presentation/notifiers/timeline_notifier.g.dart';
 @riverpod
 class TimelineNotifier extends _$TimelineNotifier with TimelineNotifierMixin {
   @override
-  FutureOr<TimelineState> build() async => const TimelineState();
+  FutureOr<TimelineState> build() => const TimelineState();
 
   @override
   // ignore: deprecated_member_use

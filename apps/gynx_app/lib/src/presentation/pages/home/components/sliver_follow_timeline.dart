@@ -69,7 +69,7 @@ class _SliverFollowTimelineState extends ConsumerState<SliverFollowTimeline> {
       },
       separatorBuilder: (context, index) => Divider(
         height: 0,
-        color: theme.colorScheme.onSurfaceVariant.withOpacity(0.15),
+        color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.15),
       ),
       centerEmpty: true,
       loadingBuilder: (context) => LoadingAnimationWidget.inkDrop(

@@ -9,7 +9,7 @@ class CheckGynxIdExistenceInteractor implements CheckGynxIdExistenceUsecase {
   final TUserRepository _tUserRepository;
 
   @override
-  Future<bool> execute(String gynxId) async {
+  Future<bool> execute(String gynxId) {
     return _tUserRepository.existsById(gynxId);
   }
 }

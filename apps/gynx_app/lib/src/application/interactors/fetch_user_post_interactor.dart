@@ -21,7 +21,7 @@ class FetchUserPostInteractor implements FetchUserPostUseCase {
     required String userId,
     int? sincePostId,
     int? maxPostId,
-  }) async {
+  }) {
     if (sincePostId != null) {
       return _vPostRepository.findByUserIdAndSincePostId(
         userId,

@@ -64,7 +64,7 @@ class EditAvatar extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () async {
+          onTap: () {
             if (isLoading) {
               return;
             }
