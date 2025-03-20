@@ -1,8 +1,1 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
-library;
-
-export 'src/gynx_core_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/interface/views/sign_in_view.dart';

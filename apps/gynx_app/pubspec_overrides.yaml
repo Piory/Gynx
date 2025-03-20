@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: gynx_core
+dependency_overrides:
+  gynx_core:
+    path: ../../packages/gynx_core

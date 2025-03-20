@@ -20,6 +20,7 @@ command:
     runPubGetInParallel: false
     environment:
       sdk: ">=3.3.0 <4.0.0"
+      flutter: ">=1.17.0"
     dependencies:
       collection: 1.18.0
       firebase_core: 3.8.0
@@ -30,6 +31,7 @@ command:
       flutter_riverpod: 2.6.1
       riverpod_annotation: 2.6.1
       google_fonts: 6.2.1
+      flutter_clean_architecture: 6.0.1
     dev_dependencies:
       test: 1.25.7
       mockito: 5.4.4
@@ -42,5 +44,4 @@ command:
   ide:
     intellij: true
 scripts:
-  analyze: melos exec --fail-fast -- "dart analyze ."
-  analyze-fix: melos exec --fail-fast -- "dart fix --apply"
+  fix: melos exec --fail-fast -- "dart fix --apply ."

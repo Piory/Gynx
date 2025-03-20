@@ -1,4 +1,3 @@
-import 'package:gynx_core/gynx_core.dart';
 import 'package:test/test.dart';
 
 void main() {
