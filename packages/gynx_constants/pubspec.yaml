@@ -3,7 +3,12 @@ version: 0.0.0
 publish_to: none
 environment:
   sdk: ^3.6.0
+dependencies:
+  envied: 1.1.1
 dev_dependencies:
   build_runner: 2.4.15
   envied_generator: 1.1.1
+  lints: 5.1.1
+  pedantic_mono: any
+  test: 1.25.15
 resolution: workspace
