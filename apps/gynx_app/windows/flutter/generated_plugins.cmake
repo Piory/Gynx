@@ -5,8 +5,6 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
   file_selector_windows
-  firebase_auth
-  firebase_core
   flutter_platform_alert
   url_launcher_windows
 )

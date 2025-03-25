@@ -52,7 +52,7 @@ void main() {
       ),
     );
     verify(mockSuiteUserUseCase.execute());
-    await tester.pumpAndSettle();
+    await tester.pump();
   }
 
   //

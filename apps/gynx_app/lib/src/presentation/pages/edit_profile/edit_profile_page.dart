@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -85,24 +83,25 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             children: [
               Consumer(
                 builder: (context, ref, child) {
-                  return ref.watch(suiteUserNotifierProvider).when(
-                        data: (suiteUser) {
-                          final avatarUrl = suiteUser.vUserDetail.avatarUrl;
-                          return EditAvatar(
-                            avatarUrl: _isDeleteAvatar
-                                ? null
-                                : _afterAvatarPath?.path ?? avatarUrl,
-                            onChanged: (value) {
-                              setState(() {
-                                _afterAvatarPath = value;
-                                _isDeleteAvatar = value == null;
-                              });
-                            },
-                          );
-                        },
-                        error: (_, __) => const EditAvatar.loading(),
-                        loading: () => const EditAvatar.loading(),
-                      );
+                  final avatarUrl = ref.watch(
+                    suiteUserNotifierProvider.select(
+                      (state) => state.value?.vUserDetail.avatarUrl,
+                    ),
+                  );
+                  if (avatarUrl == null) {
+                    return const EditAvatar.loading();
+                  }
+                  return EditAvatar(
+                    avatarUrl: _isDeleteAvatar
+                        ? null
+                        : _afterAvatarPath?.path ?? avatarUrl,
+                    onChanged: (value) {
+                      setState(() {
+                        _afterAvatarPath = value;
+                        _isDeleteAvatar = value == null;
+                      });
+                    },
+                  );
                 },
               ),
               const Gap(SpaceSize.s24),
@@ -121,35 +120,32 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   children: [
                     Consumer(
                       builder: (context, ref, child) {
-                        return ref.watch(suiteUserNotifierProvider).when(
-                              data: (suiteUser) {
-                                final username = suiteUser.vUserDetail.username;
-                                return EditProfileRow(
-                                  name: context.l10n.username,
-                                  text: _afterUsername ?? username,
-                                  onTap: () {
-                                    unawaited(
-                                      showCupertinoModalBottomSheet(
-                                        context: context,
-                                        builder: (_) => EditUsername(
-                                          onSaved: (value) {
-                                            setState(() {
-                                              _afterUsername = value;
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              error: (_, __) => EditProfileRow.loading(
-                                name: context.l10n.username,
-                              ),
-                              loading: () => EditProfileRow.loading(
-                                name: context.l10n.username,
+                        final username = ref.watch(
+                          suiteUserNotifierProvider.select(
+                            (state) => state.value?.vUserDetail.username,
+                          ),
+                        );
+                        if (username == null) {
+                          return EditProfileRow.loading(
+                            name: context.l10n.username,
+                          );
+                        }
+                        return EditProfileRow(
+                          name: context.l10n.username,
+                          text: _afterUsername ?? username,
+                          onTap: () {
+                            showCupertinoModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) => EditUsername(
+                                onSaved: (value) {
+                                  setState(() {
+                                    _afterUsername = value;
+                                  });
+                                },
                               ),
                             );
+                          },
+                        );
                       },
                     ),
                     Divider(
@@ -158,37 +154,35 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                     ),
                     Consumer(
                       builder: (context, ref, _) {
-                        return ref.watch(suiteUserNotifierProvider).when(
-                              data: (suiteUser) {
-                                final gynxId = suiteUser.vUserDetail.gynxId;
-                                return EditProfileRow(
-                                  name: context.l10n.gynxId,
-                                  text: _afterGynxId ?? gynxId,
-                                  onTap: () {
-                                    unawaited(
-                                      showCupertinoModalBottomSheet(
-                                        context: context,
-                                        builder: (_) {
-                                          return EditGynxId(
-                                            onSaved: (value) {
-                                              setState(() {
-                                                _afterGynxId = value;
-                                              });
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    );
+                        final gynxId = ref.watch(
+                          suiteUserNotifierProvider.select(
+                            (state) => state.value?.vUserDetail.gynxId,
+                          ),
+                        );
+                        if (gynxId == null) {
+                          return EditProfileRow.loading(
+                            name: context.l10n.gynxId,
+                          );
+                        }
+
+                        return EditProfileRow(
+                          name: context.l10n.gynxId,
+                          text: _afterGynxId ?? gynxId,
+                          onTap: () {
+                            showCupertinoModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return EditGynxId(
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _afterGynxId = value;
+                                    });
                                   },
                                 );
                               },
-                              error: (_, __) => EditProfileRow.loading(
-                                name: context.l10n.username,
-                              ),
-                              loading: () => EditProfileRow.loading(
-                                name: context.l10n.username,
-                              ),
                             );
+                          },
+                        );
                       },
                     ),
                     Divider(
@@ -206,16 +200,14 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                                   text: _afterSelfIntroduction ??
                                       selfIntroduction,
                                   onTap: () {
-                                    unawaited(
-                                      showCupertinoModalBottomSheet(
-                                        context: context,
-                                        builder: (_) => EditSelfIntroduction(
-                                          onSaved: (value) {
-                                            setState(() {
-                                              _afterSelfIntroduction = value;
-                                            });
-                                          },
-                                        ),
+                                    showCupertinoModalBottomSheet<void>(
+                                      context: context,
+                                      builder: (_) => EditSelfIntroduction(
+                                        onSaved: (value) {
+                                          setState(() {
+                                            _afterSelfIntroduction = value;
+                                          });
+                                        },
                                       ),
                                     );
                                   },
