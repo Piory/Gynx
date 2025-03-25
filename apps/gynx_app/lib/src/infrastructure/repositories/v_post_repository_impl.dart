@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/repositories/v_post_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: VPostRepository)
+@LazySingleton(as: VPostRepository)
 class VPostRepositoryImpl implements VPostRepository {
   const VPostRepositoryImpl(this._client);
 

@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/t_user_follow_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: TUserFollowRepository)
+@LazySingleton(as: TUserFollowRepository)
 class TUserFollowRepositoryImpl implements TUserFollowRepository {
   const TUserFollowRepositoryImpl(this._client);
 

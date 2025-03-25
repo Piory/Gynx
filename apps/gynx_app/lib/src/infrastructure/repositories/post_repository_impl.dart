@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/post_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: PostRepository)
+@LazySingleton(as: PostRepository)
 class PostRepositoryImpl implements PostRepository {
   const PostRepositoryImpl(
     this._client,

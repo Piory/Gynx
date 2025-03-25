@@ -3,6 +3,6 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class ImagePickerModule {
-  @singleton
+  @lazySingleton
   ImagePicker get imagePicker => ImagePicker();
 }

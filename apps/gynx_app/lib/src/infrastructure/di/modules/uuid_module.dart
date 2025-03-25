@@ -3,6 +3,6 @@ import 'package:uuid/uuid.dart';
 
 @module
 abstract class UuidModule {
-  @singleton
+  @lazySingleton
   Uuid get uuid => const Uuid();
 }

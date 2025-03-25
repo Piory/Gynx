@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/t_post_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: TPostRepository)
+@LazySingleton(as: TPostRepository)
 class TPostRepositoryImpl implements TPostRepository {
   const TPostRepositoryImpl(this._client);
 

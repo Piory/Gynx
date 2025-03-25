@@ -6,7 +6,7 @@ import 'package:gynx_app/src/domain/usecases/fetch_user_post_usecase.dart';
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: FetchUserPostUseCase)
+@LazySingleton(as: FetchUserPostUseCase)
 class FetchUserPostInteractor implements FetchUserPostUseCase {
   const FetchUserPostInteractor(
     this._vPostRepository,

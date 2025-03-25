@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:gynx_app/src/domain/usecases/sign_in_with_anonymous_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: SignInWithAnonymousUseCase)
+@LazySingleton(as: SignInWithAnonymousUseCase)
 class SignInWithAnonymousInteractor implements SignInWithAnonymousUseCase {
   const SignInWithAnonymousInteractor(this._authRepository);
 

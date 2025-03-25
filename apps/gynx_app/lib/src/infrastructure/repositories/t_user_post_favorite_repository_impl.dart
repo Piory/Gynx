@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/t_user_post_favorite_repository
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: TUserPostFavoriteRepository)
+@LazySingleton(as: TUserPostFavoriteRepository)
 class TUserPostFavoriteRepositoryImpl implements TUserPostFavoriteRepository {
   const TUserPostFavoriteRepositoryImpl(this._client);
 

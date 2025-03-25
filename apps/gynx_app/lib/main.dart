@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gynx_app/src/infrastructure/di/injector.dart';
-import 'package:gynx_app/src/infrastructure/supabase/supabase_initializer.dart';
 import 'package:gynx_app/src/my_app.dart';
 import 'package:timeago_flutter/timeago_flutter.dart' as timeago;
 
@@ -14,8 +13,7 @@ void main() async {
   timeago.setDefaultLocale('en');
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await supabaseInitializer();
-  configureDependencies();
+  await configureDependencies();
   FlutterError.onError = (details) {
     print('FlutterError.onError: $details');
   };

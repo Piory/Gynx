@@ -6,7 +6,7 @@ import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class HomeController {
   const HomeController(
     this._createPostUseCase,

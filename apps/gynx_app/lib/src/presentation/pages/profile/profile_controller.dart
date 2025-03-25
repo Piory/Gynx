@@ -4,7 +4,7 @@ import 'package:gynx_app/src/presentation/dialogs/notify.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class ProfileController {
   const ProfileController(
     this._loadingDialog,

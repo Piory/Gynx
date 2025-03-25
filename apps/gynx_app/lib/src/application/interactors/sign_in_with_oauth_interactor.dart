@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:gynx_app/src/domain/usecases/sign_in_with_oauth_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: SignInWithOAuthUseCase)
+@LazySingleton(as: SignInWithOAuthUseCase)
 class SignInWithOAuthInteractor implements SignInWithOAuthUseCase {
   const SignInWithOAuthInteractor(this._authRepository);
 

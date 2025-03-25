@@ -4,7 +4,7 @@ import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: PageNavigator)
+@LazySingleton(as: PageNavigator)
 class PageNavigatorImpl implements PageNavigator {
   @override
   void pop<T extends Object?>(BuildContext context, [T? result]) {

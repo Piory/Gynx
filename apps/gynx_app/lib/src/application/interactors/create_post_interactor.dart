@@ -15,7 +15,7 @@ import 'package:gynx_app/src/domain/repositories/v_post_repository.dart';
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: CreatePostUseCase)
+@LazySingleton(as: CreatePostUseCase)
 class CreatePostInteractor implements CreatePostUseCase {
   const CreatePostInteractor(
     this._uuidGenerator,

@@ -1,8 +1,15 @@
+import 'package:gynx_constants/gynx_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @module
 abstract class SupabaseModule {
-  @singleton
-  SupabaseClient get client => Supabase.instance.client;
+  @preResolve
+  Future<SupabaseClient> get client async {
+    await Supabase.initialize(
+      url: Env.supabaseUrl,
+      anonKey: Env.supabaseAnonKey,
+    );
+    return Supabase.instance.client;
+  }
 }

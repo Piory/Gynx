@@ -9,7 +9,7 @@ import 'package:gynx_app/src/domain/usecases/fetch_user_post_favorite_usecase.da
 import 'package:gynx_constants/gynx_constants.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: FetchUserPostFavoriteUseCase)
+@LazySingleton(as: FetchUserPostFavoriteUseCase)
 class FetchUserPostFavoriteInteractor implements FetchUserPostFavoriteUseCase {
   const FetchUserPostFavoriteInteractor(
     this._tUserPostFavoriteRepository,

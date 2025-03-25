@@ -11,7 +11,7 @@ import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class EditProfileController {
   const EditProfileController(
     this._pageNavigator,

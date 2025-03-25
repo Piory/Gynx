@@ -3,7 +3,7 @@ import 'package:gynx_app/src/domain/repositories/t_user_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
-@Singleton(as: TUserRepository)
+@LazySingleton(as: TUserRepository)
 class TUserRepositoryImpl implements TUserRepository {
   const TUserRepositoryImpl(this._client);
 

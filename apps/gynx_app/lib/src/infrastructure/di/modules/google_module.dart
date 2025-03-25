@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class GoogleModule {
-  @singleton
+  @lazySingleton
   GoogleSignIn get googleSignIn => GoogleSignIn(
         clientId: Env.googleClientId,
       );

@@ -12,7 +12,7 @@ import 'package:gynx_app/src/domain/repositories/t_user_repository.dart';
 import 'package:gynx_app/src/domain/usecases/update_user_profile_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: UpdateUserProfileUseCase)
+@LazySingleton(as: UpdateUserProfileUseCase)
 class UpdateUserProfileInteractor implements UpdateUserProfileUseCase {
   const UpdateUserProfileInteractor(
     this._uuidGenerator,

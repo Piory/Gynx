@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/repositories/v_user_repository.dart';
 import 'package:gynx_app/src/domain/usecases/find_user_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: FindUserUseCase)
+@LazySingleton(as: FindUserUseCase)
 class FindUserInteractor implements FindUserUseCase {
   const FindUserInteractor(
     this._vUserRepository,

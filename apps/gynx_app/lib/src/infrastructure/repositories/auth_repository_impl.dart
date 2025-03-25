@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: AuthRepository)
+@LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this._client, this._googleSignIn);
 

@@ -7,7 +7,7 @@ import 'package:gynx_app/src/domain/repositories/v_user_detail_repository.dart';
 import 'package:gynx_app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: SuiteUserUseCase)
+@LazySingleton(as: SuiteUserUseCase)
 class SuiteUserInteractor implements SuiteUserUseCase {
   const SuiteUserInteractor(
     this._authRepository,

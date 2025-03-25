@@ -2,7 +2,7 @@ import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:gynx_app/src/presentation/dialogs/alert.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: Alert)
+@LazySingleton(as: Alert)
 class AlertImpl implements Alert {
   @override
   Future<void> showInfo({

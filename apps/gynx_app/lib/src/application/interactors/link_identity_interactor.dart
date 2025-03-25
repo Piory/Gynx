@@ -3,7 +3,7 @@ import 'package:gynx_app/src/domain/repositories/auth_repository.dart';
 import 'package:gynx_app/src/domain/usecases/link_identity_usecase.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: LinkIdentityUseCase)
+@LazySingleton(as: LinkIdentityUseCase)
 class LinkIdentityInteractor implements LinkIdentityUseCase {
   const LinkIdentityInteractor(this._authRepository);
 

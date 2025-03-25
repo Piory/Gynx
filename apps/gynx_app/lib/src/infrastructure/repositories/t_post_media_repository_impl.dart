@@ -4,7 +4,7 @@ import 'package:gynx_app/src/domain/repositories/t_post_media_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: TPostMediaRepository)
+@LazySingleton(as: TPostMediaRepository)
 class TPostMediaRepositoryImpl implements TPostMediaRepository {
   const TPostMediaRepositoryImpl(this._client);
 

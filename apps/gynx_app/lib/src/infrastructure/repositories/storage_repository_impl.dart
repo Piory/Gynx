@@ -6,7 +6,7 @@ import 'package:gynx_app/src/infrastructure/images/image_compressor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: StorageRepository)
+@LazySingleton(as: StorageRepository)
 class StorageRepositoryImpl implements StorageRepository {
   const StorageRepositoryImpl(
     this._client,

@@ -5,7 +5,7 @@ import 'package:gynx_app/src/domain/repositories/t_user_timeline_repository.dart
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: TUserTimelineRepository)
+@LazySingleton(as: TUserTimelineRepository)
 class TUserTimelineRepositoryImpl implements TUserTimelineRepository {
   const TUserTimelineRepositoryImpl(this._client);
 

@@ -152,94 +152,98 @@ import 'package:uuid/uuid.dart' as _i706;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+    final supabaseModule = _$SupabaseModule();
     final uuidModule = _$UuidModule();
     final googleModule = _$GoogleModule();
-    final supabaseModule = _$SupabaseModule();
     final imagePickerModule = _$ImagePickerModule();
     final flutterVideoInfoModule = _$FlutterVideoInfoModule();
-    gh.singleton<_i706.Uuid>(() => uuidModule.uuid);
-    gh.singleton<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
-    gh.singleton<_i454.SupabaseClient>(() => supabaseModule.client);
-    gh.singleton<_i183.ImagePicker>(() => imagePickerModule.imagePicker);
-    gh.singleton<_i766.FlutterVideoInfo>(
+    await gh.factoryAsync<_i454.SupabaseClient>(
+      () => supabaseModule.client,
+      preResolve: true,
+    );
+    gh.lazySingleton<_i706.Uuid>(() => uuidModule.uuid);
+    gh.lazySingleton<_i116.GoogleSignIn>(() => googleModule.googleSignIn);
+    gh.lazySingleton<_i183.ImagePicker>(() => imagePickerModule.imagePicker);
+    gh.lazySingleton<_i766.FlutterVideoInfo>(
         () => flutterVideoInfoModule.flutterVideoInfo);
-    gh.singleton<_i265.ImageCompressor>(() => const _i265.ImageCompressor());
-    gh.singleton<_i190.LoadingDialog>(() => _i64.DialogImpl());
-    gh.singleton<_i703.Notify>(() => _i136.NotifyImpl());
-    gh.singleton<_i626.PageNavigator>(() => _i83.PageNavigatorImpl());
-    gh.singleton<_i862.Alert>(() => _i1056.AlertImpl());
-    gh.singleton<_i8.UuidGenerator>(
+    gh.lazySingleton<_i265.ImageCompressor>(
+        () => const _i265.ImageCompressor());
+    gh.lazySingleton<_i190.LoadingDialog>(() => _i64.DialogImpl());
+    gh.lazySingleton<_i703.Notify>(() => _i136.NotifyImpl());
+    gh.lazySingleton<_i626.PageNavigator>(() => _i83.PageNavigatorImpl());
+    gh.lazySingleton<_i862.Alert>(() => _i1056.AlertImpl());
+    gh.lazySingleton<_i8.UuidGenerator>(
         () => _i291.UuidGeneratorImpl(gh<_i706.Uuid>()));
-    gh.singleton<_i429.TUserProfileRepository>(
+    gh.lazySingleton<_i429.TUserProfileRepository>(
         () => _i883.TUserProfileRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i850.StorageRepository>(() => _i165.StorageRepositoryImpl(
+    gh.lazySingleton<_i850.StorageRepository>(() => _i165.StorageRepositoryImpl(
           gh<_i454.SupabaseClient>(),
           gh<_i265.ImageCompressor>(),
         ));
-    gh.singleton<_i675.VUserDetailRepository>(
+    gh.lazySingleton<_i675.VUserDetailRepository>(
         () => _i525.VUserDetailRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i290.VPostRepository>(
+    gh.lazySingleton<_i290.VPostRepository>(
         () => _i313.VPostRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i714.AuthRepository>(() => _i19.AuthRepositoryImpl(
+    gh.lazySingleton<_i714.AuthRepository>(() => _i19.AuthRepositoryImpl(
           gh<_i454.SupabaseClient>(),
           gh<_i116.GoogleSignIn>(),
         ));
-    gh.singleton<_i787.TUserFollowRepository>(
+    gh.lazySingleton<_i787.TUserFollowRepository>(
         () => _i315.TUserFollowRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i978.TPostMediaRepository>(
+    gh.lazySingleton<_i978.TPostMediaRepository>(
         () => _i129.TPostMediaRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i655.TUserTimelineRepository>(
+    gh.lazySingleton<_i655.TUserTimelineRepository>(
         () => _i351.TUserTimelineRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i990.SignOutUseCase>(
+    gh.lazySingleton<_i990.SignOutUseCase>(
         () => _i154.SignOutInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i957.TPostRepository>(
+    gh.lazySingleton<_i957.TPostRepository>(
         () => _i35.TPostRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i526.FetchUserPostUseCase>(
+    gh.lazySingleton<_i526.FetchUserPostUseCase>(
         () => _i265.FetchUserPostInteractor(gh<_i290.VPostRepository>()));
-    gh.singleton<_i252.TUserRepository>(
+    gh.lazySingleton<_i252.TUserRepository>(
         () => _i69.TUserRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i532.VUserRepository>(
+    gh.lazySingleton<_i532.VUserRepository>(
         () => _i557.VUserRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i56.TUserPostFavoriteRepository>(() =>
+    gh.lazySingleton<_i56.TUserPostFavoriteRepository>(() =>
         _i231.TUserPostFavoriteRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i926.FetchPostUseCase>(
+    gh.lazySingleton<_i926.FetchPostUseCase>(
         () => _i785.FetchPostInteractor(gh<_i290.VPostRepository>()));
-    gh.singleton<_i940.PostRepository>(
+    gh.lazySingleton<_i940.PostRepository>(
         () => _i6.PostRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.singleton<_i723.ProfileController>(() => _i723.ProfileController(
+    gh.lazySingleton<_i723.ProfileController>(() => _i723.ProfileController(
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
           gh<_i990.SignOutUseCase>(),
         ));
-    gh.singleton<_i599.CheckGynxIdExistenceUsecase>(() =>
+    gh.lazySingleton<_i599.CheckGynxIdExistenceUsecase>(() =>
         _i1022.CheckGynxIdExistenceInteractor(gh<_i252.TUserRepository>()));
-    gh.singleton<_i67.FindUserDetailUseCase>(() =>
+    gh.lazySingleton<_i67.FindUserDetailUseCase>(() =>
         _i345.FindUserDetailInteractor(gh<_i675.VUserDetailRepository>()));
-    gh.singleton<_i751.CreatePostUseCase>(() => _i1009.CreatePostInteractor(
+    gh.lazySingleton<_i751.CreatePostUseCase>(() => _i1009.CreatePostInteractor(
           gh<_i8.UuidGenerator>(),
           gh<_i714.AuthRepository>(),
           gh<_i850.StorageRepository>(),
           gh<_i940.PostRepository>(),
           gh<_i290.VPostRepository>(),
         ));
-    gh.singleton<_i650.SuiteUserUseCase>(() => _i977.SuiteUserInteractor(
+    gh.lazySingleton<_i650.SuiteUserUseCase>(() => _i977.SuiteUserInteractor(
           gh<_i714.AuthRepository>(),
           gh<_i675.VUserDetailRepository>(),
         ));
-    gh.singleton<_i89.LinkIdentityUseCase>(
+    gh.lazySingleton<_i89.LinkIdentityUseCase>(
         () => _i994.LinkIdentityInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i928.SignInWithAnonymousUseCase>(
+    gh.lazySingleton<_i928.SignInWithAnonymousUseCase>(
         () => _i566.SignInWithAnonymousInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i433.UpdateUserProfileUseCase>(
+    gh.lazySingleton<_i433.UpdateUserProfileUseCase>(
         () => _i484.UpdateUserProfileInteractor(
               gh<_i8.UuidGenerator>(),
               gh<_i714.AuthRepository>(),
@@ -247,45 +251,46 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i252.TUserRepository>(),
               gh<_i429.TUserProfileRepository>(),
             ));
-    gh.singleton<_i50.SettingController>(() => _i50.SettingController(
+    gh.lazySingleton<_i50.SettingController>(() => _i50.SettingController(
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
           gh<_i862.Alert>(),
           gh<_i990.SignOutUseCase>(),
         ));
-    gh.singleton<_i67.SignInWithOAuthUseCase>(
+    gh.lazySingleton<_i67.SignInWithOAuthUseCase>(
         () => _i496.SignInWithOAuthInteractor(gh<_i714.AuthRepository>()));
-    gh.singleton<_i1004.HomeController>(
+    gh.lazySingleton<_i1004.HomeController>(
         () => _i1004.HomeController(gh<_i751.CreatePostUseCase>()));
-    gh.singleton<_i721.FetchUserPostFavoriteUseCase>(
+    gh.lazySingleton<_i721.FetchUserPostFavoriteUseCase>(
         () => _i261.FetchUserPostFavoriteInteractor(
               gh<_i56.TUserPostFavoriteRepository>(),
               gh<_i290.VPostRepository>(),
             ));
-    gh.singleton<_i826.FindUserUseCase>(
+    gh.lazySingleton<_i826.FindUserUseCase>(
         () => _i868.FindUserInteractor(gh<_i532.VUserRepository>()));
-    gh.singleton<_i400.SignInController>(() => _i400.SignInController(
+    gh.lazySingleton<_i400.SignInController>(() => _i400.SignInController(
           gh<_i67.SignInWithOAuthUseCase>(),
           gh<_i928.SignInWithAnonymousUseCase>(),
           gh<_i190.LoadingDialog>(),
           gh<_i703.Notify>(),
           gh<_i862.Alert>(),
         ));
-    gh.singleton<_i69.EditProfileController>(() => _i69.EditProfileController(
-          gh<_i626.PageNavigator>(),
-          gh<_i190.LoadingDialog>(),
-          gh<_i703.Notify>(),
-          gh<_i433.UpdateUserProfileUseCase>(),
-        ));
+    gh.lazySingleton<_i69.EditProfileController>(
+        () => _i69.EditProfileController(
+              gh<_i626.PageNavigator>(),
+              gh<_i190.LoadingDialog>(),
+              gh<_i703.Notify>(),
+              gh<_i433.UpdateUserProfileUseCase>(),
+            ));
     return this;
   }
 }
 
+class _$SupabaseModule extends _i412.SupabaseModule {}
+
 class _$UuidModule extends _i650.UuidModule {}
 
 class _$GoogleModule extends _i337.GoogleModule {}
-
-class _$SupabaseModule extends _i412.SupabaseModule {}
 
 class _$ImagePickerModule extends _i704.ImagePickerModule {}
 

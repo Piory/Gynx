@@ -3,7 +3,7 @@ import 'package:gynx_app/src/domain/repositories/v_user_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Singleton(as: VUserRepository)
+@LazySingleton(as: VUserRepository)
 class VUserRepositoryImpl implements VUserRepository {
   const VUserRepositoryImpl(this._client);
 
