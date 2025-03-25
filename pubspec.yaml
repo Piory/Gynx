@@ -6,6 +6,8 @@ environment:
   flutter: ^3.29.1
 dev_dependencies:
   melos: 7.0.0-dev.7
+  pedantic_mono: ^1.30.3
+  pubspec_dependency_sorter: ^1.0.5
 workspace:
   - apps/gynx_app
   - packages/gynx_components

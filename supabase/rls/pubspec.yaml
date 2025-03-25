@@ -5,6 +5,8 @@ environment:
   sdk: ^3.6.0
 dev_dependencies:
   faker: 2.2.0
+  gynx_constants:
+    path: ../../packages/gynx_constants
   lints: 5.1.1
   pedantic_mono: any
   supabase: 2.6.3

@@ -32,14 +32,15 @@ class ProfilePage extends StatelessWidget {
           length: 2,
           child: NotificationListener<ScrollNotification>(
             onNotification: (notification) {
-              print(
-                  'notification.metrics.pixels: ${notification.metrics.pixels}');
+              // print(
+              // 'notification.metrics.pixels: ${notification.metrics.pixels}',
+              // );
               // 一番上にいるときだけプルリフレッシュを許可
               if (notification.metrics.pixels <= 0) {
-                print('notification.metrics.pixels <= 0');
+                // print('notification.metrics.pixels <= 0');
                 // setState(() => _allowRefresh = true);
               } else {
-                print('notification.metrics.pixels > 0');
+                // print('notification.metrics.pixels > 0');
                 // setState(() => _allowRefresh = false);
               }
               return false;

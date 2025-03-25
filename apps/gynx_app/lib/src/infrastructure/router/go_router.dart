@@ -28,7 +28,7 @@ final goRouter = GoRouter(
   routes: $appRoutes,
   errorPageBuilder: (context, state) {
     // TODO(Piory): Implement error page
-    print('Page not found. state.uri.path: ${state.uri.path}');
+    // print('Page not found. state.uri.path: ${state.uri.path}');
     return MaterialPage(
       key: state.pageKey,
       child: Scaffold(

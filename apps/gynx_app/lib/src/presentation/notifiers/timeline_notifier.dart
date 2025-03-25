@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/models/v_post_list.dart';
 import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart';
@@ -12,9 +13,7 @@ class TimelineNotifier extends _$TimelineNotifier with TimelineNotifierMixin {
   FutureOr<TimelineState> build() => const TimelineState();
 
   @override
-  // ignore: deprecated_member_use
-  AutoDisposeAsyncNotifierProviderRef<TimelineState> get timelineNotifierRef =>
-      ref;
+  Ref<AsyncValue<TimelineState>> get timelineNotifierRef => ref;
 
   @override
   AsyncValue<TimelineState> get timelineState => state;

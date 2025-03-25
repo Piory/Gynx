@@ -5,5 +5,5 @@ analyzer:
     - "**/*.g.dart"
     - '**/*.mocks.dart'
   errors:
-    depend_on_referenced_packages: ignore
+    avoid_classes_with_only_static_members: ignore
     invalid_annotation_target: ignore

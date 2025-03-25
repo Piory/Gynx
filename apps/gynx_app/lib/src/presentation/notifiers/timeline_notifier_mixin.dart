@@ -20,8 +20,7 @@ class TimelineState with _$TimelineState {
 }
 
 mixin class TimelineNotifierMixin {
-  // ignore: deprecated_member_use
-  AutoDisposeAsyncNotifierProviderRef<TimelineState> get timelineNotifierRef =>
+  Ref<AsyncValue<TimelineState>> get timelineNotifierRef =>
       throw UnimplementedError();
 
   AsyncValue<TimelineState> get timelineState => throw UnimplementedError();
