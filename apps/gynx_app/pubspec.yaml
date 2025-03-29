@@ -10,9 +10,8 @@ dependencies:
   blur: 4.0.0
   cached_network_image: 3.4.1
   colorful_safe_area: 1.0.0
-  cupertino_icons: ^1.0.8
+  cupertino_icons: 1.0.8
   dismissible_page: 1.0.2
-  extended_nested_scroll_view: 6.2.1
   flutter:
     sdk: flutter
   flutter_form_builder: 10.0.1

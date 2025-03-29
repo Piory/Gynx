@@ -41,6 +41,7 @@ class _PostListState extends State<PostList>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return InfiniteList(
+      physics: const NeverScrollableScrollPhysics(),
       isLoading: !_isNoMoreData && _isLoading,
       itemCount: widget.postIdList.length,
       onFetchData: () async {

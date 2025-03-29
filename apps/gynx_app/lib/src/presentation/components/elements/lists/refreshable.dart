@@ -11,7 +11,7 @@ class Refreshable extends StatelessWidget {
     required this.onRefresh,
   });
 
-  final Future<void> Function()? onRefresh;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,10 @@ class Refreshable extends StatelessWidget {
           ),
         );
       },
-      onRefresh: onRefresh,
+      onRefresh: () => Future.wait<void>([
+        onRefresh(),
+        Future<void>.delayed(const Duration(milliseconds: 1500)),
+      ]),
     );
   }
 

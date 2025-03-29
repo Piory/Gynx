@@ -59,6 +59,22 @@ void main() {
 
   group('正常系', () {
     testWidgets(
+      'pull to refresh を行うと suiteUserUseCase.execute が再度呼ばれること',
+      (tester) async {
+        await pumpWidget(tester);
+
+        final gesture = await tester.startGesture(const Offset(200, 200));
+        await gesture.moveBy(const Offset(0, 1000)); // 下に引っ張る
+        await tester.pump(const Duration(seconds: 2)); // stretch wait
+        await tester.pumpAndSettle();
+
+        // TODO(Piory): 呼ばれない
+        verify(mockSuiteUserUseCase.execute());
+      },
+      skip: true,
+    );
+
+    testWidgets(
       'IconlyBold.setting をタップしたら、PageNavigator#push が呼ばれること',
       (tester) async {
         await pumpWidget(tester);

@@ -203,3 +203,5 @@ memo.txt
 .env.local
 
 gynx
+
+*.log
