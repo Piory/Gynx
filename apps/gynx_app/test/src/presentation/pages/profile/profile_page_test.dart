@@ -74,51 +74,34 @@ void main() {
       skip: true,
     );
 
-    testWidgets(
-      'IconlyBold.setting をタップしたら、PageNavigator#push が呼ばれること',
-      (tester) async {
-        await pumpWidget(tester);
-        verifyNever(mockPageNavigator.push(any, PageType.setting));
-        await tester.tap(find.byIcon(IconlyBold.setting));
-        verify(mockPageNavigator.push(any, PageType.setting));
-      },
-    );
+    testWidgets('IconlyBold.setting をタップしたら、PageNavigator#push が呼ばれること', (tester) async {
+      await pumpWidget(tester);
+      verifyNever(mockPageNavigator.push(any, PageType.setting));
+      await tester.tap(find.byIcon(IconlyBold.setting));
+      verify(mockPageNavigator.push(any, PageType.setting));
+    });
 
-    testWidgets(
-      '初期表示では、「${l10nJa.posts}」タブが表示されて、タブ内に PostList が表示されていること',
-      (tester) async {
-        await pumpWidget(tester);
-        await tester.pump();
-        final postListFinder = find.byKey(const Key('posts'));
-        expect(postListFinder, findsOneWidget);
-        final favoriteListFinder = find.byKey(const Key('favorites'));
-        expect(favoriteListFinder, findsNothing);
-        expect(
-          find.descendant(of: postListFinder, matching: find.byType(PostList)),
-          findsOneWidget,
-        );
-      },
-    );
+    testWidgets('初期表示では、「${l10nJa.posts}」タブが表示されて、タブ内に PostList が表示されていること', (tester) async {
+      await pumpWidget(tester);
+      await tester.pump();
+      final postListFinder = find.byKey(const Key('posts'));
+      expect(postListFinder, findsOneWidget);
+      final favoriteListFinder = find.byKey(const Key('favorites'));
+      expect(favoriteListFinder, findsNothing);
+      expect(find.descendant(of: postListFinder, matching: find.byType(PostList)), findsOneWidget);
+    });
 
-    testWidgets(
-      '「${l10nJa.favorites}」タブをタップしたら、タブ内に PostList が表示されていること',
-      (tester) async {
-        await pumpWidget(tester);
-        await tester.pump();
-        await tester.tap(find.text(l10nJa.favorites));
-        await tester.pumpAndSettle();
-        final postListFinder = find.byKey(const Key('posts'));
-        expect(postListFinder, findsNothing);
-        final favoriteListFinder = find.byKey(const Key('favorites'));
-        expect(favoriteListFinder, findsOneWidget);
-        expect(
-          find.descendant(
-              of: favoriteListFinder, matching: find.byType(PostList)),
-          findsOneWidget,
-        );
-        // TODO(Piory): pumpAndSettle timed out が発生する場合があり、不安定なので一旦スキップ
-      },
-      skip: true,
-    );
+    testWidgets('「${l10nJa.favorites}」タブをタップしたら、タブ内に PostList が表示されていること', (tester) async {
+      await pumpWidget(tester);
+      await tester.pump();
+      await tester.tap(find.text(l10nJa.favorites));
+      // TODO(Piory): pumpAndSettle timed out が発生する場合があり、不安定なので一旦スキップ
+      await tester.pumpAndSettle();
+      final postListFinder = find.byKey(const Key('posts'));
+      expect(postListFinder, findsNothing);
+      final favoriteListFinder = find.byKey(const Key('favorites'));
+      expect(favoriteListFinder, findsOneWidget);
+      expect(find.descendant(of: favoriteListFinder, matching: find.byType(PostList)), findsOneWidget);
+    }, skip: true);
   });
 }

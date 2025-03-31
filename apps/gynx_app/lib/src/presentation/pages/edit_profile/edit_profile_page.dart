@@ -61,8 +61,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   maxScaleFactor: 1,
                 ),
               ),
-              onPressed: () =>
-                  GetIt.I<EditProfileController>().updateUserProfile(
+              onPressed: () => GetIt.I<EditProfileController>().updateUserProfile(
                 context: context,
                 l10n: context.l10n,
                 ref: ref,
@@ -92,9 +91,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                     return const EditAvatar.loading();
                   }
                   return EditAvatar(
-                    avatarUrl: _isDeleteAvatar
-                        ? null
-                        : _afterAvatarPath?.path ?? avatarUrl,
+                    avatarUrl: _isDeleteAvatar ? null : _afterAvatarPath?.path ?? avatarUrl,
                     onChanged: (value) {
                       setState(() {
                         _afterAvatarPath = value;
@@ -149,8 +146,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       },
                     ),
                     Divider(
-                      color: theme.colorScheme.onSurfaceVariant
-                          .withValues(alpha: 0.3),
+                      color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                     ),
                     Consumer(
                       builder: (context, ref, _) {
@@ -186,19 +182,16 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                       },
                     ),
                     Divider(
-                      color: theme.colorScheme.onSurfaceVariant
-                          .withValues(alpha: 0.3),
+                      color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                     ),
                     Consumer(
                       builder: (context, ref, child) {
                         return ref.watch(suiteUserNotifierProvider).when(
                               data: (suiteUser) {
-                                final selfIntroduction =
-                                    suiteUser.vUserDetail.selfIntroduction;
+                                final selfIntroduction = suiteUser.vUserDetail.selfIntroduction;
                                 return EditProfileRow(
                                   name: context.l10n.selfIntroduction,
-                                  text: _afterSelfIntroduction ??
-                                      selfIntroduction,
+                                  text: _afterSelfIntroduction ?? selfIntroduction,
                                   onTap: () {
                                     showCupertinoModalBottomSheet<void>(
                                       context: context,

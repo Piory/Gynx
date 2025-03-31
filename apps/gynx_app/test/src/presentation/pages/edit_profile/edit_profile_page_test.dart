@@ -15,6 +15,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../data/dummy_data_generator.dart';
+import '../../../../extensions/widget_tester_extension.dart';
 import 'edit_profile_page_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -109,21 +110,23 @@ void main() {
     testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
       await pumpWidget(tester);
       await tester.tap(find.text(suiteUser.vUserDetail.username));
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.waitForWidget(find.byType(EditUsername));
       expect(find.byType(EditUsername), findsOneWidget);
     });
 
     testWidgets('GynxID をタップしたら、EditGynxId を表示されること', (tester) async {
       await pumpWidget(tester);
       await tester.tap(find.text(suiteUser.vUserDetail.gynxId));
-      await tester.pumpAndSettle();
+      await tester.waitForWidget(find.byType(EditGynxId));
       expect(find.byType(EditGynxId), findsOneWidget);
     });
 
     testWidgets('自己紹介をタップしたら、EditSelfIntroduction を表示されること', (tester) async {
       await pumpWidget(tester);
       await tester.tap(find.text(suiteUser.vUserDetail.selfIntroduction));
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.waitForWidget(find.byType(EditSelfIntroduction));
       expect(find.byType(EditSelfIntroduction), findsOneWidget);
     });
   });

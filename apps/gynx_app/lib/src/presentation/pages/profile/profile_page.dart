@@ -70,19 +70,13 @@ class ProfilePage extends ConsumerWidget {
                       Consumer(
                         key: const Key('posts'),
                         builder: (context, ref, _) {
-                          final vUserDetail = ref.watch(
-                            suiteUserNotifierProvider.select(
-                              (value) => value.value?.vUserDetail,
-                            ),
-                          );
+                          final vUserDetail = ref.watch(suiteUserNotifierProvider.select((value) => value.value?.vUserDetail));
                           if (vUserDetail == null) {
                             return const PostListLoading();
                           }
                           return PostList(
                             from: '${vUserDetail.userId}-posts',
-                            onFetchData: ref
-                                .read(suiteUserNotifierProvider.notifier)
-                                .fetchPreviousForLatestPosts,
+                            onFetchData: ref.read(suiteUserNotifierProvider.notifier).fetchPreviousForLatestPosts,
                             postIdList: vUserDetail.latestPostList.postIdList,
                             wantKeepAlive: true,
                           );
@@ -91,19 +85,13 @@ class ProfilePage extends ConsumerWidget {
                       Consumer(
                         key: const Key('favorites'),
                         builder: (context, ref, _) {
-                          final vUserDetail = ref.watch(
-                            suiteUserNotifierProvider.select(
-                              (value) => value.value?.vUserDetail,
-                            ),
-                          );
+                          final vUserDetail = ref.watch(suiteUserNotifierProvider.select((value) => value.value?.vUserDetail));
                           if (vUserDetail == null) {
                             return const PostListLoading();
                           }
                           return PostList(
                             from: '${vUserDetail.userId}-favorite',
-                            onFetchData: ref
-                                .read(suiteUserNotifierProvider.notifier)
-                                .fetchPreviousForFavoritePosts,
+                            onFetchData: ref.read(suiteUserNotifierProvider.notifier).fetchPreviousForFavoritePosts,
                             postIdList: vUserDetail.favoritePostList.postIdList,
                             emptyIcon: const Icon(
                               IconlyBold.star,
@@ -139,8 +127,7 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       child: tabBar,
