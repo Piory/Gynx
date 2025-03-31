@@ -65,14 +65,17 @@ VALUES ('30000000-0000-0000-0000-000000000000', '33333333-3333-3333-3333-3333333
   }', NULL, '2025-01-11 14:30:00.000000+00', '2025-01-11 14:30:00.000000+00', NULL, NULL, '', '', NULL, '', 0,
         NULL, '', NULL);
 
+-- ログインユーザーのセッションを作成
+SELECT set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+
 -- ****************
 -- create_post 関数を実行した場合に、medias が空の場合は、t_posts にデータが作成されないこと、
 -- ****************
 
-SELECT create_post('11111111-1111-1111-1111-111111111111', 'follow', 'post-text', '[]');
+SELECT create_post('follow', 'post-text', '[]');
 
 SELECT is(
-               (SELECT (post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT (referenced_post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                ROW (NULL::BIGINT, 'post-text'::TEXT),
                't_posts に新しい投稿が作成されたこと'
        );
@@ -114,7 +117,7 @@ WHERE user_id = '11111111-1111-1111-1111-111111111111';
 -- create_post 関数を実行した場合に、medias が空ではない場合は、t_posts と t_post_medias に新しい投稿が作成されること
 -- ****************
 
-SELECT create_post('11111111-1111-1111-1111-111111111111', 'follow', 'post-text', '[
+SELECT create_post('follow', 'post-text', '[
   {
     "type": "image",
     "url": "image_url"
@@ -126,7 +129,7 @@ SELECT create_post('11111111-1111-1111-1111-111111111111', 'follow', 'post-text'
 ]');
 
 SELECT is(
-               (SELECT (post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT (referenced_post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                ROW (NULL::BIGINT, 'post-text'::TEXT),
                't_posts に新しい投稿が作成されたこと'
        );
@@ -200,10 +203,10 @@ INSERT INTO t_user_follows (user_id, follow_user_id)
 VALUES ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111'),
        ('33333333-3333-3333-3333-333333333333', '11111111-1111-1111-1111-111111111111');
 
-SELECT create_post('11111111-1111-1111-1111-111111111111', 'follow', 'post-text', '[]');
+SELECT create_post('follow', 'post-text', '[]');
 
 SELECT is(
-               (SELECT (post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT (referenced_post_id, text) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                ROW (NULL::BIGINT, 'post-text'::TEXT),
                't_posts に新しい投稿が作成されたこと'
        );

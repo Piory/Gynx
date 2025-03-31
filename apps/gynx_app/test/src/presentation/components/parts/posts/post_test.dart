@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_charsutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,6 +18,15 @@ import 'package:timeago_flutter/timeago_flutter.dart' as timeago;
 
 import '../../../../../data/dummy_data_generator.dart';
 import 'post_test.mocks.dart';
+
+class FakePostNotifier extends PostNotifier {
+  FakePostNotifier(this._vPost);
+
+  final VPost _vPost;
+
+  @override
+  VPost build(int postId) => _vPost;
+}
 
 @GenerateNiceMocks([
   MockSpec<FindUserUseCase>(),
@@ -52,13 +60,12 @@ void main() {
       required VPost vPost,
     }) async {
       timeago.setLocaleMessages('ja', timeago.JaMessages());
-      when(mockFindUserUseCase.execute(vPost.userId))
-          .thenAnswer((_) async => vUser);
+      when(mockFindUserUseCase.execute(vPost.userId)).thenAnswer((_) async => vUser);
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
             postNotifierProvider(vPost.postId).overrideWith(
-              () => PostNotifierMock(vPost),
+              () => FakePostNotifier(vPost),
             ),
           ],
           child: MaterialApp(
@@ -91,13 +98,13 @@ void main() {
         expect(find.byType(GynxId), findsOneWidget);
         final gynxId = tester.widget<GynxId>(find.byType(GynxId));
         expect(gynxId.id, vUser.gynxId);
-        expect(find.text(vPost.text!), findsOneWidget);
+        expect(find.text(vPost.displayText!), findsOneWidget);
         expect(find.byType(MediaList), findsNothing);
       });
 
       testWidgets('メディアが存在する場合は、MediaList が表示されること', (tester) async {
         final tPostMedia = generateDummyTPostMedia();
-        final vPostWithMedia = vPost.copyWith(medias: [tPostMedia]);
+        final vPostWithMedia = vPost.copyWith(displayMedias: [tPostMedia]);
         await pumpWidget(
           tester: tester,
           vPost: vPostWithMedia,
@@ -106,13 +113,13 @@ void main() {
         expect(find.byType(GynxId), findsOneWidget);
         final gynxId = tester.widget<GynxId>(find.byType(GynxId));
         expect(gynxId.id, vUser.gynxId);
-        expect(find.text(vPost.text!), findsOneWidget);
+        expect(find.text(vPost.displayText!), findsOneWidget);
         expect(find.byType(MediaList), findsOneWidget);
       });
 
       testWidgets('Media をタップしたら、PageNavigator#push が呼ばれること', (tester) async {
         final tPostMedia = generateDummyTPostMedia();
-        final vPostWithMedia = vPost.copyWith(medias: [tPostMedia]);
+        final vPostWithMedia = vPost.copyWith(displayMedias: [tPostMedia]);
         await pumpWidget(
           tester: tester,
           vPost: vPostWithMedia,

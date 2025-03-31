@@ -6,6 +6,7 @@ import 'package:gynx_app/src/domain/entities/v_post.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/gynx_id.dart';
 import 'package:gynx_app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
+import 'package:gynx_app/src/presentation/components/parts/posts/post_favorite_button.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
 import 'package:gynx_app/src/presentation/navigation/page_type.dart';
 import 'package:gynx_app/src/presentation/notifiers/post_notifier.dart';
@@ -108,16 +109,16 @@ class Post extends ConsumerWidget {
                     SizedBox(
                       width: double.infinity,
                       child: Text(
-                        vPost.text ?? '',
+                        vPost.displayText ?? '',
                         style: theme.textTheme.bodyMedium,
                       ),
                     ),
-                    if (vPost.tPostMediaList.isNotEmpty)
+                    if (vPost.displayTPostMediaList.isNotEmpty)
                       Column(
                         children: [
                           const Gap(SpaceSize.s8),
                           MediaList(
-                            urls: vPost.tPostMediaList.urls,
+                            urls: vPost.displayTPostMediaList.urls,
                             heroTagGenerator: (url) => _heroTagGenerator(
                               vPost,
                               url,
@@ -128,8 +129,7 @@ class Post extends ConsumerWidget {
                                 PageType.postMedia,
                                 pathParams: {
                                   'postId': vPost.postId,
-                                  'postMediaId':
-                                      vPost.tPostMediaList.getByUrl(url).id,
+                                  'postMediaId': vPost.displayTPostMediaList.getByUrl(url).id,
                                 },
                                 queryParams: {
                                   'f': from,
@@ -181,23 +181,8 @@ class Post extends ConsumerWidget {
                           ),
                         ),
                         const Gap(SpaceSize.s24),
-                        InkWell(
-                          child: Icon(
-                            IconlyLight.star,
-                            size: 20,
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                          onTap: () {},
-                        ),
-                        const Gap(SpaceSize.s4),
-                        Text(
-                          Formatter.fromNumber(
-                            context.l10n,
-                            vPost.favoriteCount,
-                          ),
-                          style: theme.textTheme.bodyLarge!.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
+                        PostFavoriteButton(
+                          postId: postId,
                         ),
                       ],
                     ),
@@ -213,7 +198,7 @@ class Post extends ConsumerWidget {
   }
 
   String _heroTagGenerator(VPost vPost, String url) {
-    final tPostMediaId = vPost.tPostMediaList.getByUrl(url).id;
+    final tPostMediaId = vPost.displayTPostMediaList.getByUrl(url).id;
     return '$from-$tPostMediaId';
   }
 }

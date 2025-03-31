@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:gynx_app/src/domain/enums/repost_type.dart';
 import 'package:gynx_app/src/infrastructure/repositories/v_user_detail_repository_impl.dart';
 import 'package:mock_supabase_http_client/mock_supabase_http_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,7 +29,7 @@ void main() {
   );
   final vPost3 = generateDummyVPost(
     postId: 3,
-    repost: vPost2,
+    repostType: RepostType.repost,
   );
   final vUserDetail = generateDummyVUserDetail();
   final vUserDetailWithLatestPosts = vUserDetail.copyWith(
@@ -52,17 +53,13 @@ void main() {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
         await mockSupabaseClient.from(viewName).insert(vUserDetail);
-        final foundVUserDetail =
-            await vUserDetailRepository.findByUserId(vUserDetail.userId);
+        final foundVUserDetail = await vUserDetailRepository.findByUserId(vUserDetail.userId);
         expect(foundVUserDetail, vUserDetail);
       });
 
       test('正常にデータが1件取得されること（latestPosts あり）', () async {
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vUserDetailWithLatestPosts);
-        final foundVUserDetail = await vUserDetailRepository
-            .findByUserId(vUserDetailWithLatestPosts.userId);
+        await mockSupabaseClient.from(viewName).insert(vUserDetailWithLatestPosts);
+        final foundVUserDetail = await vUserDetailRepository.findByUserId(vUserDetailWithLatestPosts.userId);
         expect(foundVUserDetail, vUserDetailWithLatestPosts);
       });
     });
@@ -72,17 +69,13 @@ void main() {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
         await mockSupabaseClient.from(viewName).insert(vUserDetail);
-        final foundVUserDetail =
-            await vUserDetailRepository.findByGynxId(vUserDetail.gynxId);
+        final foundVUserDetail = await vUserDetailRepository.findByGynxId(vUserDetail.gynxId);
         expect(foundVUserDetail, vUserDetail);
       });
 
       test('正常にデータが1件取得されること（latestPosts あり）', () async {
-        await mockSupabaseClient
-            .from(viewName)
-            .insert(vUserDetailWithLatestPosts);
-        final foundVUserDetail = await vUserDetailRepository
-            .findByGynxId(vUserDetailWithLatestPosts.gynxId);
+        await mockSupabaseClient.from(viewName).insert(vUserDetailWithLatestPosts);
+        final foundVUserDetail = await vUserDetailRepository.findByGynxId(vUserDetailWithLatestPosts.gynxId);
         expect(foundVUserDetail, vUserDetailWithLatestPosts);
       });
     });

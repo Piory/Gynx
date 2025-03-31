@@ -16,6 +16,8 @@ import 'package:gynx_app/src/application/interactors/check_gynx_id_existence_int
     as _i1022;
 import 'package:gynx_app/src/application/interactors/create_post_interactor.dart'
     as _i1009;
+import 'package:gynx_app/src/application/interactors/favorite_post_interactor.dart'
+    as _i531;
 import 'package:gynx_app/src/application/interactors/fetch_post_interactor.dart'
     as _i785;
 import 'package:gynx_app/src/application/interactors/fetch_user_post_favorite_interactor.dart'
@@ -66,6 +68,8 @@ import 'package:gynx_app/src/domain/repositories/v_user_repository.dart'
 import 'package:gynx_app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
     as _i599;
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart' as _i751;
+import 'package:gynx_app/src/domain/usecases/favorite_post_usecase.dart'
+    as _i617;
 import 'package:gynx_app/src/domain/usecases/fetch_post_usecase.dart' as _i926;
 import 'package:gynx_app/src/domain/usecases/fetch_user_post_favorite_usecase.dart'
     as _i721;
@@ -226,6 +230,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i599.CheckGynxIdExistenceUsecase>(() =>
         _i1022.CheckGynxIdExistenceInteractor(gh<_i252.TUserRepository>()));
+    gh.lazySingleton<_i617.FavoritePostUseCase>(
+        () => _i531.FavoritePostInteractor(
+              gh<_i714.AuthRepository>(),
+              gh<_i56.TUserPostFavoriteRepository>(),
+              gh<_i290.VPostRepository>(),
+            ));
     gh.lazySingleton<_i67.FindUserDetailUseCase>(() =>
         _i345.FindUserDetailInteractor(gh<_i675.VUserDetailRepository>()));
     gh.lazySingleton<_i751.CreatePostUseCase>(() => _i1009.CreatePostInteractor(

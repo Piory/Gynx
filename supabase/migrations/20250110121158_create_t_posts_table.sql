@@ -1,18 +1,18 @@
 CREATE TABLE t_posts
 (
-    id         BIGINT      NOT NULL PRIMARY KEY DEFAULT generate_snowflake_id(),
-    user_id    UUID        NOT NULL REFERENCES t_users ON DELETE RESTRICT ON UPDATE CASCADE,
-    post_id    BIGINT REFERENCES t_posts ON DELETE RESTRICT ON UPDATE RESTRICT,
-    text       TEXT,
-    created_at TIMESTAMPTZ NOT NULL             DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ NOT NULL             DEFAULT CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMPTZ,
-    UNIQUE (user_id, post_id)
+    id                 BIGINT      NOT NULL PRIMARY KEY DEFAULT generate_snowflake_id(),
+    user_id            UUID        NOT NULL REFERENCES t_users ON DELETE RESTRICT ON UPDATE CASCADE,
+    referenced_post_id BIGINT REFERENCES t_posts ON DELETE RESTRICT ON UPDATE RESTRICT,
+    text               TEXT,
+    created_at         TIMESTAMPTZ NOT NULL             DEFAULT CURRENT_TIMESTAMP,
+    updated_at         TIMESTAMPTZ NOT NULL             DEFAULT CURRENT_TIMESTAMP,
+    deleted_at         TIMESTAMPTZ,
+    UNIQUE (user_id, referenced_post_id)
 );
 COMMENT ON TABLE t_posts IS '投稿テーブル';
 COMMENT ON COLUMN t_posts.id IS '投稿ID';
 COMMENT ON COLUMN t_posts.user_id IS 'ユーザーID';
-COMMENT ON COLUMN t_posts.post_id IS 'リポストした投稿ID';
+COMMENT ON COLUMN t_posts.referenced_post_id IS 'リポストした投稿ID';
 COMMENT ON COLUMN t_posts.text IS 'テキスト';
 COMMENT ON COLUMN t_posts.created_at IS '作成日時';
 COMMENT ON COLUMN t_posts.updated_at IS '更新日時';

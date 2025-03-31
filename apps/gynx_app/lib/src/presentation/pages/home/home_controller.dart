@@ -2,6 +2,7 @@ import 'package:gynx_app/src/domain/enums/media_type.dart';
 import 'package:gynx_app/src/domain/models/media.dart';
 import 'package:gynx_app/src/domain/models/media_list.dart';
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_map_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:injectable/injectable.dart';
@@ -15,6 +16,7 @@ class HomeController {
   final CreatePostUseCase _createPostUseCase;
 
   Future<void> createPost({
+    required PostMapNotifier postMapNotifier,
     required SuiteUserNotifier suiteUserNotifier,
     required TimelineNotifier timelineNotifier,
     required String text,
@@ -33,6 +35,7 @@ class HomeController {
             .toList(),
       ),
     );
+    postMapNotifier.put(vPost);
     timelineNotifier.add(vPost.postId);
     suiteUserNotifier.addPost(vPost);
   }

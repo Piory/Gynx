@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_charsutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -33,49 +32,37 @@ void main() {
     }
 
     group('正常系', () {
-      testWidgets(
-        'icon を指定しなかったら、IconlyLight.paper_negative が表示されていること',
-        (tester) async {
-          await pumpWidget(
-            tester: tester,
-          );
-          expect(find.byIcon(IconlyLight.paper_negative), findsOneWidget);
-        },
-      );
+      testWidgets('icon を指定しなかったら、IconlyLight.paper_negative が表示されていること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+        );
+        expect(find.byIcon(IconlyLight.paper_negative), findsOneWidget);
+      });
 
-      testWidgets(
-        'message を指定しなかったら、「${l10nJa.postListEmpty}」が表示されていること',
-        (tester) async {
-          await pumpWidget(
-            tester: tester,
-          );
-          expect(find.text(l10nJa.postListEmpty), findsOneWidget);
-        },
-      );
+      testWidgets('message を指定しなかったら、「${l10nJa.postListEmpty}」が表示されていること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+        );
+        expect(find.text(l10nJa.postListEmpty), findsOneWidget);
+      });
 
-      testWidgets(
-        'icon を指定したら、指定した icon が表示されていること',
-        (tester) async {
-          await pumpWidget(
-            tester: tester,
-            icon: const Icon(Icons.ac_unit),
-          );
-          expect(find.byIcon(IconlyLight.paper_negative), findsNothing);
-          expect(find.byIcon(Icons.ac_unit), findsOneWidget);
-        },
-      );
+      testWidgets('icon を指定したら、指定した icon が表示されていること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+          icon: const Icon(Icons.ac_unit),
+        );
+        expect(find.byIcon(IconlyLight.paper_negative), findsNothing);
+        expect(find.byIcon(Icons.ac_unit), findsOneWidget);
+      });
 
-      testWidgets(
-        'message を指定したら、指定した message が表示されていること',
-        (tester) async {
-          await pumpWidget(
-            tester: tester,
-            message: 'post_message',
-          );
-          expect(find.text(l10nJa.postListEmpty), findsNothing);
-          expect(find.text('post_message'), findsOneWidget);
-        },
-      );
+      testWidgets('message を指定したら、指定した message が表示されていること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+          message: 'post_message',
+        );
+        expect(find.text(l10nJa.postListEmpty), findsNothing);
+        expect(find.text('post_message'), findsOneWidget);
+      });
     });
   });
 }

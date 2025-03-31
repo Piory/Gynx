@@ -5,7 +5,6 @@ import 'package:gynx_app/src/domain/models/media_list.dart';
 
 abstract interface class PostRepository {
   Future<int> create(
-    String userId,
     TimelineType timelineType,
     String text,
     MediaList mediaList,

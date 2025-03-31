@@ -24,11 +24,7 @@ class PostMediaListViewPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
-    final tPostMediaList = ref.read(
-      postNotifierProvider.call(postId).select(
-            (value) => value.tPostMediaList,
-          ),
-    );
+    final tPostMediaList = ref.read(postNotifierProvider(postId).select((value) => value.displayTPostMediaList));
     if (tPostMediaList.isEmpty) {
       return const SizedBox.shrink();
     }

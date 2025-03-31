@@ -65,18 +65,24 @@ VALUES ('30000000-0000-0000-0000-000000000000', '33333333-3333-3333-3333-3333333
   }', NULL, '2025-01-11 14:30:00.000000+00', '2025-01-11 14:30:00.000000+00', NULL, NULL, '', '', NULL, '', 0,
         NULL, '', NULL);
 
+-- ログインユーザーのセッションを作成
+SELECT set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+
+SELECT create_post('follow', 'post-text', '[]');
+
+-- ログインユーザーのセッションを作成
+SELECT set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+
 -- ****************
--- create_post 関数を実行した場合に、t_posts にデータが作成されること、
+-- create_post_for_repost 関数を実行した場合に、t_posts にデータが作成されること、
 -- ****************
 
-SELECT create_post('22222222-2222-2222-2222-222222222222', 'follow', 'post-text', '[]');
-
-SELECT create_post_for_repost('11111111-1111-1111-1111-111111111111', 'follow', (SELECT id
-                                                                                 FROM t_posts
-                                                                                 WHERE user_id = '22222222-2222-2222-2222-222222222222'));
+SELECT create_post_for_repost('follow', (SELECT id
+                                         FROM t_posts
+                                         WHERE user_id = '22222222-2222-2222-2222-222222222222'));
 
 SELECT is(
-               (SELECT (text, post_id) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT (text, referenced_post_id) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                ROW (NULL::TEXT, (SELECT id
                                  FROM t_posts
                                  WHERE user_id = '22222222-2222-2222-2222-222222222222')),
@@ -127,14 +133,20 @@ INSERT INTO t_user_follows (user_id, follow_user_id)
 VALUES ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111'),
        ('33333333-3333-3333-3333-333333333333', '11111111-1111-1111-1111-111111111111');
 
-SELECT create_post('22222222-2222-2222-2222-222222222222', 'follow', 'post-text', '[]');
+-- ログインユーザーのセッションを作成
+SELECT set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
 
-SELECT create_post_for_repost('11111111-1111-1111-1111-111111111111', 'follow', (SELECT id
-                                                                                 FROM t_posts
-                                                                                 WHERE user_id = '22222222-2222-2222-2222-222222222222'));
+SELECT create_post('follow', 'post-text', '[]');
+
+-- ログインユーザーのセッションを作成
+SELECT set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+
+SELECT create_post_for_repost('follow', (SELECT id
+                                         FROM t_posts
+                                         WHERE user_id = '22222222-2222-2222-2222-222222222222'));
 
 SELECT is(
-               (SELECT (text, post_id) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT (text, referenced_post_id) FROM t_posts WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                ROW (NULL::TEXT, (SELECT id
                                  FROM t_posts
                                  WHERE user_id = '22222222-2222-2222-2222-222222222222')),

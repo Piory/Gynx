@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gynx_app/src/domain/entities/t_post_media.dart';
+import 'package:gynx_app/src/domain/enums/repost_type.dart';
 import 'package:gynx_app/src/domain/models/t_post_media_list.dart';
 
 part '../../generated/src/domain/entities/v_post.freezed.dart';
@@ -11,10 +12,16 @@ class VPost with _$VPost {
   const VPost({
     required this.postId,
     required this.userId,
-    required this.repost,
-    required this.text,
-    this.medias = const [],
+    required this.originalPostId,
+    required this.originalUserId,
+    required this.repostType,
+    required this.displayText,
+    required this.displayMedias,
+    required this.quoteText,
+    required this.quoteMedias,
+    required this.isReposted,
     required this.repostCount,
+    required this.isFavorited,
     required this.favoriteCount,
     required this.createdAt,
     required this.updatedAt,
@@ -28,14 +35,26 @@ class VPost with _$VPost {
   @override
   final String userId;
   @override
-  final VPost? repost;
+  final int? originalPostId;
   @override
-  final String? text;
+  final String? originalUserId;
+  @override
+  final RepostType repostType;
+  @override
+  final String? displayText;
   @protected
   @override
-  final List<TPostMedia> medias;
+  final List<TPostMedia> displayMedias;
+  @override
+  final String? quoteText;
+  @override
+  final List<TPostMedia>? quoteMedias;
+  @override
+  final bool isReposted;
   @override
   final int repostCount;
+  @override
+  final bool isFavorited;
   @override
   final int favoriteCount;
   @override
@@ -45,7 +64,9 @@ class VPost with _$VPost {
   @override
   final DateTime? deletedAt;
 
-  TPostMediaList get tPostMediaList => TPostMediaList(medias);
+  TPostMediaList get displayTPostMediaList => TPostMediaList(displayMedias);
+
+  TPostMediaList? get quoteTPostMediaList => quoteMedias == null ? null : TPostMediaList(quoteMedias!);
 
   Map<String, dynamic> toJson() => _$VPostToJson(this);
 }

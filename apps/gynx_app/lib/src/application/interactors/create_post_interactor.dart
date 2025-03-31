@@ -43,7 +43,6 @@ class CreatePostInteractor implements CreatePostUseCase {
       throw const UserNotSignedInException();
     }
     final postId = await _postRepository.create(
-      userId,
       TimelineType.follow,
       text,
       await _uploadMediaList(mediaList),

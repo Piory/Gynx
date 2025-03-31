@@ -2,12 +2,18 @@ import 'package:gynx_app/src/domain/entities/t_user_post_favorite.dart';
 import 'package:gynx_app/src/domain/models/t_user_post_favorite_list.dart';
 
 abstract interface class TUserPostFavoriteRepository {
-  Future<void> create(
-    TUserPostFavorite tPostFavorite,
-  );
+  Future<void> create({
+    required String userId,
+    required int postId,
+  });
 
   Future<TUserPostFavorite> findByPrimaryKey(
     String id,
+  );
+
+  Future<TUserPostFavorite?> findByUniqueKey(
+    String userId,
+    int postId,
   );
 
   Future<TUserPostFavoriteList> findByUserId(
@@ -33,5 +39,10 @@ abstract interface class TUserPostFavoriteRepository {
     String userId,
     DateTime oldestAt,
     int count,
+  );
+
+  Future<void> deleteByUniqueKey(
+    String userId,
+    int postId,
   );
 }

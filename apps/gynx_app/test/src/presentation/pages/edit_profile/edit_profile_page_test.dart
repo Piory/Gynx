@@ -70,47 +70,41 @@ void main() {
       verifyZeroInteractions(mockEditProfileController);
     });
 
-    testWidgets(
-      'CloseButton をタップしても、EditProfileController#updateUserProfile が呼ばれないこと',
-      (tester) async {
-        await pumpWidget(tester);
-        verifyZeroInteractions(mockEditProfileController);
-        await tester.tap(find.byType(CloseButton));
-        verifyZeroInteractions(mockEditProfileController);
-      },
-    );
+    testWidgets('CloseButton をタップしても、EditProfileController#updateUserProfile が呼ばれないこと', (tester) async {
+      await pumpWidget(tester);
+      verifyZeroInteractions(mockEditProfileController);
+      await tester.tap(find.byType(CloseButton));
+      verifyZeroInteractions(mockEditProfileController);
+    });
 
-    testWidgets(
-      '「${l10nJa.done}」をタップすると、EditProfileController#updateUserProfile が呼ばれること',
-      (tester) async {
-        await pumpWidget(tester);
-        verifyNever(
-          mockEditProfileController.updateUserProfile(
-            context: anyNamed('context'),
-            l10n: anyNamed('l10n'),
-            ref: anyNamed('ref'),
-            gynxId: null,
-            username: null,
-            avatarFile: null,
-            isDeleteAvatar: false,
-            selfIntroduction: null,
-          ),
-        );
-        await tester.tap(find.text(l10nJa.done));
-        verify(
-          mockEditProfileController.updateUserProfile(
-            context: anyNamed('context'),
-            l10n: anyNamed('l10n'),
-            ref: anyNamed('ref'),
-            gynxId: null,
-            username: null,
-            avatarFile: null,
-            isDeleteAvatar: false,
-            selfIntroduction: null,
-          ),
-        );
-      },
-    );
+    testWidgets('「${l10nJa.done}」をタップすると、EditProfileController#updateUserProfile が呼ばれること', (tester) async {
+      await pumpWidget(tester);
+      verifyNever(
+        mockEditProfileController.updateUserProfile(
+          context: anyNamed('context'),
+          l10n: anyNamed('l10n'),
+          ref: anyNamed('ref'),
+          gynxId: null,
+          username: null,
+          avatarFile: null,
+          isDeleteAvatar: false,
+          selfIntroduction: null,
+        ),
+      );
+      await tester.tap(find.text(l10nJa.done));
+      verify(
+        mockEditProfileController.updateUserProfile(
+          context: anyNamed('context'),
+          l10n: anyNamed('l10n'),
+          ref: anyNamed('ref'),
+          gynxId: null,
+          username: null,
+          avatarFile: null,
+          isDeleteAvatar: false,
+          selfIntroduction: null,
+        ),
+      );
+    });
 
     testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
       await pumpWidget(tester);

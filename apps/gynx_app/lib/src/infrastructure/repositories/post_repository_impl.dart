@@ -14,7 +14,6 @@ class PostRepositoryImpl implements PostRepository {
 
   @override
   Future<int> create(
-    String userId,
     TimelineType timelineType,
     String text,
     MediaList mediaList,
@@ -22,7 +21,6 @@ class PostRepositoryImpl implements PostRepository {
     return await _client.rpc<int>(
       'create_post',
       params: {
-        'post_user_id': userId,
         'timeline_type': timelineType.name,
         'text': text,
         'medias': mediaList.map((media) {

@@ -17,10 +17,16 @@ T _$identity<T>(T value) => value;
 mixin _$VPost {
   int get postId;
   String get userId;
-  VPost? get repost;
-  String? get text;
-  List<TPostMedia> get medias;
+  int? get originalPostId;
+  String? get originalUserId;
+  RepostType get repostType;
+  String? get displayText;
+  List<TPostMedia> get displayMedias;
+  String? get quoteText;
+  List<TPostMedia>? get quoteMedias;
+  bool get isReposted;
   int get repostCount;
+  bool get isFavorited;
   int get favoriteCount;
   DateTime get createdAt;
   DateTime get updatedAt;
@@ -40,11 +46,26 @@ mixin _$VPost {
             other is VPost &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.repost, repost) || other.repost == repost) &&
-            (identical(other.text, text) || other.text == text) &&
-            const DeepCollectionEquality().equals(other.medias, medias) &&
+            (identical(other.originalPostId, originalPostId) ||
+                other.originalPostId == originalPostId) &&
+            (identical(other.originalUserId, originalUserId) ||
+                other.originalUserId == originalUserId) &&
+            (identical(other.repostType, repostType) ||
+                other.repostType == repostType) &&
+            (identical(other.displayText, displayText) ||
+                other.displayText == displayText) &&
+            const DeepCollectionEquality()
+                .equals(other.displayMedias, displayMedias) &&
+            (identical(other.quoteText, quoteText) ||
+                other.quoteText == quoteText) &&
+            const DeepCollectionEquality()
+                .equals(other.quoteMedias, quoteMedias) &&
+            (identical(other.isReposted, isReposted) ||
+                other.isReposted == isReposted) &&
             (identical(other.repostCount, repostCount) ||
                 other.repostCount == repostCount) &&
+            (identical(other.isFavorited, isFavorited) ||
+                other.isFavorited == isFavorited) &&
             (identical(other.favoriteCount, favoriteCount) ||
                 other.favoriteCount == favoriteCount) &&
             (identical(other.createdAt, createdAt) ||
@@ -61,10 +82,16 @@ mixin _$VPost {
       runtimeType,
       postId,
       userId,
-      repost,
-      text,
-      const DeepCollectionEquality().hash(medias),
+      originalPostId,
+      originalUserId,
+      repostType,
+      displayText,
+      const DeepCollectionEquality().hash(displayMedias),
+      quoteText,
+      const DeepCollectionEquality().hash(quoteMedias),
+      isReposted,
       repostCount,
+      isFavorited,
       favoriteCount,
       createdAt,
       updatedAt,
@@ -72,7 +99,7 @@ mixin _$VPost {
 
   @override
   String toString() {
-    return 'VPost(postId: $postId, userId: $userId, repost: $repost, text: $text, medias: $medias, repostCount: $repostCount, favoriteCount: $favoriteCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'VPost(postId: $postId, userId: $userId, originalPostId: $originalPostId, originalUserId: $originalUserId, repostType: $repostType, displayText: $displayText, displayMedias: $displayMedias, quoteText: $quoteText, quoteMedias: $quoteMedias, isReposted: $isReposted, repostCount: $repostCount, isFavorited: $isFavorited, favoriteCount: $favoriteCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
@@ -84,10 +111,16 @@ abstract mixin class $VPostCopyWith<$Res> {
   $Res call(
       {int postId,
       String userId,
-      VPost? repost,
-      String? text,
-      List<TPostMedia> medias,
+      int? originalPostId,
+      String? originalUserId,
+      RepostType repostType,
+      String? displayText,
+      List<TPostMedia> displayMedias,
+      String? quoteText,
+      List<TPostMedia>? quoteMedias,
+      bool isReposted,
       int repostCount,
+      bool isFavorited,
       int favoriteCount,
       DateTime createdAt,
       DateTime updatedAt,
@@ -108,10 +141,16 @@ class _$VPostCopyWithImpl<$Res> implements $VPostCopyWith<$Res> {
   $Res call({
     Object? postId = null,
     Object? userId = null,
-    Object? repost = freezed,
-    Object? text = freezed,
-    Object? medias = null,
+    Object? originalPostId = freezed,
+    Object? originalUserId = freezed,
+    Object? repostType = null,
+    Object? displayText = freezed,
+    Object? displayMedias = null,
+    Object? quoteText = freezed,
+    Object? quoteMedias = freezed,
+    Object? isReposted = null,
     Object? repostCount = null,
+    Object? isFavorited = null,
     Object? favoriteCount = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -126,22 +165,46 @@ class _$VPostCopyWithImpl<$Res> implements $VPostCopyWith<$Res> {
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      repost: freezed == repost
-          ? _self.repost
-          : repost // ignore: cast_nullable_to_non_nullable
-              as VPost?,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
+      originalPostId: freezed == originalPostId
+          ? _self.originalPostId
+          : originalPostId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      originalUserId: freezed == originalUserId
+          ? _self.originalUserId
+          : originalUserId // ignore: cast_nullable_to_non_nullable
               as String?,
-      medias: null == medias
-          ? _self.medias
-          : medias // ignore: cast_nullable_to_non_nullable
+      repostType: null == repostType
+          ? _self.repostType
+          : repostType // ignore: cast_nullable_to_non_nullable
+              as RepostType,
+      displayText: freezed == displayText
+          ? _self.displayText
+          : displayText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayMedias: null == displayMedias
+          ? _self.displayMedias
+          : displayMedias // ignore: cast_nullable_to_non_nullable
               as List<TPostMedia>,
+      quoteText: freezed == quoteText
+          ? _self.quoteText
+          : quoteText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quoteMedias: freezed == quoteMedias
+          ? _self.quoteMedias
+          : quoteMedias // ignore: cast_nullable_to_non_nullable
+              as List<TPostMedia>?,
+      isReposted: null == isReposted
+          ? _self.isReposted
+          : isReposted // ignore: cast_nullable_to_non_nullable
+              as bool,
       repostCount: null == repostCount
           ? _self.repostCount
           : repostCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isFavorited: null == isFavorited
+          ? _self.isFavorited
+          : isFavorited // ignore: cast_nullable_to_non_nullable
+              as bool,
       favoriteCount: null == favoriteCount
           ? _self.favoriteCount
           : favoriteCount // ignore: cast_nullable_to_non_nullable

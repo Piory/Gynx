@@ -12,6 +12,7 @@ import 'package:gynx_app/src/domain/entities/v_user.dart';
 import 'package:gynx_app/src/domain/entities/v_user_detail.dart';
 import 'package:gynx_app/src/domain/enums/media_type.dart';
 import 'package:gynx_app/src/domain/enums/oauth_provider_type.dart';
+import 'package:gynx_app/src/domain/enums/repost_type.dart';
 import 'package:gynx_app/src/domain/enums/timeline_type.dart';
 import 'package:gynx_app/src/domain/models/suite_user.dart';
 
@@ -42,8 +43,7 @@ TUser generateDummyTUser() => TUser(
 TUserProfile generateDummyTUserProfile() => TUserProfile(
       userId: faker.guid.guid(),
       username: faker.person.name(),
-      avatarUrl:
-          faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
+      avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       selfIntroduction: faker.lorem.sentence(),
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
@@ -102,8 +102,7 @@ VUser generateDummyVUser() => VUser(
       userId: faker.guid.guid(),
       gynxId: 'gynx_id',
       username: faker.person.name(),
-      avatarUrl:
-          faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
+      avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
     );
@@ -116,8 +115,7 @@ VUserDetail generateDummyVUserDetail({
       userId: faker.guid.guid(),
       gynxId: 'gynx_id',
       username: faker.person.name(),
-      avatarUrl:
-          faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
+      avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       selfIntroduction: faker.lorem.sentence(),
       latestPosts: latestPosts,
       favoritePosts: favoritePosts,
@@ -130,16 +128,22 @@ VUserDetail generateDummyVUserDetail({
 
 VPost generateDummyVPost({
   required int postId,
-  VPost? repost,
+  RepostType repostType = RepostType.none,
   List<TPostMedia> medias = const [],
 }) =>
     VPost(
       postId: postId,
       userId: faker.guid.guid(),
-      repost: repost,
-      text: repost == null ? faker.guid.guid() : null,
-      medias: medias,
+      originalPostId: repostType == RepostType.none ? null : faker.randomGenerator.integer(_maxInt),
+      originalUserId: repostType == RepostType.none ? null : faker.guid.guid(),
+      repostType: repostType,
+      displayText: faker.lorem.sentence(),
+      displayMedias: medias,
+      quoteText: repostType == RepostType.quote ? faker.lorem.sentence() : null,
+      quoteMedias: repostType == RepostType.quote ? medias : null,
+      isReposted: faker.randomGenerator.boolean(),
       repostCount: faker.randomGenerator.integer(100),
+      isFavorited: faker.randomGenerator.boolean(),
       favoriteCount: faker.randomGenerator.integer(100),
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),

@@ -32,9 +32,18 @@ void main() {
   group('#create', () {
     group('正常系', () {
       test('正常にデータが1件作成されること', () async {
-        await tUserPostFavoriteRepository.create(tUserPostFavorite1);
+        await tUserPostFavoriteRepository.create(
+          userId: tUserPostFavorite1.userId,
+          postId: tUserPostFavorite1.postId,
+        );
         final res = await mockSupabaseClient.from(tableName).select().single();
-        expect(res, tUserPostFavorite1.toJson());
+        expect(
+          res,
+          {
+            'user_id': tUserPostFavorite1.userId,
+            'post_id': tUserPostFavorite1.postId,
+          },
+        );
       });
     });
   });
@@ -55,6 +64,42 @@ void main() {
     });
   });
 
+  group('#findByUniqueKey', () {
+    group('正常系', () {
+      test('正常にデータが1件取得されること', () async {
+        await mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+        ]);
+        expect(
+          await tUserPostFavoriteRepository.findByUniqueKey(
+            tUserPostFavorite1.userId,
+            tUserPostFavorite1.postId,
+          ),
+          tUserPostFavorite1,
+        );
+      });
+
+      test(
+        'データが存在しない場合は null が返却されること',
+        () async {
+          await mockSupabaseClient.from(tableName).insert([
+            tUserPostFavorite1.toJson(),
+            tUserPostFavorite2.toJson(),
+          ]);
+          expect(
+            await tUserPostFavoriteRepository.findByUniqueKey(
+              faker.guid.guid(),
+              tUserPostFavorite1.postId,
+            ),
+            isNull,
+          );
+        },
+        skip: 'mock_supabase_http_client の maybeSingle の指定に対応していなさそうなのでスキップ',
+      );
+    });
+  });
+
   group('#findByUserId', () {
     group('正常系', () {
       test('正常にデータが2件取得されること', () async {
@@ -65,12 +110,10 @@ void main() {
           tUserPostFavorite1.toJson(),
           tUserPostFavorite2.toJson(),
         ]);
-        final foundTUserPostFavoriteList =
-            await tUserPostFavoriteRepository.findByUserId(
-          tUserPostFavorite1.userId,
-        );
         expect(
-          foundTUserPostFavoriteList,
+          await tUserPostFavoriteRepository.findByUserId(
+            tUserPostFavorite1.userId,
+          ),
           TUserPostFavoriteList(
             [
               tUserPostFavorite1,
@@ -92,12 +135,10 @@ void main() {
           tUserPostFavorite1.toJson(),
           tUserPostFavorite2.toJson(),
         ]);
-        final foundTUserPostFavoriteList =
-            await tUserPostFavoriteRepository.findByPostId(
-          tUserPostFavorite1.postId,
-        );
         expect(
-          foundTUserPostFavoriteList,
+          await tUserPostFavoriteRepository.findByPostId(
+            tUserPostFavorite1.postId,
+          ),
           TUserPostFavoriteList(
             [
               tUserPostFavorite1,
@@ -130,13 +171,11 @@ void main() {
 
       group('正常系', () {
         test('指定した userId に紐づくデータが指定した件数取得できること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatest(
-            tUserPostFavorite1.userId,
-            2,
-          );
           expect(
-            foundTUserPostFavoriteList,
+            await tUserPostFavoriteRepository.findByUserIdAndLatest(
+              tUserPostFavorite1.userId,
+              2,
+            ),
             TUserPostFavoriteList(
               [
                 tUserPostFavorite2,
@@ -147,13 +186,11 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatest(
-            tUserPostFavorite1.userId,
-            5,
-          );
           expect(
-            foundTUserPostFavoriteList,
+            await tUserPostFavoriteRepository.findByUserIdAndLatest(
+              tUserPostFavorite1.userId,
+              5,
+            ),
             TUserPostFavoriteList(
               [
                 tUserPostFavorite3,
@@ -165,12 +202,13 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatest(
-            tUserPostFavorite1.userId,
-            2,
+          expect(
+            await tUserPostFavoriteRepository.findByUserIdAndLatest(
+              tUserPostFavorite1.userId,
+              2,
+            ),
+            TUserPostFavoriteList.empty,
           );
-          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
         });
       });
     },
@@ -198,14 +236,12 @@ void main() {
 
       group('正常系', () {
         test('指定した userId に紐づくデータが指定した件数取得できること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
-            tUserPostFavorite1.userId,
-            tUserPostFavorite1.createdAt,
-            2,
-          );
           expect(
-            foundTUserPostFavoriteList,
+            await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+              tUserPostFavorite1.userId,
+              tUserPostFavorite1.createdAt,
+              2,
+            ),
             TUserPostFavoriteList(
               [
                 tUserPostFavorite2,
@@ -216,14 +252,12 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
-            tUserPostFavorite1.userId,
-            tUserPostFavorite1.createdAt,
-            3,
-          );
           expect(
-            foundTUserPostFavoriteList,
+            await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+              tUserPostFavorite1.userId,
+              tUserPostFavorite1.createdAt,
+              3,
+            ),
             TUserPostFavoriteList(
               [
                 tUserPostFavorite2,
@@ -234,14 +268,14 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
-            faker.guid.guid(),
-            tUserPostFavorite1.createdAt,
-            2,
+          expect(
+            await tUserPostFavoriteRepository.findByUserIdAndLatestAt(
+              faker.guid.guid(),
+              tUserPostFavorite1.createdAt,
+              2,
+            ),
+            TUserPostFavoriteList.empty,
           );
-
-          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
         });
       });
     },
@@ -287,14 +321,12 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが指定した件数に満たない場合は、全てのデータが取得できること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
-            tUserPostFavorite1.userId,
-            tUserPostFavorite3.createdAt,
-            3,
-          );
           expect(
-            foundTUserPostFavoriteList,
+            await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
+              tUserPostFavorite1.userId,
+              tUserPostFavorite3.createdAt,
+              3,
+            ),
             TUserPostFavoriteList(
               [
                 tUserPostFavorite3,
@@ -306,16 +338,38 @@ void main() {
         });
 
         test('指定した userId に紐づくデータが存在しない場合は、空のリストが返却されること', () async {
-          final foundTUserPostFavoriteList =
-              await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
-            faker.guid.guid(),
-            tUserPostFavorite3.createdAt,
-            2,
+          expect(
+            await tUserPostFavoriteRepository.findByUserIdAndOldestAt(
+              faker.guid.guid(),
+              tUserPostFavorite3.createdAt,
+              2,
+            ),
+            TUserPostFavoriteList.empty,
           );
-          expect(foundTUserPostFavoriteList, TUserPostFavoriteList.empty);
         });
       });
     },
     skip: 'mock_supabase_http_client の DateTime の指定に対応していなさそうなのでスキップ',
   );
+
+  group('#deleteByUniqueKey', () {
+    group('正常系', () {
+      test('正常にデータが1件削除されること', () async {
+        await mockSupabaseClient.from(tableName).insert([
+          tUserPostFavorite1.toJson(),
+          tUserPostFavorite2.toJson(),
+        ]);
+        await tUserPostFavoriteRepository.deleteByUniqueKey(
+          tUserPostFavorite1.userId,
+          tUserPostFavorite1.postId,
+        );
+        expect(
+          await mockSupabaseClient.from(tableName).select(),
+          [
+            tUserPostFavorite2.toJson(),
+          ],
+        );
+      });
+    });
+  });
 }

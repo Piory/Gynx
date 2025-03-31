@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -6,6 +5,7 @@ import 'package:gynx_app/src/domain/enums/media_type.dart';
 import 'package:gynx_app/src/domain/models/media.dart';
 import 'package:gynx_app/src/domain/models/media_list.dart';
 import 'package:gynx_app/src/domain/usecases/create_post_usecase.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_map_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/home_controller.dart';
@@ -17,10 +17,12 @@ import 'home_controller_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<CreatePostUseCase>(),
+  MockSpec<PostMapNotifier>(),
   MockSpec<SuiteUserNotifier>(),
   MockSpec<TimelineNotifier>(),
 ])
 void main() {
+  final mockPostMapNotifier = MockPostMapNotifier();
   final mockCreatePostUseCase = MockCreatePostUseCase();
   final mockSuiteUserNotifier = MockSuiteUserNotifier();
   final mockTimelineNotifier = MockTimelineNotifier();
@@ -35,9 +37,11 @@ void main() {
   });
 
   tearDown(() {
+    verifyNoMoreInteractions(mockPostMapNotifier);
     verifyNoMoreInteractions(mockSuiteUserNotifier);
     verifyNoMoreInteractions(mockTimelineNotifier);
     verifyNoMoreInteractions(mockCreatePostUseCase);
+    reset(mockPostMapNotifier);
     reset(mockSuiteUserNotifier);
     reset(mockTimelineNotifier);
     reset(mockCreatePostUseCase);
@@ -67,6 +71,7 @@ void main() {
           ),
         ).thenAnswer((_) async => vPost);
         await homeController.createPost(
+          postMapNotifier: mockPostMapNotifier,
           suiteUserNotifier: mockSuiteUserNotifier,
           timelineNotifier: mockTimelineNotifier,
           text: text,
@@ -88,6 +93,7 @@ void main() {
               ],
             ),
           ),
+          mockPostMapNotifier.put(vPost),
           mockTimelineNotifier.add(vPost.postId),
           mockSuiteUserNotifier.addPost(vPost),
         ]);

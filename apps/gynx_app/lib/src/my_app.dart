@@ -37,6 +37,7 @@ final class ColorPalette {
 // static const surface = Color(0xFF090909);
 // static const onSurface = Color(0xFF689E64);
 // static const surfaceContainerHighest = Color(0xFF112C12);
+  static const favoriteColor = Color(0xFFFFD054);
   static const error = Color(0xFFEA3333);
 }
 

@@ -10,6 +10,7 @@ import 'package:gynx_app/src/presentation/components/elements/buttons/gradient_o
 import 'package:gynx_app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:gynx_app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:gynx_app/src/presentation/navigation/page_navigator.dart';
+import 'package:gynx_app/src/presentation/notifiers/post_map_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:gynx_app/src/presentation/pages/home/components/form_builder_image_picker.dart';
@@ -77,8 +78,7 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                     child: Consumer(
                       builder: (context, ref, _) {
                         final suiteUser = ref.watch(
-                          suiteUserNotifierProvider
-                              .select((value) => value.value),
+                          suiteUserNotifierProvider.select((value) => value.value),
                         );
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,18 +93,14 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            suiteUser?.vUserDetail.username ??
-                                                '',
-                                            style: theme.textTheme.bodyMedium!
-                                                .copyWith(
+                                            suiteUser?.vUserDetail.username ?? '',
+                                            style: theme.textTheme.bodyMedium!.copyWith(
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -126,8 +122,7 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                                     maxLines: null,
                                     validator: FormBuilderValidators.compose([
                                       FormBuilderValidators.required(
-                                        errorText:
-                                            context.l10n.postRequiredError,
+                                        errorText: context.l10n.postRequiredError,
                                       ),
                                       FormBuilderValidators.maxLength(
                                         Constant.postTextMaxLength,
@@ -148,18 +143,11 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                                       children: [
                                         const Gap(SpaceSize.s8),
                                         MediaList(
-                                          urls: _medias
-                                              .map((m) => m.path)
-                                              .toList(),
-                                          heroTagGenerator: (url) =>
-                                              'create-post-$url',
+                                          urls: _medias.map((m) => m.path).toList(),
+                                          heroTagGenerator: (url) => 'create-post-$url',
                                           onClosed: (url) {
-                                            final medias = _medias
-                                                .where((m) => m.path != url)
-                                                .toList();
-                                            formKey
-                                                .currentState?.fields['medias']
-                                                ?.didChange(medias);
+                                            final medias = _medias.where((m) => m.path != url).toList();
+                                            formKey.currentState?.fields['medias']?.didChange(medias);
                                             setState(() {
                                               _medias = medias;
                                             });
@@ -235,12 +223,11 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
       }
       currentState.save();
       await GetIt.I<HomeController>().createPost(
+        postMapNotifier: ref.read(postMapNotifierProvider.notifier),
         suiteUserNotifier: ref.read(suiteUserNotifierProvider.notifier),
         timelineNotifier: ref.read(timelineNotifierProvider.notifier),
         text: currentState.fields['text']!.value as String,
-        mediaPaths: (currentState.fields['medias']!.value as List<XFile>)
-            .map((m) => m.path)
-            .toList(),
+        mediaPaths: (currentState.fields['medias']!.value as List<XFile>).map((m) => m.path).toList(),
       );
       if (context.mounted) {
         GetIt.I<PageNavigator>().pop(context);

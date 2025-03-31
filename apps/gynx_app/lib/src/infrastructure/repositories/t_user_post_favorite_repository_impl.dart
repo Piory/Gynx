@@ -12,13 +12,33 @@ class TUserPostFavoriteRepositoryImpl implements TUserPostFavoriteRepository {
   static const tableName = 't_user_post_favorites';
 
   @override
-  Future<void> create(TUserPostFavorite tPost) async {
-    await _client.from(tableName).insert(tPost.toJson());
+  Future<void> create({
+    required String userId,
+    required int postId,
+  }) async {
+    await _client.from(tableName).insert({
+      'user_id': userId,
+      'post_id': postId,
+    });
   }
 
   @override
   Future<TUserPostFavorite> findByPrimaryKey(String id) async {
     final res = await _client.from(tableName).select().eq('id', id).single();
+    return TUserPostFavorite.fromJson(res);
+  }
+
+  @override
+  Future<TUserPostFavorite?> findByUniqueKey(String userId, int postId) async {
+    final res = await _client
+        .from(tableName)
+        .select()
+        .eq('user_id', userId)
+        .eq('post_id', postId)
+        .maybeSingle();
+    if (res == null) {
+      return null;
+    }
     return TUserPostFavorite.fromJson(res);
   }
 
@@ -78,5 +98,14 @@ class TUserPostFavoriteRepositoryImpl implements TUserPostFavoriteRepository {
         .order('created_at', ascending: false)
         .limit(count);
     return TUserPostFavoriteList.fromJson(res);
+  }
+
+  @override
+  Future<void> deleteByUniqueKey(String userId, int postId) {
+    return _client
+        .from(tableName)
+        .delete()
+        .eq('user_id', userId)
+        .eq('post_id', postId);
   }
 }

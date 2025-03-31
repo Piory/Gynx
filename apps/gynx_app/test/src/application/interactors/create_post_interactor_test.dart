@@ -62,9 +62,8 @@ void main() {
       when(mockAuthRepository.currentUser).thenReturn(user);
       when(
         mockPostRepository.create(
-          user.id,
           TimelineType.follow,
-          vPost.text,
+          vPost.displayText,
           mediaList,
         ),
       ).thenAnswer((_) async => postId);
@@ -73,7 +72,7 @@ void main() {
       );
       expect(
         await interactor.execute(
-          text: vPost.text!,
+          text: vPost.displayText!,
           mediaList: mediaList,
         ),
         vPost,
@@ -81,9 +80,8 @@ void main() {
       verifyInOrder([
         mockAuthRepository.currentUser,
         mockPostRepository.create(
-          user.id,
           TimelineType.follow,
-          vPost.text,
+          vPost.displayText,
           mediaList,
         ),
         mockVPostRepository.findByPostId(postId),
@@ -134,7 +132,6 @@ void main() {
       ]);
       when(
         mockPostRepository.create(
-          user.id,
           TimelineType.follow,
           text,
           uploadedMediaList,
@@ -178,7 +175,6 @@ void main() {
           file: anyNamed('file'),
         ),
         mockPostRepository.create(
-          user.id,
           TimelineType.follow,
           text,
           uploadedMediaList,
@@ -188,7 +184,7 @@ void main() {
     });
   });
 
-  group('純正常系', () {
+  group('準正常系', () {
     test(
       'AuthRepository#currentUser が null の場合、UserNotSignedInException が throw されること',
       () {

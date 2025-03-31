@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -96,52 +95,50 @@ void main() {
         expect(find.text(l10nJa.postRequiredError), findsNothing);
       });
 
-      testWidgets(
-        '投稿文のみ入力して「${l10nJa.post}」ボタンをタップした場合、HomeController#creatPost が呼ばれること',
-        (tester) async {
-          when(
-            mockHomeController.createPost(
-              suiteUserNotifier: anyNamed('suiteUserNotifier'),
-              timelineNotifier: anyNamed('timelineNotifier'),
-              text: postText,
-              mediaPaths: [],
-            ),
-          ).thenAnswer((_) async {});
-          await pumpWidget(
-            tester: tester,
-          );
+      testWidgets('投稿文のみ入力して「${l10nJa.post}」ボタンをタップした場合、HomeController#creatPost が呼ばれること', (tester) async {
+        when(
+          mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
+            timelineNotifier: anyNamed('timelineNotifier'),
+            text: postText,
+            mediaPaths: [],
+          ),
+        ).thenAnswer((_) async {});
+        await pumpWidget(
+          tester: tester,
+        );
 
-          await tester.enterText(find.byType(FormBuilderTextField), postText);
+        await tester.enterText(find.byType(FormBuilderTextField), postText);
 
-          verifyNever(
-            mockHomeController.createPost(
-              suiteUserNotifier: anyNamed('suiteUserNotifier'),
-              timelineNotifier: anyNamed('timelineNotifier'),
-              text: postText,
-              mediaPaths: [],
-            ),
-          );
-          await tester.tap(
-            find.widgetWithText(GradientOutlinedButton, l10nJa.post),
-          );
-          expect(find.text(l10nJa.postRequiredError), findsNothing);
-          verifyInOrder([
-            mockLoadingDialog.show(),
-            mockHomeController.createPost(
-              suiteUserNotifier: anyNamed('suiteUserNotifier'),
-              timelineNotifier: anyNamed('timelineNotifier'),
-              text: postText,
-              mediaPaths: [],
-            ),
-            mockPageNavigator.pop(any),
-            mockLoadingDialog.hide(),
-          ]);
-        },
-      );
+        verifyNever(
+          mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
+            timelineNotifier: anyNamed('timelineNotifier'),
+            text: postText,
+            mediaPaths: [],
+          ),
+        );
+        await tester.tap(
+          find.widgetWithText(GradientOutlinedButton, l10nJa.post),
+        );
+        expect(find.text(l10nJa.postRequiredError), findsNothing);
+        verifyInOrder([
+          mockLoadingDialog.show(),
+          mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
+            suiteUserNotifier: anyNamed('suiteUserNotifier'),
+            timelineNotifier: anyNamed('timelineNotifier'),
+            text: postText,
+            mediaPaths: [],
+          ),
+          mockPageNavigator.pop(any),
+          mockLoadingDialog.hide(),
+        ]);
+      });
 
-      testWidgets(
-          '画像を選択した場合は、MediaList が表示され、「${l10nJa.post}」ボタンをタップした場合は、HomeController#createPost が呼ばれること',
-          (tester) async {
+      testWidgets('画像を選択した場合は、MediaList が表示され、「${l10nJa.post}」ボタンをタップした場合は、HomeController#createPost が呼ばれること', (tester) async {
         final path = faker.image.loremPicsum();
         final mockXFile = MockXFile();
         when(mockXFile.path).thenReturn(path);
@@ -150,6 +147,7 @@ void main() {
         ).thenAnswer((_) async => mockXFile);
         when(
           mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
             suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
@@ -173,6 +171,7 @@ void main() {
 
         verifyNever(
           mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
             suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
@@ -186,6 +185,7 @@ void main() {
         verifyInOrder([
           mockLoadingDialog.show(),
           mockHomeController.createPost(
+            postMapNotifier: anyNamed('postMapNotifier'),
             suiteUserNotifier: anyNamed('suiteUserNotifier'),
             timelineNotifier: anyNamed('timelineNotifier'),
             text: postText,
@@ -198,25 +198,22 @@ void main() {
     });
 
     group('準正常系', () {
-      testWidgets(
-        '投稿文が未入力の場合、「${l10nJa.postRequiredError}」が表示されること',
-        (tester) async {
-          await pumpWidget(
-            tester: tester,
-          );
+      testWidgets('投稿文が未入力の場合、「${l10nJa.postRequiredError}」が表示されること', (tester) async {
+        await pumpWidget(
+          tester: tester,
+        );
 
-          await tester.tap(
-            find.widgetWithText(GradientOutlinedButton, l10nJa.post),
-          );
-          expect(find.text(l10nJa.postRequiredError), findsNothing);
-          await tester.pumpAndSettle();
-          expect(find.text(l10nJa.postRequiredError), findsOneWidget);
-          verifyInOrder([
-            mockLoadingDialog.show(),
-            mockLoadingDialog.hide(),
-          ]);
-        },
-      );
+        await tester.tap(
+          find.widgetWithText(GradientOutlinedButton, l10nJa.post),
+        );
+        expect(find.text(l10nJa.postRequiredError), findsNothing);
+        await tester.pumpAndSettle();
+        expect(find.text(l10nJa.postRequiredError), findsOneWidget);
+        verifyInOrder([
+          mockLoadingDialog.show(),
+          mockLoadingDialog.hide(),
+        ]);
+      });
     });
   });
 }

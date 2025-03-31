@@ -226,13 +226,12 @@ class MockStorageRepository extends _i1.Mock implements _i8.StorageRepository {
 class MockPostRepository extends _i1.Mock implements _i11.PostRepository {
   @override
   _i7.Future<int> create(
-    String? userId,
     _i12.TimelineType? timelineType,
     String? text,
     _i13.MediaList? mediaList,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#create, [userId, timelineType, text, mediaList]),
+            Invocation.method(#create, [timelineType, text, mediaList]),
             returnValue: _i7.Future<int>.value(0),
             returnValueForMissingStub: _i7.Future<int>.value(0),
           )
