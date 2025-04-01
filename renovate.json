@@ -19,5 +19,19 @@
   "prConcurrentLimit": 10,
   "ignoreDeps": [
     "dev.flutter.flutter-plugin-loader"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Firebase",
+      "matchPackagePatterns": [
+        "^firebase"
+      ]
+    },
+    {
+      "groupName": "Freezed",
+      "matchPackagePatterns": [
+        "^freezed"
+      ]
+    }
   ]
 }
