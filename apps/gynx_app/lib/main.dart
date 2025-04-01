@@ -15,10 +15,12 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await configureDependencies();
   FlutterError.onError = (details) {
-    // print('FlutterError.onError: $details');
+    debugPrint('FlutterError.onError');
+    debugPrint(details.toString());
   };
   PlatformDispatcher.instance.onError = (error, stacktrace) {
-    // print('PlatformDispatcher.instance.onError: $error');
+    debugPrint('PlatformDispatcher.instance.onError');
+    debugPrint(error.toString());
     debugPrintStack(stackTrace: stacktrace);
     return true;
   };

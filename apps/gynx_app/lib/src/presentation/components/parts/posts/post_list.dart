@@ -27,8 +27,7 @@ class PostList extends StatefulWidget {
   State<PostList> createState() => _PostListState();
 }
 
-class _PostListState extends State<PostList>
-    with AutomaticKeepAliveClientMixin {
+class _PostListState extends State<PostList> with AutomaticKeepAliveClientMixin {
   var _isLoading = false;
   var _isNoMoreData = false;
 
@@ -41,7 +40,6 @@ class _PostListState extends State<PostList>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return InfiniteList(
-      physics: const NeverScrollableScrollPhysics(),
       isLoading: !_isNoMoreData && _isLoading,
       itemCount: widget.postIdList.length,
       onFetchData: () async {

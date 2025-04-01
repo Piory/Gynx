@@ -29,8 +29,7 @@ class Refreshable extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: Opacity(
-              opacity: opacityCurve
-                  .transform(min(pulledExtent / refreshTriggerPullDistance, 1)),
+              opacity: opacityCurve.transform(min(pulledExtent / refreshTriggerPullDistance, 1)),
               child: _refreshIndicateModeBuilder(
                 colorScheme: Theme.of(context).colorScheme,
                 refreshState: refreshState,
