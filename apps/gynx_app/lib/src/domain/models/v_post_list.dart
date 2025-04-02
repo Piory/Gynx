@@ -12,8 +12,7 @@ part '../../generated/src/domain/models/v_post_list.g.dart';
 class VPostList with _$VPostList {
   const VPostList(this.vPosts);
 
-  factory VPostList.fromJson(List<Map<String, dynamic>> json) =>
-      VPostList(json.map(VPost.fromJson).toList());
+  factory VPostList.fromJson(List<Map<String, dynamic>> json) => VPostList(json.map(VPost.fromJson).toList());
 
   static const empty = VPostList([]);
 
@@ -69,6 +68,12 @@ class VPostList with _$VPostList {
 
   VPostList addAll(VPostList vPostList) {
     return VPostList([...vPosts, ...vPostList.vPosts]);
+  }
+
+  VPostList removeByPostId(int postId) {
+    return VPostList(
+      vPosts.where((vPost) => vPost.postId != postId).toList(),
+    );
   }
 
   VPostList sortPostId({

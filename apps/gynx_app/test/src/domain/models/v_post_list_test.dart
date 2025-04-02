@@ -135,6 +135,15 @@ void main() {
     });
   });
 
+  group('#removeByPostId', () {
+    test('VPostList から指定した postId の要素が削除されていること', () {
+      final vPost1 = generateDummyVPost(postId: 1);
+      final vPost2 = generateDummyVPost(postId: 2);
+      final list = VPostList([vPost1, vPost2]).removeByPostId(1);
+      expect(list, VPostList([vPost2]));
+    });
+  });
+
   group('#sortPostId', () {
     test('postId の昇順でソートされること', () {
       final vPost1 = generateDummyVPost(postId: 1);

@@ -48,9 +48,10 @@ void main() {
         postId: postId,
       )).thenAnswer((_) async => {});
       when(mockVPostRepository.findByPostId(postId)).thenAnswer((_) async => vPost);
-      await interactor.execute(
+      final result = await interactor.execute(
         postId: postId,
       );
+      expect(result, (vPost: vPost, isDeleted: false));
       verifyInOrder([
         mockAuthRepository.currentUser,
         mockTUserPostFavoriteRepository.findByUniqueKey(user.id, postId),
@@ -70,9 +71,10 @@ void main() {
       when(mockTUserPostFavoriteRepository.findByUniqueKey(user.id, postId)).thenAnswer((_) async => tUserPostFavorite);
       when(mockTUserPostFavoriteRepository.deleteByUniqueKey(user.id, postId)).thenAnswer((_) async => {});
       when(mockVPostRepository.findByPostId(postId)).thenAnswer((_) async => vPost);
-      await interactor.execute(
+      final result = await interactor.execute(
         postId: postId,
       );
+      expect(result, (vPost: vPost, isDeleted: true));
       verifyInOrder([
         mockAuthRepository.currentUser,
         mockTUserPostFavoriteRepository.findByUniqueKey(user.id, postId),

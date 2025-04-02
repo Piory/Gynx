@@ -61,12 +61,9 @@ void main() {
   group('正常系', () {
     test('SuiteUserUseCase#execute が呼ばれること', () async {
       when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
-      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUser);
-      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUserDetail);
-      final result =
-          await createContainer().read(suiteUserNotifierProvider.future);
+      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
+      final result = await createContainer().read(suiteUserNotifierProvider.future);
       expect(result, suiteUser);
       verifyInOrder([
         mockSuiteUserUseCase.execute(),
@@ -78,43 +75,112 @@ void main() {
 
   group('#addPost', () {
     group('正常系', () {
-      test(
-        'SuiteUser.VUserDetail.latestPosts に、渡した VPost が追加されていること',
-        () async {
-          when(mockSuiteUserUseCase.execute())
-              .thenAnswer((_) async => suiteUser);
-          when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
-              .thenAnswer((_) async => vUser);
-          when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
-              .thenAnswer((_) async => vUserDetail);
-          final vPost = generateDummyVPost(
-            postId: faker.randomGenerator.integer(100),
-          );
-          final container = createContainer();
-          verifyNever(mockSuiteUserUseCase.execute());
-          verifyNever(
-            mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
-          );
-          verifyNever(
-            mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
-          );
-          await container.read(suiteUserNotifierProvider.future);
-          verifyInOrder([
-            mockSuiteUserUseCase.execute(),
-            mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
-            mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
-          ]);
-          final result = await container.read(suiteUserNotifierProvider.future);
-          expect(result.vUserDetail.latestPostList, isEmpty);
-          container.read(suiteUserNotifierProvider.notifier).addPost(vPost);
-          final addedResult =
-              await container.read(suiteUserNotifierProvider.future);
-          expect(
-            addedResult.vUserDetail.latestPostList.vPosts,
-            contains(vPost),
-          );
-        },
-      );
+      test('SuiteUser.VUserDetail.latestPosts に、渡した VPost が追加されていること', () async {
+        when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
+        when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+        when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
+        final vPost = generateDummyVPost(
+          postId: faker.randomGenerator.integer(100),
+        );
+        final container = createContainer();
+        verifyNever(mockSuiteUserUseCase.execute());
+        verifyNever(
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        verifyNever(
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        await container.read(suiteUserNotifierProvider.future);
+        verifyInOrder([
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
+        final result = await container.read(suiteUserNotifierProvider.future);
+        expect(result.vUserDetail.latestPostList, isEmpty);
+        container.read(suiteUserNotifierProvider.notifier).addPost(vPost);
+        final addedResult = await container.read(suiteUserNotifierProvider.future);
+        expect(
+          addedResult.vUserDetail.latestPostList.vPosts,
+          contains(vPost),
+        );
+      });
+    });
+  });
+
+  group('#addFavoritePost', () {
+    group('正常系', () {
+      test('SuiteUser.VUserDetail.favoritePosts に、渡した VPost が追加されていること', () async {
+        when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
+        when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+        when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
+        final vPost = generateDummyVPost(
+          postId: faker.randomGenerator.integer(100),
+        );
+        final container = createContainer();
+        verifyNever(mockSuiteUserUseCase.execute());
+        verifyNever(
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        verifyNever(
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        await container.read(suiteUserNotifierProvider.future);
+        verifyInOrder([
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
+        final result = await container.read(suiteUserNotifierProvider.future);
+        expect(result.vUserDetail.favoritePostList, isEmpty);
+        container.read(suiteUserNotifierProvider.notifier).addFavoritePost(vPost);
+        final addedResult = await container.read(suiteUserNotifierProvider.future);
+        expect(
+          addedResult.vUserDetail.favoritePostList.vPosts,
+          contains(vPost),
+        );
+      });
+    });
+  });
+
+  group('#removeFavoritePostByPostId', () {
+    group('正常系', () {
+      test('SuiteUser.VUserDetail.favoritePosts から、指定した postId の VPost が削除されていること', () async {
+        when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
+        when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+        when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
+        final vPost = generateDummyVPost(
+          postId: faker.randomGenerator.integer(100),
+        );
+        final container = createContainer();
+        verifyNever(mockSuiteUserUseCase.execute());
+        verifyNever(
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        verifyNever(
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        );
+        await container.read(suiteUserNotifierProvider.future);
+        verifyInOrder([
+          mockSuiteUserUseCase.execute(),
+          mockFindUserUseCase.execute(suiteUser.vUserDetail.userId),
+          mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId),
+        ]);
+        final result = await container.read(suiteUserNotifierProvider.future);
+        expect(result.vUserDetail.favoritePostList, isEmpty);
+        container.read(suiteUserNotifierProvider.notifier).addFavoritePost(vPost);
+        final addedResult = await container.read(suiteUserNotifierProvider.future);
+        expect(
+          addedResult.vUserDetail.favoritePostList.vPosts,
+          contains(vPost),
+        );
+        container.read(suiteUserNotifierProvider.notifier).removeFavoritePostByPostId(vPost.postId);
+        final removedResult = await container.read(suiteUserNotifierProvider.future);
+        expect(
+          removedResult.vUserDetail.favoritePostList.vPosts,
+          isNot(contains(vPost)),
+        );
+      });
     });
   });
 
@@ -123,10 +189,8 @@ void main() {
 
     setUp(() async {
       when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
-      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUser);
-      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUserDetail);
+      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
       container = createContainer();
       final result = await container.read(suiteUserNotifierProvider.future);
       expect(result, suiteUser);
@@ -138,52 +202,39 @@ void main() {
     });
 
     group('正常系', () {
-      test(
-        'SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること',
-        () async {
-          final vPost1 = generateDummyVPost(postId: 1);
-          final vPost2 = generateDummyVPost(postId: 2);
-          final vPost3 = generateDummyVPost(postId: 3);
-          final vPostList = VPostList([vPost1, vPost2, vPost3]);
-          when(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
-            ),
-          ).thenAnswer((_) async => vPostList);
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .latestPostList,
-            isEmpty,
-          );
-          verifyNever(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
-            ),
-          );
-          await container
-              .read(suiteUserNotifierProvider.notifier)
-              .fetchNextForLatestPosts();
-          verify(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
-            ),
-          );
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .latestPostList,
-            vPostList,
-          );
-        },
-      );
+      test('SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること', () async {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 2);
+        final vPost3 = generateDummyVPost(postId: 3);
+        final vPostList = VPostList([vPost1, vPost2, vPost3]);
+        when(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
+          ),
+        ).thenAnswer((_) async => vPostList);
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.latestPostList,
+          isEmpty,
+        );
+        verifyNever(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
+          ),
+        );
+        await container.read(suiteUserNotifierProvider.notifier).fetchNextForLatestPosts();
+        verify(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            sincePostId: suiteUser.vUserDetail.latestPostList.maxPostId,
+          ),
+        );
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.latestPostList,
+          vPostList,
+        );
+      });
     });
   });
 
@@ -192,10 +243,8 @@ void main() {
 
     setUp(() async {
       when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => suiteUser);
-      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUser);
-      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId))
-          .thenAnswer((_) async => vUserDetail);
+      when(mockFindUserUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(suiteUser.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
       container = createContainer();
       final result = await container.read(suiteUserNotifierProvider.future);
       expect(result, suiteUser);
@@ -207,52 +256,39 @@ void main() {
     });
 
     group('正常系', () {
-      test(
-        'SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること',
-        () async {
-          final vPost1 = generateDummyVPost(postId: 1);
-          final vPost2 = generateDummyVPost(postId: 2);
-          final vPost3 = generateDummyVPost(postId: 3);
-          final vPostList = VPostList([vPost1, vPost2, vPost3]);
-          when(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
-            ),
-          ).thenAnswer((_) async => vPostList);
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .latestPostList,
-            isEmpty,
-          );
-          verifyNever(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
-            ),
-          );
-          await container
-              .read(suiteUserNotifierProvider.notifier)
-              .fetchNextForLatestPosts();
-          verify(
-            mockFetchUserPostUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
-            ),
-          );
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .latestPostList,
-            vPostList,
-          );
-        },
-      );
+      test('SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること', () async {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 2);
+        final vPost3 = generateDummyVPost(postId: 3);
+        final vPostList = VPostList([vPost1, vPost2, vPost3]);
+        when(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
+          ),
+        ).thenAnswer((_) async => vPostList);
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.latestPostList,
+          isEmpty,
+        );
+        verifyNever(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
+          ),
+        );
+        await container.read(suiteUserNotifierProvider.notifier).fetchNextForLatestPosts();
+        verify(
+          mockFetchUserPostUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            maxPostId: suiteUser.vUserDetail.latestPostList.minPostId,
+          ),
+        );
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.latestPostList,
+          vPostList,
+        );
+      });
     });
   });
 
@@ -271,10 +307,8 @@ void main() {
         ),
       );
       when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => su);
-      when(mockFindUserUseCase.execute(su.vUserDetail.userId))
-          .thenAnswer((_) async => vUser);
-      when(mockFindUserDetailUseCase.execute(su.vUserDetail.userId))
-          .thenAnswer((_) async => vUserDetail);
+      when(mockFindUserUseCase.execute(su.vUserDetail.userId)).thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(su.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
       container = createContainer();
       final result = await container.read(suiteUserNotifierProvider.future);
       expect(result, su);
@@ -286,72 +320,59 @@ void main() {
     });
 
     group('正常系', () {
-      test(
-        'SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること',
-        () async {
-          final vPost1 = generateDummyVPost(postId: 1);
-          final vPost2 = generateDummyVPost(postId: 2);
-          final vPost3 = generateDummyVPost(postId: 3);
-          final vPostList = VPostList([vPost1, vPost2, vPost3]);
-          final tUserPostFavoriteList = TUserPostFavoriteList(
-            [
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 1,
-              ),
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 2,
-              ),
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 3,
-              ),
-            ],
-          );
-          final vPostWithFavoriteList = VPostWithFavoriteList.by(
-            vPostList,
-            tUserPostFavoriteList,
-          );
-          when(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              latestAt: vPost.createdAt,
+      test('SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること', () async {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 2);
+        final vPost3 = generateDummyVPost(postId: 3);
+        final vPostList = VPostList([vPost1, vPost2, vPost3]);
+        final tUserPostFavoriteList = TUserPostFavoriteList(
+          [
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 1,
             ),
-          ).thenAnswer((_) async => vPostWithFavoriteList);
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .favoritePostList,
-            VPostList([vPost]),
-          );
-          verifyNever(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              latestAt: vPost.createdAt,
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 2,
             ),
-          );
-          await container
-              .read(suiteUserNotifierProvider.notifier)
-              .fetchNextForFavoritePosts();
-          verify(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              latestAt: vPost.createdAt,
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 3,
             ),
-          );
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .favoritePostList,
-            VPostList([
-              vPost,
-              ...vPostList.vPosts,
-            ]),
-          );
-        },
-      );
+          ],
+        );
+        final vPostWithFavoriteList = VPostWithFavoriteList.by(
+          vPostList,
+          tUserPostFavoriteList,
+        );
+        when(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            latestAt: vPost.createdAt,
+          ),
+        ).thenAnswer((_) async => vPostWithFavoriteList);
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.favoritePostList,
+          VPostList([vPost]),
+        );
+        verifyNever(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            latestAt: vPost.createdAt,
+          ),
+        );
+        await container.read(suiteUserNotifierProvider.notifier).fetchNextForFavoritePosts();
+        verify(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            latestAt: vPost.createdAt,
+          ),
+        );
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.favoritePostList,
+          VPostList([
+            vPost,
+            ...vPostList.vPosts,
+          ]),
+        );
+      });
     });
   });
 
@@ -370,10 +391,8 @@ void main() {
         ),
       );
       when(mockSuiteUserUseCase.execute()).thenAnswer((_) async => su);
-      when(mockFindUserUseCase.execute(su.vUserDetail.userId))
-          .thenAnswer((_) async => vUser);
-      when(mockFindUserDetailUseCase.execute(su.vUserDetail.userId))
-          .thenAnswer((_) async => vUserDetail);
+      when(mockFindUserUseCase.execute(su.vUserDetail.userId)).thenAnswer((_) async => vUser);
+      when(mockFindUserDetailUseCase.execute(su.vUserDetail.userId)).thenAnswer((_) async => vUserDetail);
       container = createContainer();
       final result = await container.read(suiteUserNotifierProvider.future);
       expect(result, su);
@@ -385,72 +404,59 @@ void main() {
     });
 
     group('正常系', () {
-      test(
-        'SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること',
-        () async {
-          final vPost1 = generateDummyVPost(postId: 1);
-          final vPost2 = generateDummyVPost(postId: 2);
-          final vPost3 = generateDummyVPost(postId: 3);
-          final vPostList = VPostList([vPost1, vPost2, vPost3]);
-          final tUserPostFavoriteList = TUserPostFavoriteList(
-            [
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 1,
-              ),
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 2,
-              ),
-              generateDummyTUserPostFavorite().copyWith(
-                postId: 3,
-              ),
-            ],
-          );
-          final vPostWithFavoriteList = VPostWithFavoriteList.by(
-            vPostList,
-            tUserPostFavoriteList,
-          );
-          when(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              oldestAt: vPost.createdAt,
+      test('SuiteUser.VUserDetail.latestPosts に、新しい VPost が追加されていること', () async {
+        final vPost1 = generateDummyVPost(postId: 1);
+        final vPost2 = generateDummyVPost(postId: 2);
+        final vPost3 = generateDummyVPost(postId: 3);
+        final vPostList = VPostList([vPost1, vPost2, vPost3]);
+        final tUserPostFavoriteList = TUserPostFavoriteList(
+          [
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 1,
             ),
-          ).thenAnswer((_) async => vPostWithFavoriteList);
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .favoritePostList,
-            VPostList([vPost]),
-          );
-          verifyNever(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              oldestAt: vPost.createdAt,
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 2,
             ),
-          );
-          await container
-              .read(suiteUserNotifierProvider.notifier)
-              .fetchPreviousForFavoritePosts();
-          verify(
-            mockFetchUserPostFavoriteUseCase.execute(
-              userId: suiteUser.vUserDetail.userId,
-              oldestAt: vPost.createdAt,
+            generateDummyTUserPostFavorite().copyWith(
+              postId: 3,
             ),
-          );
-          expect(
-            container
-                .read(suiteUserNotifierProvider)
-                .requireValue
-                .vUserDetail
-                .favoritePostList,
-            VPostList([
-              vPost,
-              ...vPostList.vPosts,
-            ]),
-          );
-        },
-      );
+          ],
+        );
+        final vPostWithFavoriteList = VPostWithFavoriteList.by(
+          vPostList,
+          tUserPostFavoriteList,
+        );
+        when(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            oldestAt: vPost.createdAt,
+          ),
+        ).thenAnswer((_) async => vPostWithFavoriteList);
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.favoritePostList,
+          VPostList([vPost]),
+        );
+        verifyNever(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            oldestAt: vPost.createdAt,
+          ),
+        );
+        await container.read(suiteUserNotifierProvider.notifier).fetchPreviousForFavoritePosts();
+        verify(
+          mockFetchUserPostFavoriteUseCase.execute(
+            userId: suiteUser.vUserDetail.userId,
+            oldestAt: vPost.createdAt,
+          ),
+        );
+        expect(
+          container.read(suiteUserNotifierProvider).requireValue.vUserDetail.favoritePostList,
+          VPostList([
+            vPost,
+            ...vPostList.vPosts,
+          ]),
+        );
+      });
     });
   });
 }

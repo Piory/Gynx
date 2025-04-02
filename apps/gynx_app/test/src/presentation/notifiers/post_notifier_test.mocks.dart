@@ -34,21 +34,26 @@ class _FakeVPost_0 extends _i1.SmartFake implements _i2.VPost {
 class MockFavoritePostUseCase extends _i1.Mock
     implements _i3.FavoritePostUseCase {
   @override
-  _i4.Future<_i2.VPost> execute({required int? postId}) =>
+  _i4.Future<({bool isDeleted, _i2.VPost vPost})> execute({
+    required int? postId,
+  }) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [], {#postId: postId}),
-            returnValue: _i4.Future<_i2.VPost>.value(
-              _FakeVPost_0(
+            returnValue: _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
+              isDeleted: false,
+              vPost: _FakeVPost_0(
                 this,
                 Invocation.method(#execute, [], {#postId: postId}),
               ),
-            ),
-            returnValueForMissingStub: _i4.Future<_i2.VPost>.value(
-              _FakeVPost_0(
-                this,
-                Invocation.method(#execute, [], {#postId: postId}),
-              ),
-            ),
+            )),
+            returnValueForMissingStub:
+                _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
+                  isDeleted: false,
+                  vPost: _FakeVPost_0(
+                    this,
+                    Invocation.method(#execute, [], {#postId: postId}),
+                  ),
+                )),
           )
-          as _i4.Future<_i2.VPost>);
+          as _i4.Future<({bool isDeleted, _i2.VPost vPost})>);
 }

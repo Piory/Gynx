@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:faker/faker.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gynx_app/src/domain/entities/v_post.dart';
+import 'package:gynx_app/src/domain/models/suite_user.dart';
 import 'package:gynx_app/src/domain/usecases/favorite_post_usecase.dart';
 import 'package:gynx_app/src/presentation/notifiers/post_map_notifier.dart';
 import 'package:gynx_app/src/presentation/notifiers/post_notifier.dart';
+import 'package:gynx_app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -19,6 +24,26 @@ class FakePostMapNotifier extends PostMapNotifier {
 
   @override
   Map<int, VPost> build() => _vPostMap;
+}
+
+class FakeSuiteUserNotifier extends SuiteUserNotifier {
+  FakeSuiteUserNotifier({
+    required ValueSetter<VPost> addFavoritePostCallback,
+    required ValueSetter<int> removeFavoritePostByPostIdCallback,
+  })  : _addFavoritePostCallback = addFavoritePostCallback,
+        _removeFavoritePostByPostIdCallback = removeFavoritePostByPostIdCallback;
+
+  final ValueSetter<VPost> _addFavoritePostCallback;
+  final ValueSetter<int> _removeFavoritePostByPostIdCallback;
+
+  @override
+  FutureOr<SuiteUser> build() => generateDummySuiteUser();
+
+  @override
+  void addFavoritePost(VPost vPost) => _addFavoritePostCallback(vPost);
+
+  @override
+  void removeFavoritePostByPostId(int postId) => _removeFavoritePostByPostIdCallback(postId);
 }
 
 @GenerateNiceMocks([
@@ -42,32 +67,68 @@ void main() {
 
   group('#toggleFavorite', () {
     group('正常系', () {
-      test('渡された postId が FavoritePostUseCase#execute に渡されていること', () async {
+      test('渡された postId が FavoritePostUseCase#execute に渡され、isDeleted が false の場合は、SuiteUserNotifier#addFavoritePost が呼ばれること', () async {
         final afterVPost = vPost.copyWith(
           isFavorited: !vPost.isFavorited,
           favoriteCount: vPost.favoriteCount + 1,
         );
-        when(mockFavoritePostUseCase.execute(postId: postId)).thenAnswer((_) async => afterVPost);
+        when(mockFavoritePostUseCase.execute(postId: postId)).thenAnswer((_) async => (
+              vPost: afterVPost,
+              isDeleted: false,
+            ));
+        var addFavoritePostCallCount = 0;
+        final fakeSuiteUserNotifier = FakeSuiteUserNotifier(
+          addFavoritePostCallback: (vPost) {
+            addFavoritePostCallCount++;
+            expect(vPost, afterVPost);
+          },
+          removeFavoritePostByPostIdCallback: (_) => fail('removeFavoritePostByPostIdCallback should not be called'),
+        );
         final container = createContainer(
           overrides: [
-            postMapNotifierProvider.overrideWith(
-              () => FakePostMapNotifier({
-                postId: vPost,
-              }),
-            ),
+            suiteUserNotifierProvider.overrideWith(() => fakeSuiteUserNotifier),
+            postMapNotifierProvider.overrideWith(() => FakePostMapNotifier({postId: vPost}))
           ],
         );
         expect(container.read(postNotifierProvider(postId)), vPost);
         verifyNever(mockFavoritePostUseCase.execute(postId: postId));
+        expect(addFavoritePostCallCount, 0);
         await container.read(postNotifierProvider(postId).notifier).toggleFavorite();
         verify(mockFavoritePostUseCase.execute(postId: postId));
-        expect(
-          container.read(postMapNotifierProvider),
-          {
-            postId: afterVPost,
+        expect(addFavoritePostCallCount, 1);
+        expect(container.read(postMapNotifierProvider), {postId: afterVPost});
+      });
+
+      test('渡された postId が FavoritePostUseCase#execute に渡され、isDeleted が true の場合は、SuiteUserNotifier#removeFavoritePostByPostId が呼ばれること', () async {
+        final afterVPost = vPost.copyWith(
+          isFavorited: !vPost.isFavorited,
+          favoriteCount: vPost.favoriteCount - 1,
+        );
+        when(mockFavoritePostUseCase.execute(postId: postId)).thenAnswer((_) async => (
+              vPost: afterVPost,
+              isDeleted: true,
+            ));
+        var removeFavoritePostByPostIdCallCount = 0;
+        final fakeSuiteUserNotifier = FakeSuiteUserNotifier(
+          addFavoritePostCallback: (_) => fail('addFavoritePostCallback should not be called'),
+          removeFavoritePostByPostIdCallback: (postId) {
+            removeFavoritePostByPostIdCallCount++;
+            expect(postId, afterVPost.postId);
           },
         );
-        verifyNoMoreInteractions(mockFavoritePostUseCase);
+        final container = createContainer(
+          overrides: [
+            suiteUserNotifierProvider.overrideWith(() => fakeSuiteUserNotifier),
+            postMapNotifierProvider.overrideWith(() => FakePostMapNotifier({postId: vPost}))
+          ],
+        );
+        expect(container.read(postNotifierProvider(postId)), vPost);
+        verifyNever(mockFavoritePostUseCase.execute(postId: postId));
+        expect(removeFavoritePostByPostIdCallCount, 0);
+        await container.read(postNotifierProvider(postId).notifier).toggleFavorite();
+        verify(mockFavoritePostUseCase.execute(postId: postId));
+        expect(removeFavoritePostByPostIdCallCount, 1);
+        expect(container.read(postMapNotifierProvider), {postId: afterVPost});
       });
     });
 
@@ -76,24 +137,14 @@ void main() {
         when(mockFavoritePostUseCase.execute(postId: postId)).thenThrow(Exception('test error'));
         final container = createContainer(
           overrides: [
-            postMapNotifierProvider.overrideWith(
-              () => FakePostMapNotifier({
-                postId: vPost,
-              }),
-            ),
+            postMapNotifierProvider.overrideWith(() => FakePostMapNotifier({postId: vPost}))
           ],
         );
         expect(container.read(postNotifierProvider(postId)), vPost);
         verifyNever(mockFavoritePostUseCase.execute(postId: postId));
         await container.read(postNotifierProvider(postId).notifier).toggleFavorite();
         verify(mockFavoritePostUseCase.execute(postId: postId));
-        expect(
-          container.read(postMapNotifierProvider),
-          {
-            postId: vPost,
-          },
-        );
-        verifyNoMoreInteractions(mockFavoritePostUseCase);
+        expect(container.read(postMapNotifierProvider), {postId: vPost});
       });
     });
   });

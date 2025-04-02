@@ -270,6 +270,18 @@ class MockSuiteUserNotifier extends _i1.Mock implements _i12.SuiteUserNotifier {
   );
 
   @override
+  void addFavoritePost(_i2.VPost? vPost) => super.noSuchMethod(
+    Invocation.method(#addFavoritePost, [vPost]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeFavoritePostByPostId(int? postId) => super.noSuchMethod(
+    Invocation.method(#removeFavoritePostByPostId, [postId]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i9.Future<void> fetchNextForLatestPosts() =>
       (super.noSuchMethod(
             Invocation.method(#fetchNextForLatestPosts, []),

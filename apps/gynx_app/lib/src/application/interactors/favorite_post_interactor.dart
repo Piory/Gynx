@@ -21,22 +21,28 @@ class FavoritePostInteractor implements FavoritePostUseCase {
   final VPostRepository _vPostRepository;
 
   @override
-  Future<VPost> execute({
+  Future<({VPost vPost, bool isDeleted})> execute({
     required int postId,
   }) async {
     final userId = _authRepository.currentUser?.id;
     if (userId == null) {
       throw const UserNotSignedInException();
     }
+    late final bool isDeleted;
     final tUserPostFavorite = await _tUserPostFavoriteRepository.findByUniqueKey(userId, postId);
     if (tUserPostFavorite == null) {
       await _tUserPostFavoriteRepository.create(
         userId: userId,
         postId: postId,
       );
+      isDeleted = false;
     } else {
       await _tUserPostFavoriteRepository.deleteByUniqueKey(userId, postId);
+      isDeleted = true;
     }
-    return _vPostRepository.findByPostId(postId);
+    return (
+      vPost: await _vPostRepository.findByPostId(postId),
+      isDeleted: isDeleted,
+    );
   }
 }

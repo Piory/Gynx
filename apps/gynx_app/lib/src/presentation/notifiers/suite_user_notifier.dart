@@ -37,6 +37,28 @@ class SuiteUserNotifier extends _$SuiteUserNotifier {
     );
   }
 
+  void addFavoritePost(VPost vPost) {
+    final vUserDetail = state.requireValue.vUserDetail;
+    state = AsyncData(
+      state.requireValue.copyWith(
+        vUserDetail: vUserDetail.copyWith(
+          favoritePosts: vUserDetail.favoritePostList.add(vPost).vPosts,
+        ),
+      ),
+    );
+  }
+
+  void removeFavoritePostByPostId(int postId) {
+    final vUserDetail = state.requireValue.vUserDetail;
+    state = AsyncData(
+      state.requireValue.copyWith(
+        vUserDetail: vUserDetail.copyWith(
+          favoritePosts: vUserDetail.favoritePostList.removeByPostId(postId).vPosts,
+        ),
+      ),
+    );
+  }
+
   Future<void> fetchNextForLatestPosts() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
@@ -78,19 +100,14 @@ class SuiteUserNotifier extends _$SuiteUserNotifier {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final vUserDetail = state.requireValue.vUserDetail;
-      final favoritePostList =
-          await GetIt.I<FetchUserPostFavoriteUseCase>().execute(
+      final favoritePostList = await GetIt.I<FetchUserPostFavoriteUseCase>().execute(
         userId: vUserDetail.userId,
         latestAt: vUserDetail.favoritePostList.latestPost.createdAt,
       );
-      ref
-          .read(postMapNotifierProvider.notifier)
-          .putByList(favoritePostList.vPostList);
+      ref.read(postMapNotifierProvider.notifier).putByList(favoritePostList.vPostList);
       return state.requireValue.copyWith(
         vUserDetail: vUserDetail.copyWith(
-          favoritePosts: vUserDetail.favoritePostList
-              .addAll(favoritePostList.vPostList)
-              .vPosts,
+          favoritePosts: vUserDetail.favoritePostList.addAll(favoritePostList.vPostList).vPosts,
         ),
       );
     });
@@ -101,20 +118,15 @@ class SuiteUserNotifier extends _$SuiteUserNotifier {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final vUserDetail = state.requireValue.vUserDetail;
-      final favoritePostList =
-          await GetIt.I<FetchUserPostFavoriteUseCase>().execute(
+      final favoritePostList = await GetIt.I<FetchUserPostFavoriteUseCase>().execute(
         userId: vUserDetail.userId,
         oldestAt: vUserDetail.favoritePostList.oldestPost.createdAt,
       );
       isNoMoreData = favoritePostList.isEmpty;
-      ref
-          .read(postMapNotifierProvider.notifier)
-          .putByList(favoritePostList.vPostList);
+      ref.read(postMapNotifierProvider.notifier).putByList(favoritePostList.vPostList);
       return state.requireValue.copyWith(
         vUserDetail: vUserDetail.copyWith(
-          favoritePosts: vUserDetail.favoritePostList
-              .addAll(favoritePostList.vPostList)
-              .vPosts,
+          favoritePosts: vUserDetail.favoritePostList.addAll(favoritePostList.vPostList).vPosts,
         ),
       );
     });
