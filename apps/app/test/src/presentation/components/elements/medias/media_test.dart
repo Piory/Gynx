@@ -1,0 +1,99 @@
+import 'package:app/src/presentation/components/elements/medias/media.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  const url = 'https://example.com/image.jpg';
+
+  group('Media', () {
+    Future<void> pumpWidget({
+      required WidgetTester tester,
+      required String Function(String) heroTagGenerator,
+      required ValueSetter<String>? onTap,
+      required ValueSetter<String>? onClosed,
+    }) async {
+      await tester.pumpWidget(
+        ProviderScope(
+          child: MaterialApp(
+            home: Scaffold(
+              body: Media(
+                borderRadius: BorderRadius.circular(8),
+                fit: BoxFit.cover,
+                url: url,
+                heroTagGenerator: heroTagGenerator,
+                onTap: onTap,
+                onClosed: onClosed,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    //
+    group('正常系', () {
+      testWidgets('heroTagGenerator で返した値が、Hero の tag に指定されていること', (tester) async {
+        const heroTag = 'hero_tag';
+        await pumpWidget(
+          tester: tester,
+          heroTagGenerator: (_) => heroTag,
+          onTap: null,
+          onClosed: null,
+        );
+        final hero = tester.widget<Hero>(find.byType(Hero));
+        expect(hero.tag, heroTag);
+      });
+
+      testWidgets('onTap が設定されていると、画像をタップした時に、onTap が呼ばれること', (tester) async {
+        var calledCount = 0;
+        await pumpWidget(
+          tester: tester,
+          heroTagGenerator: (url) => url,
+          onTap: (actual) {
+            calledCount++;
+            expect(actual, url);
+          },
+          onClosed: null,
+        );
+
+        expect(calledCount, 0);
+        await tester.tap(find.byType(DecoratedBox));
+        expect(calledCount, 1);
+        expect(find.byIcon(Icons.close), findsNothing);
+      });
+
+      testWidgets('onTap が設定しない場合は、タップしてもエラーが発生しないこと', (tester) async {
+        await pumpWidget(
+          tester: tester,
+          heroTagGenerator: (url) => url,
+          onTap: null,
+          onClosed: null,
+        );
+
+        await tester.tap(find.byType(DecoratedBox));
+        expect(find.byIcon(Icons.close), findsNothing);
+      });
+
+      testWidgets(
+        'onClosed が設定されていると、閉じるボタンをタップした時に、onClosed が呼ばれること',
+        (tester) async {
+          var calledCount = 0;
+          await pumpWidget(
+            tester: tester,
+            heroTagGenerator: (url) => url,
+            onTap: null,
+            onClosed: (actual) {
+              calledCount++;
+              expect(actual, url);
+            },
+          );
+
+          expect(calledCount, 0);
+          await tester.tap(find.byIcon(Icons.close));
+          expect(calledCount, 1);
+        },
+      );
+    });
+  });
+}

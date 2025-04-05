@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "890730106172",
+    "project_id": "gynx-dev",
+    "storage_bucket": "gynx-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890730106172:android:e5e23dbec9ba0cfe2d2239",
+        "android_client_info": {
+          "package_name": "com.piory.gynx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890730106172-j63c1dp5ihkqsiu4ivckr0a7e44qtjrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaTPRnM-hEMpCVZr01bnh2izwQbZR4sjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890730106172-j63c1dp5ihkqsiu4ivckr0a7e44qtjrs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "890730106172-j1o2sn5b23rjsurpeptgi9co33kusr7a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.piory.gynx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

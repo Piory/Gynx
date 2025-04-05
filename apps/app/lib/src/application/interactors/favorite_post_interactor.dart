@@ -1,0 +1,48 @@
+import 'dart:async';
+
+import 'package:app/src/domain/entities/v_post.dart';
+import 'package:app/src/domain/exceptions/user_not_signed_in_exception.dart';
+import 'package:app/src/domain/repositories/auth_repository.dart';
+import 'package:app/src/domain/repositories/t_user_post_favorite_repository.dart';
+import 'package:app/src/domain/repositories/v_post_repository.dart';
+import 'package:app/src/domain/usecases/favorite_post_usecase.dart';
+import 'package:injectable/injectable.dart';
+
+@LazySingleton(as: FavoritePostUseCase)
+class FavoritePostInteractor implements FavoritePostUseCase {
+  const FavoritePostInteractor(
+    this._authRepository,
+    this._tUserPostFavoriteRepository,
+    this._vPostRepository,
+  );
+
+  final AuthRepository _authRepository;
+  final TUserPostFavoriteRepository _tUserPostFavoriteRepository;
+  final VPostRepository _vPostRepository;
+
+  @override
+  Future<({VPost vPost, bool isDeleted})> execute({
+    required int postId,
+  }) async {
+    final userId = _authRepository.currentUser?.id;
+    if (userId == null) {
+      throw const UserNotSignedInException();
+    }
+    late final bool isDeleted;
+    final tUserPostFavorite = await _tUserPostFavoriteRepository.findByUniqueKey(userId, postId);
+    if (tUserPostFavorite == null) {
+      await _tUserPostFavoriteRepository.create(
+        userId: userId,
+        postId: postId,
+      );
+      isDeleted = false;
+    } else {
+      await _tUserPostFavoriteRepository.deleteByUniqueKey(userId, postId);
+      isDeleted = true;
+    }
+    return (
+      vPost: await _vPostRepository.findByPostId(postId),
+      isDeleted: isDeleted,
+    );
+  }
+}
