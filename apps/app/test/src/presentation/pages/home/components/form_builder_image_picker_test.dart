@@ -7,9 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:locales/locales.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

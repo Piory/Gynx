@@ -12,7 +12,7 @@ import 'package:app/src/presentation/navigation/page_type.dart' as _i9;
 import 'package:app/src/presentation/pages/profile/profile_controller.dart'
     as _i3;
 import 'package:flutter/material.dart' as _i8;
-import 'package:gynx_l10n/gynx_l10n.dart' as _i5;
+import 'package:locales/locales.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

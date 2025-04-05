@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

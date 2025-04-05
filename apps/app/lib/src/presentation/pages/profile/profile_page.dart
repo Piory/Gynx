@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
+import 'package:locales/locales.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({

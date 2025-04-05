@@ -10,7 +10,7 @@ import 'package:app/src/presentation/navigation/page_type.dart' as _i7;
 import 'package:app/src/presentation/pages/sign_in/sign_in_controller.dart'
     as _i2;
 import 'package:flutter/material.dart' as _i6;
-import 'package:gynx_l10n/gynx_l10n.dart' as _i4;
+import 'package:locales/locales.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

@@ -8,7 +8,7 @@ import 'package:config/config.dart';
 import 'package:flutter/material.dart' hide Dialog;
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({

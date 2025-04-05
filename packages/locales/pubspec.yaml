@@ -1,4 +1,4 @@
-name: gynx_l10n
+name: locales
 version: 0.0.0
 publish_to: none
 environment:

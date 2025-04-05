@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:locales/locales.dart';
 
 class FormBuilderImagePicker extends StatelessWidget {
   const FormBuilderImagePicker({

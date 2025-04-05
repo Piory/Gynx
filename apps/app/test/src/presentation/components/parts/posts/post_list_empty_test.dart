@@ -2,8 +2,8 @@ import 'package:app/src/presentation/components/parts/posts/post_list_empty.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
+import 'package:locales/locales.dart';
 
 void main() {
   final l10nJa = L10nJa();

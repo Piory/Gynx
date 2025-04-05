@@ -11,8 +11,8 @@ import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:locales/locales.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({

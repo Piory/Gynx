@@ -4,9 +4,9 @@ publish_to: none
 environment:
   sdk: ^3.6.0
 dev_dependencies:
-  faker: 2.2.0
   config:
     path: ../../packages/config
+  faker: 2.2.0
   lints: 5.1.1
   pedantic_mono: any
   supabase: 2.6.3

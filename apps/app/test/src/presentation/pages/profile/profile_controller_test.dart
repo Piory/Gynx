@@ -3,7 +3,7 @@ import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/dialogs/notify.dart';
 import 'package:app/src/presentation/pages/profile/profile_controller.dart';
 import 'package:faker/faker.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

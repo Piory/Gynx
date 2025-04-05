@@ -7,8 +7,8 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
+import 'package:locales/locales.dart';
 
 import '../../../../../data/dummy_data_generator.dart';
 

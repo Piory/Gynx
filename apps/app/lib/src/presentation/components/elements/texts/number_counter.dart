@@ -1,7 +1,7 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:intl/intl.dart';
+import 'package:locales/locales.dart';
 
 class NumberCounter extends StatelessWidget {
   const NumberCounter({

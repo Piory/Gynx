@@ -11,8 +11,8 @@ import 'package:app/src/presentation/pages/edit_profile/edit_profile_controller.
     as _i3;
 import 'package:flutter/material.dart' as _i5;
 import 'package:flutter_riverpod/flutter_riverpod.dart' as _i7;
-import 'package:gynx_l10n/gynx_l10n.dart' as _i6;
 import 'package:image_picker/image_picker.dart' as _i8;
+import 'package:locales/locales.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

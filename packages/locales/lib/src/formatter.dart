@@ -1,5 +1,5 @@
-import 'package:gynx_l10n/src/l10n.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:locales/src/l10n.dart';
 
 class Formatter {
   static String fromNumber(L10n l10n, int number) {

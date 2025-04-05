@@ -6,8 +6,8 @@ import 'package:app/src/domain/usecases/sign_in_with_oauth_usecase.dart';
 import 'package:app/src/presentation/dialogs/alert.dart';
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/dialogs/notify.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:injectable/injectable.dart';
+import 'package:locales/locales.dart';
 
 @lazySingleton
 class SignInController {

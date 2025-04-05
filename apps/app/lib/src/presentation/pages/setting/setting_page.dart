@@ -1,7 +1,7 @@
 import 'package:app/src/presentation/pages/setting/setting_controller.dart';
 import 'package:flutter/material.dart' hide Dialog;
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({

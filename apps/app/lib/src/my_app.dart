@@ -10,9 +10,9 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:locales/locales.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 // ignore: avoid_classes_with_only_static_members

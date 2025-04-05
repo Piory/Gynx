@@ -7,9 +7,9 @@ import 'package:app/src/presentation/navigation/page_navigator.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:locales/locales.dart';
 
 @lazySingleton
 class EditProfileController {

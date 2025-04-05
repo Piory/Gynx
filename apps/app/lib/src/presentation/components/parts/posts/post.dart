@@ -12,9 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:locales/locales.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
 class Post extends ConsumerWidget {

@@ -1,7 +1,7 @@
 import 'package:app/src/presentation/pages/sign_in/components/oauth_button.dart';
 import 'package:flutter/material.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:locales/locales.dart';
 
 class AppleOAuthButton extends StatelessWidget {
   const AppleOAuthButton({

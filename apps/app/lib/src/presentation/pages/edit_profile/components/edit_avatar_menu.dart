@@ -4,9 +4,9 @@ import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:locales/locales.dart';
 
 class EditAvatarMenu extends StatelessWidget {
   const EditAvatarMenu({

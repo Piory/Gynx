@@ -2,7 +2,7 @@ import 'package:app/src/presentation/components/elements/lists/refreshable.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide Refreshable;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 
 void main() {
   const widget = SizedBox(

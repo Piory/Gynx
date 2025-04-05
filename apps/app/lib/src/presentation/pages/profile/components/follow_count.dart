@@ -2,7 +2,7 @@ import 'package:app/src/presentation/components/elements/shimmers/shimmer.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 
 class FollowCount extends ConsumerWidget {
   const FollowCount({

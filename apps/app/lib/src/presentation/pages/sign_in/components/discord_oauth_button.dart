@@ -1,7 +1,7 @@
 import 'package:app/src/generated/assets/assets.gen.dart';
 import 'package:app/src/presentation/pages/sign_in/components/oauth_button.dart';
 import 'package:flutter/material.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
+import 'package:locales/locales.dart';
 
 class DiscordOAuthButton extends StatelessWidget {
   const DiscordOAuthButton({

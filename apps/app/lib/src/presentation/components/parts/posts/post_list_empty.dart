@@ -1,8 +1,8 @@
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
+import 'package:locales/locales.dart';
 
 class PostListEmpty extends StatelessWidget {
   const PostListEmpty({

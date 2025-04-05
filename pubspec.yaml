@@ -14,17 +14,18 @@ workspace:
   - apps/app
   - packages/components
   - packages/config
-  - packages/gynx_l10n
+  - packages/locales
   - supabase/rls
 melos:
   scripts:
     pubspec-sort: melos exec -- "dart run pubspec_dependency_sorter"
-    gen: melos exec --ignore='gynx_l10n' --ignore='rls' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
+    gen: melos exec --ignore='locales' --ignore='rls' --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
     gen-config: melos exec --scope='config' -- "dart run build_runner build --delete-conflicting-outputs"
+    gen-l10n: melos exec --scope='locales' -- flutter gen-l10n
     fix: melos exec --fail-fast -- "dart fix --apply ."
-    format: melos format --ignore='gynx_l10n'
+    format: melos format --ignore='locales'
     analyze: melos exec --fail-fast -- "dart analyze ."
-    test: melos exec --ignore='components' --ignore='config' --ignore='gynx_l10n' --ignore='rls' --fail-fast -- "flutter test"
+    test: melos exec --ignore='components' --ignore='config' --ignore='locales' --ignore='rls' --fail-fast -- "flutter test"
     rls-test: melos exec --scope='rls' --fail-fast -- "flutter test"
     supabase-start: supabase start
     supabase-stop: supabase stop
