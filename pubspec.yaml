@@ -12,7 +12,7 @@ dev_dependencies:
   riverpod_lint: ^2.6.5
 workspace:
   - apps/gynx_app
-  - packages/gynx_components
+  - packages/components
   - packages/gynx_constants
   - packages/gynx_l10n
   - supabase/rls
@@ -25,7 +25,7 @@ melos:
     fix: melos exec --fail-fast -- "dart fix --apply ."
     format: melos format --ignore='gynx_l10n'
     analyze: melos exec --fail-fast -- "dart analyze ."
-    test: melos exec --ignore='gynx_components' --ignore='gynx_constants' --ignore='gynx_l10n' --ignore='rls' --fail-fast -- "flutter test"
+    test: melos exec --ignore='components' --ignore='gynx_constants' --ignore='gynx_l10n' --ignore='rls' --fail-fast -- "flutter test"
     rls-test: melos exec --scope='rls' --fail-fast -- "flutter test"
     supabase-start: supabase start
     supabase-stop: supabase stop
