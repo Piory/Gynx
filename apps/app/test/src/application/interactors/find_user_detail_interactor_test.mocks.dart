@@ -6,7 +6,8 @@
 import 'dart:async' as _i4;
 
 import 'package:app/src/domain/entities/v_user_detail.dart' as _i2;
-import 'package:app/src/domain/repositories/v_user_detail_repository.dart' as _i3;
+import 'package:app/src/domain/repositories/v_user_detail_repository.dart'
+    as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -24,44 +25,50 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVUserDetail_0 extends _i1.SmartFake implements _i2.VUserDetail {
-  _FakeVUserDetail_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUserDetail_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [VUserDetailRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockVUserDetailRepository extends _i1.Mock implements _i3.VUserDetailRepository {
+class MockVUserDetailRepository extends _i1.Mock
+    implements _i3.VUserDetailRepository {
   @override
-  _i4.Future<_i2.VUserDetail> findByUserId(String? userId) => (super.noSuchMethod(
-        Invocation.method(#findByUserId, [userId]),
-        returnValue: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
+  _i4.Future<_i2.VUserDetail> findByUserId(String? userId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
-            Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-      ) as _i4.Future<_i2.VUserDetail>);
+            returnValue: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByUserId, [userId]),
+              ),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByUserId, [userId]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.VUserDetail>);
 
   @override
-  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#findByGynxId, [gynxId]),
-        returnValue: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
+  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByGynxId, [gynxId]),
-          ),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
-            Invocation.method(#findByGynxId, [gynxId]),
-          ),
-        ),
-      ) as _i4.Future<_i2.VUserDetail>);
+            returnValue: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByGynxId, [gynxId]),
+              ),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByGynxId, [gynxId]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.VUserDetail>);
 }

@@ -24,32 +24,36 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVPost_0 extends _i1.SmartFake implements _i2.VPost {
-  _FakeVPost_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVPost_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [FavoritePostUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFavoritePostUseCase extends _i1.Mock implements _i3.FavoritePostUseCase {
+class MockFavoritePostUseCase extends _i1.Mock
+    implements _i3.FavoritePostUseCase {
   @override
   _i4.Future<({bool isDeleted, _i2.VPost vPost})> execute({
     required int? postId,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#execute, [], {#postId: postId}),
-        returnValue: _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
-          isDeleted: false,
-          vPost: _FakeVPost_0(
-            this,
             Invocation.method(#execute, [], {#postId: postId}),
-          ),
-        )),
-        returnValueForMissingStub: _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
-          isDeleted: false,
-          vPost: _FakeVPost_0(
-            this,
-            Invocation.method(#execute, [], {#postId: postId}),
-          ),
-        )),
-      ) as _i4.Future<({bool isDeleted, _i2.VPost vPost})>);
+            returnValue: _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
+              isDeleted: false,
+              vPost: _FakeVPost_0(
+                this,
+                Invocation.method(#execute, [], {#postId: postId}),
+              ),
+            )),
+            returnValueForMissingStub:
+                _i4.Future<({bool isDeleted, _i2.VPost vPost})>.value((
+                  isDeleted: false,
+                  vPost: _FakeVPost_0(
+                    this,
+                    Invocation.method(#execute, [], {#postId: postId}),
+                  ),
+                )),
+          )
+          as _i4.Future<({bool isDeleted, _i2.VPost vPost})>);
 }

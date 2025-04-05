@@ -6,7 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:app/src/domain/enums/oauth_provider_type.dart' as _i4;
-import 'package:app/src/domain/usecases/sign_in_with_anonymous_usecase.dart' as _i5;
+import 'package:app/src/domain/usecases/sign_in_with_anonymous_usecase.dart'
+    as _i5;
 import 'package:app/src/domain/usecases/sign_in_with_oauth_usecase.dart' as _i2;
 import 'package:app/src/presentation/dialogs/alert.dart' as _i8;
 import 'package:app/src/presentation/dialogs/loading_dialog.dart' as _i6;
@@ -30,25 +31,31 @@ import 'package:mockito/mockito.dart' as _i1;
 /// A class which mocks [SignInWithOAuthUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInWithOAuthUseCase extends _i1.Mock implements _i2.SignInWithOAuthUseCase {
+class MockSignInWithOAuthUseCase extends _i1.Mock
+    implements _i2.SignInWithOAuthUseCase {
   @override
-  _i3.Future<void> execute(_i4.OAuthProviderType? oauthProviderType) => (super.noSuchMethod(
-        Invocation.method(#execute, [oauthProviderType]),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> execute(_i4.OAuthProviderType? oauthProviderType) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [oauthProviderType]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }
 
 /// A class which mocks [SignInWithAnonymousUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSignInWithAnonymousUseCase extends _i1.Mock implements _i5.SignInWithAnonymousUseCase {
+class MockSignInWithAnonymousUseCase extends _i1.Mock
+    implements _i5.SignInWithAnonymousUseCase {
   @override
-  _i3.Future<void> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }
 
 /// A class which mocks [LoadingDialog].
@@ -57,15 +64,15 @@ class MockSignInWithAnonymousUseCase extends _i1.Mock implements _i5.SignInWithA
 class MockLoadingDialog extends _i1.Mock implements _i6.LoadingDialog {
   @override
   void show() => super.noSuchMethod(
-        Invocation.method(#show, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#show, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void hide() => super.noSuchMethod(
-        Invocation.method(#hide, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#hide, []),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [Notify].
@@ -74,9 +81,9 @@ class MockLoadingDialog extends _i1.Mock implements _i6.LoadingDialog {
 class MockNotify extends _i1.Mock implements _i7.Notify {
   @override
   void showError({required String? message}) => super.noSuchMethod(
-        Invocation.method(#showError, [], {#message: message}),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#showError, [], {#message: message}),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [Alert].
@@ -84,11 +91,13 @@ class MockNotify extends _i1.Mock implements _i7.Notify {
 /// See the documentation for Mockito's code generation for more information.
 class MockAlert extends _i1.Mock implements _i8.Alert {
   @override
-  _i3.Future<void> showInfo({required String? title, required String? text}) => (super.noSuchMethod(
-        Invocation.method(#showInfo, [], {#title: title, #text: text}),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> showInfo({required String? title, required String? text}) =>
+      (super.noSuchMethod(
+            Invocation.method(#showInfo, [], {#title: title, #text: text}),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 
   @override
   _i3.Future<_i8.AlertResultType> showAlert({
@@ -98,19 +107,20 @@ class MockAlert extends _i1.Mock implements _i8.Alert {
     required String? rightButtonText,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#showAlert, [], {
-          #title: title,
-          #text: text,
-          #leftButtonText: leftButtonText,
-          #rightButtonText: rightButtonText,
-        }),
-        returnValue: _i3.Future<_i8.AlertResultType>.value(
-          _i8.AlertResultType.left,
-        ),
-        returnValueForMissingStub: _i3.Future<_i8.AlertResultType>.value(
-          _i8.AlertResultType.left,
-        ),
-      ) as _i3.Future<_i8.AlertResultType>);
+            Invocation.method(#showAlert, [], {
+              #title: title,
+              #text: text,
+              #leftButtonText: leftButtonText,
+              #rightButtonText: rightButtonText,
+            }),
+            returnValue: _i3.Future<_i8.AlertResultType>.value(
+              _i8.AlertResultType.left,
+            ),
+            returnValueForMissingStub: _i3.Future<_i8.AlertResultType>.value(
+              _i8.AlertResultType.left,
+            ),
+          )
+          as _i3.Future<_i8.AlertResultType>);
 
   @override
   _i3.Future<_i8.ActionSheetResultType> showActionSheet({
@@ -121,18 +131,20 @@ class MockAlert extends _i1.Mock implements _i8.Alert {
     required String? negativeButtonText,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#showActionSheet, [], {
-          #title: title,
-          #message: message,
-          #positiveButtonText: positiveButtonText,
-          #neutralButtonText: neutralButtonText,
-          #negativeButtonText: negativeButtonText,
-        }),
-        returnValue: _i3.Future<_i8.ActionSheetResultType>.value(
-          _i8.ActionSheetResultType.positive,
-        ),
-        returnValueForMissingStub: _i3.Future<_i8.ActionSheetResultType>.value(
-          _i8.ActionSheetResultType.positive,
-        ),
-      ) as _i3.Future<_i8.ActionSheetResultType>);
+            Invocation.method(#showActionSheet, [], {
+              #title: title,
+              #message: message,
+              #positiveButtonText: positiveButtonText,
+              #neutralButtonText: neutralButtonText,
+              #negativeButtonText: negativeButtonText,
+            }),
+            returnValue: _i3.Future<_i8.ActionSheetResultType>.value(
+              _i8.ActionSheetResultType.positive,
+            ),
+            returnValueForMissingStub:
+                _i3.Future<_i8.ActionSheetResultType>.value(
+                  _i8.ActionSheetResultType.positive,
+                ),
+          )
+          as _i3.Future<_i8.ActionSheetResultType>);
 }

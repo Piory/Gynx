@@ -1,9 +1,9 @@
 import 'package:app/src/presentation/components/elements/shimmers/shimmer.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 
 class SelfIntroduction extends ConsumerWidget {
   const SelfIntroduction({

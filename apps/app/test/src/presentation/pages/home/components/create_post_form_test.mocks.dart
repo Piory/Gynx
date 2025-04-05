@@ -13,12 +13,14 @@ import 'package:app/src/presentation/dialogs/loading_dialog.dart' as _i4;
 import 'package:app/src/presentation/navigation/page_navigator.dart' as _i5;
 import 'package:app/src/presentation/navigation/page_type.dart' as _i7;
 import 'package:app/src/presentation/notifiers/post_map_notifier.dart' as _i14;
-import 'package:app/src/presentation/notifiers/suite_user_notifier.dart' as _i15;
+import 'package:app/src/presentation/notifiers/suite_user_notifier.dart'
+    as _i15;
 import 'package:app/src/presentation/notifiers/timeline_notifier.dart' as _i16;
 import 'package:app/src/presentation/pages/home/home_controller.dart' as _i13;
 import 'package:flutter/material.dart' as _i6;
 import 'package:image_picker/image_picker.dart' as _i12;
-import 'package:image_picker_platform_interface/image_picker_platform_interface.dart' as _i2;
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart'
+    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;
 
@@ -37,15 +39,19 @@ import 'package:mockito/src/dummies.dart' as _i8;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeDateTime_0 extends _i1.SmartFake implements DateTime {
-  _FakeDateTime_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeDateTime_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
-class _FakeLostDataResponse_1 extends _i1.SmartFake implements _i2.LostDataResponse {
-  _FakeLostDataResponse_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeLostDataResponse_1 extends _i1.SmartFake
+    implements _i2.LostDataResponse {
+  _FakeLostDataResponse_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeSuiteUser_2 extends _i1.SmartFake implements _i3.SuiteUser {
-  _FakeSuiteUser_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LoadingDialog].
@@ -54,15 +60,15 @@ class _FakeSuiteUser_2 extends _i1.SmartFake implements _i3.SuiteUser {
 class MockLoadingDialog extends _i1.Mock implements _i4.LoadingDialog {
   @override
   void show() => super.noSuchMethod(
-        Invocation.method(#show, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#show, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void hide() => super.noSuchMethod(
-        Invocation.method(#hide, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#hide, []),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [PageNavigator].
@@ -70,7 +76,8 @@ class MockLoadingDialog extends _i1.Mock implements _i4.LoadingDialog {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
   @override
-  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -81,15 +88,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -97,15 +103,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -113,15 +118,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [XFile].
@@ -129,85 +133,100 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
 /// See the documentation for Mockito's code generation for more information.
 class MockXFile extends _i1.Mock implements _i2.XFile {
   @override
-  String get path => (super.noSuchMethod(
-        Invocation.getter(#path),
-        returnValue: _i8.dummyValue<String>(this, Invocation.getter(#path)),
-        returnValueForMissingStub: _i8.dummyValue<String>(
-          this,
-          Invocation.getter(#path),
-        ),
-      ) as String);
+  String get path =>
+      (super.noSuchMethod(
+            Invocation.getter(#path),
+            returnValue: _i8.dummyValue<String>(this, Invocation.getter(#path)),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#path),
+            ),
+          )
+          as String);
 
   @override
-  String get name => (super.noSuchMethod(
-        Invocation.getter(#name),
-        returnValue: _i8.dummyValue<String>(this, Invocation.getter(#name)),
-        returnValueForMissingStub: _i8.dummyValue<String>(
-          this,
-          Invocation.getter(#name),
-        ),
-      ) as String);
+  String get name =>
+      (super.noSuchMethod(
+            Invocation.getter(#name),
+            returnValue: _i8.dummyValue<String>(this, Invocation.getter(#name)),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#name),
+            ),
+          )
+          as String);
 
   @override
-  _i9.Future<void> saveTo(String? path) => (super.noSuchMethod(
-        Invocation.method(#saveTo, [path]),
-        returnValue: _i9.Future<void>.value(),
-        returnValueForMissingStub: _i9.Future<void>.value(),
-      ) as _i9.Future<void>);
+  _i9.Future<void> saveTo(String? path) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveTo, [path]),
+            returnValue: _i9.Future<void>.value(),
+            returnValueForMissingStub: _i9.Future<void>.value(),
+          )
+          as _i9.Future<void>);
 
   @override
-  _i9.Future<int> length() => (super.noSuchMethod(
-        Invocation.method(#length, []),
-        returnValue: _i9.Future<int>.value(0),
-        returnValueForMissingStub: _i9.Future<int>.value(0),
-      ) as _i9.Future<int>);
+  _i9.Future<int> length() =>
+      (super.noSuchMethod(
+            Invocation.method(#length, []),
+            returnValue: _i9.Future<int>.value(0),
+            returnValueForMissingStub: _i9.Future<int>.value(0),
+          )
+          as _i9.Future<int>);
 
   @override
   _i9.Future<String> readAsString({
     _i10.Encoding? encoding = const _i10.Utf8Codec(),
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#readAsString, [], {#encoding: encoding}),
-        returnValue: _i9.Future<String>.value(
-          _i8.dummyValue<String>(
-            this,
             Invocation.method(#readAsString, [], {#encoding: encoding}),
-          ),
-        ),
-        returnValueForMissingStub: _i9.Future<String>.value(
-          _i8.dummyValue<String>(
-            this,
-            Invocation.method(#readAsString, [], {#encoding: encoding}),
-          ),
-        ),
-      ) as _i9.Future<String>);
+            returnValue: _i9.Future<String>.value(
+              _i8.dummyValue<String>(
+                this,
+                Invocation.method(#readAsString, [], {#encoding: encoding}),
+              ),
+            ),
+            returnValueForMissingStub: _i9.Future<String>.value(
+              _i8.dummyValue<String>(
+                this,
+                Invocation.method(#readAsString, [], {#encoding: encoding}),
+              ),
+            ),
+          )
+          as _i9.Future<String>);
 
   @override
-  _i9.Future<_i11.Uint8List> readAsBytes() => (super.noSuchMethod(
-        Invocation.method(#readAsBytes, []),
-        returnValue: _i9.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
-        returnValueForMissingStub: _i9.Future<_i11.Uint8List>.value(
-          _i11.Uint8List(0),
-        ),
-      ) as _i9.Future<_i11.Uint8List>);
+  _i9.Future<_i11.Uint8List> readAsBytes() =>
+      (super.noSuchMethod(
+            Invocation.method(#readAsBytes, []),
+            returnValue: _i9.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
+            returnValueForMissingStub: _i9.Future<_i11.Uint8List>.value(
+              _i11.Uint8List(0),
+            ),
+          )
+          as _i9.Future<_i11.Uint8List>);
 
   @override
-  _i9.Stream<_i11.Uint8List> openRead([int? start, int? end]) => (super.noSuchMethod(
-        Invocation.method(#openRead, [start, end]),
-        returnValue: _i9.Stream<_i11.Uint8List>.empty(),
-        returnValueForMissingStub: _i9.Stream<_i11.Uint8List>.empty(),
-      ) as _i9.Stream<_i11.Uint8List>);
+  _i9.Stream<_i11.Uint8List> openRead([int? start, int? end]) =>
+      (super.noSuchMethod(
+            Invocation.method(#openRead, [start, end]),
+            returnValue: _i9.Stream<_i11.Uint8List>.empty(),
+            returnValueForMissingStub: _i9.Stream<_i11.Uint8List>.empty(),
+          )
+          as _i9.Stream<_i11.Uint8List>);
 
   @override
-  _i9.Future<DateTime> lastModified() => (super.noSuchMethod(
-        Invocation.method(#lastModified, []),
-        returnValue: _i9.Future<DateTime>.value(
-          _FakeDateTime_0(this, Invocation.method(#lastModified, [])),
-        ),
-        returnValueForMissingStub: _i9.Future<DateTime>.value(
-          _FakeDateTime_0(this, Invocation.method(#lastModified, [])),
-        ),
-      ) as _i9.Future<DateTime>);
+  _i9.Future<DateTime> lastModified() =>
+      (super.noSuchMethod(
+            Invocation.method(#lastModified, []),
+            returnValue: _i9.Future<DateTime>.value(
+              _FakeDateTime_0(this, Invocation.method(#lastModified, [])),
+            ),
+            returnValueForMissingStub: _i9.Future<DateTime>.value(
+              _FakeDateTime_0(this, Invocation.method(#lastModified, [])),
+            ),
+          )
+          as _i9.Future<DateTime>);
 }
 
 /// A class which mocks [ImagePicker].
@@ -224,17 +243,18 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
     bool? requestFullMetadata = true,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#pickImage, [], {
-          #source: source,
-          #maxWidth: maxWidth,
-          #maxHeight: maxHeight,
-          #imageQuality: imageQuality,
-          #preferredCameraDevice: preferredCameraDevice,
-          #requestFullMetadata: requestFullMetadata,
-        }),
-        returnValue: _i9.Future<_i2.XFile?>.value(),
-        returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
-      ) as _i9.Future<_i2.XFile?>);
+            Invocation.method(#pickImage, [], {
+              #source: source,
+              #maxWidth: maxWidth,
+              #maxHeight: maxHeight,
+              #imageQuality: imageQuality,
+              #preferredCameraDevice: preferredCameraDevice,
+              #requestFullMetadata: requestFullMetadata,
+            }),
+            returnValue: _i9.Future<_i2.XFile?>.value(),
+            returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
+          )
+          as _i9.Future<_i2.XFile?>);
 
   @override
   _i9.Future<List<_i2.XFile>> pickMultiImage({
@@ -245,18 +265,19 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
     bool? requestFullMetadata = true,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#pickMultiImage, [], {
-          #maxWidth: maxWidth,
-          #maxHeight: maxHeight,
-          #imageQuality: imageQuality,
-          #limit: limit,
-          #requestFullMetadata: requestFullMetadata,
-        }),
-        returnValue: _i9.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
-        returnValueForMissingStub: _i9.Future<List<_i2.XFile>>.value(
-          <_i2.XFile>[],
-        ),
-      ) as _i9.Future<List<_i2.XFile>>);
+            Invocation.method(#pickMultiImage, [], {
+              #maxWidth: maxWidth,
+              #maxHeight: maxHeight,
+              #imageQuality: imageQuality,
+              #limit: limit,
+              #requestFullMetadata: requestFullMetadata,
+            }),
+            returnValue: _i9.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
+            returnValueForMissingStub: _i9.Future<List<_i2.XFile>>.value(
+              <_i2.XFile>[],
+            ),
+          )
+          as _i9.Future<List<_i2.XFile>>);
 
   @override
   _i9.Future<_i2.XFile?> pickMedia({
@@ -266,15 +287,16 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
     bool? requestFullMetadata = true,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#pickMedia, [], {
-          #maxWidth: maxWidth,
-          #maxHeight: maxHeight,
-          #imageQuality: imageQuality,
-          #requestFullMetadata: requestFullMetadata,
-        }),
-        returnValue: _i9.Future<_i2.XFile?>.value(),
-        returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
-      ) as _i9.Future<_i2.XFile?>);
+            Invocation.method(#pickMedia, [], {
+              #maxWidth: maxWidth,
+              #maxHeight: maxHeight,
+              #imageQuality: imageQuality,
+              #requestFullMetadata: requestFullMetadata,
+            }),
+            returnValue: _i9.Future<_i2.XFile?>.value(),
+            returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
+          )
+          as _i9.Future<_i2.XFile?>);
 
   @override
   _i9.Future<List<_i2.XFile>> pickMultipleMedia({
@@ -285,18 +307,19 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
     bool? requestFullMetadata = true,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#pickMultipleMedia, [], {
-          #maxWidth: maxWidth,
-          #maxHeight: maxHeight,
-          #imageQuality: imageQuality,
-          #limit: limit,
-          #requestFullMetadata: requestFullMetadata,
-        }),
-        returnValue: _i9.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
-        returnValueForMissingStub: _i9.Future<List<_i2.XFile>>.value(
-          <_i2.XFile>[],
-        ),
-      ) as _i9.Future<List<_i2.XFile>>);
+            Invocation.method(#pickMultipleMedia, [], {
+              #maxWidth: maxWidth,
+              #maxHeight: maxHeight,
+              #imageQuality: imageQuality,
+              #limit: limit,
+              #requestFullMetadata: requestFullMetadata,
+            }),
+            returnValue: _i9.Future<List<_i2.XFile>>.value(<_i2.XFile>[]),
+            returnValueForMissingStub: _i9.Future<List<_i2.XFile>>.value(
+              <_i2.XFile>[],
+            ),
+          )
+          as _i9.Future<List<_i2.XFile>>);
 
   @override
   _i9.Future<_i2.XFile?> pickVideo({
@@ -305,38 +328,43 @@ class MockImagePicker extends _i1.Mock implements _i12.ImagePicker {
     Duration? maxDuration,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#pickVideo, [], {
-          #source: source,
-          #preferredCameraDevice: preferredCameraDevice,
-          #maxDuration: maxDuration,
-        }),
-        returnValue: _i9.Future<_i2.XFile?>.value(),
-        returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
-      ) as _i9.Future<_i2.XFile?>);
+            Invocation.method(#pickVideo, [], {
+              #source: source,
+              #preferredCameraDevice: preferredCameraDevice,
+              #maxDuration: maxDuration,
+            }),
+            returnValue: _i9.Future<_i2.XFile?>.value(),
+            returnValueForMissingStub: _i9.Future<_i2.XFile?>.value(),
+          )
+          as _i9.Future<_i2.XFile?>);
 
   @override
-  _i9.Future<_i2.LostDataResponse> retrieveLostData() => (super.noSuchMethod(
-        Invocation.method(#retrieveLostData, []),
-        returnValue: _i9.Future<_i2.LostDataResponse>.value(
-          _FakeLostDataResponse_1(
-            this,
+  _i9.Future<_i2.LostDataResponse> retrieveLostData() =>
+      (super.noSuchMethod(
             Invocation.method(#retrieveLostData, []),
-          ),
-        ),
-        returnValueForMissingStub: _i9.Future<_i2.LostDataResponse>.value(
-          _FakeLostDataResponse_1(
-            this,
-            Invocation.method(#retrieveLostData, []),
-          ),
-        ),
-      ) as _i9.Future<_i2.LostDataResponse>);
+            returnValue: _i9.Future<_i2.LostDataResponse>.value(
+              _FakeLostDataResponse_1(
+                this,
+                Invocation.method(#retrieveLostData, []),
+              ),
+            ),
+            returnValueForMissingStub: _i9.Future<_i2.LostDataResponse>.value(
+              _FakeLostDataResponse_1(
+                this,
+                Invocation.method(#retrieveLostData, []),
+              ),
+            ),
+          )
+          as _i9.Future<_i2.LostDataResponse>);
 
   @override
-  bool supportsImageSource(_i2.ImageSource? source) => (super.noSuchMethod(
-        Invocation.method(#supportsImageSource, [source]),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool supportsImageSource(_i2.ImageSource? source) =>
+      (super.noSuchMethod(
+            Invocation.method(#supportsImageSource, [source]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 }
 
 /// A class which mocks [HomeController].
@@ -352,16 +380,17 @@ class MockHomeController extends _i1.Mock implements _i13.HomeController {
     required List<String>? mediaPaths,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#createPost, [], {
-          #postMapNotifier: postMapNotifier,
-          #suiteUserNotifier: suiteUserNotifier,
-          #timelineNotifier: timelineNotifier,
-          #text: text,
-          #mediaPaths: mediaPaths,
-        }),
-        returnValue: _i9.Future<void>.value(),
-        returnValueForMissingStub: _i9.Future<void>.value(),
-      ) as _i9.Future<void>);
+            Invocation.method(#createPost, [], {
+              #postMapNotifier: postMapNotifier,
+              #suiteUserNotifier: suiteUserNotifier,
+              #timelineNotifier: timelineNotifier,
+              #text: text,
+              #mediaPaths: mediaPaths,
+            }),
+            returnValue: _i9.Future<void>.value(),
+            returnValueForMissingStub: _i9.Future<void>.value(),
+          )
+          as _i9.Future<void>);
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -369,13 +398,15 @@ class MockHomeController extends _i1.Mock implements _i13.HomeController {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i17.SuiteUserUseCase {
   @override
-  _i9.Future<_i3.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i9.Future<_i3.SuiteUser>.value(
-          _FakeSuiteUser_2(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i9.Future<_i3.SuiteUser>.value(
-          _FakeSuiteUser_2(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i9.Future<_i3.SuiteUser>);
+  _i9.Future<_i3.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i9.Future<_i3.SuiteUser>.value(
+              _FakeSuiteUser_2(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i9.Future<_i3.SuiteUser>.value(
+              _FakeSuiteUser_2(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i9.Future<_i3.SuiteUser>);
 }

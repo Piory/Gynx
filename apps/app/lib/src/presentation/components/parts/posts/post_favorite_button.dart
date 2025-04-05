@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:app/src/my_app.dart';
 import 'package:app/src/presentation/components/elements/texts/number_counter.dart';
 import 'package:app/src/presentation/notifiers/post_notifier.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:iconly/iconly.dart';
 
 class PostFavoriteButton extends ConsumerWidget {

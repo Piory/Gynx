@@ -7,10 +7,10 @@ import 'package:app/src/presentation/pages/profile/components/follower_count.dar
 import 'package:app/src/presentation/pages/profile/components/self_introduction.dart';
 import 'package:app/src/presentation/pages/profile/components/user_avatar_with_hero.dart';
 import 'package:app/src/presentation/pages/profile/components/username.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:icons_plus/icons_plus.dart';
 

@@ -2,6 +2,7 @@
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
+import 'package:config/config.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

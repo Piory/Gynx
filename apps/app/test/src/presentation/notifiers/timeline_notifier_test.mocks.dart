@@ -24,7 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVPostList_0 extends _i1.SmartFake implements _i2.VPostList {
-  _FakeVPostList_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVPostList_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [FetchPostUseCase].
@@ -32,28 +33,30 @@ class _FakeVPostList_0 extends _i1.SmartFake implements _i2.VPostList {
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchPostUseCase extends _i1.Mock implements _i3.FetchPostUseCase {
   @override
-  _i4.Future<_i2.VPostList> execute({int? sincePostId, int? maxPostId}) => (super.noSuchMethod(
-        Invocation.method(#execute, [], {
-          #sincePostId: sincePostId,
-          #maxPostId: maxPostId,
-        }),
-        returnValue: _i4.Future<_i2.VPostList>.value(
-          _FakeVPostList_0(
-            this,
+  _i4.Future<_i2.VPostList> execute({int? sincePostId, int? maxPostId}) =>
+      (super.noSuchMethod(
             Invocation.method(#execute, [], {
               #sincePostId: sincePostId,
               #maxPostId: maxPostId,
             }),
-          ),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VPostList>.value(
-          _FakeVPostList_0(
-            this,
-            Invocation.method(#execute, [], {
-              #sincePostId: sincePostId,
-              #maxPostId: maxPostId,
-            }),
-          ),
-        ),
-      ) as _i4.Future<_i2.VPostList>);
+            returnValue: _i4.Future<_i2.VPostList>.value(
+              _FakeVPostList_0(
+                this,
+                Invocation.method(#execute, [], {
+                  #sincePostId: sincePostId,
+                  #maxPostId: maxPostId,
+                }),
+              ),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VPostList>.value(
+              _FakeVPostList_0(
+                this,
+                Invocation.method(#execute, [], {
+                  #sincePostId: sincePostId,
+                  #maxPostId: maxPostId,
+                }),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.VPostList>);
 }

@@ -30,15 +30,15 @@ import 'package:mockito/mockito.dart' as _i1;
 class MockLoadingDialog extends _i1.Mock implements _i2.LoadingDialog {
   @override
   void show() => super.noSuchMethod(
-        Invocation.method(#show, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#show, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void hide() => super.noSuchMethod(
-        Invocation.method(#hide, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#hide, []),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [Notify].
@@ -47,9 +47,9 @@ class MockLoadingDialog extends _i1.Mock implements _i2.LoadingDialog {
 class MockNotify extends _i1.Mock implements _i3.Notify {
   @override
   void showError({required String? message}) => super.noSuchMethod(
-        Invocation.method(#showError, [], {#message: message}),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#showError, [], {#message: message}),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [SignOutUseCase].
@@ -57,9 +57,11 @@ class MockNotify extends _i1.Mock implements _i3.Notify {
 /// See the documentation for Mockito's code generation for more information.
 class MockSignOutUseCase extends _i1.Mock implements _i4.SignOutUseCase {
   @override
-  _i5.Future<void> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+  _i5.Future<void> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
 }

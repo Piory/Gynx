@@ -7,7 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:app/src/domain/entities/v_user_detail.dart' as _i2;
 import 'package:app/src/domain/repositories/auth_repository.dart' as _i3;
-import 'package:app/src/domain/repositories/v_user_detail_repository.dart' as _i5;
+import 'package:app/src/domain/repositories/v_user_detail_repository.dart'
+    as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -25,7 +26,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVUserDetail_0 extends _i1.SmartFake implements _i2.VUserDetail {
-  _FakeVUserDetail_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUserDetail_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRepository].
@@ -33,111 +35,136 @@ class _FakeVUserDetail_0 extends _i1.SmartFake implements _i2.VUserDetail {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   @override
-  bool isSignedIn() => (super.noSuchMethod(
-        Invocation.method(#isSignedIn, []),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool isSignedIn() =>
+      (super.noSuchMethod(
+            Invocation.method(#isSignedIn, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  _i4.Future<void> signInWithAnonymous() => (super.noSuchMethod(
-        Invocation.method(#signInWithAnonymous, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> signInWithAnonymous() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithAnonymous, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> signInWithApple() => (super.noSuchMethod(
-        Invocation.method(#signInWithApple, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> signInWithApple() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithApple, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> signInWithGoogle() => (super.noSuchMethod(
-        Invocation.method(#signInWithGoogle, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> signInWithGoogle() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithGoogle, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> linkWithApple() => (super.noSuchMethod(
-        Invocation.method(#linkWithApple, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> linkWithApple() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithApple, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> linkWithGoogle() => (super.noSuchMethod(
-        Invocation.method(#linkWithGoogle, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> linkWithGoogle() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithGoogle, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> linkWithX() => (super.noSuchMethod(
-        Invocation.method(#linkWithX, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> linkWithX() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithX, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> linkWithTwitch() => (super.noSuchMethod(
-        Invocation.method(#linkWithTwitch, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> linkWithTwitch() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithTwitch, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> linkWithDiscord() => (super.noSuchMethod(
-        Invocation.method(#linkWithDiscord, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> linkWithDiscord() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithDiscord, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> signOut() => (super.noSuchMethod(
-        Invocation.method(#signOut, []),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> signOut() =>
+      (super.noSuchMethod(
+            Invocation.method(#signOut, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }
 
 /// A class which mocks [VUserDetailRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockVUserDetailRepository extends _i1.Mock implements _i5.VUserDetailRepository {
+class MockVUserDetailRepository extends _i1.Mock
+    implements _i5.VUserDetailRepository {
   @override
-  _i4.Future<_i2.VUserDetail> findByUserId(String? userId) => (super.noSuchMethod(
-        Invocation.method(#findByUserId, [userId]),
-        returnValue: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
+  _i4.Future<_i2.VUserDetail> findByUserId(String? userId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
-            Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-      ) as _i4.Future<_i2.VUserDetail>);
+            returnValue: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByUserId, [userId]),
+              ),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByUserId, [userId]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.VUserDetail>);
 
   @override
-  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#findByGynxId, [gynxId]),
-        returnValue: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
+  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByGynxId, [gynxId]),
-          ),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
-          _FakeVUserDetail_0(
-            this,
-            Invocation.method(#findByGynxId, [gynxId]),
-          ),
-        ),
-      ) as _i4.Future<_i2.VUserDetail>);
+            returnValue: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByGynxId, [gynxId]),
+              ),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
+              _FakeVUserDetail_0(
+                this,
+                Invocation.method(#findByGynxId, [gynxId]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.VUserDetail>);
 }

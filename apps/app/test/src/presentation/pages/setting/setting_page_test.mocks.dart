@@ -7,7 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:app/src/presentation/navigation/page_navigator.dart' as _i5;
 import 'package:app/src/presentation/navigation/page_type.dart' as _i7;
-import 'package:app/src/presentation/pages/setting/setting_controller.dart' as _i2;
+import 'package:app/src/presentation/pages/setting/setting_controller.dart'
+    as _i2;
 import 'package:flutter/material.dart' as _i6;
 import 'package:gynx_l10n/gynx_l10n.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
@@ -31,11 +32,13 @@ import 'package:mockito/mockito.dart' as _i1;
 /// See the documentation for Mockito's code generation for more information.
 class MockSettingController extends _i1.Mock implements _i2.SettingController {
   @override
-  _i3.Future<void> signOut(_i4.L10n? l10n) => (super.noSuchMethod(
-        Invocation.method(#signOut, [l10n]),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> signOut(_i4.L10n? l10n) =>
+      (super.noSuchMethod(
+            Invocation.method(#signOut, [l10n]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }
 
 /// A class which mocks [PageNavigator].
@@ -43,7 +46,8 @@ class MockSettingController extends _i1.Mock implements _i2.SettingController {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
   @override
-  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -54,15 +58,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -70,15 +73,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -86,13 +88,12 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }

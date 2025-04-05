@@ -5,11 +5,11 @@ import 'package:app/src/presentation/pages/edit_profile/components/edit_profile_
 import 'package:app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_username.dart';
 import 'package:app/src/presentation/pages/edit_profile/edit_profile_controller.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';

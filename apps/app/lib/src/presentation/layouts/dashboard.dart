@@ -1,8 +1,8 @@
 import 'package:app/src/presentation/layouts/glass_navigation_bar.dart';
 import 'package:app/src/presentation/notifications/scroll_controller_notification.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:iconly/iconly.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 

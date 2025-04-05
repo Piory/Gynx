@@ -9,13 +9,13 @@ import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:app/src/presentation/pages/home/components/form_builder_image_picker.dart';
 import 'package:app/src/presentation/pages/home/home_controller.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:image_picker/image_picker.dart';
 

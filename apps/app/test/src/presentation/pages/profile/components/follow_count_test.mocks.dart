@@ -28,15 +28,18 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
-  _FakeSuiteUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVUser_1 extends _i1.SmartFake implements _i3.VUser {
-  _FakeVUser_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUser_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVUserDetail_2 extends _i1.SmartFake implements _i4.VUserDetail {
-  _FakeVUserDetail_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUserDetail_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -44,15 +47,17 @@ class _FakeVUserDetail_2 extends _i1.SmartFake implements _i4.VUserDetail {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i5.SuiteUserUseCase {
   @override
-  _i6.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i6.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i6.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i6.Future<_i2.SuiteUser>);
+  _i6.Future<_i2.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i6.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i6.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i6.Future<_i2.SuiteUser>);
 }
 
 /// A class which mocks [FindUserUseCase].
@@ -60,29 +65,34 @@ class MockSuiteUserUseCase extends _i1.Mock implements _i5.SuiteUserUseCase {
 /// See the documentation for Mockito's code generation for more information.
 class MockFindUserUseCase extends _i1.Mock implements _i7.FindUserUseCase {
   @override
-  _i6.Future<_i3.VUser> execute(String? userId) => (super.noSuchMethod(
-        Invocation.method(#execute, [userId]),
-        returnValue: _i6.Future<_i3.VUser>.value(
-          _FakeVUser_1(this, Invocation.method(#execute, [userId])),
-        ),
-        returnValueForMissingStub: _i6.Future<_i3.VUser>.value(
-          _FakeVUser_1(this, Invocation.method(#execute, [userId])),
-        ),
-      ) as _i6.Future<_i3.VUser>);
+  _i6.Future<_i3.VUser> execute(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [userId]),
+            returnValue: _i6.Future<_i3.VUser>.value(
+              _FakeVUser_1(this, Invocation.method(#execute, [userId])),
+            ),
+            returnValueForMissingStub: _i6.Future<_i3.VUser>.value(
+              _FakeVUser_1(this, Invocation.method(#execute, [userId])),
+            ),
+          )
+          as _i6.Future<_i3.VUser>);
 }
 
 /// A class which mocks [FindUserDetailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFindUserDetailUseCase extends _i1.Mock implements _i8.FindUserDetailUseCase {
+class MockFindUserDetailUseCase extends _i1.Mock
+    implements _i8.FindUserDetailUseCase {
   @override
-  _i6.Future<_i4.VUserDetail> execute(String? userId) => (super.noSuchMethod(
-        Invocation.method(#execute, [userId]),
-        returnValue: _i6.Future<_i4.VUserDetail>.value(
-          _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
-        ),
-        returnValueForMissingStub: _i6.Future<_i4.VUserDetail>.value(
-          _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
-        ),
-      ) as _i6.Future<_i4.VUserDetail>);
+  _i6.Future<_i4.VUserDetail> execute(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [userId]),
+            returnValue: _i6.Future<_i4.VUserDetail>.value(
+              _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
+            ),
+            returnValueForMissingStub: _i6.Future<_i4.VUserDetail>.value(
+              _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
+            ),
+          )
+          as _i6.Future<_i4.VUserDetail>);
 }

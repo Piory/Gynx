@@ -1,8 +1,8 @@
 import 'package:app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:app/src/presentation/components/elements/shimmers/shimmer.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 
 class PostLoading extends StatelessWidget {
   const PostLoading({

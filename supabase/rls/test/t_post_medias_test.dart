@@ -1,5 +1,5 @@
+import 'package:config/config.dart';
 import 'package:faker/faker.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:supabase/supabase.dart';
 import 'package:test/test.dart';
 
@@ -47,10 +47,7 @@ void main() {
     });
 
     test('Select X', () async {
-      final result = await supabaseClient
-          .from(tableName)
-          .select()
-          .eq('post_id', otherUserPostId);
+      final result = await supabaseClient.from(tableName).select().eq('post_id', otherUserPostId);
       expect(result, isEmpty);
     });
 
@@ -66,11 +63,7 @@ void main() {
     });
 
     test('Delete X', () async {
-      final result = await supabaseClient
-          .from(tableName)
-          .delete()
-          .eq('post_id', otherUserPostId)
-          .select();
+      final result = await supabaseClient.from(tableName).delete().eq('post_id', otherUserPostId).select();
       expect(result, isEmpty);
     });
   });
@@ -126,10 +119,7 @@ void main() {
       });
 
       test('Select O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .select()
-            .eq('post_id', anonymousUserPostId);
+        final result = await supabaseClient.from(tableName).select().eq('post_id', anonymousUserPostId);
         expect(result, isNotEmpty);
       });
 
@@ -145,11 +135,7 @@ void main() {
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('post_id', anonymousUserPostId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('post_id', anonymousUserPostId).select();
         expect(result, isEmpty);
       });
     });
@@ -171,10 +157,7 @@ void main() {
       });
 
       test('Select O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .select()
-            .eq('post_id', otherUserPostId);
+        final result = await supabaseClient.from(tableName).select().eq('post_id', otherUserPostId);
         expect(result, isNotEmpty);
       });
 
@@ -190,11 +173,7 @@ void main() {
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('post_id', otherUserPostId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('post_id', otherUserPostId).select();
         expect(result, isEmpty);
       });
     });
@@ -246,8 +225,7 @@ void main() {
       });
 
       test('Select O', () async {
-        final result =
-            await supabaseClient.from(tableName).select().eq('post_id', postId);
+        final result = await supabaseClient.from(tableName).select().eq('post_id', postId);
         expect(result, isNotEmpty);
       });
 
@@ -263,11 +241,7 @@ void main() {
       });
 
       test('Delete O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('post_id', postId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('post_id', postId).select();
         expect(result, isNotEmpty);
       });
     });
@@ -289,10 +263,7 @@ void main() {
       });
 
       test('Select O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .select()
-            .eq('post_id', otherUserPostId);
+        final result = await supabaseClient.from(tableName).select().eq('post_id', otherUserPostId);
         expect(result, isNotEmpty);
       });
 
@@ -308,11 +279,7 @@ void main() {
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('post_id', otherUserPostId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('post_id', otherUserPostId).select();
         expect(result, isEmpty);
       });
     });

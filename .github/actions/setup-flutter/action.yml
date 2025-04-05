@@ -27,10 +27,10 @@ runs:
     - name: Create r4b_constants .env
       shell: bash
       run: |
-        echo "SUPABASE_URL=${{ inputs.supabase-url }}" > ./packages/gynx_constants/.env
-        echo "SUPABASE_ANON_KEY=${{ inputs.supabase-anon-key }}" >> ./packages/gynx_constants/.env
-        echo "SUPABASE_SERVICE_ROLE_KEY=${{ inputs.supabase-service-role-key }}" >> ./packages/gynx_constants/.env
-        echo "GOOGLE_CLIENT_ID=${{ inputs.google-client-id }}" >> ./packages/gynx_constants/.env
+        echo "SUPABASE_URL=${{ inputs.supabase-url }}" > ./packages/config/.env
+        echo "SUPABASE_ANON_KEY=${{ inputs.supabase-anon-key }}" >> ./packages/config/.env
+        echo "SUPABASE_SERVICE_ROLE_KEY=${{ inputs.supabase-service-role-key }}" >> ./packages/config/.env
+        echo "GOOGLE_CLIENT_ID=${{ inputs.google-client-id }}" >> ./packages/config/.env
     - uses: flutter-actions/setup-flutter@v4
       with:
         channel: stable
@@ -40,5 +40,5 @@ runs:
       run: dart pub global activate melos ${{ inputs.melos-version }}
     - run: melos bs
       shell: bash
-    - run: melos gen-gynx-constants
+    - run: melos gen-config
       shell: bash

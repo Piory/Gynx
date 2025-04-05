@@ -1,5 +1,5 @@
+import 'package:config/config.dart';
 import 'package:faker/faker.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:supabase/supabase.dart';
 import 'package:test/test.dart';
 
@@ -38,26 +38,17 @@ void main() {
     });
 
     test('Select X', () async {
-      final result =
-          await supabaseClient.from(tableName).select().eq('id', otherUserId);
+      final result = await supabaseClient.from(tableName).select().eq('id', otherUserId);
       expect(result, isEmpty);
     });
 
     test('Update X', () async {
-      final result = await supabaseClient
-          .from(tableName)
-          .update({'gynx_id': 'GynxID2'})
-          .eq('id', otherUserId)
-          .select();
+      final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID2'}).eq('id', otherUserId).select();
       expect(result, isEmpty);
     });
 
     test('Delete X', () async {
-      final result = await supabaseClient
-          .from(tableName)
-          .delete()
-          .eq('id', otherUserId)
-          .select();
+      final result = await supabaseClient.from(tableName).delete().eq('id', otherUserId).select();
       expect(result, isEmpty);
     });
   });
@@ -89,28 +80,17 @@ void main() {
       });
 
       test('Select O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .select()
-            .eq('id', anonymousUserId);
+        final result = await supabaseClient.from(tableName).select().eq('id', anonymousUserId);
         expect(result, hasLength(1));
       });
 
       test('Update X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .update({'gynx_id': 'GynxID'})
-            .eq('id', anonymousUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID'}).eq('id', anonymousUserId).select();
         expect(result, isEmpty);
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('id', anonymousUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('id', anonymousUserId).select();
         expect(result, isEmpty);
       });
     });
@@ -130,26 +110,17 @@ void main() {
       });
 
       test('Select O', () async {
-        final result =
-            await supabaseClient.from(tableName).select().eq('id', otherUserId);
+        final result = await supabaseClient.from(tableName).select().eq('id', otherUserId);
         expect(result, hasLength(1));
       });
 
       test('Update X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .update({'gynx_id': 'GynxID'})
-            .eq('id', otherUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID'}).eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('id', otherUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
     });
@@ -174,11 +145,7 @@ void main() {
       );
       userId = res.user!.id;
       // 初期状態で作成されるデータを削除
-      await supabaseClient
-          .from('t_user_profiles')
-          .delete()
-          .eq('user_id', userId)
-          .select();
+      await supabaseClient.from('t_user_profiles').delete().eq('user_id', userId).select();
       await supabaseClient.from(tableName).delete().eq('id', userId).select();
     });
 
@@ -196,27 +163,18 @@ void main() {
       });
 
       test('Select O', () async {
-        final result =
-            await supabaseClient.from(tableName).select().eq('id', userId);
+        final result = await supabaseClient.from(tableName).select().eq('id', userId);
         expect(result, hasLength(1));
       });
 
       test('Update O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .update({'gynx_id': 'UpdatedGynxID'})
-            .eq('id', userId)
-            .select();
+        final result = await supabaseClient.from(tableName).update({'gynx_id': 'UpdatedGynxID'}).eq('id', userId).select();
         expect(result, hasLength(1));
         expect(result.first['gynx_id'], 'UpdatedGynxID');
       });
 
       test('Delete O', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('id', userId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('id', userId).select();
         expect(result, hasLength(1));
       });
     });
@@ -236,26 +194,17 @@ void main() {
       });
 
       test('Select O', () async {
-        final result =
-            await supabaseClient.from(tableName).select().eq('id', otherUserId);
+        final result = await supabaseClient.from(tableName).select().eq('id', otherUserId);
         expect(result, hasLength(1));
       });
 
       test('Update X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .update({'gynx_id': 'GynxID2'})
-            .eq('id', otherUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID2'}).eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
 
       test('Delete X', () async {
-        final result = await supabaseClient
-            .from(tableName)
-            .delete()
-            .eq('id', otherUserId)
-            .select();
+        final result = await supabaseClient.from(tableName).delete().eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
     });

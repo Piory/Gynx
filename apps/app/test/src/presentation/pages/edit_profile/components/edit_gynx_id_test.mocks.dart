@@ -6,7 +6,8 @@
 import 'dart:async' as _i8;
 
 import 'package:app/src/domain/models/suite_user.dart' as _i2;
-import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart' as _i9;
+import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
+    as _i9;
 import 'package:app/src/domain/usecases/suite_user_usecase.dart' as _i7;
 import 'package:app/src/presentation/dialogs/loading_dialog.dart' as _i3;
 import 'package:app/src/presentation/navigation/page_navigator.dart' as _i4;
@@ -29,7 +30,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
-  _FakeSuiteUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LoadingDialog].
@@ -38,15 +40,15 @@ class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
 class MockLoadingDialog extends _i1.Mock implements _i3.LoadingDialog {
   @override
   void show() => super.noSuchMethod(
-        Invocation.method(#show, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#show, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void hide() => super.noSuchMethod(
-        Invocation.method(#hide, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#hide, []),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [PageNavigator].
@@ -54,7 +56,8 @@ class MockLoadingDialog extends _i1.Mock implements _i3.LoadingDialog {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
   @override
-  void pop<T extends Object?>(_i5.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i5.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -65,15 +68,14 @@ class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
     _i6.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -81,15 +83,14 @@ class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
     _i6.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -97,15 +98,14 @@ class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
     _i6.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -113,25 +113,30 @@ class MockPageNavigator extends _i1.Mock implements _i4.PageNavigator {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i7.SuiteUserUseCase {
   @override
-  _i8.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i8.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i8.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i8.Future<_i2.SuiteUser>);
+  _i8.Future<_i2.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i8.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i8.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i8.Future<_i2.SuiteUser>);
 }
 
 /// A class which mocks [CheckGynxIdExistenceUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckGynxIdExistenceUsecase extends _i1.Mock implements _i9.CheckGynxIdExistenceUsecase {
+class MockCheckGynxIdExistenceUsecase extends _i1.Mock
+    implements _i9.CheckGynxIdExistenceUsecase {
   @override
-  _i8.Future<bool> execute(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#execute, [gynxId]),
-        returnValue: _i8.Future<bool>.value(false),
-        returnValueForMissingStub: _i8.Future<bool>.value(false),
-      ) as _i8.Future<bool>);
+  _i8.Future<bool> execute(String? gynxId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [gynxId]),
+            returnValue: _i8.Future<bool>.value(false),
+            returnValueForMissingStub: _i8.Future<bool>.value(false),
+          )
+          as _i8.Future<bool>);
 }

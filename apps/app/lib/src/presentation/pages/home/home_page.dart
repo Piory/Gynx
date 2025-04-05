@@ -5,9 +5,9 @@ import 'package:app/src/presentation/layouts/glass_sliver_app_bar.dart';
 import 'package:app/src/presentation/notifiers/timeline_notifier.dart';
 import 'package:app/src/presentation/pages/home/components/create_post_form.dart';
 import 'package:app/src/presentation/pages/home/components/sliver_follow_timeline.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide Refreshable;
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:iconly/iconly.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 

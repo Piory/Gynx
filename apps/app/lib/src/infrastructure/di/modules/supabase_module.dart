@@ -1,4 +1,4 @@
-import 'package:gynx_constants/gynx_constants.dart';
+import 'package:config/config.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

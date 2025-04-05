@@ -31,15 +31,18 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
-  _FakeSuiteUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVUser_1 extends _i1.SmartFake implements _i3.VUser {
-  _FakeVUser_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUser_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVUserDetail_2 extends _i1.SmartFake implements _i4.VUserDetail {
-  _FakeVUserDetail_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUserDetail_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [PageNavigator].
@@ -47,7 +50,8 @@ class _FakeVUserDetail_2 extends _i1.SmartFake implements _i4.VUserDetail {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
   @override
-  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i6.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -58,15 +62,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -74,15 +77,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -90,15 +92,14 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
     _i7.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -106,15 +107,17 @@ class MockPageNavigator extends _i1.Mock implements _i5.PageNavigator {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i8.SuiteUserUseCase {
   @override
-  _i9.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i9.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i9.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i9.Future<_i2.SuiteUser>);
+  _i9.Future<_i2.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i9.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i9.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i9.Future<_i2.SuiteUser>);
 }
 
 /// A class which mocks [FindUserUseCase].
@@ -122,29 +125,34 @@ class MockSuiteUserUseCase extends _i1.Mock implements _i8.SuiteUserUseCase {
 /// See the documentation for Mockito's code generation for more information.
 class MockFindUserUseCase extends _i1.Mock implements _i10.FindUserUseCase {
   @override
-  _i9.Future<_i3.VUser> execute(String? userId) => (super.noSuchMethod(
-        Invocation.method(#execute, [userId]),
-        returnValue: _i9.Future<_i3.VUser>.value(
-          _FakeVUser_1(this, Invocation.method(#execute, [userId])),
-        ),
-        returnValueForMissingStub: _i9.Future<_i3.VUser>.value(
-          _FakeVUser_1(this, Invocation.method(#execute, [userId])),
-        ),
-      ) as _i9.Future<_i3.VUser>);
+  _i9.Future<_i3.VUser> execute(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [userId]),
+            returnValue: _i9.Future<_i3.VUser>.value(
+              _FakeVUser_1(this, Invocation.method(#execute, [userId])),
+            ),
+            returnValueForMissingStub: _i9.Future<_i3.VUser>.value(
+              _FakeVUser_1(this, Invocation.method(#execute, [userId])),
+            ),
+          )
+          as _i9.Future<_i3.VUser>);
 }
 
 /// A class which mocks [FindUserDetailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFindUserDetailUseCase extends _i1.Mock implements _i11.FindUserDetailUseCase {
+class MockFindUserDetailUseCase extends _i1.Mock
+    implements _i11.FindUserDetailUseCase {
   @override
-  _i9.Future<_i4.VUserDetail> execute(String? userId) => (super.noSuchMethod(
-        Invocation.method(#execute, [userId]),
-        returnValue: _i9.Future<_i4.VUserDetail>.value(
-          _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
-        ),
-        returnValueForMissingStub: _i9.Future<_i4.VUserDetail>.value(
-          _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
-        ),
-      ) as _i9.Future<_i4.VUserDetail>);
+  _i9.Future<_i4.VUserDetail> execute(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [userId]),
+            returnValue: _i9.Future<_i4.VUserDetail>.value(
+              _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
+            ),
+            returnValueForMissingStub: _i9.Future<_i4.VUserDetail>.value(
+              _FakeVUserDetail_2(this, Invocation.method(#execute, [userId])),
+            ),
+          )
+          as _i9.Future<_i4.VUserDetail>);
 }

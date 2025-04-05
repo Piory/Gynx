@@ -24,7 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVUser_0 extends _i1.SmartFake implements _i2.VUser {
-  _FakeVUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [VUserRepository].
@@ -32,24 +33,28 @@ class _FakeVUser_0 extends _i1.SmartFake implements _i2.VUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockVUserRepository extends _i1.Mock implements _i3.VUserRepository {
   @override
-  _i4.Future<_i2.VUser> findByUserId(String? userId) => (super.noSuchMethod(
-        Invocation.method(#findByUserId, [userId]),
-        returnValue: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#findByUserId, [userId])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#findByUserId, [userId])),
-        ),
-      ) as _i4.Future<_i2.VUser>);
+  _i4.Future<_i2.VUser> findByUserId(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByUserId, [userId]),
+            returnValue: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#findByUserId, [userId])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#findByUserId, [userId])),
+            ),
+          )
+          as _i4.Future<_i2.VUser>);
 
   @override
-  _i4.Future<_i2.VUser> findByGynxId(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#findByGynxId, [gynxId]),
-        returnValue: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
-        ),
-      ) as _i4.Future<_i2.VUser>);
+  _i4.Future<_i2.VUser> findByGynxId(String? gynxId) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByGynxId, [gynxId]),
+            returnValue: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+            ),
+          )
+          as _i4.Future<_i2.VUser>);
 }

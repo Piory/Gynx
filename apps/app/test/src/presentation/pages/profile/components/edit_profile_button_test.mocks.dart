@@ -2,9 +2,9 @@
 // in app/test/src/presentation/pages/profile/components/edit_profile_button_test.dart.
 // Do not manually edit this file.
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:app/src/presentation/navigation/page_navigator.dart' as _i2;
 import 'package:app/src/presentation/navigation/page_type.dart' as _i4;
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -27,7 +27,8 @@ import 'package:mockito/mockito.dart' as _i1;
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i2.PageNavigator {
   @override
-  void pop<T extends Object?>(_i3.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i3.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -38,15 +39,14 @@ class MockPageNavigator extends _i1.Mock implements _i2.PageNavigator {
     _i4.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -54,15 +54,14 @@ class MockPageNavigator extends _i1.Mock implements _i2.PageNavigator {
     _i4.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -70,13 +69,12 @@ class MockPageNavigator extends _i1.Mock implements _i2.PageNavigator {
     _i4.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }

@@ -6,7 +6,7 @@ import 'package:app/src/domain/models/v_post_with_favorite_list.dart';
 import 'package:app/src/domain/repositories/t_user_post_favorite_repository.dart';
 import 'package:app/src/domain/repositories/v_post_repository.dart';
 import 'package:app/src/domain/usecases/fetch_user_post_favorite_usecase.dart';
-import 'package:gynx_constants/gynx_constants.dart';
+import 'package:config/config.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: FetchUserPostFavoriteUseCase)

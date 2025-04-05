@@ -1,8 +1,8 @@
 import 'package:app/src/application/interactors/fetch_user_post_interactor.dart';
 import 'package:app/src/domain/models/v_post_list.dart';
 import 'package:app/src/domain/repositories/v_post_repository.dart';
+import 'package:config/config.dart';
 import 'package:faker/faker.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

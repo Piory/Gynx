@@ -8,7 +8,8 @@ import 'dart:convert' as _i9;
 import 'dart:io' as _i16;
 import 'dart:typed_data' as _i10;
 
-import 'package:app/src/domain/usecases/update_user_profile_usecase.dart' as _i15;
+import 'package:app/src/domain/usecases/update_user_profile_usecase.dart'
+    as _i15;
 import 'package:app/src/presentation/dialogs/loading_dialog.dart' as _i13;
 import 'package:app/src/presentation/dialogs/notify.dart' as _i14;
 import 'package:app/src/presentation/navigation/page_navigator.dart' as _i11;
@@ -36,40 +37,50 @@ import 'package:mockito/src/dummies.dart' as _i6;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeWidget_0 extends _i1.SmartFake implements _i2.Widget {
-  _FakeWidget_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeWidget_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 
   @override
-  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) => super.toString();
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
 }
 
-class _FakeInheritedWidget_1 extends _i1.SmartFake implements _i2.InheritedWidget {
-  _FakeInheritedWidget_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeInheritedWidget_1 extends _i1.SmartFake
+    implements _i2.InheritedWidget {
+  _FakeInheritedWidget_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 
   @override
-  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) => super.toString();
+  String toString({_i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info}) =>
+      super.toString();
 }
 
-class _FakeDiagnosticsNode_2 extends _i1.SmartFake implements _i3.DiagnosticsNode {
-  _FakeDiagnosticsNode_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeDiagnosticsNode_2 extends _i1.SmartFake
+    implements _i3.DiagnosticsNode {
+  _FakeDiagnosticsNode_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 
   @override
   String toString({
     _i3.TextTreeConfiguration? parentConfiguration,
     _i3.DiagnosticLevel? minLevel = _i3.DiagnosticLevel.info,
-  }) =>
-      super.toString();
+  }) => super.toString();
 }
 
 class _FakeBuildContext_3 extends _i1.SmartFake implements _i2.BuildContext {
-  _FakeBuildContext_3(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeBuildContext_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
-class _FakeProviderSubscription_4<State> extends _i1.SmartFake implements _i4.ProviderSubscription<State> {
-  _FakeProviderSubscription_4(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeProviderSubscription_4<State> extends _i1.SmartFake
+    implements _i4.ProviderSubscription<State> {
+  _FakeProviderSubscription_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeDateTime_5 extends _i1.SmartFake implements DateTime {
-  _FakeDateTime_5(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeDateTime_5(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [BuildContext].
@@ -77,28 +88,34 @@ class _FakeDateTime_5 extends _i1.SmartFake implements DateTime {
 /// See the documentation for Mockito's code generation for more information.
 class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
   @override
-  _i2.Widget get widget => (super.noSuchMethod(
-        Invocation.getter(#widget),
-        returnValue: _FakeWidget_0(this, Invocation.getter(#widget)),
-        returnValueForMissingStub: _FakeWidget_0(
-          this,
-          Invocation.getter(#widget),
-        ),
-      ) as _i2.Widget);
+  _i2.Widget get widget =>
+      (super.noSuchMethod(
+            Invocation.getter(#widget),
+            returnValue: _FakeWidget_0(this, Invocation.getter(#widget)),
+            returnValueForMissingStub: _FakeWidget_0(
+              this,
+              Invocation.getter(#widget),
+            ),
+          )
+          as _i2.Widget);
 
   @override
-  bool get mounted => (super.noSuchMethod(
-        Invocation.getter(#mounted),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool get mounted =>
+      (super.noSuchMethod(
+            Invocation.getter(#mounted),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool get debugDoingBuild => (super.noSuchMethod(
-        Invocation.getter(#debugDoingBuild),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool get debugDoingBuild =>
+      (super.noSuchMethod(
+            Invocation.getter(#debugDoingBuild),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
   _i2.InheritedWidget dependOnInheritedElement(
@@ -106,43 +123,46 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
     Object? aspect,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #dependOnInheritedElement,
-          [ancestor],
-          {#aspect: aspect},
-        ),
-        returnValue: _FakeInheritedWidget_1(
-          this,
-          Invocation.method(
-            #dependOnInheritedElement,
-            [ancestor],
-            {#aspect: aspect},
-          ),
-        ),
-        returnValueForMissingStub: _FakeInheritedWidget_1(
-          this,
-          Invocation.method(
-            #dependOnInheritedElement,
-            [ancestor],
-            {#aspect: aspect},
-          ),
-        ),
-      ) as _i2.InheritedWidget);
+            Invocation.method(
+              #dependOnInheritedElement,
+              [ancestor],
+              {#aspect: aspect},
+            ),
+            returnValue: _FakeInheritedWidget_1(
+              this,
+              Invocation.method(
+                #dependOnInheritedElement,
+                [ancestor],
+                {#aspect: aspect},
+              ),
+            ),
+            returnValueForMissingStub: _FakeInheritedWidget_1(
+              this,
+              Invocation.method(
+                #dependOnInheritedElement,
+                [ancestor],
+                {#aspect: aspect},
+              ),
+            ),
+          )
+          as _i2.InheritedWidget);
 
   @override
-  void visitAncestorElements(_i2.ConditionalElementVisitor? visitor) => super.noSuchMethod(
+  void visitAncestorElements(_i2.ConditionalElementVisitor? visitor) =>
+      super.noSuchMethod(
         Invocation.method(#visitAncestorElements, [visitor]),
         returnValueForMissingStub: null,
       );
 
   @override
   void visitChildElements(_i2.ElementVisitor? visitor) => super.noSuchMethod(
-        Invocation.method(#visitChildElements, [visitor]),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#visitChildElements, [visitor]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void dispatchNotification(_i5.Notification? notification) => super.noSuchMethod(
+  void dispatchNotification(_i5.Notification? notification) =>
+      super.noSuchMethod(
         Invocation.method(#dispatchNotification, [notification]),
         returnValueForMissingStub: null,
       );
@@ -153,16 +173,17 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
     _i3.DiagnosticsTreeStyle? style = _i3.DiagnosticsTreeStyle.errorProperty,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#describeElement, [name], {#style: style}),
-        returnValue: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeElement, [name], {#style: style}),
-        ),
-        returnValueForMissingStub: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeElement, [name], {#style: style}),
-        ),
-      ) as _i3.DiagnosticsNode);
+            Invocation.method(#describeElement, [name], {#style: style}),
+            returnValue: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeElement, [name], {#style: style}),
+            ),
+            returnValueForMissingStub: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeElement, [name], {#style: style}),
+            ),
+          )
+          as _i3.DiagnosticsNode);
 
   @override
   _i3.DiagnosticsNode describeWidget(
@@ -170,41 +191,45 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
     _i3.DiagnosticsTreeStyle? style = _i3.DiagnosticsTreeStyle.errorProperty,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#describeWidget, [name], {#style: style}),
-        returnValue: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeWidget, [name], {#style: style}),
-        ),
-        returnValueForMissingStub: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeWidget, [name], {#style: style}),
-        ),
-      ) as _i3.DiagnosticsNode);
+            Invocation.method(#describeWidget, [name], {#style: style}),
+            returnValue: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeWidget, [name], {#style: style}),
+            ),
+            returnValueForMissingStub: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeWidget, [name], {#style: style}),
+            ),
+          )
+          as _i3.DiagnosticsNode);
 
   @override
   List<_i3.DiagnosticsNode> describeMissingAncestor({
     required Type? expectedAncestorType,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#describeMissingAncestor, [], {
-          #expectedAncestorType: expectedAncestorType,
-        }),
-        returnValue: <_i3.DiagnosticsNode>[],
-        returnValueForMissingStub: <_i3.DiagnosticsNode>[],
-      ) as List<_i3.DiagnosticsNode>);
+            Invocation.method(#describeMissingAncestor, [], {
+              #expectedAncestorType: expectedAncestorType,
+            }),
+            returnValue: <_i3.DiagnosticsNode>[],
+            returnValueForMissingStub: <_i3.DiagnosticsNode>[],
+          )
+          as List<_i3.DiagnosticsNode>);
 
   @override
-  _i3.DiagnosticsNode describeOwnershipChain(String? name) => (super.noSuchMethod(
-        Invocation.method(#describeOwnershipChain, [name]),
-        returnValue: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeOwnershipChain, [name]),
-        ),
-        returnValueForMissingStub: _FakeDiagnosticsNode_2(
-          this,
-          Invocation.method(#describeOwnershipChain, [name]),
-        ),
-      ) as _i3.DiagnosticsNode);
+  _i3.DiagnosticsNode describeOwnershipChain(String? name) =>
+      (super.noSuchMethod(
+            Invocation.method(#describeOwnershipChain, [name]),
+            returnValue: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeOwnershipChain, [name]),
+            ),
+            returnValueForMissingStub: _FakeDiagnosticsNode_2(
+              this,
+              Invocation.method(#describeOwnershipChain, [name]),
+            ),
+          )
+          as _i3.DiagnosticsNode);
 }
 
 /// A class which mocks [WidgetRef].
@@ -212,45 +237,50 @@ class MockBuildContext extends _i1.Mock implements _i2.BuildContext {
 /// See the documentation for Mockito's code generation for more information.
 class MockWidgetRef extends _i1.Mock implements _i4.WidgetRef {
   @override
-  _i2.BuildContext get context => (super.noSuchMethod(
-        Invocation.getter(#context),
-        returnValue: _FakeBuildContext_3(this, Invocation.getter(#context)),
-        returnValueForMissingStub: _FakeBuildContext_3(
-          this,
-          Invocation.getter(#context),
-        ),
-      ) as _i2.BuildContext);
+  _i2.BuildContext get context =>
+      (super.noSuchMethod(
+            Invocation.getter(#context),
+            returnValue: _FakeBuildContext_3(this, Invocation.getter(#context)),
+            returnValueForMissingStub: _FakeBuildContext_3(
+              this,
+              Invocation.getter(#context),
+            ),
+          )
+          as _i2.BuildContext);
 
   @override
-  T watch<T>(_i4.ProviderListenable<T>? provider) => (super.noSuchMethod(
-        Invocation.method(#watch, [provider]),
-        returnValue: _i6.dummyValue<T>(
-          this,
-          Invocation.method(#watch, [provider]),
-        ),
-        returnValueForMissingStub: _i6.dummyValue<T>(
-          this,
-          Invocation.method(#watch, [provider]),
-        ),
-      ) as T);
+  T watch<T>(_i4.ProviderListenable<T>? provider) =>
+      (super.noSuchMethod(
+            Invocation.method(#watch, [provider]),
+            returnValue: _i6.dummyValue<T>(
+              this,
+              Invocation.method(#watch, [provider]),
+            ),
+            returnValueForMissingStub: _i6.dummyValue<T>(
+              this,
+              Invocation.method(#watch, [provider]),
+            ),
+          )
+          as T);
 
   @override
-  bool exists(_i4.ProviderBase<Object?>? provider) => (super.noSuchMethod(
-        Invocation.method(#exists, [provider]),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool exists(_i4.ProviderBase<Object?>? provider) =>
+      (super.noSuchMethod(
+            Invocation.method(#exists, [provider]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
   void listen<T>(
     _i4.ProviderListenable<T>? provider,
     void Function(T?, T)? listener, {
     void Function(Object, StackTrace)? onError,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(#listen, [provider, listener], {#onError: onError}),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(#listen, [provider, listener], {#onError: onError}),
+    returnValueForMissingStub: null,
+  );
 
   @override
   _i4.ProviderSubscription<T> listenManual<T>(
@@ -260,60 +290,65 @@ class MockWidgetRef extends _i1.Mock implements _i4.WidgetRef {
     bool? fireImmediately,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #listenManual,
-          [provider, listener],
-          {#onError: onError, #fireImmediately: fireImmediately},
-        ),
-        returnValue: _FakeProviderSubscription_4<T>(
-          this,
-          Invocation.method(
-            #listenManual,
-            [provider, listener],
-            {#onError: onError, #fireImmediately: fireImmediately},
-          ),
-        ),
-        returnValueForMissingStub: _FakeProviderSubscription_4<T>(
-          this,
-          Invocation.method(
-            #listenManual,
-            [provider, listener],
-            {#onError: onError, #fireImmediately: fireImmediately},
-          ),
-        ),
-      ) as _i4.ProviderSubscription<T>);
+            Invocation.method(
+              #listenManual,
+              [provider, listener],
+              {#onError: onError, #fireImmediately: fireImmediately},
+            ),
+            returnValue: _FakeProviderSubscription_4<T>(
+              this,
+              Invocation.method(
+                #listenManual,
+                [provider, listener],
+                {#onError: onError, #fireImmediately: fireImmediately},
+              ),
+            ),
+            returnValueForMissingStub: _FakeProviderSubscription_4<T>(
+              this,
+              Invocation.method(
+                #listenManual,
+                [provider, listener],
+                {#onError: onError, #fireImmediately: fireImmediately},
+              ),
+            ),
+          )
+          as _i4.ProviderSubscription<T>);
 
   @override
-  T read<T>(_i4.ProviderListenable<T>? provider) => (super.noSuchMethod(
-        Invocation.method(#read, [provider]),
-        returnValue: _i6.dummyValue<T>(
-          this,
-          Invocation.method(#read, [provider]),
-        ),
-        returnValueForMissingStub: _i6.dummyValue<T>(
-          this,
-          Invocation.method(#read, [provider]),
-        ),
-      ) as T);
+  T read<T>(_i4.ProviderListenable<T>? provider) =>
+      (super.noSuchMethod(
+            Invocation.method(#read, [provider]),
+            returnValue: _i6.dummyValue<T>(
+              this,
+              Invocation.method(#read, [provider]),
+            ),
+            returnValueForMissingStub: _i6.dummyValue<T>(
+              this,
+              Invocation.method(#read, [provider]),
+            ),
+          )
+          as T);
 
   @override
-  State refresh<State>(_i4.Refreshable<State>? provider) => (super.noSuchMethod(
-        Invocation.method(#refresh, [provider]),
-        returnValue: _i6.dummyValue<State>(
-          this,
-          Invocation.method(#refresh, [provider]),
-        ),
-        returnValueForMissingStub: _i6.dummyValue<State>(
-          this,
-          Invocation.method(#refresh, [provider]),
-        ),
-      ) as State);
+  State refresh<State>(_i4.Refreshable<State>? provider) =>
+      (super.noSuchMethod(
+            Invocation.method(#refresh, [provider]),
+            returnValue: _i6.dummyValue<State>(
+              this,
+              Invocation.method(#refresh, [provider]),
+            ),
+            returnValueForMissingStub: _i6.dummyValue<State>(
+              this,
+              Invocation.method(#refresh, [provider]),
+            ),
+          )
+          as State);
 
   @override
   void invalidate(_i4.ProviderOrFamily? provider) => super.noSuchMethod(
-        Invocation.method(#invalidate, [provider]),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#invalidate, [provider]),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [XFile].
@@ -321,85 +356,100 @@ class MockWidgetRef extends _i1.Mock implements _i4.WidgetRef {
 /// See the documentation for Mockito's code generation for more information.
 class MockXFile extends _i1.Mock implements _i7.XFile {
   @override
-  String get path => (super.noSuchMethod(
-        Invocation.getter(#path),
-        returnValue: _i6.dummyValue<String>(this, Invocation.getter(#path)),
-        returnValueForMissingStub: _i6.dummyValue<String>(
-          this,
-          Invocation.getter(#path),
-        ),
-      ) as String);
+  String get path =>
+      (super.noSuchMethod(
+            Invocation.getter(#path),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#path)),
+            returnValueForMissingStub: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#path),
+            ),
+          )
+          as String);
 
   @override
-  String get name => (super.noSuchMethod(
-        Invocation.getter(#name),
-        returnValue: _i6.dummyValue<String>(this, Invocation.getter(#name)),
-        returnValueForMissingStub: _i6.dummyValue<String>(
-          this,
-          Invocation.getter(#name),
-        ),
-      ) as String);
+  String get name =>
+      (super.noSuchMethod(
+            Invocation.getter(#name),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#name)),
+            returnValueForMissingStub: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#name),
+            ),
+          )
+          as String);
 
   @override
-  _i8.Future<void> saveTo(String? path) => (super.noSuchMethod(
-        Invocation.method(#saveTo, [path]),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+  _i8.Future<void> saveTo(String? path) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveTo, [path]),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 
   @override
-  _i8.Future<int> length() => (super.noSuchMethod(
-        Invocation.method(#length, []),
-        returnValue: _i8.Future<int>.value(0),
-        returnValueForMissingStub: _i8.Future<int>.value(0),
-      ) as _i8.Future<int>);
+  _i8.Future<int> length() =>
+      (super.noSuchMethod(
+            Invocation.method(#length, []),
+            returnValue: _i8.Future<int>.value(0),
+            returnValueForMissingStub: _i8.Future<int>.value(0),
+          )
+          as _i8.Future<int>);
 
   @override
   _i8.Future<String> readAsString({
     _i9.Encoding? encoding = const _i9.Utf8Codec(),
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#readAsString, [], {#encoding: encoding}),
-        returnValue: _i8.Future<String>.value(
-          _i6.dummyValue<String>(
-            this,
             Invocation.method(#readAsString, [], {#encoding: encoding}),
-          ),
-        ),
-        returnValueForMissingStub: _i8.Future<String>.value(
-          _i6.dummyValue<String>(
-            this,
-            Invocation.method(#readAsString, [], {#encoding: encoding}),
-          ),
-        ),
-      ) as _i8.Future<String>);
+            returnValue: _i8.Future<String>.value(
+              _i6.dummyValue<String>(
+                this,
+                Invocation.method(#readAsString, [], {#encoding: encoding}),
+              ),
+            ),
+            returnValueForMissingStub: _i8.Future<String>.value(
+              _i6.dummyValue<String>(
+                this,
+                Invocation.method(#readAsString, [], {#encoding: encoding}),
+              ),
+            ),
+          )
+          as _i8.Future<String>);
 
   @override
-  _i8.Future<_i10.Uint8List> readAsBytes() => (super.noSuchMethod(
-        Invocation.method(#readAsBytes, []),
-        returnValue: _i8.Future<_i10.Uint8List>.value(_i10.Uint8List(0)),
-        returnValueForMissingStub: _i8.Future<_i10.Uint8List>.value(
-          _i10.Uint8List(0),
-        ),
-      ) as _i8.Future<_i10.Uint8List>);
+  _i8.Future<_i10.Uint8List> readAsBytes() =>
+      (super.noSuchMethod(
+            Invocation.method(#readAsBytes, []),
+            returnValue: _i8.Future<_i10.Uint8List>.value(_i10.Uint8List(0)),
+            returnValueForMissingStub: _i8.Future<_i10.Uint8List>.value(
+              _i10.Uint8List(0),
+            ),
+          )
+          as _i8.Future<_i10.Uint8List>);
 
   @override
-  _i8.Stream<_i10.Uint8List> openRead([int? start, int? end]) => (super.noSuchMethod(
-        Invocation.method(#openRead, [start, end]),
-        returnValue: _i8.Stream<_i10.Uint8List>.empty(),
-        returnValueForMissingStub: _i8.Stream<_i10.Uint8List>.empty(),
-      ) as _i8.Stream<_i10.Uint8List>);
+  _i8.Stream<_i10.Uint8List> openRead([int? start, int? end]) =>
+      (super.noSuchMethod(
+            Invocation.method(#openRead, [start, end]),
+            returnValue: _i8.Stream<_i10.Uint8List>.empty(),
+            returnValueForMissingStub: _i8.Stream<_i10.Uint8List>.empty(),
+          )
+          as _i8.Stream<_i10.Uint8List>);
 
   @override
-  _i8.Future<DateTime> lastModified() => (super.noSuchMethod(
-        Invocation.method(#lastModified, []),
-        returnValue: _i8.Future<DateTime>.value(
-          _FakeDateTime_5(this, Invocation.method(#lastModified, [])),
-        ),
-        returnValueForMissingStub: _i8.Future<DateTime>.value(
-          _FakeDateTime_5(this, Invocation.method(#lastModified, [])),
-        ),
-      ) as _i8.Future<DateTime>);
+  _i8.Future<DateTime> lastModified() =>
+      (super.noSuchMethod(
+            Invocation.method(#lastModified, []),
+            returnValue: _i8.Future<DateTime>.value(
+              _FakeDateTime_5(this, Invocation.method(#lastModified, [])),
+            ),
+            returnValueForMissingStub: _i8.Future<DateTime>.value(
+              _FakeDateTime_5(this, Invocation.method(#lastModified, [])),
+            ),
+          )
+          as _i8.Future<DateTime>);
 }
 
 /// A class which mocks [PageNavigator].
@@ -407,7 +457,8 @@ class MockXFile extends _i1.Mock implements _i7.XFile {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i11.PageNavigator {
   @override
-  void pop<T extends Object?>(_i2.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i2.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -418,15 +469,14 @@ class MockPageNavigator extends _i1.Mock implements _i11.PageNavigator {
     _i12.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -434,15 +484,14 @@ class MockPageNavigator extends _i1.Mock implements _i11.PageNavigator {
     _i12.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -450,15 +499,14 @@ class MockPageNavigator extends _i1.Mock implements _i11.PageNavigator {
     _i12.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [LoadingDialog].
@@ -467,15 +515,15 @@ class MockPageNavigator extends _i1.Mock implements _i11.PageNavigator {
 class MockLoadingDialog extends _i1.Mock implements _i13.LoadingDialog {
   @override
   void show() => super.noSuchMethod(
-        Invocation.method(#show, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#show, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void hide() => super.noSuchMethod(
-        Invocation.method(#hide, []),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#hide, []),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [Notify].
@@ -484,15 +532,16 @@ class MockLoadingDialog extends _i1.Mock implements _i13.LoadingDialog {
 class MockNotify extends _i1.Mock implements _i14.Notify {
   @override
   void showError({required String? message}) => super.noSuchMethod(
-        Invocation.method(#showError, [], {#message: message}),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#showError, [], {#message: message}),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [UpdateUserProfileUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUpdateUserProfileUseCase extends _i1.Mock implements _i15.UpdateUserProfileUseCase {
+class MockUpdateUserProfileUseCase extends _i1.Mock
+    implements _i15.UpdateUserProfileUseCase {
   @override
   _i8.Future<void> execute({
     required String? gynxId,
@@ -502,14 +551,15 @@ class MockUpdateUserProfileUseCase extends _i1.Mock implements _i15.UpdateUserPr
     required String? selfIntroduction,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#execute, [], {
-          #gynxId: gynxId,
-          #username: username,
-          #avatarImage: avatarImage,
-          #isDeleteAvatar: isDeleteAvatar,
-          #selfIntroduction: selfIntroduction,
-        }),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+            Invocation.method(#execute, [], {
+              #gynxId: gynxId,
+              #username: username,
+              #avatarImage: avatarImage,
+              #isDeleteAvatar: isDeleteAvatar,
+              #selfIntroduction: selfIntroduction,
+            }),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
+          )
+          as _i8.Future<void>);
 }

@@ -11,7 +11,8 @@ import 'package:app/src/domain/models/post_id_list.dart' as _i10;
 import 'package:app/src/domain/models/t_user_post_favorite_list.dart' as _i3;
 import 'package:app/src/domain/models/v_post_list.dart' as _i5;
 import 'package:app/src/domain/repositories/auth_repository.dart' as _i6;
-import 'package:app/src/domain/repositories/t_user_post_favorite_repository.dart' as _i8;
+import 'package:app/src/domain/repositories/t_user_post_favorite_repository.dart'
+    as _i8;
 import 'package:app/src/domain/repositories/v_post_repository.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -29,20 +30,26 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeTUserPostFavorite_0 extends _i1.SmartFake implements _i2.TUserPostFavorite {
-  _FakeTUserPostFavorite_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeTUserPostFavorite_0 extends _i1.SmartFake
+    implements _i2.TUserPostFavorite {
+  _FakeTUserPostFavorite_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
-class _FakeTUserPostFavoriteList_1 extends _i1.SmartFake implements _i3.TUserPostFavoriteList {
-  _FakeTUserPostFavoriteList_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeTUserPostFavoriteList_1 extends _i1.SmartFake
+    implements _i3.TUserPostFavoriteList {
+  _FakeTUserPostFavoriteList_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVPost_2 extends _i1.SmartFake implements _i4.VPost {
-  _FakeVPost_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVPost_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeVPostList_3 extends _i1.SmartFake implements _i5.VPostList {
-  _FakeVPostList_3(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVPostList_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRepository].
@@ -50,103 +57,128 @@ class _FakeVPostList_3 extends _i1.SmartFake implements _i5.VPostList {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i6.AuthRepository {
   @override
-  bool isSignedIn() => (super.noSuchMethod(
-        Invocation.method(#isSignedIn, []),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool isSignedIn() =>
+      (super.noSuchMethod(
+            Invocation.method(#isSignedIn, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  _i7.Future<void> signInWithAnonymous() => (super.noSuchMethod(
-        Invocation.method(#signInWithAnonymous, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> signInWithAnonymous() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithAnonymous, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> signInWithApple() => (super.noSuchMethod(
-        Invocation.method(#signInWithApple, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> signInWithApple() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithApple, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> signInWithGoogle() => (super.noSuchMethod(
-        Invocation.method(#signInWithGoogle, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> signInWithGoogle() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithGoogle, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> linkWithApple() => (super.noSuchMethod(
-        Invocation.method(#linkWithApple, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> linkWithApple() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithApple, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> linkWithGoogle() => (super.noSuchMethod(
-        Invocation.method(#linkWithGoogle, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> linkWithGoogle() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithGoogle, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> linkWithX() => (super.noSuchMethod(
-        Invocation.method(#linkWithX, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> linkWithX() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithX, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> linkWithTwitch() => (super.noSuchMethod(
-        Invocation.method(#linkWithTwitch, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> linkWithTwitch() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithTwitch, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> linkWithDiscord() => (super.noSuchMethod(
-        Invocation.method(#linkWithDiscord, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> linkWithDiscord() =>
+      (super.noSuchMethod(
+            Invocation.method(#linkWithDiscord, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<void> signOut() => (super.noSuchMethod(
-        Invocation.method(#signOut, []),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> signOut() =>
+      (super.noSuchMethod(
+            Invocation.method(#signOut, []),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 }
 
 /// A class which mocks [TUserPostFavoriteRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostFavoriteRepository {
+class MockTUserPostFavoriteRepository extends _i1.Mock
+    implements _i8.TUserPostFavoriteRepository {
   @override
-  _i7.Future<void> create({required String? userId, required int? postId}) => (super.noSuchMethod(
-        Invocation.method(#create, [], {#userId: userId, #postId: postId}),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> create({required String? userId, required int? postId}) =>
+      (super.noSuchMethod(
+            Invocation.method(#create, [], {#userId: userId, #postId: postId}),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 
   @override
-  _i7.Future<_i2.TUserPostFavorite> findByPrimaryKey(String? id) => (super.noSuchMethod(
-        Invocation.method(#findByPrimaryKey, [id]),
-        returnValue: _i7.Future<_i2.TUserPostFavorite>.value(
-          _FakeTUserPostFavorite_0(
-            this,
+  _i7.Future<_i2.TUserPostFavorite> findByPrimaryKey(String? id) =>
+      (super.noSuchMethod(
             Invocation.method(#findByPrimaryKey, [id]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i2.TUserPostFavorite>.value(
-          _FakeTUserPostFavorite_0(
-            this,
-            Invocation.method(#findByPrimaryKey, [id]),
-          ),
-        ),
-      ) as _i7.Future<_i2.TUserPostFavorite>);
+            returnValue: _i7.Future<_i2.TUserPostFavorite>.value(
+              _FakeTUserPostFavorite_0(
+                this,
+                Invocation.method(#findByPrimaryKey, [id]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i2.TUserPostFavorite>.value(
+              _FakeTUserPostFavorite_0(
+                this,
+                Invocation.method(#findByPrimaryKey, [id]),
+              ),
+            ),
+          )
+          as _i7.Future<_i2.TUserPostFavorite>);
 
   @override
   _i7.Future<_i2.TUserPostFavorite?> findByUniqueKey(
@@ -154,44 +186,52 @@ class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostF
     int? postId,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUniqueKey, [userId, postId]),
-        returnValue: _i7.Future<_i2.TUserPostFavorite?>.value(),
-        returnValueForMissingStub: _i7.Future<_i2.TUserPostFavorite?>.value(),
-      ) as _i7.Future<_i2.TUserPostFavorite?>);
+            Invocation.method(#findByUniqueKey, [userId, postId]),
+            returnValue: _i7.Future<_i2.TUserPostFavorite?>.value(),
+            returnValueForMissingStub:
+                _i7.Future<_i2.TUserPostFavorite?>.value(),
+          )
+          as _i7.Future<_i2.TUserPostFavorite?>);
 
   @override
-  _i7.Future<_i3.TUserPostFavoriteList> findByUserId(String? userId) => (super.noSuchMethod(
-        Invocation.method(#findByUserId, [userId]),
-        returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
+  _i7.Future<_i3.TUserPostFavoriteList> findByUserId(String? userId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
-            Invocation.method(#findByUserId, [userId]),
-          ),
-        ),
-      ) as _i7.Future<_i3.TUserPostFavoriteList>);
+            returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
+              _FakeTUserPostFavoriteList_1(
+                this,
+                Invocation.method(#findByUserId, [userId]),
+              ),
+            ),
+            returnValueForMissingStub:
+                _i7.Future<_i3.TUserPostFavoriteList>.value(
+                  _FakeTUserPostFavoriteList_1(
+                    this,
+                    Invocation.method(#findByUserId, [userId]),
+                  ),
+                ),
+          )
+          as _i7.Future<_i3.TUserPostFavoriteList>);
 
   @override
-  _i7.Future<_i3.TUserPostFavoriteList> findByPostId(int? postId) => (super.noSuchMethod(
-        Invocation.method(#findByPostId, [postId]),
-        returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
+  _i7.Future<_i3.TUserPostFavoriteList> findByPostId(int? postId) =>
+      (super.noSuchMethod(
             Invocation.method(#findByPostId, [postId]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
-            Invocation.method(#findByPostId, [postId]),
-          ),
-        ),
-      ) as _i7.Future<_i3.TUserPostFavoriteList>);
+            returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
+              _FakeTUserPostFavoriteList_1(
+                this,
+                Invocation.method(#findByPostId, [postId]),
+              ),
+            ),
+            returnValueForMissingStub:
+                _i7.Future<_i3.TUserPostFavoriteList>.value(
+                  _FakeTUserPostFavoriteList_1(
+                    this,
+                    Invocation.method(#findByPostId, [postId]),
+                  ),
+                ),
+          )
+          as _i7.Future<_i3.TUserPostFavoriteList>);
 
   @override
   _i7.Future<_i3.TUserPostFavoriteList> findByUserIdAndLatest(
@@ -199,20 +239,22 @@ class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostF
     int? count,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndLatest, [userId, count]),
-        returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
             Invocation.method(#findByUserIdAndLatest, [userId, count]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
-            Invocation.method(#findByUserIdAndLatest, [userId, count]),
-          ),
-        ),
-      ) as _i7.Future<_i3.TUserPostFavoriteList>);
+            returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
+              _FakeTUserPostFavoriteList_1(
+                this,
+                Invocation.method(#findByUserIdAndLatest, [userId, count]),
+              ),
+            ),
+            returnValueForMissingStub:
+                _i7.Future<_i3.TUserPostFavoriteList>.value(
+                  _FakeTUserPostFavoriteList_1(
+                    this,
+                    Invocation.method(#findByUserIdAndLatest, [userId, count]),
+                  ),
+                ),
+          )
+          as _i7.Future<_i3.TUserPostFavoriteList>);
 
   @override
   _i7.Future<_i3.TUserPostFavoriteList> findByUserIdAndLatestAt(
@@ -221,32 +263,34 @@ class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostF
     int? count,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndLatestAt, [
-          userId,
-          latestAt,
-          count,
-        ]),
-        returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
             Invocation.method(#findByUserIdAndLatestAt, [
               userId,
               latestAt,
               count,
             ]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
-            Invocation.method(#findByUserIdAndLatestAt, [
-              userId,
-              latestAt,
-              count,
-            ]),
-          ),
-        ),
-      ) as _i7.Future<_i3.TUserPostFavoriteList>);
+            returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
+              _FakeTUserPostFavoriteList_1(
+                this,
+                Invocation.method(#findByUserIdAndLatestAt, [
+                  userId,
+                  latestAt,
+                  count,
+                ]),
+              ),
+            ),
+            returnValueForMissingStub:
+                _i7.Future<_i3.TUserPostFavoriteList>.value(
+                  _FakeTUserPostFavoriteList_1(
+                    this,
+                    Invocation.method(#findByUserIdAndLatestAt, [
+                      userId,
+                      latestAt,
+                      count,
+                    ]),
+                  ),
+                ),
+          )
+          as _i7.Future<_i3.TUserPostFavoriteList>);
 
   @override
   _i7.Future<_i3.TUserPostFavoriteList> findByUserIdAndOldestAt(
@@ -255,39 +299,43 @@ class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostF
     int? count,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndOldestAt, [
-          userId,
-          oldestAt,
-          count,
-        ]),
-        returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
             Invocation.method(#findByUserIdAndOldestAt, [
               userId,
               oldestAt,
               count,
             ]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i3.TUserPostFavoriteList>.value(
-          _FakeTUserPostFavoriteList_1(
-            this,
-            Invocation.method(#findByUserIdAndOldestAt, [
-              userId,
-              oldestAt,
-              count,
-            ]),
-          ),
-        ),
-      ) as _i7.Future<_i3.TUserPostFavoriteList>);
+            returnValue: _i7.Future<_i3.TUserPostFavoriteList>.value(
+              _FakeTUserPostFavoriteList_1(
+                this,
+                Invocation.method(#findByUserIdAndOldestAt, [
+                  userId,
+                  oldestAt,
+                  count,
+                ]),
+              ),
+            ),
+            returnValueForMissingStub:
+                _i7.Future<_i3.TUserPostFavoriteList>.value(
+                  _FakeTUserPostFavoriteList_1(
+                    this,
+                    Invocation.method(#findByUserIdAndOldestAt, [
+                      userId,
+                      oldestAt,
+                      count,
+                    ]),
+                  ),
+                ),
+          )
+          as _i7.Future<_i3.TUserPostFavoriteList>);
 
   @override
-  _i7.Future<void> deleteByUniqueKey(String? userId, int? postId) => (super.noSuchMethod(
-        Invocation.method(#deleteByUniqueKey, [userId, postId]),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+  _i7.Future<void> deleteByUniqueKey(String? userId, int? postId) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteByUniqueKey, [userId, postId]),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
+          )
+          as _i7.Future<void>);
 }
 
 /// A class which mocks [VPostRepository].
@@ -295,94 +343,106 @@ class MockTUserPostFavoriteRepository extends _i1.Mock implements _i8.TUserPostF
 /// See the documentation for Mockito's code generation for more information.
 class MockVPostRepository extends _i1.Mock implements _i9.VPostRepository {
   @override
-  _i7.Future<_i4.VPost> findByPostId(int? postId) => (super.noSuchMethod(
-        Invocation.method(#findByPostId, [postId]),
-        returnValue: _i7.Future<_i4.VPost>.value(
-          _FakeVPost_2(this, Invocation.method(#findByPostId, [postId])),
-        ),
-        returnValueForMissingStub: _i7.Future<_i4.VPost>.value(
-          _FakeVPost_2(this, Invocation.method(#findByPostId, [postId])),
-        ),
-      ) as _i7.Future<_i4.VPost>);
+  _i7.Future<_i4.VPost> findByPostId(int? postId) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByPostId, [postId]),
+            returnValue: _i7.Future<_i4.VPost>.value(
+              _FakeVPost_2(this, Invocation.method(#findByPostId, [postId])),
+            ),
+            returnValueForMissingStub: _i7.Future<_i4.VPost>.value(
+              _FakeVPost_2(this, Invocation.method(#findByPostId, [postId])),
+            ),
+          )
+          as _i7.Future<_i4.VPost>);
 
   @override
-  _i7.Future<_i5.VPostList> findByPostIdList(_i10.PostIdList? postIdList) => (super.noSuchMethod(
-        Invocation.method(#findByPostIdList, [postIdList]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
+  _i7.Future<_i5.VPostList> findByPostIdList(_i10.PostIdList? postIdList) =>
+      (super.noSuchMethod(
             Invocation.method(#findByPostIdList, [postIdList]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findByPostIdList, [postIdList]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByPostIdList, [postIdList]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByPostIdList, [postIdList]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
-  _i7.Future<_i5.VPostList> findByLatest(int? count) => (super.noSuchMethod(
-        Invocation.method(#findByLatest, [count]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(this, Invocation.method(#findByLatest, [count])),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(this, Invocation.method(#findByLatest, [count])),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+  _i7.Future<_i5.VPostList> findByLatest(int? count) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByLatest, [count]),
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(this, Invocation.method(#findByLatest, [count])),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(this, Invocation.method(#findByLatest, [count])),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
-  _i7.Future<_i5.VPostList> findBySincePostId(int? sincePostId, int? count) => (super.noSuchMethod(
-        Invocation.method(#findBySincePostId, [sincePostId, count]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
+  _i7.Future<_i5.VPostList> findBySincePostId(int? sincePostId, int? count) =>
+      (super.noSuchMethod(
             Invocation.method(#findBySincePostId, [sincePostId, count]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findBySincePostId, [sincePostId, count]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findBySincePostId, [sincePostId, count]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findBySincePostId, [sincePostId, count]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
-  _i7.Future<_i5.VPostList> findByMaxPostId(int? maxPostId, int? count) => (super.noSuchMethod(
-        Invocation.method(#findByMaxPostId, [maxPostId, count]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
+  _i7.Future<_i5.VPostList> findByMaxPostId(int? maxPostId, int? count) =>
+      (super.noSuchMethod(
             Invocation.method(#findByMaxPostId, [maxPostId, count]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findByMaxPostId, [maxPostId, count]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByMaxPostId, [maxPostId, count]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByMaxPostId, [maxPostId, count]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
-  _i7.Future<_i5.VPostList> findByUserIdAndLatest(String? userId, int? count) => (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndLatest, [userId, count]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
+  _i7.Future<_i5.VPostList> findByUserIdAndLatest(String? userId, int? count) =>
+      (super.noSuchMethod(
             Invocation.method(#findByUserIdAndLatest, [userId, count]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findByUserIdAndLatest, [userId, count]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndLatest, [userId, count]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndLatest, [userId, count]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
   _i7.Future<_i5.VPostList> findByUserIdAndSincePostId(
@@ -391,32 +451,33 @@ class MockVPostRepository extends _i1.Mock implements _i9.VPostRepository {
     int? count,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndSincePostId, [
-          userId,
-          sincePostId,
-          count,
-        ]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
             Invocation.method(#findByUserIdAndSincePostId, [
               userId,
               sincePostId,
               count,
             ]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findByUserIdAndSincePostId, [
-              userId,
-              sincePostId,
-              count,
-            ]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndSincePostId, [
+                  userId,
+                  sincePostId,
+                  count,
+                ]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndSincePostId, [
+                  userId,
+                  sincePostId,
+                  count,
+                ]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 
   @override
   _i7.Future<_i5.VPostList> findByUserIdAndMaxPostId(
@@ -425,30 +486,31 @@ class MockVPostRepository extends _i1.Mock implements _i9.VPostRepository {
     int? count,
   ) =>
       (super.noSuchMethod(
-        Invocation.method(#findByUserIdAndMaxPostId, [
-          userId,
-          maxPostId,
-          count,
-        ]),
-        returnValue: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
             Invocation.method(#findByUserIdAndMaxPostId, [
               userId,
               maxPostId,
               count,
             ]),
-          ),
-        ),
-        returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
-          _FakeVPostList_3(
-            this,
-            Invocation.method(#findByUserIdAndMaxPostId, [
-              userId,
-              maxPostId,
-              count,
-            ]),
-          ),
-        ),
-      ) as _i7.Future<_i5.VPostList>);
+            returnValue: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndMaxPostId, [
+                  userId,
+                  maxPostId,
+                  count,
+                ]),
+              ),
+            ),
+            returnValueForMissingStub: _i7.Future<_i5.VPostList>.value(
+              _FakeVPostList_3(
+                this,
+                Invocation.method(#findByUserIdAndMaxPostId, [
+                  userId,
+                  maxPostId,
+                  count,
+                ]),
+              ),
+            ),
+          )
+          as _i7.Future<_i5.VPostList>);
 }

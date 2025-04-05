@@ -24,7 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeVUser_0 extends _i1.SmartFake implements _i2.VUser {
-  _FakeVUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeVUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [FindUserUseCase].
@@ -32,13 +33,15 @@ class _FakeVUser_0 extends _i1.SmartFake implements _i2.VUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockFindUserUseCase extends _i1.Mock implements _i3.FindUserUseCase {
   @override
-  _i4.Future<_i2.VUser> execute(String? userId) => (super.noSuchMethod(
-        Invocation.method(#execute, [userId]),
-        returnValue: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#execute, [userId])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
-          _FakeVUser_0(this, Invocation.method(#execute, [userId])),
-        ),
-      ) as _i4.Future<_i2.VUser>);
+  _i4.Future<_i2.VUser> execute(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [userId]),
+            returnValue: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#execute, [userId])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
+              _FakeVUser_0(this, Invocation.method(#execute, [userId])),
+            ),
+          )
+          as _i4.Future<_i2.VUser>);
 }

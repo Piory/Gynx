@@ -1,4 +1,4 @@
-name: gynx_constants
+name: config
 version: 0.0.0
 publish_to: none
 environment:

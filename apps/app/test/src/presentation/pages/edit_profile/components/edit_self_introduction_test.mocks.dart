@@ -27,7 +27,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
-  _FakeSuiteUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [PageNavigator].
@@ -35,7 +36,8 @@ class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
   @override
-  void pop<T extends Object?>(_i4.BuildContext? context, [T? result]) => super.noSuchMethod(
+  void pop<T extends Object?>(_i4.BuildContext? context, [T? result]) =>
+      super.noSuchMethod(
         Invocation.method(#pop, [context, result]),
         returnValueForMissingStub: null,
       );
@@ -46,15 +48,14 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
     _i5.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #push,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #push,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void go(
@@ -62,15 +63,14 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
     _i5.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #go,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #go,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void pushReplacement(
@@ -78,15 +78,14 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
     _i5.PageType? pageType, {
     Map<String, dynamic>? pathParams,
     Map<String, dynamic>? queryParams,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushReplacement,
-          [context, pageType],
-          {#pathParams: pathParams, #queryParams: queryParams},
-        ),
-        returnValueForMissingStub: null,
-      );
+  }) => super.noSuchMethod(
+    Invocation.method(
+      #pushReplacement,
+      [context, pageType],
+      {#pathParams: pathParams, #queryParams: queryParams},
+    ),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -94,13 +93,15 @@ class MockPageNavigator extends _i1.Mock implements _i3.PageNavigator {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i6.SuiteUserUseCase {
   @override
-  _i7.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i7.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i7.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i7.Future<_i2.SuiteUser>);
+  _i7.Future<_i2.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i7.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i7.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i7.Future<_i2.SuiteUser>);
 }

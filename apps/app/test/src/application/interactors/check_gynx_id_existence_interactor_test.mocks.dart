@@ -24,7 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeTUser_0 extends _i1.SmartFake implements _i2.TUser {
-  _FakeTUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeTUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [TUserRepository].
@@ -32,33 +33,39 @@ class _FakeTUser_0 extends _i1.SmartFake implements _i2.TUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockTUserRepository extends _i1.Mock implements _i3.TUserRepository {
   @override
-  _i4.Future<_i2.TUser> findByPrimaryKey(String? id) => (super.noSuchMethod(
-        Invocation.method(#findByPrimaryKey, [id]),
-        returnValue: _i4.Future<_i2.TUser>.value(
-          _FakeTUser_0(this, Invocation.method(#findByPrimaryKey, [id])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.TUser>.value(
-          _FakeTUser_0(this, Invocation.method(#findByPrimaryKey, [id])),
-        ),
-      ) as _i4.Future<_i2.TUser>);
+  _i4.Future<_i2.TUser> findByPrimaryKey(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByPrimaryKey, [id]),
+            returnValue: _i4.Future<_i2.TUser>.value(
+              _FakeTUser_0(this, Invocation.method(#findByPrimaryKey, [id])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.TUser>.value(
+              _FakeTUser_0(this, Invocation.method(#findByPrimaryKey, [id])),
+            ),
+          )
+          as _i4.Future<_i2.TUser>);
 
   @override
-  _i4.Future<_i2.TUser> findByGynxId(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#findByGynxId, [gynxId]),
-        returnValue: _i4.Future<_i2.TUser>.value(
-          _FakeTUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.TUser>.value(
-          _FakeTUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
-        ),
-      ) as _i4.Future<_i2.TUser>);
+  _i4.Future<_i2.TUser> findByGynxId(String? gynxId) =>
+      (super.noSuchMethod(
+            Invocation.method(#findByGynxId, [gynxId]),
+            returnValue: _i4.Future<_i2.TUser>.value(
+              _FakeTUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.TUser>.value(
+              _FakeTUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+            ),
+          )
+          as _i4.Future<_i2.TUser>);
 
   @override
-  _i4.Future<bool> existsById(String? gynxId) => (super.noSuchMethod(
-        Invocation.method(#existsById, [gynxId]),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+  _i4.Future<bool> existsById(String? gynxId) =>
+      (super.noSuchMethod(
+            Invocation.method(#existsById, [gynxId]),
+            returnValue: _i4.Future<bool>.value(false),
+            returnValueForMissingStub: _i4.Future<bool>.value(false),
+          )
+          as _i4.Future<bool>);
 
   @override
   _i4.Future<void> updateByPrimaryKey({
@@ -66,11 +73,12 @@ class MockTUserRepository extends _i1.Mock implements _i3.TUserRepository {
     required String? gynxId,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#updateByPrimaryKey, [], {
-          #id: id,
-          #gynxId: gynxId,
-        }),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+            Invocation.method(#updateByPrimaryKey, [], {
+              #id: id,
+              #gynxId: gynxId,
+            }),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }

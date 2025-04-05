@@ -2,13 +2,13 @@ import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart';
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 
 class EditGynxId extends ConsumerWidget {

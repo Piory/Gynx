@@ -24,7 +24,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
-  _FakeSuiteUser_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeSuiteUser_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [SuiteUserUseCase].
@@ -32,13 +33,15 @@ class _FakeSuiteUser_0 extends _i1.SmartFake implements _i2.SuiteUser {
 /// See the documentation for Mockito's code generation for more information.
 class MockSuiteUserUseCase extends _i1.Mock implements _i3.SuiteUserUseCase {
   @override
-  _i4.Future<_i2.SuiteUser> execute() => (super.noSuchMethod(
-        Invocation.method(#execute, []),
-        returnValue: _i4.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-        returnValueForMissingStub: _i4.Future<_i2.SuiteUser>.value(
-          _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
-        ),
-      ) as _i4.Future<_i2.SuiteUser>);
+  _i4.Future<_i2.SuiteUser> execute() =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, []),
+            returnValue: _i4.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.SuiteUser>.value(
+              _FakeSuiteUser_0(this, Invocation.method(#execute, [])),
+            ),
+          )
+          as _i4.Future<_i2.SuiteUser>);
 }

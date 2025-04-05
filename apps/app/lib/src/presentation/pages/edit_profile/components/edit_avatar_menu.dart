@@ -1,9 +1,9 @@
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gynx_constants/gynx_constants.dart';
 import 'package:gynx_l10n/gynx_l10n.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
