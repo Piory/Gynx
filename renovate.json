@@ -22,6 +22,27 @@
   ],
   "packageRules": [
     {
+      "managers": [
+        "pub"
+      ],
+      "matchPackagePatterns": [
+        ".*"
+      ],
+      "postUpgradeTasks": {
+        "commands": [
+          "melos bs",
+          "melos gen",
+          "melos gen-l10n"
+        ],
+        "fileFilters": [
+          "pubspec.lock",
+          "packages/*/pubspec.lock",
+          "**/*.g.dart",
+          "**/*.freezed.dart"
+        ]
+      }
+    },
+    {
       "groupName": "Firebase",
       "matchPackagePatterns": [
         "^firebase"
