@@ -25,7 +25,7 @@ dev_dependencies:
   flutter_lints: 5.0.0
   flutter_test:
     sdk: flutter
-  freezed: 3.0.4
+  freezed: 3.0.6
   mockito: 5.4.5
   pedantic_mono: any
   riverpod_generator: 2.6.5
