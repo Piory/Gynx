@@ -32,10 +32,10 @@ void main() {
     });
   });
 
-  group('#findByGynxId', () {
+  group('#findByScreenName', () {
     group('正常系', () {
       test('正常にデータが1件作成されること', () async {
-        final actual = await vUserRepository.findByGynxId(vUser.gynxId);
+        final actual = await vUserRepository.findByScreenName(vUser.screenName);
         expect(actual, vUser);
       });
     });

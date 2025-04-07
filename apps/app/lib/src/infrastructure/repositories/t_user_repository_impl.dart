@@ -17,24 +17,24 @@ class TUserRepositoryImpl implements TUserRepository {
   }
 
   @override
-  Future<TUser> findByGynxId(String gynxId) async {
-    final res = await _client.from(tableName).select().eq('gynx_id', gynxId).single();
+  Future<TUser> findByScreenName(String screenName) async {
+    final res = await _client.from(tableName).select().eq('screen_name', screenName).single();
     return TUser.fromJson(res);
   }
 
   @override
-  Future<bool> existsById(String gynxId) async {
-    final res = await _client.from(tableName).select('gynx_id').eq('gynx_id', gynxId).maybeSingle();
+  Future<bool> existsByScreenName(String screenName) async {
+    final res = await _client.from(tableName).select('screen_name').eq('screen_name', screenName).maybeSingle();
     return res != null;
   }
 
   @override
   Future<void> updateByPrimaryKey({
     required String id,
-    required String gynxId,
+    required String screenName,
   }) async {
     await _client.from(tableName).update({
-      'gynx_id': gynxId,
+      'screen_name': screenName,
     }).eq('id', id);
   }
 }

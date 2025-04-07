@@ -1,7 +1,6 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_username.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_display_name.dart';
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,7 +13,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../../data/dummy_data_generator.dart';
-import 'edit_username_test.mocks.dart';
+import 'edit_display_name_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<PageNavigator>(),
@@ -53,7 +52,7 @@ void main() {
             ...FormBuilderLocalizations.localizationsDelegates,
           ],
           supportedLocales: L10n.supportedLocales,
-          home: EditUsername(
+          home: EditDisplayName(
             onSaved: onSaved,
           ),
         ),
@@ -65,7 +64,7 @@ void main() {
 
   //
   group('正常系', () {
-    testWidgets('初期表示時に、TextField に、username が表示されること', (tester) async {
+    testWidgets('初期表示時に、TextField に、displayName が表示されること', (tester) async {
       await pumpWidget(
         tester: tester,
         onSaved: (_) => fail('unexpected onChanged'),
@@ -75,12 +74,12 @@ void main() {
       );
       expect(
         formBuilderTextField.initialValue,
-        suiteUser.vUserDetail.username,
+        suiteUser.vUserDetail.displayName,
       );
     });
 
     testWidgets(
-      'username を変更して、CloseButton をタップすると、onSaved は呼ばれないこと',
+      'displayName を変更して、CloseButton をタップすると、onSaved は呼ばれないこと',
       (tester) async {
         await pumpWidget(
           tester: tester,
@@ -88,14 +87,14 @@ void main() {
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          'new username',
+          'new display name',
         );
         await tester.tap(find.byType(CloseButton));
       },
     );
 
     testWidgets(
-      'username を変更して、「${l10nJa.done}」をタップすると、onSaved が呼ばれること',
+      'displayName を変更して、「${l10nJa.done}」をタップすると、onSaved が呼ばれること',
       (tester) async {
         var onSavedCallCount = 0;
         await pumpWidget(
@@ -143,7 +142,7 @@ void main() {
 
   group('準正常系', () {
     testWidgets(
-      'username が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.usernameMinLength)}」が表示されること',
+      'displayName が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.displayNameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder = find.text(formBuilderLocalizationJa.minLengthErrorText(3));
         await pumpWidget(
@@ -159,7 +158,7 @@ void main() {
     );
 
     testWidgets(
-      '文字列が2文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.usernameMinLength)}」が表示されること',
+      '文字列が2文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.displayNameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder = find.text(formBuilderLocalizationJa.minLengthErrorText(3));
         await pumpWidget(

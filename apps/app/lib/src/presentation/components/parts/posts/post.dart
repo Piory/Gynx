@@ -1,5 +1,5 @@
 import 'package:app/src/domain/entities/v_post.dart';
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
 import 'package:app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:app/src/presentation/components/parts/posts/post_favorite_button.dart';
@@ -31,21 +31,9 @@ class Post extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final vPost = ref.watch(postNotifierProvider(postId));
     final theme = Theme.of(context);
-    final username = ref.watch(
-      userNotifierProvider(vPost.userId).select(
-        (vUser) => vUser.value?.username ?? '',
-      ),
-    );
-    final gynxId = ref.watch(
-      userNotifierProvider(vPost.userId).select(
-        (vUser) => vUser.value?.gynxId ?? '',
-      ),
-    );
-    final avatarUrl = ref.watch(
-      userNotifierProvider(vPost.userId).select(
-        (vUser) => vUser.value?.avatarUrl,
-      ),
-    );
+    final displayName = ref.watch(userNotifierProvider(vPost.userId).select((vUser) => vUser.value?.displayName ?? ''));
+    final screenName = ref.watch(userNotifierProvider(vPost.userId).select((vUser) => vUser.value?.screenName ?? ''));
+    final avatarUrl = ref.watch(userNotifierProvider(vPost.userId).select((vUser) => vUser.value?.avatarUrl));
     return Padding(
       padding: const EdgeInsets.all(SpaceSize.s8),
       child: Column(
@@ -69,14 +57,14 @@ class Post extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              username,
+                              displayName,
                               style: theme.textTheme.bodyMedium!.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             const Gap(SpaceSize.s4),
-                            GynxId(
-                              id: gynxId,
+                            ScreenName(
+                              screenName: screenName,
                             ),
                           ],
                         ),

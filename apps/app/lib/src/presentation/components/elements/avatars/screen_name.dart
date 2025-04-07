@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class GynxId extends StatelessWidget {
-  const GynxId({
+class ScreenName extends StatelessWidget {
+  const ScreenName({
     super.key,
-    required this.id,
+    required this.screenName,
   });
 
-  final String? id;
+  final String? screenName;
 
   @override
   Widget build(BuildContext context) {
-    if (id == null || id!.isEmpty) {
+    if (screenName == null || screenName!.isEmpty) {
       return const SizedBox.shrink();
     }
     final theme = Theme.of(context);
     return Text(
-      '@$id',
+      '@$screenName',
       style: theme.textTheme.bodyMedium!.copyWith(
         color: theme.colorScheme.onSurfaceVariant,
       ),

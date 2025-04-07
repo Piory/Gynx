@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'dart:io';
 
 import 'package:app/src/application/interactors/update_user_profile_interactor.dart';
@@ -28,8 +27,8 @@ import 'update_user_profile_interactor_test.mocks.dart';
   MockSpec<TUserProfileRepository>(),
 ])
 void main() {
-  final gynxId = faker.guid.guid();
-  final username = faker.person.name();
+  final screenName = faker.guid.guid();
+  final displayName = faker.person.name();
   final mockFile = MockFile();
   final selfIntroduction = faker.lorem.sentence();
   final userId = faker.guid.guid();
@@ -76,8 +75,8 @@ void main() {
       '何も変更項目がない場合は、何も処理が行われないこと',
       () async {
         await interactor.execute(
-          gynxId: null,
-          username: null,
+          screenName: null,
+          displayName: null,
           avatarImage: null,
           isDeleteAvatar: false,
           selfIntroduction: null,
@@ -98,7 +97,7 @@ void main() {
       when(
         mockTUserRepository.updateByPrimaryKey(
           id: userId,
-          gynxId: gynxId,
+          screenName: screenName,
         ),
       ).thenAnswer((_) async {});
       when(mockUuidGenerator.generate()).thenAnswer((_) => filename);
@@ -112,7 +111,7 @@ void main() {
       when(
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: username,
+          displayName: displayName,
           avatarUrl: uploadedAvatarUrl,
           selfIntroduction: selfIntroduction,
         ),
@@ -126,8 +125,8 @@ void main() {
         ),
       ).thenAnswer((_) async => uploadedAvatarUrl);
       await interactor.execute(
-        gynxId: gynxId,
-        username: username,
+        screenName: screenName,
+        displayName: displayName,
         avatarImage: mockFile,
         isDeleteAvatar: false,
         selfIntroduction: selfIntroduction,
@@ -138,7 +137,7 @@ void main() {
         mockTUserRepository.findByPrimaryKey(userId),
         mockTUserRepository.updateByPrimaryKey(
           id: userId,
-          gynxId: gynxId,
+          screenName: screenName,
         ),
         mockUuidGenerator.generate(),
         mockStorageRepository.uploadFile(
@@ -150,7 +149,7 @@ void main() {
         mockTUserProfileRepository.findByPrimaryKey(userId),
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: username,
+          displayName: displayName,
           avatarUrl: uploadedAvatarUrl,
           selfIntroduction: selfIntroduction,
         ),
@@ -161,130 +160,121 @@ void main() {
       ]);
     });
 
-    test(
-      'isDeleteAvatar を true にしたら、TUserProfileRepository#updateByPrimaryKeySelective の isDeleteAvatar に true が渡されること',
-      () async {
-        when(mockAuthRepository.currentUser).thenReturn(mockUser);
-        when(mockUser.id).thenReturn(userId);
-        when(mockTUserProfileRepository.findByPrimaryKey(any)).thenAnswer((_) async => tUserProfile);
-        when(
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: null,
-            isDeleteAvatarUrl: true,
-            selfIntroduction: null,
-          ),
-        ).thenAnswer((_) async {});
-        when(
-          mockStorageRepository.deleteFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
-          ),
-        ).thenAnswer((_) async {});
-        await interactor.execute(
-          gynxId: null,
-          username: null,
-          avatarImage: null,
-          isDeleteAvatar: true,
+    test('isDeleteAvatar を true にしたら、TUserProfileRepository#updateByPrimaryKeySelective の isDeleteAvatar に true が渡されること', () async {
+      when(mockAuthRepository.currentUser).thenReturn(mockUser);
+      when(mockUser.id).thenReturn(userId);
+      when(mockTUserProfileRepository.findByPrimaryKey(any)).thenAnswer((_) async => tUserProfile);
+      when(
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: null,
+          isDeleteAvatarUrl: true,
           selfIntroduction: null,
-        );
-        verifyInOrder([
-          mockAuthRepository.currentUser,
-          mockUser.id,
-          mockTUserProfileRepository.findByPrimaryKey(userId),
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: null,
-            isDeleteAvatarUrl: true,
-            selfIntroduction: null,
-          ),
-          mockStorageRepository.deleteFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
-          ),
-        ]);
-      },
-    );
+        ),
+      ).thenAnswer((_) async {});
+      when(
+        mockStorageRepository.deleteFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
+        ),
+      ).thenAnswer((_) async {});
+      await interactor.execute(
+        screenName: null,
+        displayName: null,
+        avatarImage: null,
+        isDeleteAvatar: true,
+        selfIntroduction: null,
+      );
+      verifyInOrder([
+        mockAuthRepository.currentUser,
+        mockUser.id,
+        mockTUserProfileRepository.findByPrimaryKey(userId),
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: null,
+          isDeleteAvatarUrl: true,
+          selfIntroduction: null,
+        ),
+        mockStorageRepository.deleteFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
+        ),
+      ]);
+    });
 
-    test(
-      'avatarImage の指定 & isDeleteAvatar を true にしても、TUserProfileRepository#updateByPrimaryKeySelective の isDeleteAvatar に true が渡されること',
-      () async {
-        when(mockAuthRepository.currentUser).thenReturn(mockUser);
-        when(mockUser.id).thenReturn(userId);
-        when(mockTUserProfileRepository.findByPrimaryKey(any)).thenAnswer((_) async => tUserProfile);
-        when(
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: null,
-            isDeleteAvatarUrl: true,
-            selfIntroduction: null,
-          ),
-        ).thenAnswer((_) async {});
-        when(
-          mockStorageRepository.deleteFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
-          ),
-        ).thenAnswer((_) async {});
-        await interactor.execute(
-          gynxId: null,
-          username: null,
-          avatarImage: mockFile,
-          isDeleteAvatar: true,
+    test('avatarImage の指定 & isDeleteAvatar を true にしても、TUserProfileRepository#updateByPrimaryKeySelective の isDeleteAvatar に true が渡されること', () async {
+      when(mockAuthRepository.currentUser).thenReturn(mockUser);
+      when(mockUser.id).thenReturn(userId);
+      when(mockTUserProfileRepository.findByPrimaryKey(any)).thenAnswer((_) async => tUserProfile);
+      when(
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: null,
+          isDeleteAvatarUrl: true,
           selfIntroduction: null,
-        );
-        verifyInOrder([
-          mockAuthRepository.currentUser,
-          mockUser.id,
-          mockTUserProfileRepository.findByPrimaryKey(userId),
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: null,
-            isDeleteAvatarUrl: true,
-            selfIntroduction: null,
-          ),
-          mockStorageRepository.deleteFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
-          ),
-        ]);
-      },
-    );
+        ),
+      ).thenAnswer((_) async {});
+      when(
+        mockStorageRepository.deleteFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
+        ),
+      ).thenAnswer((_) async {});
+      await interactor.execute(
+        screenName: null,
+        displayName: null,
+        avatarImage: mockFile,
+        isDeleteAvatar: true,
+        selfIntroduction: null,
+      );
+      verifyInOrder([
+        mockAuthRepository.currentUser,
+        mockUser.id,
+        mockTUserProfileRepository.findByPrimaryKey(userId),
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: null,
+          isDeleteAvatarUrl: true,
+          selfIntroduction: null,
+        ),
+        mockStorageRepository.deleteFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars/${tUserProfile.avatarUrl!.split('/').last}',
+        ),
+      ]);
+    });
 
-    test(
-      'gynxId のみ更新する場合、TUserProfile 関連の処理は行われないこと',
-      () async {
-        when(mockAuthRepository.currentUser).thenReturn(mockUser);
-        when(mockUser.id).thenReturn(userId);
-        when(mockTUserRepository.findByPrimaryKey(userId)).thenAnswer((_) async => tUser);
-        when(
-          mockTUserRepository.updateByPrimaryKey(
-            id: userId,
-            gynxId: gynxId,
-          ),
-        ).thenAnswer((_) async {});
-        await interactor.execute(
-          gynxId: gynxId,
-          username: null,
-          avatarImage: null,
-          isDeleteAvatar: false,
-          selfIntroduction: null,
-        );
-        verifyInOrder([
-          mockAuthRepository.currentUser,
-          mockUser.id,
-          mockTUserRepository.findByPrimaryKey(userId),
-          mockTUserRepository.updateByPrimaryKey(
-            id: userId,
-            gynxId: gynxId,
-          ),
-        ]);
-      },
-    );
+    test('screenName のみ更新する場合、TUserProfile 関連の処理は行われないこと', () async {
+      when(mockAuthRepository.currentUser).thenReturn(mockUser);
+      when(mockUser.id).thenReturn(userId);
+      when(mockTUserRepository.findByPrimaryKey(userId)).thenAnswer((_) async => tUser);
+      when(
+        mockTUserRepository.updateByPrimaryKey(
+          id: userId,
+          screenName: screenName,
+        ),
+      ).thenAnswer((_) async {});
+      await interactor.execute(
+        screenName: screenName,
+        displayName: null,
+        avatarImage: null,
+        isDeleteAvatar: false,
+        selfIntroduction: null,
+      );
+      verifyInOrder([
+        mockAuthRepository.currentUser,
+        mockUser.id,
+        mockTUserRepository.findByPrimaryKey(userId),
+        mockTUserRepository.updateByPrimaryKey(
+          id: userId,
+          screenName: screenName,
+        ),
+      ]);
+    });
 
     test('ユーザ名のみ更新する場合、TUser 関連とストレージ関連の処理は行われないこと', () async {
       when(mockAuthRepository.currentUser).thenReturn(mockUser);
@@ -293,14 +283,14 @@ void main() {
       when(
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: username,
+          displayName: displayName,
           avatarUrl: null,
           selfIntroduction: null,
         ),
       ).thenAnswer((_) async {});
       await interactor.execute(
-        gynxId: null,
-        username: username,
+        screenName: null,
+        displayName: displayName,
         avatarImage: null,
         isDeleteAvatar: false,
         selfIntroduction: null,
@@ -311,7 +301,7 @@ void main() {
         mockTUserProfileRepository.findByPrimaryKey(userId),
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: username,
+          displayName: displayName,
           avatarUrl: null,
           selfIntroduction: null,
         ),
@@ -334,7 +324,7 @@ void main() {
       when(
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: null,
+          displayName: null,
           avatarUrl: uploadedAvatarUrl,
           selfIntroduction: null,
         ),
@@ -346,8 +336,8 @@ void main() {
         ),
       ).thenAnswer((_) async {});
       await interactor.execute(
-        gynxId: null,
-        username: null,
+        screenName: null,
+        displayName: null,
         avatarImage: mockFile,
         isDeleteAvatar: false,
         selfIntroduction: null,
@@ -365,7 +355,7 @@ void main() {
         mockTUserProfileRepository.findByPrimaryKey(userId),
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: null,
+          displayName: null,
           avatarUrl: uploadedAvatarUrl,
           selfIntroduction: null,
         ),
@@ -376,58 +366,55 @@ void main() {
       ]);
     });
 
-    test(
-      'アバター画像のみ更新する場合でも、TUserProfile.avatarUrl が設定されていない場合は、StorageRepository#deleteFile も呼ばれないこと',
-      () async {
-        when(mockAuthRepository.currentUser).thenReturn(mockUser);
-        when(mockUser.id).thenReturn(userId);
-        when(mockUuidGenerator.generate()).thenAnswer((_) => filename);
-        when(
-          mockStorageRepository.uploadFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars',
-            filename: filename,
-            file: mockFile,
-          ),
-        ).thenAnswer((_) async => uploadedAvatarUrl);
-        when(mockTUserProfileRepository.findByPrimaryKey(userId)).thenAnswer((_) async => tUserProfile.copyWith(
-              avatarUrl: null,
-            ));
-        when(
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: uploadedAvatarUrl,
-            selfIntroduction: null,
-          ),
-        ).thenAnswer((_) async {});
-        await interactor.execute(
-          gynxId: null,
-          username: null,
-          avatarImage: mockFile,
-          isDeleteAvatar: false,
+    test('アバター画像のみ更新する場合でも、TUserProfile.avatarUrl が設定されていない場合は、StorageRepository#deleteFile も呼ばれないこと', () async {
+      when(mockAuthRepository.currentUser).thenReturn(mockUser);
+      when(mockUser.id).thenReturn(userId);
+      when(mockUuidGenerator.generate()).thenAnswer((_) => filename);
+      when(
+        mockStorageRepository.uploadFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars',
+          filename: filename,
+          file: mockFile,
+        ),
+      ).thenAnswer((_) async => uploadedAvatarUrl);
+      when(mockTUserProfileRepository.findByPrimaryKey(userId)).thenAnswer((_) async => tUserProfile.copyWith(
+            avatarUrl: null,
+          ));
+      when(
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: uploadedAvatarUrl,
           selfIntroduction: null,
-        );
-        verifyInOrder([
-          mockAuthRepository.currentUser,
-          mockUser.id,
-          mockUuidGenerator.generate(),
-          mockStorageRepository.uploadFile(
-            storageType: StorageType.users,
-            path: '$userId/avatars',
-            filename: filename,
-            file: mockFile,
-          ),
-          mockTUserProfileRepository.findByPrimaryKey(userId),
-          mockTUserProfileRepository.updateByPrimaryKeySelective(
-            userId: userId,
-            username: null,
-            avatarUrl: uploadedAvatarUrl,
-            selfIntroduction: null,
-          ),
-        ]);
-      },
-    );
+        ),
+      ).thenAnswer((_) async {});
+      await interactor.execute(
+        screenName: null,
+        displayName: null,
+        avatarImage: mockFile,
+        isDeleteAvatar: false,
+        selfIntroduction: null,
+      );
+      verifyInOrder([
+        mockAuthRepository.currentUser,
+        mockUser.id,
+        mockUuidGenerator.generate(),
+        mockStorageRepository.uploadFile(
+          storageType: StorageType.users,
+          path: '$userId/avatars',
+          filename: filename,
+          file: mockFile,
+        ),
+        mockTUserProfileRepository.findByPrimaryKey(userId),
+        mockTUserProfileRepository.updateByPrimaryKeySelective(
+          userId: userId,
+          displayName: null,
+          avatarUrl: uploadedAvatarUrl,
+          selfIntroduction: null,
+        ),
+      ]);
+    });
 
     test('自己紹介のみ更新する場合、TUser 関連とストレージ関連の処理は行われないこと', () async {
       when(mockAuthRepository.currentUser).thenReturn(mockUser);
@@ -436,14 +423,14 @@ void main() {
       when(
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: null,
+          displayName: null,
           avatarUrl: null,
           selfIntroduction: selfIntroduction,
         ),
       ).thenAnswer((_) async {});
       await interactor.execute(
-        gynxId: null,
-        username: null,
+        screenName: null,
+        displayName: null,
         avatarImage: null,
         isDeleteAvatar: false,
         selfIntroduction: selfIntroduction,
@@ -454,7 +441,7 @@ void main() {
         mockTUserProfileRepository.findByPrimaryKey(userId),
         mockTUserProfileRepository.updateByPrimaryKeySelective(
           userId: userId,
-          username: null,
+          displayName: null,
           avatarUrl: null,
           selfIntroduction: selfIntroduction,
         ),
@@ -463,22 +450,19 @@ void main() {
   });
 
   group('準正常系', () {
-    test(
-      'AuthRepository#currentUser で null が返ってきた場合は、UserNotSignedInException が発生すること',
-      () async {
-        when(mockAuthRepository.currentUser).thenReturn(null);
-        await expectLater(
-          interactor.execute(
-            gynxId: gynxId,
-            username: username,
-            avatarImage: mockFile,
-            isDeleteAvatar: false,
-            selfIntroduction: selfIntroduction,
-          ),
-          throwsA(const TypeMatcher<UserNotSignedInException>()),
-        );
-        verify(mockAuthRepository.currentUser);
-      },
-    );
+    test('AuthRepository#currentUser で null が返ってきた場合は、UserNotSignedInException が発生すること', () async {
+      when(mockAuthRepository.currentUser).thenReturn(null);
+      await expectLater(
+        interactor.execute(
+          screenName: screenName,
+          displayName: displayName,
+          avatarImage: mockFile,
+          isDeleteAvatar: false,
+          selfIntroduction: selfIntroduction,
+        ),
+        throwsA(const TypeMatcher<UserNotSignedInException>()),
+      );
+      verify(mockAuthRepository.currentUser);
+    });
   });
 }

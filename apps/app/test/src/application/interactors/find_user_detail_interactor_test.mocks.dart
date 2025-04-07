@@ -54,19 +54,19 @@ class MockVUserDetailRepository extends _i1.Mock
           as _i4.Future<_i2.VUserDetail>);
 
   @override
-  _i4.Future<_i2.VUserDetail> findByGynxId(String? gynxId) =>
+  _i4.Future<_i2.VUserDetail> findByScreenName(String? screenName) =>
       (super.noSuchMethod(
-            Invocation.method(#findByGynxId, [gynxId]),
+            Invocation.method(#findByScreenName, [screenName]),
             returnValue: _i4.Future<_i2.VUserDetail>.value(
               _FakeVUserDetail_0(
                 this,
-                Invocation.method(#findByGynxId, [gynxId]),
+                Invocation.method(#findByScreenName, [screenName]),
               ),
             ),
             returnValueForMissingStub: _i4.Future<_i2.VUserDetail>.value(
               _FakeVUserDetail_0(
                 this,
-                Invocation.method(#findByGynxId, [gynxId]),
+                Invocation.method(#findByScreenName, [screenName]),
               ),
             ),
           )

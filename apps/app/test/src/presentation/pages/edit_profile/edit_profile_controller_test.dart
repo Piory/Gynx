@@ -25,8 +25,8 @@ import 'edit_profile_controller_test.mocks.dart';
   MockSpec<UpdateUserProfileUseCase>(),
 ])
 void main() {
-  final gynxId = faker.guid.guid();
-  final username = faker.person.name();
+  final screenName = faker.guid.guid();
+  final displayName = faker.person.name();
   final isDeleteAvatar = faker.randomGenerator.boolean();
   final selfIntroduction = faker.lorem.sentence();
 
@@ -71,8 +71,8 @@ void main() {
           context: mockBuildContext,
           l10n: l10nJa,
           ref: mockWidgetRef,
-          gynxId: gynxId,
-          username: username,
+          screenName: screenName,
+          displayName: displayName,
           avatarFile: null,
           isDeleteAvatar: isDeleteAvatar,
           selfIntroduction: selfIntroduction,
@@ -80,8 +80,8 @@ void main() {
         verifyInOrder([
           mockLoadingDialog.show(),
           mockUpdateUserProfileUseCase.execute(
-            gynxId: gynxId,
-            username: username,
+            screenName: screenName,
+            displayName: displayName,
             avatarImage: null,
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: selfIntroduction,
@@ -99,8 +99,8 @@ void main() {
           context: mockBuildContext,
           l10n: l10nJa,
           ref: mockWidgetRef,
-          gynxId: null,
-          username: null,
+          screenName: null,
+          displayName: null,
           avatarFile: null,
           isDeleteAvatar: isDeleteAvatar,
           selfIntroduction: null,
@@ -108,8 +108,8 @@ void main() {
         verifyInOrder([
           mockLoadingDialog.show(),
           mockUpdateUserProfileUseCase.execute(
-            gynxId: null,
-            username: null,
+            screenName: null,
+            displayName: null,
             avatarImage: null,
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: null,
@@ -127,8 +127,8 @@ void main() {
         final exception = Exception(faker.guid.guid());
         when(
           mockUpdateUserProfileUseCase.execute(
-            gynxId: null,
-            username: null,
+            screenName: null,
+            displayName: null,
             avatarImage: null,
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: null,
@@ -140,8 +140,8 @@ void main() {
             context: mockBuildContext,
             l10n: l10nJa,
             ref: mockWidgetRef,
-            gynxId: null,
-            username: null,
+            screenName: null,
+            displayName: null,
             avatarFile: null,
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: null,
@@ -151,8 +151,8 @@ void main() {
         verifyInOrder([
           mockLoadingDialog.show(),
           mockUpdateUserProfileUseCase.execute(
-            gynxId: null,
-            username: null,
+            screenName: null,
+            displayName: null,
             avatarImage: null,
             isDeleteAvatar: isDeleteAvatar,
             selfIntroduction: null,

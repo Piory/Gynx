@@ -1,4 +1,4 @@
-import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart';
+import 'package:app/src/domain/usecases/check_screen_name_existence_usecase.dart';
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
@@ -11,8 +11,8 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:locales/locales.dart';
 
-class EditGynxId extends ConsumerWidget {
-  const EditGynxId({
+class EditScreenName extends ConsumerWidget {
+  const EditScreenName({
     super.key,
     required this.onSaved,
   });
@@ -25,15 +25,15 @@ class EditGynxId extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textScaler = MediaQuery.textScalerOf(context);
     final formKey = GlobalObjectKey<FormBuilderState>(context);
-    final initialGynxId = ref.watch(
+    final initialScreenName = ref.watch(
       suiteUserNotifierProvider.select(
-        (value) => value.value?.vUserDetail.gynxId,
+        (value) => value.value?.vUserDetail.screenName,
       ),
     );
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          context.l10n.editGynxId,
+          context.l10n.editScreenName,
           textScaler: textScaler.clamp(
             maxScaleFactor: 1,
           ),
@@ -55,7 +55,7 @@ class EditGynxId extends ConsumerWidget {
                 context: context,
                 ref: ref,
                 formKey: formKey,
-                initialGynxId: initialGynxId,
+                initialScreenName: initialScreenName,
               ),
             ),
           ),
@@ -69,35 +69,35 @@ class EditGynxId extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FormBuilderTextField(
-                name: 'gynx_id',
-                initialValue: initialGynxId,
+                name: 'screen_name',
+                initialValue: initialScreenName,
                 autofocus: true,
-                maxLength: Constant.gynxIdMaxLength,
+                maxLength: Constant.screenNameMaxLength,
                 keyboardType: TextInputType.text,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.minLength(
-                    Constant.gynxIdMinLength,
+                    Constant.screenNameMinLength,
                   ),
                   FormBuilderValidators.maxLength(
-                    Constant.gynxIdMaxLength,
+                    Constant.screenNameMaxLength,
                   ),
                   FormBuilderValidators.match(
                     RegExp(r'^[a-zA-Z0-9_]+$'),
-                    errorText: context.l10n.editGynxIdRegexpError,
+                    errorText: context.l10n.editScreenNameRegexpError,
                   ),
                 ]),
                 decoration: InputDecoration(
                   prefixText: '@',
                   prefixStyle: textTheme.bodyMedium,
-                  labelText: context.l10n.gynxId,
+                  labelText: context.l10n.screenName,
                 ),
                 onSaved: (value) => onSaved(value?.trim()),
               ),
               const Gap(SpaceSize.s16),
               Text(
-                context.l10n.editGynxIdLength(
-                  Constant.gynxIdMinLength,
-                  Constant.gynxIdMaxLength,
+                context.l10n.editScreenNameLength(
+                  Constant.screenNameMinLength,
+                  Constant.screenNameMaxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,
@@ -105,7 +105,7 @@ class EditGynxId extends ConsumerWidget {
               ),
               const Gap(SpaceSize.s4),
               Text(
-                context.l10n.editGynxIdRegexp,
+                context.l10n.editScreenNameRegexp,
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -121,32 +121,32 @@ class EditGynxId extends ConsumerWidget {
     required BuildContext context,
     required WidgetRef ref,
     required GlobalKey<FormBuilderState> formKey,
-    required String? initialGynxId,
+    required String? initialScreenName,
   }) async {
-    if (initialGynxId == null) {
+    if (initialScreenName == null) {
       return;
     }
     final loadingDialog = GetIt.I<LoadingDialog>();
     final pageNavigator = GetIt.I<PageNavigator>();
-    final checkGynxIdExistenceUseCase = GetIt.I<CheckGynxIdExistenceUsecase>();
+    final checkScreenNameExistenceUseCase = GetIt.I<CheckScreenNameExistenceUseCase>();
     loadingDialog.show();
     try {
       final currentState = formKey.currentState;
       if (!currentState!.validate()) {
         return;
       }
-      final gynxIdField = currentState.fields['gynx_id']!;
-      final inputtedGynxId = gynxIdField.value as String;
-      if (inputtedGynxId == initialGynxId) {
+      final screenNameField = currentState.fields['screen_name']!;
+      final inputtedScreenName = screenNameField.value as String;
+      if (inputtedScreenName == initialScreenName) {
         if (context.mounted) {
           pageNavigator.pop(context);
         }
         return;
       }
-      if (await checkGynxIdExistenceUseCase.execute(inputtedGynxId)) {
+      if (await checkScreenNameExistenceUseCase.execute(inputtedScreenName)) {
         if (context.mounted) {
-          gynxIdField.invalidate(
-            context.l10n.editGynxIdExistenceError,
+          screenNameField.invalidate(
+            context.l10n.editScreenNameExistenceError,
           );
         }
         return;

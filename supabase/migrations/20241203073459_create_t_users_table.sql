@@ -3,16 +3,16 @@ CREATE EXTENSION IF NOT EXISTS citext;
 -- Create table
 CREATE TABLE t_users
 (
-    id         UUID PRIMARY KEY NOT NULL REFERENCES auth.users,
-    gynx_id    CITEXT           NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMPTZ
+    id          UUID PRIMARY KEY NOT NULL REFERENCES auth.users,
+    screen_name CITEXT           NOT NULL UNIQUE,
+    created_at  TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at  TIMESTAMPTZ
 );
 -- Add comment
 COMMENT ON TABLE t_users IS 'ユーザーテーブル';
 COMMENT ON COLUMN t_users.id IS 'ユーザーID';
-COMMENT ON COLUMN t_users.gynx_id IS 'Gynx ID';
+COMMENT ON COLUMN t_users.screen_name IS 'ハンドル';
 COMMENT ON COLUMN t_users.created_at IS '作成日時';
 COMMENT ON COLUMN t_users.updated_at IS '更新日時';
 COMMENT ON COLUMN t_users.deleted_at IS '削除日時';
@@ -50,26 +50,26 @@ CREATE POLICY "Delete own user"
 CREATE OR REPLACE FUNCTION handle_new_user() RETURNS TRIGGER AS
 $$
 DECLARE
-    -- Gynx ID のデフォルト値
-    default_gynx_id VARCHAR(16);
+    -- screen_name のデフォルト値
+    default_screen_name VARCHAR(16);
 BEGIN
     BEGIN
-        -- Gynx ID のデフォルト値を設定
-        SELECT left(md5(NEW.id::TEXT), 16) INTO default_gynx_id;
+        -- screen_name のデフォルト値を設定
+        SELECT left(md5(NEW.id::TEXT), 16) INTO default_screen_name;
         -- ユーザー情報を登録
-        INSERT INTO public.t_users(id, gynx_id, created_at, updated_at)
-        VALUES (NEW.id, default_gynx_id, NEW.created_at, NEW.updated_at);
+        INSERT INTO public.t_users(id, screen_name, created_at, updated_at)
+        VALUES (NEW.id, default_screen_name, NEW.created_at, NEW.updated_at);
         -- 匿名ユーザーの場合はプロフィール登録をスキップ
         IF NEW.is_anonymous THEN
             RETURN NEW;
         END IF;
         -- ユーザープロフィールを登録
         IF NEW.raw_app_meta_data ->> 'provider' = 'email' THEN
-            INSERT INTO public.t_user_profiles(user_id, username, created_at, updated_at)
-            VALUES (NEW.id, default_gynx_id, NEW.created_at, NEW.updated_at);
+            INSERT INTO public.t_user_profiles(user_id, display_name, created_at, updated_at)
+            VALUES (NEW.id, default_screen_name, NEW.created_at, NEW.updated_at);
             RETURN NEW;
         ELSE
-            INSERT INTO public.t_user_profiles(user_id, username, avatar_url, created_at, updated_at)
+            INSERT INTO public.t_user_profiles(user_id, display_name, avatar_url, created_at, updated_at)
             VALUES (NEW.id, NEW.raw_user_meta_data ->> 'full_name', NEW.raw_user_meta_data ->> 'avatar_url',
                     NEW.created_at,
                     NEW.updated_at);

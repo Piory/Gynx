@@ -5,7 +5,7 @@ abstract interface class TUserProfileRepository {
 
   Future<void> updateByPrimaryKeySelective({
     required String userId,
-    required String? username,
+    required String? displayName,
     required String? avatarUrl,
     bool isDeleteAvatarUrl = false,
     required String? selfIntroduction,

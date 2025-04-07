@@ -8,7 +8,7 @@ part '../../generated/src/domain/entities/t_user_profile.g.dart';
 class TUserProfile with _$TUserProfile {
   const TUserProfile({
     required this.userId,
-    required this.username,
+    required this.displayName,
     required this.avatarUrl,
     required this.selfIntroduction,
     required this.createdAt,
@@ -16,13 +16,12 @@ class TUserProfile with _$TUserProfile {
     required this.deletedAt,
   });
 
-  factory TUserProfile.fromJson(Map<String, dynamic> json) =>
-      _$TUserProfileFromJson(json);
+  factory TUserProfile.fromJson(Map<String, dynamic> json) => _$TUserProfileFromJson(json);
 
   @override
   final String userId;
   @override
-  final String username;
+  final String displayName;
   @override
   final String? avatarUrl;
   @override

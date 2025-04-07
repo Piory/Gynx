@@ -1,7 +1,7 @@
 CREATE TABLE t_user_profiles
 (
     user_id           UUID         NOT NULL PRIMARY KEY REFERENCES t_users ON DELETE RESTRICT ON UPDATE CASCADE,
-    username          VARCHAR(20)  NOT NULL,
+    display_name      VARCHAR(20)  NOT NULL,
     avatar_url        VARCHAR(255),
     self_introduction VARCHAR(160) NOT NULL DEFAULT '',
     created_at        TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -10,7 +10,7 @@ CREATE TABLE t_user_profiles
 );
 COMMENT ON TABLE t_user_profiles IS 'ユーザープロフィールテーブル';
 COMMENT ON COLUMN t_user_profiles.user_id IS 'ユーザーID';
-COMMENT ON COLUMN t_user_profiles.username IS 'ユーザー名';
+COMMENT ON COLUMN t_user_profiles.display_name IS '表示名';
 COMMENT ON COLUMN t_user_profiles.avatar_url IS 'アバターURL';
 COMMENT ON COLUMN t_user_profiles.self_introduction IS '自己紹介';
 COMMENT ON COLUMN t_user_profiles.created_at IS '作成日時';

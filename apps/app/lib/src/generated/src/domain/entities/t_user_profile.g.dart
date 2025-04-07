@@ -13,7 +13,7 @@ TUserProfile _$TUserProfileFromJson(Map<String, dynamic> json) =>
       ($checkedConvert) {
         final val = TUserProfile(
           userId: $checkedConvert('user_id', (v) => v as String),
-          username: $checkedConvert('username', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
           avatarUrl: $checkedConvert('avatar_url', (v) => v as String?),
           selfIntroduction:
               $checkedConvert('self_introduction', (v) => v as String),
@@ -28,6 +28,7 @@ TUserProfile _$TUserProfileFromJson(Map<String, dynamic> json) =>
       },
       fieldKeyMap: const {
         'userId': 'user_id',
+        'displayName': 'display_name',
         'avatarUrl': 'avatar_url',
         'selfIntroduction': 'self_introduction',
         'createdAt': 'created_at',
@@ -39,7 +40,7 @@ TUserProfile _$TUserProfileFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TUserProfileToJson(TUserProfile instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
-      'username': instance.username,
+      'display_name': instance.displayName,
       'avatar_url': instance.avatarUrl,
       'self_introduction': instance.selfIntroduction,
       'created_at': instance.createdAt.toIso8601String(),

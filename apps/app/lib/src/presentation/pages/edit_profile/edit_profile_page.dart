@@ -1,9 +1,9 @@
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_avatar.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_gynx_id.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_display_name.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_profile_row.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_screen_name.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_username.dart';
 import 'package:app/src/presentation/pages/edit_profile/edit_profile_controller.dart';
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,8 @@ class EditProfilePage extends ConsumerStatefulWidget {
 class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   XFile? _afterAvatarPath;
   var _isDeleteAvatar = false;
-  String? _afterUsername;
-  String? _afterGynxId;
+  String? _afterDisplayName;
+  String? _afterScreenName;
   String? _afterSelfIntroduction;
 
   @override
@@ -65,8 +65,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                 context: context,
                 l10n: context.l10n,
                 ref: ref,
-                gynxId: _afterGynxId,
-                username: _afterUsername,
+                screenName: _afterScreenName,
+                displayName: _afterDisplayName,
                 avatarFile: _afterAvatarPath,
                 isDeleteAvatar: _isDeleteAvatar,
                 selfIntroduction: _afterSelfIntroduction,
@@ -117,26 +117,22 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   children: [
                     Consumer(
                       builder: (context, ref, child) {
-                        final username = ref.watch(
-                          suiteUserNotifierProvider.select(
-                            (state) => state.value?.vUserDetail.username,
-                          ),
-                        );
-                        if (username == null) {
+                        final displayName = ref.watch(suiteUserNotifierProvider.select((state) => state.value?.vUserDetail.displayName));
+                        if (displayName == null) {
                           return EditProfileRow.loading(
-                            name: context.l10n.username,
+                            name: context.l10n.displayName,
                           );
                         }
                         return EditProfileRow(
-                          name: context.l10n.username,
-                          text: _afterUsername ?? username,
+                          name: context.l10n.displayName,
+                          text: _afterDisplayName ?? displayName,
                           onTap: () {
                             showCupertinoModalBottomSheet<void>(
                               context: context,
-                              builder: (_) => EditUsername(
+                              builder: (_) => EditDisplayName(
                                 onSaved: (value) {
                                   setState(() {
-                                    _afterUsername = value;
+                                    _afterDisplayName = value;
                                   });
                                 },
                               ),
@@ -150,28 +146,28 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                     ),
                     Consumer(
                       builder: (context, ref, _) {
-                        final gynxId = ref.watch(
+                        final screenName = ref.watch(
                           suiteUserNotifierProvider.select(
-                            (state) => state.value?.vUserDetail.gynxId,
+                            (state) => state.value?.vUserDetail.screenName,
                           ),
                         );
-                        if (gynxId == null) {
+                        if (screenName == null) {
                           return EditProfileRow.loading(
-                            name: context.l10n.gynxId,
+                            name: context.l10n.screenName,
                           );
                         }
 
                         return EditProfileRow(
-                          name: context.l10n.gynxId,
-                          text: _afterGynxId ?? gynxId,
+                          name: context.l10n.screenName,
+                          text: _afterScreenName ?? screenName,
                           onTap: () {
                             showCupertinoModalBottomSheet<void>(
                               context: context,
                               builder: (_) {
-                                return EditGynxId(
+                                return EditScreenName(
                                   onSaved: (value) {
                                     setState(() {
-                                      _afterGynxId = value;
+                                      _afterScreenName = value;
                                     });
                                   },
                                 );

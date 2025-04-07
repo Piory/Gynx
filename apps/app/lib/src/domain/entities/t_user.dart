@@ -8,7 +8,7 @@ part '../../generated/src/domain/entities/t_user.g.dart';
 class TUser with _$TUser {
   const TUser({
     required this.id,
-    required this.gynxId,
+    required this.screenName,
     required this.createdAt,
     required this.updatedAt,
     required this.deletedAt,
@@ -19,7 +19,7 @@ class TUser with _$TUser {
   @override
   final String id;
   @override
-  final String gynxId;
+  final String screenName;
   @override
   final DateTime createdAt;
   @override

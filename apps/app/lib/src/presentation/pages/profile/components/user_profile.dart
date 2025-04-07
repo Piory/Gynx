@@ -1,12 +1,12 @@
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
 import 'package:app/src/presentation/components/elements/shimmers/shimmer.dart';
 import 'package:app/src/presentation/notifiers/suite_user_notifier.dart';
+import 'package:app/src/presentation/pages/profile/components/display_name.dart';
 import 'package:app/src/presentation/pages/profile/components/edit_profile_button.dart';
 import 'package:app/src/presentation/pages/profile/components/follow_count.dart';
 import 'package:app/src/presentation/pages/profile/components/follower_count.dart';
 import 'package:app/src/presentation/pages/profile/components/self_introduction.dart';
 import 'package:app/src/presentation/pages/profile/components/user_avatar_with_hero.dart';
-import 'package:app/src/presentation/pages/profile/components/username.dart';
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,8 +39,8 @@ class UserProfile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Username(),
-                      _createGynxIdWidget(context),
+                      const DisplayName(),
+                      _createScreenNameWidget(context),
                     ],
                   ),
                 ),
@@ -102,15 +102,11 @@ class UserProfile extends StatelessWidget {
     );
   }
 
-  Widget _createGynxIdWidget(BuildContext context) {
+  Widget _createScreenNameWidget(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        final gynxId = ref.watch(
-          suiteUserNotifierProvider.select(
-            (state) => state.value?.vUserDetail.gynxId,
-          ),
-        );
-        if (gynxId == null) {
+        final screenName = ref.watch(suiteUserNotifierProvider.select((state) => state.value?.vUserDetail.screenName));
+        if (screenName == null) {
           final isLoading = ref.watch(
             suiteUserNotifierProvider.select(
               (state) => state.isLoading,
@@ -123,8 +119,8 @@ class UserProfile extends StatelessWidget {
             );
           }
         }
-        return GynxId(
-          id: gynxId,
+        return ScreenName(
+          screenName: screenName,
         );
       },
     );

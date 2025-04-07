@@ -544,16 +544,16 @@ class MockUpdateUserProfileUseCase extends _i1.Mock
     implements _i15.UpdateUserProfileUseCase {
   @override
   _i8.Future<void> execute({
-    required String? gynxId,
-    required String? username,
+    required String? screenName,
+    required String? displayName,
     required _i16.File? avatarImage,
     required bool? isDeleteAvatar,
     required String? selfIntroduction,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [], {
-              #gynxId: gynxId,
-              #username: username,
+              #screenName: screenName,
+              #displayName: displayName,
               #avatarImage: avatarImage,
               #isDeleteAvatar: isDeleteAvatar,
               #selfIntroduction: selfIntroduction,

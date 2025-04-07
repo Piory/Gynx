@@ -1,10 +1,9 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:app/src/domain/models/suite_user.dart';
 import 'package:app/src/domain/usecases/find_user_detail_usecase.dart';
 import 'package:app/src/domain/usecases/find_user_usecase.dart';
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:app/src/presentation/components/elements/shimmers/shimmer.dart';
-import 'package:app/src/presentation/pages/profile/components/username.dart';
+import 'package:app/src/presentation/pages/profile/components/display_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +13,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../../data/dummy_data_generator.dart';
-import 'username_test.mocks.dart';
+import 'display_name_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<SuiteUserUseCase>(),
@@ -43,7 +42,7 @@ void main() {
     reset(mockFindUserDetailUseCase);
   });
 
-  group('Username', () {
+  group('DisplayName', () {
     Future<void> pumpWidget({
       required WidgetTester tester,
       required SuiteUser suiteUser,
@@ -58,7 +57,7 @@ void main() {
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
             home: Scaffold(
-              body: Username(),
+              body: DisplayName(),
             ),
           ),
         ),
@@ -94,7 +93,7 @@ void main() {
         expect(find.byType(Text), findsNothing);
         await tester.pumpAndSettle();
         expect(find.byType(Shimmer), findsNothing);
-        expect(find.text(suiteUser.vUserDetail.username), findsOneWidget);
+        expect(find.text(suiteUser.vUserDetail.displayName), findsOneWidget);
       });
     });
   });

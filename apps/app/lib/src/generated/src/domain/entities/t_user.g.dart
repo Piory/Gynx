@@ -12,7 +12,7 @@ TUser _$TUserFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = TUser(
           id: $checkedConvert('id', (v) => v as String),
-          gynxId: $checkedConvert('gynx_id', (v) => v as String),
+          screenName: $checkedConvert('screen_name', (v) => v as String),
           createdAt:
               $checkedConvert('created_at', (v) => DateTime.parse(v as String)),
           updatedAt:
@@ -23,7 +23,7 @@ TUser _$TUserFromJson(Map<String, dynamic> json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
-        'gynxId': 'gynx_id',
+        'screenName': 'screen_name',
         'createdAt': 'created_at',
         'updatedAt': 'updated_at',
         'deletedAt': 'deleted_at'
@@ -32,7 +32,7 @@ TUser _$TUserFromJson(Map<String, dynamic> json) => $checkedCreate(
 
 Map<String, dynamic> _$TUserToJson(TUser instance) => <String, dynamic>{
       'id': instance.id,
-      'gynx_id': instance.gynxId,
+      'screen_name': instance.screenName,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
       'deleted_at': instance.deletedAt?.toIso8601String(),

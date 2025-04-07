@@ -25,13 +25,13 @@ VALUES ('00000000-0000-0000-0000-000000000000', '11111111-1111-1111-1111-1111111
         NULL, '', NULL);
 
 UPDATE public.t_user_profiles
-SET username = 'updated_user'
+SET display_name = 'updated_user'
 WHERE user_id = '11111111-1111-1111-1111-111111111111';
 
 SELECT is(
-               (SELECT username FROM public.t_user_profiles WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT display_name FROM public.t_user_profiles WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                'updated_user',
-               'ユーザー名が正しく更新されたことを確認'
+               '表示名が正しく更新されたことを確認'
        );
 
 SELECT is(

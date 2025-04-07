@@ -1,12 +1,11 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:app/src/domain/models/suite_user.dart';
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
+import 'package:app/src/presentation/pages/profile/components/display_name.dart';
 import 'package:app/src/presentation/pages/profile/components/follow_count.dart';
 import 'package:app/src/presentation/pages/profile/components/follower_count.dart';
 import 'package:app/src/presentation/pages/profile/components/self_introduction.dart';
 import 'package:app/src/presentation/pages/profile/components/user_profile.dart';
-import 'package:app/src/presentation/pages/profile/components/username.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -56,7 +55,7 @@ void main() {
     }
 
     group('正常系', () {
-      testWidgets('ユーザー名、GynxID、自己紹介、フォロー数、フォロワー数が表示されること', (tester) async {
+      testWidgets('ユーザー名、ハンドル、表示名、自己紹介、フォロー数、フォロワー数が表示されること', (tester) async {
         final suiteUser = generateDummySuiteUser();
         final tUser = suiteUser.vUserDetail;
         final tUserProfile = suiteUser.vUserDetail;
@@ -64,11 +63,11 @@ void main() {
           tester: tester,
           suiteUser: suiteUser,
         );
-        expect(find.text(tUserProfile.username), findsOneWidget);
-        expect(find.byType(GynxId), findsOneWidget);
-        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
-        expect(gynxId.id, tUser.gynxId);
-        expect(find.byType(Username), findsOneWidget);
+        expect(find.text(tUserProfile.displayName), findsOneWidget);
+        expect(find.byType(ScreenName), findsOneWidget);
+        final screenName = tester.widget<ScreenName>(find.byType(ScreenName));
+        expect(screenName.screenName, tUser.screenName);
+        expect(find.byType(DisplayName), findsOneWidget);
         expect(find.byType(SelfIntroduction), findsOneWidget);
         expect(find.byType(FollowCount), findsOneWidget);
         expect(find.byType(FollowerCount), findsOneWidget);

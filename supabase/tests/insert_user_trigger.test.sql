@@ -41,9 +41,9 @@ SELECT is(
                'public.t_usersに新しいユーザーが作成されたことを確認'
        );
 SELECT is(
-               (SELECT username FROM public.t_user_profiles WHERE user_id = '11111111-1111-1111-1111-111111111111'),
+               (SELECT display_name FROM public.t_user_profiles WHERE user_id = '11111111-1111-1111-1111-111111111111'),
                'FullName',
-               'auth.users の raw_user_meta_data ->> full_name が public.t_user_profiles の username に反映されたことを確認'
+               'auth.users の raw_user_meta_data ->> full_name が public.t_user_profiles の display_name に反映されたことを確認'
        );
 SELECT is(
                (SELECT avatar_url FROM public.t_user_profiles WHERE user_id = '11111111-1111-1111-1111-111111111111'),

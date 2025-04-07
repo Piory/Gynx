@@ -33,29 +33,29 @@ class L10nJa extends L10n {
   String get editProfile => 'プロフィールを編集';
 
   @override
-  String get editUsername => 'ユーザー名を編集';
+  String get editDisplayName => '表示名を編集';
 
   @override
-  String editUsernameLength(int min, int max) {
-    return 'ユーザー名は、$min文字以上$max文字以内で入力してください。';
+  String editDisplayNameLength(int min, int max) {
+    return '表示名は、$min文字以上$max文字以内で入力してください。';
   }
 
   @override
-  String get editGynxId => 'Gynx ID を編集';
+  String get editScreenName => 'ハンドルを編集';
 
   @override
-  String get editGynxIdRegexp => 'Gynx ID には、半角英数字、アンダースコア（_）のみが利用できます。';
+  String get editScreenNameRegexp => 'ハンドルには、半角英数字、アンダースコア（_）のみが利用できます。';
 
   @override
-  String get editGynxIdRegexpError => '使用できない文字が含まれています。';
+  String get editScreenNameRegexpError => '使用できない文字が含まれています。';
 
   @override
-  String editGynxIdLength(int min, int max) {
-    return 'Gynx ID は、$min文字以上$max文字以内で入力してください。';
+  String editScreenNameLength(int min, int max) {
+    return 'ハンドルは、$min文字以上$max文字以内で入力してください。';
   }
 
   @override
-  String get editGynxIdExistenceError => 'この Gynx ID は既に使用されています。';
+  String get editScreenNameExistenceError => 'この ハンドル は既に使用されています。';
 
   @override
   String get editSelfIntroduction => '自己紹介を編集';
@@ -78,6 +78,9 @@ class L10nJa extends L10n {
   String get posts => '投稿';
 
   @override
+  String get postedAt => '';
+
+  @override
   String get postHintText => '最近どうしてる？';
 
   @override
@@ -90,10 +93,10 @@ class L10nJa extends L10n {
   String get favoritePostListEmpty => 'お気に入りの投稿がありません';
 
   @override
-  String get username => 'ユーザー名';
+  String get displayName => '表示名';
 
   @override
-  String get gynxId => 'Gynx ID';
+  String get screenName => 'ハンドル';
 
   @override
   String get selfIntroduction => '自己紹介';
@@ -123,13 +126,13 @@ class L10nJa extends L10n {
   String get or => 'または';
 
   @override
-  String get signUpOrSignIn => '新規登録またはログイン';
-
-  @override
   String get signInTitle => 'ログインして、Gynxを最大限に活用しよう！';
 
   @override
   String get signInDescription => '続行するには、以下のサービスでログインしてください';
+
+  @override
+  String get signUpOrSignIn => '新規登録またはログイン';
 
   @override
   String get continueWithApple => 'Apple で続ける';

@@ -36,11 +36,11 @@ void main() {
 
   group('#updateByPrimaryKeySelective', () {
     group('正常系', () {
-      test('username, avatar_url, self_introduction が更新されること', () async {
+      test('display_name, avatar_url, self_introduction が更新されること', () async {
         await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
         await tUserProfileRepository.updateByPrimaryKeySelective(
           userId: tUserProfile.userId,
-          username: 'updated_username',
+          displayName: 'updated_display_name',
           avatarUrl: 'updated_avatar_url',
           selfIntroduction: 'updated_self_introduction',
         );
@@ -49,7 +49,7 @@ void main() {
           [
             {
               'user_id': tUserProfile.userId,
-              'username': 'updated_username',
+              'display_name': 'updated_display_name',
               'avatar_url': 'updated_avatar_url',
               'self_introduction': 'updated_self_introduction',
               'created_at': tUserProfile.createdAt.toIso8601String(),
@@ -60,11 +60,11 @@ void main() {
         );
       });
 
-      test('username のみの更新も行えること', () async {
+      test('display_name のみの更新も行えること', () async {
         await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
         await tUserProfileRepository.updateByPrimaryKeySelective(
           userId: tUserProfile.userId,
-          username: 'updated_username',
+          displayName: 'updated_display_name',
           avatarUrl: null,
           selfIntroduction: null,
         );
@@ -73,7 +73,7 @@ void main() {
           [
             {
               'user_id': tUserProfile.userId,
-              'username': 'updated_username',
+              'display_name': 'updated_display_name',
               'avatar_url': tUserProfile.avatarUrl,
               'self_introduction': tUserProfile.selfIntroduction,
               'created_at': tUserProfile.createdAt.toIso8601String(),
@@ -88,7 +88,7 @@ void main() {
         await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
         await tUserProfileRepository.updateByPrimaryKeySelective(
           userId: tUserProfile.userId,
-          username: null,
+          displayName: null,
           avatarUrl: 'updated_avatar_url',
           selfIntroduction: null,
         );
@@ -97,7 +97,7 @@ void main() {
           [
             {
               'user_id': tUserProfile.userId,
-              'username': tUserProfile.username,
+              'display_name': tUserProfile.displayName,
               'avatar_url': 'updated_avatar_url',
               'self_introduction': tUserProfile.selfIntroduction,
               'created_at': tUserProfile.createdAt.toIso8601String(),
@@ -114,7 +114,7 @@ void main() {
           await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
           await tUserProfileRepository.updateByPrimaryKeySelective(
             userId: tUserProfile.userId,
-            username: null,
+            displayName: null,
             avatarUrl: 'updated_avatar_url',
             isDeleteAvatarUrl: true,
             selfIntroduction: null,
@@ -124,7 +124,7 @@ void main() {
             [
               {
                 'user_id': tUserProfile.userId,
-                'username': tUserProfile.username,
+                'display_name': tUserProfile.displayName,
                 'avatar_url': null,
                 'self_introduction': tUserProfile.selfIntroduction,
                 'created_at': tUserProfile.createdAt.toIso8601String(),
@@ -140,7 +140,7 @@ void main() {
         await mockSupabaseClient.from(tableName).insert(tUserProfile.toJson());
         await tUserProfileRepository.updateByPrimaryKeySelective(
           userId: tUserProfile.userId,
-          username: null,
+          displayName: null,
           avatarUrl: null,
           selfIntroduction: 'updated_self_introduction',
         );
@@ -149,7 +149,7 @@ void main() {
           [
             {
               'user_id': tUserProfile.userId,
-              'username': tUserProfile.username,
+              'display_name': tUserProfile.displayName,
               'avatar_url': tUserProfile.avatarUrl,
               'self_introduction': 'updated_self_introduction',
               'created_at': tUserProfile.createdAt.toIso8601String(),

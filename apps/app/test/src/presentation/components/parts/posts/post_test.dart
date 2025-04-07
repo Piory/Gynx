@@ -1,6 +1,6 @@
 import 'package:app/src/domain/entities/v_post.dart';
 import 'package:app/src/domain/usecases/find_user_usecase.dart';
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
 import 'package:app/src/presentation/components/elements/medias/media.dart';
 import 'package:app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:app/src/presentation/components/parts/posts/post.dart';
@@ -89,15 +89,15 @@ void main() {
 
     //
     group('正常系', () {
-      testWidgets('ユーザー名、GynxID、投稿文が表示されること', (tester) async {
+      testWidgets('ユーザー名、表示名、投稿文が表示されること', (tester) async {
         await pumpWidget(
           tester: tester,
           vPost: vPost,
         );
-        expect(find.text(vUser.username), findsOneWidget);
-        expect(find.byType(GynxId), findsOneWidget);
-        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
-        expect(gynxId.id, vUser.gynxId);
+        expect(find.text(vUser.displayName), findsOneWidget);
+        expect(find.byType(ScreenName), findsOneWidget);
+        final screenName = tester.widget<ScreenName>(find.byType(ScreenName));
+        expect(screenName.screenName, vUser.screenName);
         expect(find.text(vPost.displayText!), findsOneWidget);
         expect(find.byType(MediaList), findsNothing);
       });
@@ -109,10 +109,10 @@ void main() {
           tester: tester,
           vPost: vPostWithMedia,
         );
-        expect(find.text(vUser.username), findsOneWidget);
-        expect(find.byType(GynxId), findsOneWidget);
-        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
-        expect(gynxId.id, vUser.gynxId);
+        expect(find.text(vUser.displayName), findsOneWidget);
+        expect(find.byType(ScreenName), findsOneWidget);
+        final screenName = tester.widget<ScreenName>(find.byType(ScreenName));
+        expect(screenName.screenName, vUser.screenName);
         expect(find.text(vPost.displayText!), findsOneWidget);
         expect(find.byType(MediaList), findsOneWidget);
       });

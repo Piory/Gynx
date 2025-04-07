@@ -16,8 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VUserDetail {
   String get userId;
-  String get gynxId;
-  String get username;
+  String get screenName;
+  String get displayName;
   String? get avatarUrl;
   String get selfIntroduction;
   List<VPost> get latestPosts;
@@ -41,9 +41,10 @@ mixin _$VUserDetail {
         (other.runtimeType == runtimeType &&
             other is VUserDetail &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.gynxId, gynxId) || other.gynxId == gynxId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.screenName, screenName) ||
+                other.screenName == screenName) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
@@ -69,8 +70,8 @@ mixin _$VUserDetail {
   int get hashCode => Object.hash(
       runtimeType,
       userId,
-      gynxId,
-      username,
+      screenName,
+      displayName,
       avatarUrl,
       selfIntroduction,
       const DeepCollectionEquality().hash(latestPosts),
@@ -83,7 +84,7 @@ mixin _$VUserDetail {
 
   @override
   String toString() {
-    return 'VUserDetail(userId: $userId, gynxId: $gynxId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, latestPosts: $latestPosts, favoritePosts: $favoritePosts, followCount: $followCount, followerCount: $followerCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'VUserDetail(userId: $userId, screenName: $screenName, displayName: $displayName, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, latestPosts: $latestPosts, favoritePosts: $favoritePosts, followCount: $followCount, followerCount: $followerCount, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
@@ -95,8 +96,8 @@ abstract mixin class $VUserDetailCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
-      String gynxId,
-      String username,
+      String screenName,
+      String displayName,
       String? avatarUrl,
       String selfIntroduction,
       List<VPost> latestPosts,
@@ -121,8 +122,8 @@ class _$VUserDetailCopyWithImpl<$Res> implements $VUserDetailCopyWith<$Res> {
   @override
   $Res call({
     Object? userId = null,
-    Object? gynxId = null,
-    Object? username = null,
+    Object? screenName = null,
+    Object? displayName = null,
     Object? avatarUrl = freezed,
     Object? selfIntroduction = null,
     Object? latestPosts = null,
@@ -138,13 +139,13 @@ class _$VUserDetailCopyWithImpl<$Res> implements $VUserDetailCopyWith<$Res> {
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      gynxId: null == gynxId
-          ? _self.gynxId
-          : gynxId // ignore: cast_nullable_to_non_nullable
+      screenName: null == screenName
+          ? _self.screenName
+          : screenName // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
+      displayName: null == displayName
+          ? _self.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       avatarUrl: freezed == avatarUrl
           ? _self.avatarUrl

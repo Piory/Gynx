@@ -1,4 +1,4 @@
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
 import 'package:app/src/presentation/components/elements/avatars/user_avatar.dart';
 import 'package:app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
 import 'package:app/src/presentation/components/elements/medias/media_list.dart';
@@ -99,14 +99,14 @@ class _CreatePostFormState extends ConsumerState<CreatePostForm> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            suiteUser?.vUserDetail.username ?? '',
+                                            suiteUser?.vUserDetail.displayName ?? '',
                                             style: theme.textTheme.bodyMedium!.copyWith(
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           const Gap(SpaceSize.s4),
-                                          GynxId(
-                                            id: suiteUser?.vUserDetail.gynxId,
+                                          ScreenName(
+                                            screenName: suiteUser?.vUserDetail.screenName,
                                           ),
                                         ],
                                       ),

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TUser {
   String get id;
-  String get gynxId;
+  String get screenName;
   DateTime get createdAt;
   DateTime get updatedAt;
   DateTime? get deletedAt;
@@ -34,7 +34,8 @@ mixin _$TUser {
         (other.runtimeType == runtimeType &&
             other is TUser &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.gynxId, gynxId) || other.gynxId == gynxId) &&
+            (identical(other.screenName, screenName) ||
+                other.screenName == screenName) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -46,11 +47,11 @@ mixin _$TUser {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, gynxId, createdAt, updatedAt, deletedAt);
+      Object.hash(runtimeType, id, screenName, createdAt, updatedAt, deletedAt);
 
   @override
   String toString() {
-    return 'TUser(id: $id, gynxId: $gynxId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'TUser(id: $id, screenName: $screenName, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
@@ -61,7 +62,7 @@ abstract mixin class $TUserCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String gynxId,
+      String screenName,
       DateTime createdAt,
       DateTime updatedAt,
       DateTime? deletedAt});
@@ -80,7 +81,7 @@ class _$TUserCopyWithImpl<$Res> implements $TUserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? gynxId = null,
+    Object? screenName = null,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
@@ -90,9 +91,9 @@ class _$TUserCopyWithImpl<$Res> implements $TUserCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      gynxId: null == gynxId
-          ? _self.gynxId
-          : gynxId // ignore: cast_nullable_to_non_nullable
+      screenName: null == screenName
+          ? _self.screenName
+          : screenName // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: null == createdAt
           ? _self.createdAt

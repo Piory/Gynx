@@ -128,7 +128,7 @@ abstract class L10n {
   /// No description provided for @deleteImage.
   ///
   /// In en, this message translates to:
-  /// **'Delete Image'**
+  /// **'Delete image'**
   String get deleteImage;
 
   /// No description provided for @edit.
@@ -140,67 +140,67 @@ abstract class L10n {
   /// No description provided for @editProfile.
   ///
   /// In en, this message translates to:
-  /// **'Edit Profile'**
+  /// **'Edit profile'**
   String get editProfile;
 
-  /// No description provided for @editUsername.
+  /// No description provided for @editDisplayName.
   ///
   /// In en, this message translates to:
-  /// **'Edit Username'**
-  String get editUsername;
+  /// **'Edit display name'**
+  String get editDisplayName;
 
-  /// No description provided for @editUsernameLength.
+  /// No description provided for @editDisplayNameLength.
   ///
   /// In en, this message translates to:
-  /// **'Username must be between {min} and {max} characters.'**
-  String editUsernameLength(int min, int max);
+  /// **'Display name must be between {min} and {max} characters.'**
+  String editDisplayNameLength(int min, int max);
 
-  /// No description provided for @editGynxId.
+  /// No description provided for @editScreenName.
   ///
   /// In en, this message translates to:
-  /// **'Edit Gynx ID'**
-  String get editGynxId;
+  /// **'Edit handle'**
+  String get editScreenName;
 
-  /// No description provided for @editGynxIdRegexp.
+  /// No description provided for @editScreenNameRegexp.
   ///
   /// In en, this message translates to:
-  /// **'Gynx ID can only contain alphanumeric characters and underscores (_).'**
-  String get editGynxIdRegexp;
+  /// **'Handle can only contain alphanumeric characters and underscores (_).'**
+  String get editScreenNameRegexp;
 
-  /// No description provided for @editGynxIdRegexpError.
+  /// No description provided for @editScreenNameRegexpError.
   ///
   /// In en, this message translates to:
-  /// **'Invalid characters are included.'**
-  String get editGynxIdRegexpError;
+  /// **'Contains invalid characters.'**
+  String get editScreenNameRegexpError;
 
-  /// No description provided for @editGynxIdLength.
+  /// No description provided for @editScreenNameLength.
   ///
   /// In en, this message translates to:
-  /// **'Gynx ID must be between {min} and {max} characters.'**
-  String editGynxIdLength(int min, int max);
+  /// **'Handle must be between {min} and {max} characters.'**
+  String editScreenNameLength(int min, int max);
 
-  /// No description provided for @editGynxIdExistenceError.
+  /// No description provided for @editScreenNameExistenceError.
   ///
   /// In en, this message translates to:
-  /// **'This Gynx ID is already in use.'**
-  String get editGynxIdExistenceError;
+  /// **'This handle is already in use.'**
+  String get editScreenNameExistenceError;
 
   /// No description provided for @editSelfIntroduction.
   ///
   /// In en, this message translates to:
-  /// **'Edit Self Introduction'**
+  /// **'Edit self-introduction'**
   String get editSelfIntroduction;
 
   /// No description provided for @editSelfIntroductionLength.
   ///
   /// In en, this message translates to:
-  /// **'Self Introduction must be up to {max} characters.'**
+  /// **'Self-introduction must be within {max} characters.'**
   String editSelfIntroductionLength(int max);
 
   /// No description provided for @updateUserProfileError.
   ///
   /// In en, this message translates to:
-  /// **'Failed to update user profile.'**
+  /// **'Failed to update profile.'**
   String get updateUserProfileError;
 
   /// No description provided for @share.
@@ -221,10 +221,16 @@ abstract class L10n {
   /// **'Posts'**
   String get posts;
 
+  /// No description provided for @postedAt.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get postedAt;
+
   /// No description provided for @postHintText.
   ///
   /// In en, this message translates to:
-  /// **'What\'s are you doing lately?'**
+  /// **'How have you been lately?'**
   String get postHintText;
 
   /// No description provided for @postRequiredError.
@@ -242,25 +248,25 @@ abstract class L10n {
   /// No description provided for @favoritePostListEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No favorite posts yet'**
+  /// **'No favorite posts'**
   String get favoritePostListEmpty;
 
-  /// No description provided for @username.
+  /// No description provided for @displayName.
   ///
   /// In en, this message translates to:
-  /// **'Username'**
-  String get username;
+  /// **'Display name'**
+  String get displayName;
 
-  /// No description provided for @gynxId.
+  /// No description provided for @screenName.
   ///
   /// In en, this message translates to:
-  /// **'Gynx ID'**
-  String get gynxId;
+  /// **'Handle'**
+  String get screenName;
 
   /// No description provided for @selfIntroduction.
   ///
   /// In en, this message translates to:
-  /// **'Self Introduction'**
+  /// **'Self-introduction'**
   String get selfIntroduction;
 
   /// No description provided for @favorite.
@@ -308,26 +314,26 @@ abstract class L10n {
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
-  /// **'or'**
+  /// **'Or'**
   String get or;
-
-  /// No description provided for @signUpOrSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign up or Sign in'**
-  String get signUpOrSignIn;
 
   /// No description provided for @signInTitle.
   ///
   /// In en, this message translates to:
-  /// **'Sign in to make the most of Gynx!'**
+  /// **'Log in to make the most of Gynx!'**
   String get signInTitle;
 
   /// No description provided for @signInDescription.
   ///
   /// In en, this message translates to:
-  /// **'To continue, please log in using one of the services below.'**
+  /// **'Please log in with one of the following services to continue'**
   String get signInDescription;
+
+  /// No description provided for @signUpOrSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up or log in'**
+  String get signUpOrSignIn;
 
   /// No description provided for @continueWithApple.
   ///
@@ -362,67 +368,67 @@ abstract class L10n {
   /// No description provided for @continueAsGuest.
   ///
   /// In en, this message translates to:
-  /// **'Continue as guest'**
+  /// **'Continue as a guest user'**
   String get continueAsGuest;
 
   /// No description provided for @continueAsGuestWarning.
   ///
   /// In en, this message translates to:
-  /// **'Guest users have limited access to features, but these restrictions will be lifted after linking your account.'**
+  /// **'Guest users have limited functionality, but restrictions will be lifted after linking an account'**
   String get continueAsGuestWarning;
 
   /// No description provided for @guestSignInAlertTitle.
   ///
   /// In en, this message translates to:
-  /// **'Important Notes for Guest Users'**
+  /// **'Guest User Notice'**
   String get guestSignInAlertTitle;
 
   /// No description provided for @guestSignInAlertMessage.
   ///
   /// In en, this message translates to:
-  /// **'Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?'**
+  /// **'・Some features will be limited. You can lift restrictions by linking your account from the Profile > Settings page.\n・Once you log out, you cannot log in again.\n・Accounts that have not been used for more than 90 days as a guest user will be deleted.\n\nDo you want to continue as a guest user?'**
   String get guestSignInAlertMessage;
 
   /// No description provided for @continueIsApproveTermsOfServiceAndPrivacyPolicy.
   ///
   /// In en, this message translates to:
-  /// **'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.'**
+  /// **'By continuing, you agree to Gynx\'s Terms of Service and Privacy Policy.'**
   String get continueIsApproveTermsOfServiceAndPrivacyPolicy;
 
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
-  /// **'SignIn'**
+  /// **'Log in'**
   String get signIn;
 
   /// No description provided for @signInError.
   ///
   /// In en, this message translates to:
-  /// **'Sign in failed'**
+  /// **'Failed to log in'**
   String get signInError;
 
   /// No description provided for @signOut.
   ///
   /// In en, this message translates to:
-  /// **'SignOut'**
+  /// **'Log out'**
   String get signOut;
 
   /// No description provided for @signOutMessage.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to sign out?'**
+  /// **'Are you sure you want to log out?'**
   String get signOutMessage;
 
   /// No description provided for @signOutError.
   ///
   /// In en, this message translates to:
-  /// **'Sign out failed'**
+  /// **'Failed to log out'**
   String get signOutError;
 
   /// No description provided for @email.
   ///
   /// In en, this message translates to:
-  /// **'Email'**
+  /// **'Email address'**
   String get email;
 
   /// No description provided for @password.
@@ -452,13 +458,13 @@ abstract class L10n {
   /// No description provided for @follow.
   ///
   /// In en, this message translates to:
-  /// **'{follow} Follow'**
+  /// **'{follow} Followers'**
   String follow(int follow);
 
   /// No description provided for @follower.
   ///
   /// In en, this message translates to:
-  /// **'{follower} Follower'**
+  /// **'{follower} Followers'**
   String follower(int follower);
 
   /// No description provided for @uploadVideoTooLongErrorTitle.
@@ -470,13 +476,13 @@ abstract class L10n {
   /// No description provided for @uploadVideoTooLongErrorMessage.
   ///
   /// In en, this message translates to:
-  /// **'Please upload a video that is {max} seconds or less.'**
+  /// **'Please upload the video within {max} seconds.'**
   String uploadVideoTooLongErrorMessage(int max);
 
   /// No description provided for @setting.
   ///
   /// In en, this message translates to:
-  /// **'Setting'**
+  /// **'Settings'**
   String get setting;
 }
 

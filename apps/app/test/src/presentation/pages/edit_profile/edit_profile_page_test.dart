@@ -1,9 +1,8 @@
-// ignore_for_file: lines_longer_than_80_chars
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_avatar.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_gynx_id.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_display_name.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_screen_name.dart';
 import 'package:app/src/presentation/pages/edit_profile/components/edit_self_introduction.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_username.dart';
 import 'package:app/src/presentation/pages/edit_profile/edit_profile_controller.dart';
 import 'package:app/src/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:flutter/material.dart';
@@ -58,12 +57,12 @@ void main() {
 
   //
   group('正常系', () {
-    testWidgets('EditAvatar、ユーザー名、GynxID、自己紹介が表示されること', (tester) async {
+    testWidgets('EditAvatar、ユーザー名、表示名、自己紹介が表示されること', (tester) async {
       await pumpWidget(tester);
       final editAvatar = tester.widget<EditAvatar>(find.byType(EditAvatar));
       expect(editAvatar.avatarUrl, suiteUser.vUserDetail.avatarUrl);
-      expect(find.text(suiteUser.vUserDetail.username), findsOneWidget);
-      expect(find.text(suiteUser.vUserDetail.gynxId), findsOneWidget);
+      expect(find.text(suiteUser.vUserDetail.displayName), findsOneWidget);
+      expect(find.text(suiteUser.vUserDetail.screenName), findsOneWidget);
       expect(
         find.text(suiteUser.vUserDetail.selfIntroduction),
         findsOneWidget,
@@ -85,8 +84,8 @@ void main() {
           context: anyNamed('context'),
           l10n: anyNamed('l10n'),
           ref: anyNamed('ref'),
-          gynxId: null,
-          username: null,
+          screenName: null,
+          displayName: null,
           avatarFile: null,
           isDeleteAvatar: false,
           selfIntroduction: null,
@@ -98,8 +97,8 @@ void main() {
           context: anyNamed('context'),
           l10n: anyNamed('l10n'),
           ref: anyNamed('ref'),
-          gynxId: null,
-          username: null,
+          screenName: null,
+          displayName: null,
           avatarFile: null,
           isDeleteAvatar: false,
           selfIntroduction: null,
@@ -107,19 +106,19 @@ void main() {
       );
     });
 
-    testWidgets('ユーザー名をタップしたら、EditUsername を表示されること', (tester) async {
+    testWidgets('表示名をタップしたら、EditDisplayName を表示されること', (tester) async {
       await pumpWidget(tester);
-      await tester.tap(find.text(suiteUser.vUserDetail.username));
+      await tester.tap(find.text(suiteUser.vUserDetail.displayName));
       await tester.pump();
-      await tester.waitForWidget(find.byType(EditUsername));
-      expect(find.byType(EditUsername), findsOneWidget);
+      await tester.waitForWidget(find.byType(EditDisplayName));
+      expect(find.byType(EditDisplayName), findsOneWidget);
     });
 
-    testWidgets('GynxID をタップしたら、EditGynxId を表示されること', (tester) async {
+    testWidgets('ハンドルをタップしたら、EditScreenName を表示されること', (tester) async {
       await pumpWidget(tester);
-      await tester.tap(find.text(suiteUser.vUserDetail.gynxId));
-      await tester.waitForWidget(find.byType(EditGynxId));
-      expect(find.byType(EditGynxId), findsOneWidget);
+      await tester.tap(find.text(suiteUser.vUserDetail.screenName));
+      await tester.waitForWidget(find.byType(EditScreenName));
+      expect(find.byType(EditScreenName), findsOneWidget);
     });
 
     testWidgets('自己紹介をタップしたら、EditSelfIntroduction を表示されること', (tester) async {

@@ -32,56 +32,56 @@ class UpdateUserProfileInteractor implements UpdateUserProfileUseCase {
 
   @override
   Future<void> execute({
-    required String? gynxId,
-    required String? username,
+    required String? screenName,
+    required String? displayName,
     required File? avatarImage,
     required bool isDeleteAvatar,
     required String? selfIntroduction,
   }) async {
-    if (gynxId == null && username == null && avatarImage == null && !isDeleteAvatar && selfIntroduction == null) {
+    if (screenName == null && displayName == null && avatarImage == null && !isDeleteAvatar && selfIntroduction == null) {
       return;
     }
     final userId = _authRepository.currentUser?.id;
     if (userId == null) {
       throw const UserNotSignedInException();
     }
-    await _updateGynxId(
+    await _updateScreenName(
       userId: userId,
-      gynxId: gynxId,
+      screenName: screenName,
     );
     await _updateProfile(
       userId: userId,
-      username: username,
+      displayName: displayName,
       avatarImage: avatarImage,
       isDeleteAvatar: isDeleteAvatar,
       selfIntroduction: selfIntroduction,
     );
   }
 
-  Future<void> _updateGynxId({
+  Future<void> _updateScreenName({
     required String userId,
-    required String? gynxId,
+    required String? screenName,
   }) async {
-    if (gynxId == null) {
+    if (screenName == null) {
       return;
     }
     final tUser = await _tUserRepository.findByPrimaryKey(userId);
-    if (tUser.gynxId != gynxId) {
+    if (tUser.screenName != screenName) {
       await _tUserRepository.updateByPrimaryKey(
         id: userId,
-        gynxId: gynxId,
+        screenName: screenName,
       );
     }
   }
 
   Future<void> _updateProfile({
     required String userId,
-    required String? username,
+    required String? displayName,
     required File? avatarImage,
     required bool isDeleteAvatar,
     required String? selfIntroduction,
   }) async {
-    if (username == null && avatarImage == null && !isDeleteAvatar && selfIntroduction == null) {
+    if (displayName == null && avatarImage == null && !isDeleteAvatar && selfIntroduction == null) {
       return;
     }
     final uploadedAvatarUrl = await _uploadAvatarImage(
@@ -90,10 +90,10 @@ class UpdateUserProfileInteractor implements UpdateUserProfileUseCase {
       isDeleteAvatar: isDeleteAvatar,
     );
     final tUserProfile = await _tUserProfileRepository.findByPrimaryKey(userId);
-    if (tUserProfile.username != username || tUserProfile.selfIntroduction != selfIntroduction) {
+    if (tUserProfile.displayName != displayName || tUserProfile.selfIntroduction != selfIntroduction) {
       await _tUserProfileRepository.updateByPrimaryKeySelective(
         userId: userId,
-        username: username,
+        displayName: displayName,
         avatarUrl: uploadedAvatarUrl,
         isDeleteAvatarUrl: isDeleteAvatar,
         selfIntroduction: selfIntroduction,

@@ -31,26 +31,26 @@ void main() {
     });
   });
 
-  group('#findByGynxId', () {
+  group('#findByScreenName', () {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
         await mockSupabaseClient.from(tableName).insert(tUser.toJson());
-        final foundTUser = await tUserRepository.findByGynxId(tUser.gynxId);
+        final foundTUser = await tUserRepository.findByScreenName(tUser.screenName);
         expect(foundTUser, tUser);
       });
     });
   });
 
-  group('#existsByGynxId', () {
+  group('#existsByScreenName', () {
     group('正常系', () {
       test('データが存在しない場合、false が取得できること', () async {
-        final count = await tUserRepository.existsById(tUser.gynxId);
+        final count = await tUserRepository.existsByScreenName(tUser.screenName);
         expect(count, isFalse);
       });
 
       test('データが存在する場合は、true が取得できること', () async {
         await mockSupabaseClient.from(tableName).insert(tUser.toJson());
-        final count = await tUserRepository.existsById(tUser.gynxId);
+        final count = await tUserRepository.existsByScreenName(tUser.screenName);
         expect(count, isTrue);
       });
     });
@@ -60,15 +60,15 @@ void main() {
     group('正常系', () {
       test('正常にデータが1件更新されること', () async {
         await mockSupabaseClient.from(tableName).insert(tUser.toJson());
-        final newGynxId = faker.guid.guid();
+        final newScreenName = faker.guid.guid();
         await tUserRepository.updateByPrimaryKey(
           id: tUser.id,
-          gynxId: newGynxId,
+          screenName: newScreenName,
         );
         expect(await mockSupabaseClient.from(tableName).select(), [
           {
             'id': tUser.id,
-            'gynx_id': newGynxId,
+            'screen_name': newScreenName,
             'created_at': tUser.createdAt.toIso8601String(),
             'updated_at': tUser.updatedAt.toIso8601String(),
             'deleted_at': tUser.deletedAt?.toIso8601String(),

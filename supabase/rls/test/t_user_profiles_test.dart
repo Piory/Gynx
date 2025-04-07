@@ -28,7 +28,7 @@ void main() {
       await expectLater(
         () => supabaseClient.from(tableName).insert({
           'user_id': otherUserId,
-          'username': 'username',
+          'display_name': 'displayName',
         }),
         throwsRlsError(
           tableName,
@@ -46,7 +46,7 @@ void main() {
       final result = await supabaseClient
           .from(tableName)
           .update({
-            'username': 'updateUsername',
+            'display_name': 'updateDisplayName',
           })
           .eq('user_id', otherUserId)
           .select();
@@ -67,11 +67,11 @@ void main() {
       anonymousUserId = user.user!.id;
       await supabaseClientAdmin.from(tableName).insert({
         'user_id': anonymousUserId,
-        'username': 'username',
+        'display_name': 'displayName',
       });
       await supabaseClientAdmin.from(tableName).insert({
         'user_id': otherUserId,
-        'username': 'username',
+        'display_name': 'displayName',
       });
     });
 
@@ -84,7 +84,7 @@ void main() {
         await expectLater(
           () => supabaseClient.from(tableName).insert({
             'user_id': anonymousUserId,
-            'username': 'username',
+            'display_name': 'displayName',
           }),
           throwsRlsError(
             tableName,
@@ -102,7 +102,7 @@ void main() {
         final result = await supabaseClient
             .from(tableName)
             .update({
-              'username': 'updatedUsername',
+              'display_name': 'updatedDisplayName',
             })
             .eq('user_id', anonymousUserId)
             .select();
@@ -120,7 +120,7 @@ void main() {
         await expectLater(
           () => supabaseClient.from(tableName).insert({
             'user_id': faker.guid.guid(),
-            'username': 'username',
+            'display_name': 'displayName',
           }),
           throwsRlsError(
             tableName,
@@ -138,7 +138,7 @@ void main() {
         final result = await supabaseClient
             .from(tableName)
             .update({
-              'username': 'UpdatedUsername',
+              'display_name': 'UpdatedDisplayName',
             })
             .eq('user_id', otherUserId)
             .select();
@@ -182,7 +182,7 @@ void main() {
       test('Insert O', () async {
         final result = await supabaseClient.from(tableName).insert({
           'user_id': userId,
-          'username': 'username',
+          'display_name': 'displayName',
         }).select();
         expect(result, hasLength(1));
       });
@@ -196,12 +196,12 @@ void main() {
         final result = await supabaseClient
             .from(tableName)
             .update({
-              'username': 'UpdateUsername',
+              'display_name': 'UpdateDisplayName',
             })
             .eq('user_id', userId)
             .select();
         expect(result, hasLength(1));
-        expect(result.first['username'], 'UpdateUsername');
+        expect(result.first['display_name'], 'UpdateDisplayName');
       });
 
       test('Delete O', () async {
@@ -215,7 +215,7 @@ void main() {
         expect(
           () => supabaseClient.from(tableName).insert({
             'user_id': faker.guid.guid(),
-            'username': 'UpdateUsername',
+            'display_name': 'UpdateDisplayName',
           }),
           throwsRlsError(
             tableName,
@@ -233,7 +233,7 @@ void main() {
         final result = await supabaseClient
             .from(tableName)
             .update({
-              'username': 'UpdateUsername',
+              'display_name': 'UpdateDisplayName',
             })
             .eq('user_id', otherUserId)
             .select();

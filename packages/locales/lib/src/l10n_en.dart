@@ -24,49 +24,49 @@ class L10nEn extends L10n {
   String get selectFromLibrary => 'Select from library';
 
   @override
-  String get deleteImage => 'Delete Image';
+  String get deleteImage => 'Delete image';
 
   @override
   String get edit => 'Edit';
 
   @override
-  String get editProfile => 'Edit Profile';
+  String get editProfile => 'Edit profile';
 
   @override
-  String get editUsername => 'Edit Username';
+  String get editDisplayName => 'Edit display name';
 
   @override
-  String editUsernameLength(int min, int max) {
-    return 'Username must be between $min and $max characters.';
+  String editDisplayNameLength(int min, int max) {
+    return 'Display name must be between $min and $max characters.';
   }
 
   @override
-  String get editGynxId => 'Edit Gynx ID';
+  String get editScreenName => 'Edit handle';
 
   @override
-  String get editGynxIdRegexp => 'Gynx ID can only contain alphanumeric characters and underscores (_).';
+  String get editScreenNameRegexp => 'Handle can only contain alphanumeric characters and underscores (_).';
 
   @override
-  String get editGynxIdRegexpError => 'Invalid characters are included.';
+  String get editScreenNameRegexpError => 'Contains invalid characters.';
 
   @override
-  String editGynxIdLength(int min, int max) {
-    return 'Gynx ID must be between $min and $max characters.';
+  String editScreenNameLength(int min, int max) {
+    return 'Handle must be between $min and $max characters.';
   }
 
   @override
-  String get editGynxIdExistenceError => 'This Gynx ID is already in use.';
+  String get editScreenNameExistenceError => 'This handle is already in use.';
 
   @override
-  String get editSelfIntroduction => 'Edit Self Introduction';
+  String get editSelfIntroduction => 'Edit self-introduction';
 
   @override
   String editSelfIntroductionLength(int max) {
-    return 'Self Introduction must be up to $max characters.';
+    return 'Self-introduction must be within $max characters.';
   }
 
   @override
-  String get updateUserProfileError => 'Failed to update user profile.';
+  String get updateUserProfileError => 'Failed to update profile.';
 
   @override
   String get share => 'Share';
@@ -78,7 +78,10 @@ class L10nEn extends L10n {
   String get posts => 'Posts';
 
   @override
-  String get postHintText => 'What\'s are you doing lately?';
+  String get postedAt => '';
+
+  @override
+  String get postHintText => 'How have you been lately?';
 
   @override
   String get postRequiredError => 'Please enter the post content.';
@@ -87,16 +90,16 @@ class L10nEn extends L10n {
   String get postListEmpty => 'No posts yet';
 
   @override
-  String get favoritePostListEmpty => 'No favorite posts yet';
+  String get favoritePostListEmpty => 'No favorite posts';
 
   @override
-  String get username => 'Username';
+  String get displayName => 'Display name';
 
   @override
-  String get gynxId => 'Gynx ID';
+  String get screenName => 'Handle';
 
   @override
-  String get selfIntroduction => 'Self Introduction';
+  String get selfIntroduction => 'Self-introduction';
 
   @override
   String get favorite => 'Favorite';
@@ -120,16 +123,16 @@ class L10nEn extends L10n {
   String get doContinue => 'Continue';
 
   @override
-  String get or => 'or';
+  String get or => 'Or';
 
   @override
-  String get signUpOrSignIn => 'Sign up or Sign in';
+  String get signInTitle => 'Log in to make the most of Gynx!';
 
   @override
-  String get signInTitle => 'Sign in to make the most of Gynx!';
+  String get signInDescription => 'Please log in with one of the following services to continue';
 
   @override
-  String get signInDescription => 'To continue, please log in using one of the services below.';
+  String get signUpOrSignIn => 'Sign up or log in';
 
   @override
   String get continueWithApple => 'Continue with Apple';
@@ -147,37 +150,37 @@ class L10nEn extends L10n {
   String get continueWithDiscord => 'Continue with Discord';
 
   @override
-  String get continueAsGuest => 'Continue as guest';
+  String get continueAsGuest => 'Continue as a guest user';
 
   @override
-  String get continueAsGuestWarning => 'Guest users have limited access to features, but these restrictions will be lifted after linking your account.';
+  String get continueAsGuestWarning => 'Guest users have limited functionality, but restrictions will be lifted after linking an account';
 
   @override
-  String get guestSignInAlertTitle => 'Important Notes for Guest Users';
+  String get guestSignInAlertTitle => 'Guest User Notice';
 
   @override
-  String get guestSignInAlertMessage => 'Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?';
+  String get guestSignInAlertMessage => '・Some features will be limited. You can lift restrictions by linking your account from the Profile > Settings page.\n・Once you log out, you cannot log in again.\n・Accounts that have not been used for more than 90 days as a guest user will be deleted.\n\nDo you want to continue as a guest user?';
 
   @override
-  String get continueIsApproveTermsOfServiceAndPrivacyPolicy => 'By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.';
+  String get continueIsApproveTermsOfServiceAndPrivacyPolicy => 'By continuing, you agree to Gynx\'s Terms of Service and Privacy Policy.';
 
   @override
-  String get signIn => 'SignIn';
+  String get signIn => 'Log in';
 
   @override
-  String get signInError => 'Sign in failed';
+  String get signInError => 'Failed to log in';
 
   @override
-  String get signOut => 'SignOut';
+  String get signOut => 'Log out';
 
   @override
-  String get signOutMessage => 'Are you sure you want to sign out?';
+  String get signOutMessage => 'Are you sure you want to log out?';
 
   @override
-  String get signOutError => 'Sign out failed';
+  String get signOutError => 'Failed to log out';
 
   @override
-  String get email => 'Email';
+  String get email => 'Email address';
 
   @override
   String get password => 'Password';
@@ -199,7 +202,7 @@ class L10nEn extends L10n {
     );
     final String followString = followNumberFormat.format(follow);
 
-    return '$followString Follow';
+    return '$followString Followers';
   }
 
   @override
@@ -210,7 +213,7 @@ class L10nEn extends L10n {
     );
     final String followerString = followerNumberFormat.format(follower);
 
-    return '$followerString Follower';
+    return '$followerString Followers';
   }
 
   @override
@@ -218,9 +221,9 @@ class L10nEn extends L10n {
 
   @override
   String uploadVideoTooLongErrorMessage(int max) {
-    return 'Please upload a video that is $max seconds or less.';
+    return 'Please upload the video within $max seconds.';
   }
 
   @override
-  String get setting => 'Setting';
+  String get setting => 'Settings';
 }

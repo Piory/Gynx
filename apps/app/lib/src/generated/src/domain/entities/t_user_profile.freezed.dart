@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TUserProfile {
   String get userId;
-  String get username;
+  String get displayName;
   String? get avatarUrl;
   String get selfIntroduction;
   DateTime get createdAt;
@@ -37,8 +37,8 @@ mixin _$TUserProfile {
         (other.runtimeType == runtimeType &&
             other is TUserProfile &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
@@ -53,12 +53,12 @@ mixin _$TUserProfile {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, username, avatarUrl,
+  int get hashCode => Object.hash(runtimeType, userId, displayName, avatarUrl,
       selfIntroduction, createdAt, updatedAt, deletedAt);
 
   @override
   String toString() {
-    return 'TUserProfile(userId: $userId, username: $username, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'TUserProfile(userId: $userId, displayName: $displayName, avatarUrl: $avatarUrl, selfIntroduction: $selfIntroduction, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
   }
 }
 
@@ -70,7 +70,7 @@ abstract mixin class $TUserProfileCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
-      String username,
+      String displayName,
       String? avatarUrl,
       String selfIntroduction,
       DateTime createdAt,
@@ -91,7 +91,7 @@ class _$TUserProfileCopyWithImpl<$Res> implements $TUserProfileCopyWith<$Res> {
   @override
   $Res call({
     Object? userId = null,
-    Object? username = null,
+    Object? displayName = null,
     Object? avatarUrl = freezed,
     Object? selfIntroduction = null,
     Object? createdAt = null,
@@ -103,9 +103,9 @@ class _$TUserProfileCopyWithImpl<$Res> implements $TUserProfileCopyWith<$Res> {
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
+      displayName: null == displayName
+          ? _self.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       avatarUrl: freezed == avatarUrl
           ? _self.avatarUrl

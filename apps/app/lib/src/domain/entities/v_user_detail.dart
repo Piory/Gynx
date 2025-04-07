@@ -10,8 +10,8 @@ part '../../generated/src/domain/entities/v_user_detail.g.dart';
 class VUserDetail with _$VUserDetail {
   const VUserDetail({
     required this.userId,
-    required this.gynxId,
-    required this.username,
+    required this.screenName,
+    required this.displayName,
     required this.avatarUrl,
     required this.selfIntroduction,
     this.latestPosts = const [],
@@ -28,9 +28,9 @@ class VUserDetail with _$VUserDetail {
   @override
   final String userId;
   @override
-  final String gynxId;
+  final String screenName;
   @override
-  final String username;
+  final String displayName;
   @override
   final String? avatarUrl;
   @override

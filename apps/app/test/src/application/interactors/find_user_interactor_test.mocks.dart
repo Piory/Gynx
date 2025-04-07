@@ -46,14 +46,20 @@ class MockVUserRepository extends _i1.Mock implements _i3.VUserRepository {
           as _i4.Future<_i2.VUser>);
 
   @override
-  _i4.Future<_i2.VUser> findByGynxId(String? gynxId) =>
+  _i4.Future<_i2.VUser> findByScreenName(String? screenName) =>
       (super.noSuchMethod(
-            Invocation.method(#findByGynxId, [gynxId]),
+            Invocation.method(#findByScreenName, [screenName]),
             returnValue: _i4.Future<_i2.VUser>.value(
-              _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+              _FakeVUser_0(
+                this,
+                Invocation.method(#findByScreenName, [screenName]),
+              ),
             ),
             returnValueForMissingStub: _i4.Future<_i2.VUser>.value(
-              _FakeVUser_0(this, Invocation.method(#findByGynxId, [gynxId])),
+              _FakeVUser_0(
+                this,
+                Invocation.method(#findByScreenName, [screenName]),
+              ),
             ),
           )
           as _i4.Future<_i2.VUser>);

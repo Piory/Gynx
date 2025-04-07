@@ -19,14 +19,14 @@ class TUserProfileRepositoryImpl implements TUserProfileRepository {
   @override
   Future<void> updateByPrimaryKeySelective({
     required String userId,
-    required String? username,
+    required String? displayName,
     required String? avatarUrl,
     bool isDeleteAvatarUrl = false,
     required String? selfIntroduction,
   }) async {
     final updateMap = <String, dynamic>{};
-    if (username != null) {
-      updateMap['username'] = username;
+    if (displayName != null) {
+      updateMap['display_name'] = displayName;
     }
     if (isDeleteAvatarUrl) {
       updateMap['avatar_url'] = null;

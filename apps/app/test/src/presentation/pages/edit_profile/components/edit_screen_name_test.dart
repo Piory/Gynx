@@ -1,9 +1,8 @@
-// ignore_for_file: lines_longer_than_80_chars
-import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart';
+import 'package:app/src/domain/usecases/check_screen_name_existence_usecase.dart';
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
 import 'package:app/src/presentation/navigation/page_navigator.dart';
-import 'package:app/src/presentation/pages/edit_profile/components/edit_gynx_id.dart';
+import 'package:app/src/presentation/pages/edit_profile/components/edit_screen_name.dart';
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -16,13 +15,13 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../../data/dummy_data_generator.dart';
-import 'edit_gynx_id_test.mocks.dart';
+import 'edit_screen_name_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<LoadingDialog>(),
   MockSpec<PageNavigator>(),
   MockSpec<SuiteUserUseCase>(),
-  MockSpec<CheckGynxIdExistenceUsecase>(),
+  MockSpec<CheckScreenNameExistenceUseCase>(),
 ])
 void main() {
   final l10nJa = L10nJa();
@@ -31,14 +30,14 @@ void main() {
   final mockLoadingDialog = MockLoadingDialog();
   final mockPageNavigator = MockPageNavigator();
   final mockSuiteUserUseCase = MockSuiteUserUseCase();
-  final mockCheckGynxIdExistenceUseCase = MockCheckGynxIdExistenceUsecase();
+  final mockCheckScreenNameExistenceUseCase = MockCheckScreenNameExistenceUseCase();
 
   setUpAll(() {
     GetIt.I.registerSingleton<LoadingDialog>(mockLoadingDialog);
     GetIt.I.registerSingleton<PageNavigator>(mockPageNavigator);
     GetIt.I.registerSingleton<SuiteUserUseCase>(mockSuiteUserUseCase);
-    GetIt.I.registerSingleton<CheckGynxIdExistenceUsecase>(
-      mockCheckGynxIdExistenceUseCase,
+    GetIt.I.registerSingleton<CheckScreenNameExistenceUseCase>(
+      mockCheckScreenNameExistenceUseCase,
     );
   });
 
@@ -46,11 +45,11 @@ void main() {
     verifyNoMoreInteractions(mockLoadingDialog);
     verifyNoMoreInteractions(mockPageNavigator);
     verifyNoMoreInteractions(mockSuiteUserUseCase);
-    verifyNoMoreInteractions(mockCheckGynxIdExistenceUseCase);
+    verifyNoMoreInteractions(mockCheckScreenNameExistenceUseCase);
     reset(mockLoadingDialog);
     reset(mockPageNavigator);
     reset(mockSuiteUserUseCase);
-    reset(mockCheckGynxIdExistenceUseCase);
+    reset(mockCheckScreenNameExistenceUseCase);
   });
 
   Future<void> pumpWidget({
@@ -67,7 +66,7 @@ void main() {
             ...FormBuilderLocalizations.localizationsDelegates,
           ],
           supportedLocales: L10n.supportedLocales,
-          home: EditGynxId(
+          home: EditScreenName(
             onSaved: onSaved,
           ),
         ),
@@ -79,7 +78,7 @@ void main() {
 
   //
   group('正常系', () {
-    testWidgets('初期表示時に、TextField に、GynxId が表示されること', (tester) async {
+    testWidgets('初期表示時に、TextField に、ScreenNameId が表示されること', (tester) async {
       await pumpWidget(
         tester: tester,
         onSaved: (_) => fail('unexpected onChanged'),
@@ -89,12 +88,12 @@ void main() {
       );
       expect(
         formBuilderTextField.initialValue,
-        suiteUser.vUserDetail.gynxId,
+        suiteUser.vUserDetail.screenName,
       );
     });
 
     testWidgets(
-      'GynxID を変更して、CloseButton をタップすると、onSaved は呼ばれないこと',
+      'ScreenName を変更して、CloseButton をタップすると、onSaved は呼ばれないこと',
       (tester) async {
         await pumpWidget(
           tester: tester,
@@ -102,14 +101,14 @@ void main() {
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          'gynx',
+          'ScreenName',
         );
         await tester.tap(find.byType(CloseButton));
       },
     );
 
     testWidgets(
-      'GynxID を変更しないで、「${l10nJa.done}」をタップすると、onSaved は呼ばれないこと',
+      'ScreenName を変更しないで、「${l10nJa.done}」をタップすると、onSaved は呼ばれないこと',
       (tester) async {
         await pumpWidget(
           tester: tester,
@@ -117,7 +116,7 @@ void main() {
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          suiteUser.vUserDetail.gynxId,
+          suiteUser.vUserDetail.screenName,
         );
         verifyNever(mockLoadingDialog.show());
         verifyNever(mockPageNavigator.pop(any));
@@ -128,36 +127,36 @@ void main() {
           mockPageNavigator.pop(any),
           mockLoadingDialog.hide(),
         ]);
-        verifyNever(mockCheckGynxIdExistenceUseCase.execute('Gynx'));
+        verifyNever(mockCheckScreenNameExistenceUseCase.execute('ScreenName'));
       },
     );
 
     testWidgets(
-      'GynxID を変更して、「${l10nJa.done}」をタップすると、onSaved が呼ばれること',
+      'ScreenName を変更して、「${l10nJa.done}」をタップすると、onSaved が呼ばれること',
       (tester) async {
-        when(mockCheckGynxIdExistenceUseCase.execute('Gynx')).thenAnswer((_) async => false);
+        when(mockCheckScreenNameExistenceUseCase.execute('ScreenName')).thenAnswer((_) async => false);
         var onSavedCallCount = 0;
         await pumpWidget(
           tester: tester,
-          onSaved: (gynxId) {
-            expect(gynxId, 'Gynx');
+          onSaved: (screenName) {
+            expect(screenName, 'ScreenName');
             onSavedCallCount++;
           },
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          'Gynx',
+          'ScreenName',
         );
         expect(onSavedCallCount, 0);
         verifyNever(mockLoadingDialog.show());
-        verifyNever(mockCheckGynxIdExistenceUseCase.execute('Gynx'));
+        verifyNever(mockCheckScreenNameExistenceUseCase.execute('ScreenName'));
         verifyNever(mockPageNavigator.pop(any));
         verifyNever(mockLoadingDialog.hide());
         await tester.tap(find.widgetWithText(TextButton, l10nJa.done));
         expect(onSavedCallCount, 1);
         verifyInOrder([
           mockLoadingDialog.show(),
-          mockCheckGynxIdExistenceUseCase.execute('Gynx'),
+          mockCheckScreenNameExistenceUseCase.execute('ScreenName'),
           mockPageNavigator.pop(any),
           mockLoadingDialog.hide(),
         ]);
@@ -165,13 +164,13 @@ void main() {
     );
 
     testWidgets(
-      '文字列が${Constant.gynxIdMaxLength + 1}文字以上の場合、「${l10nJa.done}」をタップしたら、${Constant.gynxIdMaxLength + 1}文字目以降は切り取られること',
+      '文字列が${Constant.screenNameMaxLength + 1}文字以上の場合、「${l10nJa.done}」をタップしたら、${Constant.screenNameMaxLength + 1}文字目以降は切り取られること',
       (tester) async {
         var onSavedCallCount = 0;
         await pumpWidget(
           tester: tester,
-          onSaved: (gynxId) {
-            expect(gynxId, '1234567890123456');
+          onSaved: (screenName) {
+            expect(screenName, '1234567890123456');
             onSavedCallCount++;
           },
         );
@@ -182,7 +181,7 @@ void main() {
         expect(onSavedCallCount, 0);
         verifyNever(mockLoadingDialog.show());
         verifyNever(
-          mockCheckGynxIdExistenceUseCase.execute('1234567890123456'),
+          mockCheckScreenNameExistenceUseCase.execute('1234567890123456'),
         );
         verifyNever(mockPageNavigator.pop(any));
         verifyNever(mockLoadingDialog.hide());
@@ -190,7 +189,7 @@ void main() {
         expect(onSavedCallCount, 1);
         verifyInOrder([
           mockLoadingDialog.show(),
-          mockCheckGynxIdExistenceUseCase.execute('1234567890123456'),
+          mockCheckScreenNameExistenceUseCase.execute('1234567890123456'),
           mockPageNavigator.pop(any),
           mockLoadingDialog.hide(),
         ]);
@@ -200,10 +199,10 @@ void main() {
 
   group('準正常系', () {
     testWidgets(
-      'GynxID が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.gynxIdMinLength)}」が表示されること',
+      'ScreenName が空文字の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.screenNameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder = find.text(
-          formBuilderLocalizationJa.minLengthErrorText(Constant.gynxIdMinLength),
+          formBuilderLocalizationJa.minLengthErrorText(Constant.screenNameMinLength),
         );
         await pumpWidget(
           tester: tester,
@@ -220,13 +219,13 @@ void main() {
         expect(errorMessageFinder, findsNothing);
         await tester.pumpAndSettle();
         expect(errorMessageFinder, findsOneWidget);
-        verifyNever(mockCheckGynxIdExistenceUseCase.execute(any));
+        verifyNever(mockCheckScreenNameExistenceUseCase.execute(any));
         verifyNever(mockPageNavigator.pop(any));
       },
     );
 
     testWidgets(
-      '文字列が3文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.gynxIdMinLength)}」が表示されること',
+      '文字列が3文字以下の場合、「${l10nJa.done}」をタップしたら、onSaved が呼ばれなく、「${formBuilderLocalizationJa.minLengthErrorText(Constant.screenNameMinLength)}」が表示されること',
       (tester) async {
         final errorMessageFinder = find.text(formBuilderLocalizationJa.minLengthErrorText(4));
         await pumpWidget(
@@ -244,30 +243,30 @@ void main() {
         expect(errorMessageFinder, findsNothing);
         await tester.pumpAndSettle();
         expect(errorMessageFinder, findsOneWidget);
-        verifyNever(mockCheckGynxIdExistenceUseCase.execute(any));
+        verifyNever(mockCheckScreenNameExistenceUseCase.execute(any));
         verifyNever(mockPageNavigator.pop(any));
       },
     );
 
     testWidgets(
-      '既に存在する GynxID を入力した場合は、「${l10nJa.editGynxIdExistenceError}」が表示されること',
+      '既に存在する表示名を入力した場合は、「${l10nJa.editScreenNameExistenceError}」が表示されること',
       (tester) async {
-        final errorMessageFinder = find.text(l10nJa.editGynxIdExistenceError);
-        when(mockCheckGynxIdExistenceUseCase.execute('Gynx')).thenAnswer((_) async => true);
+        final errorMessageFinder = find.text(l10nJa.editScreenNameExistenceError);
+        when(mockCheckScreenNameExistenceUseCase.execute('ScreenName')).thenAnswer((_) async => true);
         await pumpWidget(
           tester: tester,
           onSaved: (_) => fail('unexpected onSaved'),
         );
         await tester.enterText(
           find.byType(FormBuilderTextField),
-          'Gynx',
+          'ScreenName',
         );
         verifyNever(mockLoadingDialog.show());
         verifyNever(mockLoadingDialog.hide());
         await tester.tap(find.widgetWithText(TextButton, l10nJa.done));
         verifyInOrder([
           mockLoadingDialog.show(),
-          mockCheckGynxIdExistenceUseCase.execute('Gynx'),
+          mockCheckScreenNameExistenceUseCase.execute('ScreenName'),
           mockLoadingDialog.hide(),
         ]);
         expect(errorMessageFinder, findsNothing);

@@ -8,8 +8,8 @@ part '../../generated/src/domain/entities/v_user.g.dart';
 class VUser with _$VUser {
   const VUser({
     required this.userId,
-    required this.gynxId,
-    required this.username,
+    required this.screenName,
+    required this.displayName,
     required this.avatarUrl,
     required this.createdAt,
     required this.updatedAt,
@@ -20,9 +20,9 @@ class VUser with _$VUser {
   @override
   final String userId;
   @override
-  final String gynxId;
+  final String screenName;
   @override
-  final String username;
+  final String displayName;
   @override
   final String? avatarUrl;
   @override

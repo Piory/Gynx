@@ -28,7 +28,7 @@ void main() {
       await expectLater(
         () => supabaseClient.from(tableName).insert({
           'id': otherUserId,
-          'gynx_id': 'GynxID',
+          'screen_name': 'ScreenName',
         }),
         throwsRlsError(
           tableName,
@@ -43,7 +43,7 @@ void main() {
     });
 
     test('Update X', () async {
-      final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID2'}).eq('id', otherUserId).select();
+      final result = await supabaseClient.from(tableName).update({'screen_name': 'ScreenName2'}).eq('id', otherUserId).select();
       expect(result, isEmpty);
     });
 
@@ -70,7 +70,7 @@ void main() {
         await expectLater(
           () => supabaseClient.from(tableName).insert({
             'id': anonymousUserId,
-            'gynx_id': 'GynxID',
+            'screen_name': 'ScreenName',
           }),
           throwsRlsError(
             tableName,
@@ -85,7 +85,7 @@ void main() {
       });
 
       test('Update X', () async {
-        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID'}).eq('id', anonymousUserId).select();
+        final result = await supabaseClient.from(tableName).update({'screen_name': 'ScreenName'}).eq('id', anonymousUserId).select();
         expect(result, isEmpty);
       });
 
@@ -100,7 +100,7 @@ void main() {
         await expectLater(
           () => supabaseClient.from(tableName).insert({
             'id': faker.guid.guid(),
-            'gynx_id': 'GynxID',
+            'screen_name': 'ScreenName',
           }),
           throwsRlsError(
             tableName,
@@ -115,7 +115,7 @@ void main() {
       });
 
       test('Update X', () async {
-        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID'}).eq('id', otherUserId).select();
+        final result = await supabaseClient.from(tableName).update({'screen_name': 'ScreenName'}).eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
 
@@ -157,7 +157,7 @@ void main() {
       test('Insert O', () async {
         final result = await supabaseClient.from(tableName).insert({
           'id': userId,
-          'gynx_id': 'GynxID',
+          'screen_name': 'ScreenName',
         }).select();
         expect(result, hasLength(1));
       });
@@ -168,9 +168,9 @@ void main() {
       });
 
       test('Update O', () async {
-        final result = await supabaseClient.from(tableName).update({'gynx_id': 'UpdatedGynxID'}).eq('id', userId).select();
+        final result = await supabaseClient.from(tableName).update({'screen_name': 'UpdatedScreenName'}).eq('id', userId).select();
         expect(result, hasLength(1));
-        expect(result.first['gynx_id'], 'UpdatedGynxID');
+        expect(result.first['screen_name'], 'UpdatedScreenName');
       });
 
       test('Delete O', () async {
@@ -184,7 +184,7 @@ void main() {
         expect(
           () => supabaseClient.from(tableName).insert({
             'id': faker.guid.guid(),
-            'gynx_id': 'GynxID2',
+            'screen_name': 'ScreenName2',
           }),
           throwsRlsError(
             tableName,
@@ -199,7 +199,7 @@ void main() {
       });
 
       test('Update X', () async {
-        final result = await supabaseClient.from(tableName).update({'gynx_id': 'GynxID2'}).eq('id', otherUserId).select();
+        final result = await supabaseClient.from(tableName).update({'screen_name': 'ScreenName2'}).eq('id', otherUserId).select();
         expect(result, isEmpty);
       });
 

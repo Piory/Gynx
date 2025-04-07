@@ -1,7 +1,7 @@
 CREATE VIEW v_user_details AS
 SELECT up.user_id,
-       u.gynx_id,
-       up.username,
+       u.screen_name,
+       up.display_name,
        up.avatar_url,
        up.self_introduction,
        (SELECT jsonb_agg(posts)
@@ -32,8 +32,8 @@ FROM t_users u
 
 COMMENT ON VIEW v_user_details IS 'ユーザー詳細ビュー';
 COMMENT ON COLUMN v_user_details.user_id IS 'ユーザーID';
-COMMENT ON COLUMN v_user_details.gynx_id IS 'Gynx ID';
-COMMENT ON COLUMN v_user_details.username IS 'ユーザー名';
+COMMENT ON COLUMN v_user_details.screen_name IS 'ハンドル';
+COMMENT ON COLUMN v_user_details.display_name IS '表示名';
 COMMENT ON COLUMN v_user_details.avatar_url IS 'アバターURL';
 COMMENT ON COLUMN v_user_details.self_introduction IS '自己紹介';
 COMMENT ON COLUMN v_user_details.latest_posts IS '最新の投稿';

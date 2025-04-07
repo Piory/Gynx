@@ -1,5 +1,5 @@
 import 'package:app/src/domain/usecases/suite_user_usecase.dart';
-import 'package:app/src/presentation/components/elements/avatars/gynx_id.dart';
+import 'package:app/src/presentation/components/elements/avatars/screen_name.dart';
 import 'package:app/src/presentation/components/elements/buttons/gradient_outlined_button.dart';
 import 'package:app/src/presentation/components/elements/medias/media_list.dart';
 import 'package:app/src/presentation/dialogs/loading_dialog.dart';
@@ -83,15 +83,15 @@ void main() {
     }
 
     group('正常系', () {
-      testWidgets('ユーザー名と Gynx ID が表示されること', (tester) async {
+      testWidgets('ユーザー名とハンドルが表示されること', (tester) async {
         await pumpWidget(
           tester: tester,
         );
 
-        expect(find.text(suiteUser.vUserDetail.username), findsOneWidget);
-        expect(find.byType(GynxId), findsOneWidget);
-        final gynxId = tester.widget<GynxId>(find.byType(GynxId));
-        expect(gynxId.id, suiteUser.vUserDetail.gynxId);
+        expect(find.text(suiteUser.vUserDetail.displayName), findsOneWidget);
+        expect(find.byType(ScreenName), findsOneWidget);
+        final screenName = tester.widget<ScreenName>(find.byType(ScreenName));
+        expect(screenName.screenName, suiteUser.vUserDetail.screenName);
         expect(find.text(l10nJa.postRequiredError), findsNothing);
       });
 

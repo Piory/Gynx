@@ -29,8 +29,8 @@ class EditProfileController {
     required BuildContext context,
     required L10n l10n,
     required WidgetRef ref,
-    required String? gynxId,
-    required String? username,
+    required String? screenName,
+    required String? displayName,
     required XFile? avatarFile,
     required bool isDeleteAvatar,
     required String? selfIntroduction,
@@ -38,8 +38,8 @@ class EditProfileController {
     try {
       _loadingDialog.show();
       await _updateUserProfileUseCase.execute(
-        gynxId: gynxId,
-        username: username,
+        screenName: screenName,
+        displayName: displayName,
         avatarImage: avatarFile == null ? null : File(avatarFile.path),
         isDeleteAvatar: isDeleteAvatar,
         selfIntroduction: selfIntroduction,

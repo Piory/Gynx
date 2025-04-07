@@ -16,8 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VUser {
   String get userId;
-  String get gynxId;
-  String get username;
+  String get screenName;
+  String get displayName;
   String? get avatarUrl;
   DateTime get createdAt;
   DateTime get updatedAt;
@@ -35,9 +35,10 @@ mixin _$VUser {
         (other.runtimeType == runtimeType &&
             other is VUser &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.gynxId, gynxId) || other.gynxId == gynxId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.screenName, screenName) ||
+                other.screenName == screenName) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl) &&
             (identical(other.createdAt, createdAt) ||
@@ -48,12 +49,12 @@ mixin _$VUser {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, gynxId, username, avatarUrl, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, userId, screenName, displayName,
+      avatarUrl, createdAt, updatedAt);
 
   @override
   String toString() {
-    return 'VUser(userId: $userId, gynxId: $gynxId, username: $username, avatarUrl: $avatarUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'VUser(userId: $userId, screenName: $screenName, displayName: $displayName, avatarUrl: $avatarUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -64,8 +65,8 @@ abstract mixin class $VUserCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
-      String gynxId,
-      String username,
+      String screenName,
+      String displayName,
       String? avatarUrl,
       DateTime createdAt,
       DateTime updatedAt});
@@ -84,8 +85,8 @@ class _$VUserCopyWithImpl<$Res> implements $VUserCopyWith<$Res> {
   @override
   $Res call({
     Object? userId = null,
-    Object? gynxId = null,
-    Object? username = null,
+    Object? screenName = null,
+    Object? displayName = null,
     Object? avatarUrl = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -95,13 +96,13 @@ class _$VUserCopyWithImpl<$Res> implements $VUserCopyWith<$Res> {
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      gynxId: null == gynxId
-          ? _self.gynxId
-          : gynxId // ignore: cast_nullable_to_non_nullable
+      screenName: null == screenName
+          ? _self.screenName
+          : screenName // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
+      displayName: null == displayName
+          ? _self.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       avatarUrl: freezed == avatarUrl
           ? _self.avatarUrl

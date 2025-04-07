@@ -9,8 +9,8 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:locales/locales.dart';
 
-class EditUsername extends StatelessWidget {
-  const EditUsername({
+class EditDisplayName extends StatelessWidget {
+  const EditDisplayName({
     super.key,
     required this.onSaved,
   });
@@ -26,7 +26,7 @@ class EditUsername extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          context.l10n.editUsername,
+          context.l10n.editDisplayName,
           textScaler: textScaler.clamp(
             maxScaleFactor: 1,
           ),
@@ -64,25 +64,25 @@ class EditUsername extends StatelessWidget {
               Consumer(
                 builder: (context, ref, _) {
                   return FormBuilderTextField(
-                    name: 'username',
+                    name: 'display_name',
                     initialValue: ref.watch(
                       suiteUserNotifierProvider.select(
-                        (value) => value.value?.vUserDetail.username,
+                        (value) => value.value?.vUserDetail.displayName,
                       ),
                     ),
                     autofocus: true,
-                    maxLength: Constant.usernameMaxLength,
+                    maxLength: Constant.displayNameMaxLength,
                     keyboardType: TextInputType.text,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.minLength(
-                        Constant.usernameMinLength,
+                        Constant.displayNameMinLength,
                       ),
                       FormBuilderValidators.maxLength(
-                        Constant.usernameMaxLength,
+                        Constant.displayNameMaxLength,
                       ),
                     ]),
                     decoration: InputDecoration(
-                      labelText: context.l10n.username,
+                      labelText: context.l10n.displayName,
                     ),
                     onSaved: (value) => onSaved(value?.trim()),
                   );
@@ -90,9 +90,9 @@ class EditUsername extends StatelessWidget {
               ),
               const Gap(SpaceSize.s16),
               Text(
-                context.l10n.editUsernameLength(
-                  Constant.usernameMinLength,
-                  Constant.usernameMaxLength,
+                context.l10n.editDisplayNameLength(
+                  Constant.displayNameMinLength,
+                  Constant.displayNameMaxLength,
                 ),
                 style: textTheme.bodySmall!.copyWith(
                   color: colorScheme.onSurfaceVariant,

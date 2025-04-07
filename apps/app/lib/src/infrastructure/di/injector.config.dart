@@ -9,8 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:app/src/application/interactors/check_gynx_id_existence_interactor.dart'
-    as _i910;
+import 'package:app/src/application/interactors/check_screen_name_existence_interactor.dart'
+    as _i396;
 import 'package:app/src/application/interactors/create_post_interactor.dart'
     as _i702;
 import 'package:app/src/application/interactors/favorite_post_interactor.dart'
@@ -57,8 +57,8 @@ import 'package:app/src/domain/repositories/v_post_repository.dart' as _i733;
 import 'package:app/src/domain/repositories/v_user_detail_repository.dart'
     as _i752;
 import 'package:app/src/domain/repositories/v_user_repository.dart' as _i397;
-import 'package:app/src/domain/usecases/check_gynx_id_existence_usecase.dart'
-    as _i126;
+import 'package:app/src/domain/usecases/check_screen_name_existence_usecase.dart'
+    as _i894;
 import 'package:app/src/domain/usecases/create_post_usecase.dart' as _i1041;
 import 'package:app/src/domain/usecases/favorite_post_usecase.dart' as _i748;
 import 'package:app/src/domain/usecases/fetch_post_usecase.dart' as _i732;
@@ -206,10 +206,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i840.AuthRepository>(),
           gh<_i752.VUserDetailRepository>(),
         ));
+    gh.lazySingleton<_i894.CheckScreenNameExistenceUseCase>(() =>
+        _i396.CheckScreenNameExistenceInteractor(gh<_i916.TUserRepository>()));
     gh.lazySingleton<_i492.FindUserDetailUseCase>(() =>
         _i1044.FindUserDetailInteractor(gh<_i752.VUserDetailRepository>()));
-    gh.lazySingleton<_i126.CheckGynxIdExistenceUsecase>(() =>
-        _i910.CheckGynxIdExistenceInteractor(gh<_i916.TUserRepository>()));
     gh.lazySingleton<_i935.SignOutUseCase>(
         () => _i633.SignOutInteractor(gh<_i840.AuthRepository>()));
     gh.lazySingleton<_i365.SignInWithAnonymousUseCase>(

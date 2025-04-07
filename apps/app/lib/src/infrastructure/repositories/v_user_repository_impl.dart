@@ -17,8 +17,8 @@ class VUserRepositoryImpl implements VUserRepository {
   }
 
   @override
-  Future<VUser> findByGynxId(String gynxId) async {
-    final res = await _client.from(viewName).select().eq('gynx_id', gynxId).single();
+  Future<VUser> findByScreenName(String screenName) async {
+    final res = await _client.from(viewName).select().eq('screen_name', screenName).single();
     return VUser.fromJson(res);
   }
 }

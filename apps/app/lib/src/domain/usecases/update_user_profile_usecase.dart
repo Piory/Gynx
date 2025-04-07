@@ -4,8 +4,8 @@ import 'dart:io';
 
 abstract interface class UpdateUserProfileUseCase {
   Future<void> execute({
-    required String? gynxId,
-    required String? username,
+    required String? screenName,
+    required String? displayName,
     required File? avatarImage,
     required bool isDeleteAvatar,
     required String? selfIntroduction,

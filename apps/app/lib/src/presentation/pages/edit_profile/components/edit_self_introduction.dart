@@ -27,7 +27,7 @@ class EditSelfIntroduction extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          context.l10n.editUsername,
+          context.l10n.editDisplayName,
           textScaler: textScaler.clamp(
             maxScaleFactor: 1,
           ),

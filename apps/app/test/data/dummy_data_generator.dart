@@ -34,7 +34,7 @@ User generateDummyUser() => User(
 
 TUser generateDummyTUser() => TUser(
       id: faker.guid.guid(),
-      gynxId: 'gynx_id',
+      screenName: 'screen_name',
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
       deletedAt: faker.randomGenerator.boolean() ? faker.date.dateTime() : null,
@@ -42,7 +42,7 @@ TUser generateDummyTUser() => TUser(
 
 TUserProfile generateDummyTUserProfile() => TUserProfile(
       userId: faker.guid.guid(),
-      username: faker.person.name(),
+      displayName: faker.person.name(),
       avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       selfIntroduction: faker.lorem.sentence(),
       createdAt: faker.date.dateTime(),
@@ -100,8 +100,8 @@ TPostMedia generateDummyTPostMedia() => TPostMedia(
 
 VUser generateDummyVUser() => VUser(
       userId: faker.guid.guid(),
-      gynxId: 'gynx_id',
-      username: faker.person.name(),
+      screenName: 'screen_name',
+      displayName: faker.person.name(),
       avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       createdAt: faker.date.dateTime(),
       updatedAt: faker.date.dateTime(),
@@ -113,8 +113,8 @@ VUserDetail generateDummyVUserDetail({
 }) =>
     VUserDetail(
       userId: faker.guid.guid(),
-      gynxId: 'gynx_id',
-      username: faker.person.name(),
+      screenName: 'screen_name',
+      displayName: faker.person.name(),
       avatarUrl: faker.randomGenerator.boolean() ? faker.image.loremPicsum() : null,
       selfIntroduction: faker.lorem.sentence(),
       latestPosts: latestPosts,

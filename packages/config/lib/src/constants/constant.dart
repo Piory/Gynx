@@ -1,15 +1,15 @@
 final class Constant {
-  /// Gynx IDの最小文字数
-  static const gynxIdMinLength = 4;
+  /// ハンドルの最小文字数
+  static const screenNameMinLength = 4;
 
-  /// Gynx IDの最大文字数
-  static const gynxIdMaxLength = 16;
+  /// ハンドルの最大文字数
+  static const screenNameMaxLength = 16;
 
-  /// ユーザー名の最小文字数
-  static const usernameMinLength = 3;
+  /// 表示名の最小文字数
+  static const displayNameMinLength = 3;
 
-  /// ユーザー名の最大文字数
-  static const usernameMaxLength = 20;
+  /// 表示名の最大文字数
+  static const displayNameMaxLength = 20;
 
   /// 自己紹介の最大行数
   static const selfIntroductionMaxLines = 5;

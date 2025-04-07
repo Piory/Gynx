@@ -65,17 +65,17 @@ void main() {
     });
   });
 
-  group('#findByGynxId', () {
+  group('#findByScreenName', () {
     group('正常系', () {
       test('正常にデータが1件取得されること', () async {
         await mockSupabaseClient.from(viewName).insert(vUserDetail);
-        final foundVUserDetail = await vUserDetailRepository.findByGynxId(vUserDetail.gynxId);
+        final foundVUserDetail = await vUserDetailRepository.findByScreenName(vUserDetail.screenName);
         expect(foundVUserDetail, vUserDetail);
       });
 
       test('正常にデータが1件取得されること（latestPosts あり）', () async {
         await mockSupabaseClient.from(viewName).insert(vUserDetailWithLatestPosts);
-        final foundVUserDetail = await vUserDetailRepository.findByGynxId(vUserDetailWithLatestPosts.gynxId);
+        final foundVUserDetail = await vUserDetailRepository.findByScreenName(vUserDetailWithLatestPosts.screenName);
         expect(foundVUserDetail, vUserDetailWithLatestPosts);
       });
     });

@@ -5,12 +5,12 @@
   "confirm": "Confirm",
   "takePhoto": "Take a photo",
   "selectFromLibrary": "Select from library",
-  "deleteImage": "Delete Image",
+  "deleteImage": "Delete image",
   "edit": "Edit",
-  "editProfile": "Edit Profile",
-  "editUsername": "Edit Username",
-  "editUsernameLength": "Username must be between {min} and {max} characters.",
-  "@editUsernameLength": {
+  "editProfile": "Edit profile",
+  "editDisplayName": "Edit display name",
+  "editDisplayNameLength": "Display name must be between {min} and {max} characters.",
+  "@editDisplayNameLength": {
     "placeholders": {
       "min": {
         "type": "int"
@@ -20,11 +20,11 @@
       }
     }
   },
-  "editGynxId": "Edit Gynx ID",
-  "editGynxIdRegexp": "Gynx ID can only contain alphanumeric characters and underscores (_).",
-  "editGynxIdRegexpError": "Invalid characters are included.",
-  "editGynxIdLength": "Gynx ID must be between {min} and {max} characters.",
-  "@editGynxIdLength": {
+  "editScreenName": "Edit handle",
+  "editScreenNameRegexp": "Handle can only contain alphanumeric characters and underscores (_).",
+  "editScreenNameRegexpError": "Contains invalid characters.",
+  "editScreenNameLength": "Handle must be between {min} and {max} characters.",
+  "@editScreenNameLength": {
     "placeholders": {
       "min": {
         "type": "int"
@@ -34,9 +34,9 @@
       }
     }
   },
-  "editGynxIdExistenceError": "This Gynx ID is already in use.",
-  "editSelfIntroduction": "Edit Self Introduction",
-  "editSelfIntroductionLength": "Self Introduction must be up to {max} characters.",
+  "editScreenNameExistenceError": "This handle is already in use.",
+  "editSelfIntroduction": "Edit self-introduction",
+  "editSelfIntroductionLength": "Self-introduction must be within {max} characters.",
   "@editSelfIntroductionLength": {
     "placeholders": {
       "max": {
@@ -44,17 +44,18 @@
       }
     }
   },
-  "updateUserProfileError": "Failed to update user profile.",
+  "updateUserProfileError": "Failed to update profile.",
   "share": "Share",
   "post": "Post",
   "posts": "Posts",
-  "postHintText": "What's are you doing lately?",
+  "postedAt": "",
+  "postHintText": "How have you been lately?",
   "postRequiredError": "Please enter the post content.",
   "postListEmpty": "No posts yet",
-  "favoritePostListEmpty": "No favorite posts yet",
-  "username": "Username",
-  "gynxId": "Gynx ID",
-  "selfIntroduction": "Self Introduction",
+  "favoritePostListEmpty": "No favorite posts",
+  "displayName": "Display name",
+  "screenName": "Handle",
+  "selfIntroduction": "Self-introduction",
   "favorite": "Favorite",
   "favorites": "Favorites",
   "cancel": "Cancel",
@@ -62,31 +63,31 @@
   "save": "Save",
   "ok": "OK",
   "doContinue": "Continue",
-  "or": "or",
-  "signUpOrSignIn": "Sign up or Sign in",
-  "signInTitle": "Sign in to make the most of Gynx!",
-  "signInDescription": "To continue, please log in using one of the services below.",
+  "or": "Or",
+  "signInTitle": "Log in to make the most of Gynx!",
+  "signInDescription": "Please log in with one of the following services to continue",
+  "signUpOrSignIn": "Sign up or log in",
   "continueWithApple": "Continue with Apple",
   "continueWithGoogle": "Continue with Google",
   "continueWithX": "Continue with X",
   "continueWithTwitch": "Continue with Twitch",
   "continueWithDiscord": "Continue with Discord",
-  "continueAsGuest": "Continue as guest",
-  "continueAsGuestWarning": "Guest users have limited access to features, but these restrictions will be lifted after linking your account.",
-  "guestSignInAlertTitle": "Important Notes for Guest Users",
-  "guestSignInAlertMessage": "Some features are restricted. You can remove these restrictions by linking your account from the Profile > Settings page.\nOnce you log out, you will not be able to log in again.\nGuest user accounts that remain inactive for more than 90 days will be deleted.\n\nDo you want to continue as a guest user?",
-  "continueIsApproveTermsOfServiceAndPrivacyPolicy": "By continuing, you agree to Gynx’s Terms of Service and Privacy Policy.",
-  "signIn": "SignIn",
-  "signInError": "Sign in failed",
-  "signOut": "SignOut",
-  "signOutMessage": "Are you sure you want to sign out?",
-  "signOutError": "Sign out failed",
-  "email": "Email",
+  "continueAsGuest": "Continue as a guest user",
+  "continueAsGuestWarning": "Guest users have limited functionality, but restrictions will be lifted after linking an account",
+  "guestSignInAlertTitle": "Guest User Notice",
+  "guestSignInAlertMessage": "・Some features will be limited. You can lift restrictions by linking your account from the Profile > Settings page.\n・Once you log out, you cannot log in again.\n・Accounts that have not been used for more than 90 days as a guest user will be deleted.\n\nDo you want to continue as a guest user?",
+  "continueIsApproveTermsOfServiceAndPrivacyPolicy": "By continuing, you agree to Gynx's Terms of Service and Privacy Policy.",
+  "signIn": "Log in",
+  "signInError": "Failed to log in",
+  "signOut": "Log out",
+  "signOutMessage": "Are you sure you want to log out?",
+  "signOutError": "Failed to log out",
+  "email": "Email address",
   "password": "Password",
   "forgotYourPassword": "Forgot your password?",
   "dontHaveAnAccount": "Don't have an account?",
   "alreadyHaveAnAccount": "Already have an account?",
-  "follow": "{follow} Follow",
+  "follow": "{follow} Followers",
   "@follow": {
     "placeholders": {
       "follow": {
@@ -95,7 +96,7 @@
       }
     }
   },
-  "follower": "{follower} Follower",
+  "follower": "{follower} Followers",
   "@follower": {
     "placeholders": {
       "follower": {
@@ -105,7 +106,7 @@
     }
   },
   "uploadVideoTooLongErrorTitle": "Video is too long",
-  "uploadVideoTooLongErrorMessage": "Please upload a video that is {max} seconds or less.",
+  "uploadVideoTooLongErrorMessage": "Please upload the video within {max} seconds.",
   "@uploadVideoTooLongErrorMessage": {
     "placeholders": {
       "max": {
@@ -113,5 +114,5 @@
       }
     }
   },
-  "setting": "Setting"
+  "setting": "Settings"
 }

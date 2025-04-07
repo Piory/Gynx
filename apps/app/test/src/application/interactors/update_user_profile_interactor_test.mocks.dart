@@ -1024,22 +1024,28 @@ class MockTUserRepository extends _i1.Mock implements _i15.TUserRepository {
           as _i7.Future<_i4.TUser>);
 
   @override
-  _i7.Future<_i4.TUser> findByGynxId(String? gynxId) =>
+  _i7.Future<_i4.TUser> findByScreenName(String? screenName) =>
       (super.noSuchMethod(
-            Invocation.method(#findByGynxId, [gynxId]),
+            Invocation.method(#findByScreenName, [screenName]),
             returnValue: _i7.Future<_i4.TUser>.value(
-              _FakeTUser_9(this, Invocation.method(#findByGynxId, [gynxId])),
+              _FakeTUser_9(
+                this,
+                Invocation.method(#findByScreenName, [screenName]),
+              ),
             ),
             returnValueForMissingStub: _i7.Future<_i4.TUser>.value(
-              _FakeTUser_9(this, Invocation.method(#findByGynxId, [gynxId])),
+              _FakeTUser_9(
+                this,
+                Invocation.method(#findByScreenName, [screenName]),
+              ),
             ),
           )
           as _i7.Future<_i4.TUser>);
 
   @override
-  _i7.Future<bool> existsById(String? gynxId) =>
+  _i7.Future<bool> existsByScreenName(String? screenName) =>
       (super.noSuchMethod(
-            Invocation.method(#existsById, [gynxId]),
+            Invocation.method(#existsByScreenName, [screenName]),
             returnValue: _i7.Future<bool>.value(false),
             returnValueForMissingStub: _i7.Future<bool>.value(false),
           )
@@ -1048,12 +1054,12 @@ class MockTUserRepository extends _i1.Mock implements _i15.TUserRepository {
   @override
   _i7.Future<void> updateByPrimaryKey({
     required String? id,
-    required String? gynxId,
+    required String? screenName,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#updateByPrimaryKey, [], {
               #id: id,
-              #gynxId: gynxId,
+              #screenName: screenName,
             }),
             returnValue: _i7.Future<void>.value(),
             returnValueForMissingStub: _i7.Future<void>.value(),
@@ -1088,7 +1094,7 @@ class MockTUserProfileRepository extends _i1.Mock
   @override
   _i7.Future<void> updateByPrimaryKeySelective({
     required String? userId,
-    required String? username,
+    required String? displayName,
     required String? avatarUrl,
     bool? isDeleteAvatarUrl = false,
     required String? selfIntroduction,
@@ -1096,7 +1102,7 @@ class MockTUserProfileRepository extends _i1.Mock
       (super.noSuchMethod(
             Invocation.method(#updateByPrimaryKeySelective, [], {
               #userId: userId,
-              #username: username,
+              #displayName: displayName,
               #avatarUrl: avatarUrl,
               #isDeleteAvatarUrl: isDeleteAvatarUrl,
               #selfIntroduction: selfIntroduction,

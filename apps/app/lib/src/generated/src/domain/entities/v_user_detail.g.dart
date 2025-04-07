@@ -12,8 +12,8 @@ VUserDetail _$VUserDetailFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = VUserDetail(
           userId: $checkedConvert('user_id', (v) => v as String),
-          gynxId: $checkedConvert('gynx_id', (v) => v as String),
-          username: $checkedConvert('username', (v) => v as String),
+          screenName: $checkedConvert('screen_name', (v) => v as String),
+          displayName: $checkedConvert('display_name', (v) => v as String),
           avatarUrl: $checkedConvert('avatar_url', (v) => v as String?),
           selfIntroduction:
               $checkedConvert('self_introduction', (v) => v as String),
@@ -46,7 +46,8 @@ VUserDetail _$VUserDetailFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'userId': 'user_id',
-        'gynxId': 'gynx_id',
+        'screenName': 'screen_name',
+        'displayName': 'display_name',
         'avatarUrl': 'avatar_url',
         'selfIntroduction': 'self_introduction',
         'latestPosts': 'latest_posts',
@@ -62,8 +63,8 @@ VUserDetail _$VUserDetailFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$VUserDetailToJson(VUserDetail instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
-      'gynx_id': instance.gynxId,
-      'username': instance.username,
+      'screen_name': instance.screenName,
+      'display_name': instance.displayName,
       'avatar_url': instance.avatarUrl,
       'self_introduction': instance.selfIntroduction,
       'latest_posts': instance.latestPosts,
