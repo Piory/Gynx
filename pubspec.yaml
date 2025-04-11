@@ -6,7 +6,7 @@ environment:
   flutter: ^3.29.1
 dev_dependencies:
   custom_lint: 0.7.5
-  melos: 7.0.0-dev.7
+  melos: 7.0.0-dev.8
   pedantic_mono: 1.30.3
   pubspec_dependency_sorter: 1.0.5
   riverpod_lint: 2.6.5
