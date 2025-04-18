@@ -68,7 +68,7 @@ dev_dependencies:
   freezed: 3.0.4
   go_router_builder: 2.8.2
   injectable_generator: 2.7.0
-  json_serializable: 6.9.4
+  json_serializable: 6.9.5
   lints: 5.1.1
   mock_supabase_http_client: 0.0.3+2
   mockito: 5.4.5
