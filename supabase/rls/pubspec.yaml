@@ -7,7 +7,7 @@ dev_dependencies:
   config:
     path: ../../packages/config
   faker: 2.2.0
-  lints: 5.1.1
+  lints: 6.0.0
   pedantic_mono: any
   supabase: 2.6.3
   test: 1.25.15
